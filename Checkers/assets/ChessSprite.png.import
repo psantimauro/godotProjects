@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c4bj7umw01eol"
-path="res://.godot/imported/ChessSprite.png-d12a7d76daa82fda428962c2f90c77d7.ctex"
+path="res://.godot/imported/ChessSprite.png-3ca628555525888387ff5aa29b18e162.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ChessSprite.png"
-dest_files=["res://.godot/imported/ChessSprite.png-d12a7d76daa82fda428962c2f90c77d7.ctex"]
+source_file="res://assets/ChessSprite.png"
+dest_files=["res://.godot/imported/ChessSprite.png-3ca628555525888387ff5aa29b18e162.ctex"]
 
 [params]
 

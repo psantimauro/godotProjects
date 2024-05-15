@@ -1,16 +1,37 @@
 [gd_scene load_steps=4 format=3 uid="uid://mpdwvm8n0ueh"]
 
 [ext_resource type="Script" path="res://Piece/Piece.gd" id="1_4o71t"]
-[ext_resource type="Texture2D" uid="uid://dn6tfxfhrhghq" path="res://ChessPiecesSprite.png" id="2_xq3ke"]
-[ext_resource type="Script" path="res://SpriteManagerForPiece.gd" id="3_6al0n"]
+[ext_resource type="Texture2D" uid="uid://dn6tfxfhrhghq" path="res://assets/ChessPiecesSprite.png" id="2_xq3ke"]
+
+[sub_resource type="GDScript" id="GDScript_keot0"]
+script/source = "extends Sprite2D
+
+
+var p = -1
+
+func setRed():
+	p = 0
+	
+func setBlack():
+	p = 1
+
+func setKinged():
+	if p > -1:
+		p += 2
+		
+func updateSprite():
+	if p > -1:
+		self.frame = p
+"
 
 [node name="Piece" type="Node2D"]
 script = ExtResource("1_4o71t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("2_xq3ke")
 centered = false
 hframes = 2
 vframes = 2
-frame = 1
-script = ExtResource("3_6al0n")
+frame = 3
+script = SubResource("GDScript_keot0")

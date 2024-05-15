@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://MainGame.gd" id="1_sw23m"]
 [ext_resource type="PackedScene" uid="uid://mpdwvm8n0ueh" path="res://Piece/piece.tscn" id="2_gtvgl"]
-[ext_resource type="Texture2D" uid="uid://c4bj7umw01eol" path="res://ChessSprite.png" id="3_ug322"]
-[ext_resource type="Texture2D" uid="uid://dn6tfxfhrhghq" path="res://ChessPiecesSprite.png" id="4_vk1vk"]
+[ext_resource type="Texture2D" uid="uid://c4bj7umw01eol" path="res://assets/ChessSprite.png" id="3_ug322"]
+[ext_resource type="Texture2D" uid="uid://dn6tfxfhrhghq" path="res://assets/ChessPiecesSprite.png" id="4_vk1vk"]
 [ext_resource type="Script" path="res://TileMap.gd" id="5_rcp0m"]
 [ext_resource type="PackedScene" uid="uid://xusklu5gnbod" path="res://scenes/player.tscn" id="6_ojh4h"]
 
