@@ -1,0 +1,19 @@
+config_version=5
+
+[application]
+
+config/name="Checkers"
+run/main_scene="res://scenes/Main.tscn"
+config/features=PackedStringArray("4.2", "Forward Plus")
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1024
+window/size/viewport_height=1024
+window/stretch/mode="canvas_items"
+window/stretch/scale=4.0
+
+[dotnet]
+
+project/assembly_name="Chess"
