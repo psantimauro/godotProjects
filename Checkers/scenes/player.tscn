@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://xusklu5gnbod"]
+[gd_scene load_steps=3 format=3 uid="uid://xusklu5gnbod"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_ckfgp"]
+[ext_resource type="Texture2D" uid="uid://dn6tfxfhrhghq" path="res://ChessPiecesSprite.png" id="2_0btmp"]
 
-[node name="Player" type="Node"]
+[node name="Player" type="Node2D"]
 script = ExtResource("1_ckfgp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_0btmp")
+hframes = 2
+vframes = 2
+frame = 2

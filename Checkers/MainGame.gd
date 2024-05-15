@@ -14,6 +14,7 @@ func _ready():
 	generateBoard()
 	intializePlayerPieces()
 	$TileMap.updateBoard(BoardDictionary)
+	currentPlayer.currentTurn = true
 	print("Go ", currentPlayer.color)
 
 
@@ -33,24 +34,25 @@ func _process(delta):
 				tileItem["piece"] = currentPieceInPlayerHand
 				print("returning :", tilePosition)
 				currentPieceInPlayerHand = null
+				currentPlayer.showPieceInHand = false
 				BoardDictionary[str(tilePosition)] = tileItem
 				$TileMap.updateBoardCell(tileItem,tilePosition.x, tilePosition.y)
-			elif tileItem["piece"] != "":
-				pickingUp = false
-				previousPosition = tilePosition
+		#	elif tileItem["piece"] != null:
+		#		pickingUp = false
+		#		previousPosition = tilePosition
 				#erase_cell(1,tilePosition)
-				print("removing ", str(tilePosition))
-				currentPieceInPlayerHand = tileItem["piece"]
-				tileItem["piece"] = ""
-				BoardDictionary[str(tilePosition)] = tileItem
-				$TileMap.updateBoardCell(tileItem,tilePosition.x, tilePosition.y)
-			elif previousPosition and (isValidPosition(tileItem,d, currentPieceInPlayerHand,false)): #  or d == Vector2i.ZERO)
+		#		print("removing ", str(tilePosition))
+		#		currentPieceInPlayerHand = tileItem["piece"]
+		#		tileItem["piece"] = null
+		#		BoardDictionary[str(tilePosition)] = tileItem
+		#		$TileMap.updateBoardCell(tileItem,tilePosition.x, tilePosition.y)
+			elif previousPosition and (isValidPosition(tileItem,d, currentPieceInPlayerHand)): #  or d == Vector2i.ZERO)
 				
 				#set_cell(1,tilePosition,1, Vector2(currentPiece/2,0), 0)
 				tileItem["piece"] = currentPieceInPlayerHand
 				print("placing :", tilePosition)
 				currentPieceInPlayerHand = null
-				
+				currentPlayer.showPieceInHand = false
 				BoardDictionary[str(tilePosition)] = tileItem
 				$TileMap.updateBoardCell(tileItem,tilePosition.x, tilePosition.y)
 				changeCurrentPlayer()
@@ -60,27 +62,49 @@ func _process(delta):
 		mouse_click_positions = tilePosition
 		if BoardDictionary.has(str(tilePosition)) and currentPieceInPlayerHand == null:
 			var tileItem = BoardDictionary[str(tilePosition)]
-			if tileItem["piece"] and  tileItem["piece"] == currentPlayer.color:
+			if tileItem["piece"] and  tileItem["piece"].color == currentPlayer.color:
 				currentPieceInPlayerHand = tileItem["piece"]
-				tileItem["piece"] = ""
+				tileItem["piece"] = null
 				BoardDictionary[str(tilePosition)] = tileItem
 				previousPosition = tilePosition
 				print("picking ", tilePosition)
 				$TileMap.updateBoardCell(tileItem,tilePosition.x, tilePosition.y)
 				pickingUp = true
+				currentPlayer.showPieceInHand = true
 
-func isValidPosition(item, delta, color, isKinged):
+func isValidPosition(item, delta, piece):
+	var isKinged = piece.kinged
 	if item["color"] != "black":
 		return
 	var canGoUp 
 	var canGoDown
-	if color == "red":
+	if piece.color == "red":
 		canGoDown = true
 		canGoUp = isKinged
 	else:
 		canGoDown = isKinged
 		canGoUp = true
 	print ("Delta : ", delta)
+	print ("Delta/1 : ", delta/Vector2i.ONE)
+	var direction =0 #this should be a number between -1 UP and 1 DDOWN representing the y of the delta
+	if abs(delta.x) == abs(delta.y): #we have a linear vector
+		if delta.y > 0:
+			direction = 1
+		if delta.y < 0:
+			direction = -1		
+		print("direction ", direction)
+		print("LENGTH ", delta.y)
+		#we need to iterate over LENGHT in the vector to ensure if oppisite color, space, repeat
+		if isKinged or (direction < 0 and canGoUp) or direction > 0 and canGoDown:
+			for iteration in delta.y:
+				var postitionToCheck:Vector2i = Vector2i(delta.x + iteration, delta.y + iteration) ## tthis is wrong, bring the intial position pback into this function
+				if iteration % 2 == 0:
+					print("needs to be blank")
+				else:
+					print("needs to have ennemy")
+				print(iteration)
+				print(postitionToCheck)
+		
 	if delta.y == 1 and canGoDown and abs(delta.x) == 1:
 		return true
 	if delta.y == -1 and canGoUp and abs(delta.x) == 1:
@@ -100,7 +124,7 @@ func generateBoard():
 			
 			BoardDictionary[str(gridLocation)] = {
 				"color" : tileColor,
-				"piece" : ""
+				"piece" : null
 			}
 func intializePlayerPieces():
 	for y in GridSize:
@@ -108,24 +132,25 @@ func intializePlayerPieces():
 			for x in GridSize:	
 				var gridLocation = Vector2(x,y)		
 				var boardItem = BoardDictionary[str(gridLocation)]
-				if boardItem["color"] == "black":
+				if boardItem["color"] == "black": #only black tiles are valid
 					if  y < 3: # add red
-						#set_cell(1,gridLocation,1,Vector2i(0,0),0)
 						var redPiece:Piece = piece.instantiate()
 						redPiece.color = "red"
 						add_child(redPiece)
-						boardItem["piece"] = "red"
+						boardItem["piece"] = redPiece
 					if y > 4:
-						#set_cell(1,gridLocation,1,Vector2i(1,0),0)
 						var blackPiece:Piece = piece.instantiate()
-						blackPiece.color = "red"
+						blackPiece.color = "black"
 						add_child(blackPiece)
-						boardItem["piece"] = "black"
+						boardItem["piece"] = blackPiece
 					BoardDictionary[str(gridLocation)] = boardItem	
 
 func changeCurrentPlayer():
+	currentPlayer.showPieceInHand = false
+	currentPlayer.currentTurn = false
 	if currentPlayer == $RedPlayer:
 		currentPlayer = $BlackPlayer
 	else:
 		currentPlayer = $RedPlayer
+	currentPlayer.currentTurn = true
 	print("Go ", currentPlayer.color)

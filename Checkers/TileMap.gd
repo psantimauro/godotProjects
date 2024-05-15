@@ -29,14 +29,14 @@ func updateBoardCell(item, x, y):
 	erase_cell(1,location)
 	if piece != null: 
 		var pieceLocation = null
-		if piece == "red":
+		if piece.color == "red":
 			pieceLocation = RED_PIECE
-		if piece == "red_kinged":
-			pieceLocation = RED_PIECE_KINGED
-		if piece == "black":
+			if piece.kinged:
+				pieceLocation = RED_PIECE_KINGED
+		if piece.color == "black":
 			pieceLocation = BLACK_PIECE
-		if piece == "black_kinged":
-			pieceLocation = BLACK_PIECE_KINGED
+			if piece.kinged:
+				pieceLocation = BLACK_PIECE_KINGED
 		if pieceLocation != null:
 			set_cell(1,location,1,pieceLocation,0)
 			
