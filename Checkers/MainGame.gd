@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var currentPlayer = $RedPlayer
 @export var piece:PackedScene
-var currentPieceInPlayerHand = null
+var currentPieceInPlayerHand:Piece = null
 var previousPosition = null
 
 var GridSize = 8
@@ -11,6 +11,7 @@ enum {LEFT = -1, RIGHT = 1}
 enum {UP = -1, DOWN = 1}
 
 var itemsKilledThisTurn: Array[Vector2i] = []
+var promoteToKing = false
 
 func _ready():
 	generateBoard()
@@ -19,8 +20,6 @@ func _ready():
 	currentPlayer.currentTurn = true
 	print("Go ", currentPlayer.color)
 
-
-var pickingUp = false
 func _input(event):
 	
 	var tilePosition = $TileMap.getLocal( get_global_mouse_position())
@@ -32,25 +31,27 @@ func _input(event):
 			var tileItem = BoardDictionary[str(tilePosition)]
 			var d = tilePosition - previousPosition
 			var previousKillCount = itemsKilledThisTurn.size()
-			if d == Vector2i.ZERO and not pickingUp: #return to previous position
+			if d == Vector2i.ZERO : #return to previous position
 				tileItem["piece"] = currentPieceInPlayerHand
 				print("returning :", tilePosition)
 				currentPieceInPlayerHand = null
 				currentPlayer.showPieceInHand = false
 				BoardDictionary[str(tilePosition)] = tileItem
 				$TileMap.updateBoardCell(tileItem,tilePosition.x, tilePosition.y)
-			elif previousPosition and (isValidPosition(tileItem,tilePosition, previousPosition, currentPieceInPlayerHand)): #  or d == Vector2i.ZERO)
-				var killsThisTurn = itemsKilledThisTurn.size() -previousKillCount
-				updateBoardFromKills()
+			elif previousPosition and (isValidMove(tileItem,tilePosition, previousPosition, currentPieceInPlayerHand)): #  or d == Vector2i.ZERO)
+				var killsThisTurn = itemsKilledThisTurn.size() -previousKillCount #populated by isValidMove above
+				updateBoardDictionaryFromKills()
+				if promoteToKing:
+					currentPieceInPlayerHand.kinged = true
+					promoteToKing = false
 				tileItem["piece"] = currentPieceInPlayerHand
 				print("placing :", tilePosition)
-				currentPieceInPlayerHand = null
 				currentPlayer.showPieceInHand = false
 				BoardDictionary[str(tilePosition)] = tileItem
 				$TileMap.updateBoard(BoardDictionary)
 				if killsThisTurn == 0 or not canMoveAgain(tilePosition, tileItem["piece"]):
 					changeCurrentPlayer()
-			pickingUp = false		
+				currentPieceInPlayerHand = null
 	#pickup
 	elif mouseEvent and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		if BoardDictionary.has(str(tilePosition)) and currentPieceInPlayerHand == null:
@@ -62,7 +63,6 @@ func _input(event):
 				previousPosition = tilePosition
 				print("picking ", tilePosition)
 				$TileMap.updateBoardCell(tileItem,tilePosition.x, tilePosition.y)
-				pickingUp = true
 				currentPlayer.showPieceInHand = true
 	elif event.is_action_pressed("end_turn"):
 		changeCurrentPlayer()
@@ -82,98 +82,108 @@ func canMoveAgain(tilePosition, currentPieceInPlayerHand):
 		canGoUp = true
 	if canGoUp:
 		#Check next two Tiles, because next move HAS to be a jump to be valid
-		var leftTile = BoardDictionary[str(tilePosition + Vector2i(LEFT,UP))]
-		var left2Tile = BoardDictionary[str(tilePosition + 2*Vector2i(LEFT,UP))]
-		
-		var rightTile = BoardDictionary[str(tilePosition + Vector2i(RIGHT,UP))]
-		var right2Tile =BoardDictionary[str(tilePosition + 2*Vector2i(RIGHT,UP))]
-		
-		if checkJump(left2Tile, leftTile) or checkJump(right2Tile, rightTile):
+		if checkJump(tilePosition + 2*Vector2i(LEFT,UP), tilePosition + Vector2i(LEFT,UP)) or checkJump(tilePosition + 2*Vector2i(RIGHT,UP), tilePosition + Vector2i(RIGHT,UP)):
 			return true
 	if canGoDown:
-		#Check next two Tiles, because next move HAS to be a jump to be valid
-		var leftTile = BoardDictionary[str(tilePosition + Vector2i(LEFT,DOWN))]
-		var left2Tile = BoardDictionary[str(tilePosition + 2*Vector2i(LEFT,DOWN))]
-		
-		var rightTile = BoardDictionary[str(tilePosition + Vector2i(RIGHT,DOWN))]
-		var right2Tile =BoardDictionary[str(tilePosition + 2*Vector2i(RIGHT,DOWN))]
-		
-		if checkJump(left2Tile, leftTile) or checkJump(right2Tile, rightTile):
+		#Check next two Tiles, because next move HAS to be a jump to be valid		
+		if checkJump(tilePosition + 2*Vector2i(LEFT,DOWN), tilePosition + Vector2i(LEFT,DOWN)) or checkJump(tilePosition + 2*Vector2i(RIGHT,DOWN), tilePosition + Vector2i(RIGHT,DOWN)):
 			return true
 	return false
-func checkJump(targetTile, inBetweenTile):
-	
-	if targetTile["piece"] == null and inBetweenTile["piece"] and inBetweenTile["piece"].color != currentPieceInPlayerHand.color:
+func checkJump(targetTilePosition, inBetweenTilePosition):
+	if !isVectorInGrid(targetTilePosition) or !isVectorInGrid(inBetweenTilePosition):
+		return false
+		
+	var targetTile = BoardDictionary[str(targetTilePosition)]
+	var inBetweenTile = BoardDictionary[str(inBetweenTilePosition)]
+	var inBetweenPiece:Piece = inBetweenTile["piece"]
+	if targetTile["piece"] == null and inBetweenPiece and inBetweenPiece.color != currentPieceInPlayerHand.color:
 		return true
 	return false
-func isValidPosition(tile,tilePosition, previousPosition,  piece):
+	
+func isVectorInGrid(vector:Vector2i):
+	if vector.x < 0 or vector.y < 0:
+		return false
+	if vector.x >= GridSize or vector.y >= GridSize:
+		return false
+	return true
+func isValidMove(tile,targetPosition, originalPosition,  piece):
 	var itemsToKill = []
+	var delta = targetPosition - originalPosition
 	if tile["color"] != "black":
-		return
+		return false
+	if abs(delta.x) != abs(delta.y): 
+		return false
 	var canGoUp 
 	var canGoDown
-	var delta = tilePosition - previousPosition
 	if piece.color == "red":
 		canGoDown = true
 		canGoUp =  piece.kinged
 	else:
 		canGoDown =  piece.kinged
 		canGoUp = true
-	print ("Delta : ", delta)
-	print ("Delta/1 : ", delta/Vector2i.ONE)
-	if abs(delta.x) == abs(delta.y): #we have a linear vector
-		var yDirection =0 #this should be a number between -1 UP and 1 DDOWN representing the y of the delta
-		var xDirection = 0#this should be a number between -1 LEFT and 1 RIGHT representing the x of the delta
-		if delta.y > 0:
-			yDirection = DOWN
-		elif delta.y < 0:
-			yDirection = UP
-		if delta.x > 0:
-			xDirection = RIGHT
-		elif delta.x < 0:
-			xDirection = LEFT
-				
-		print("direction x", xDirection, "direction y", yDirection)
-		print("LENGTH ", delta.y)
-		#we need to iterate over LENGHT in the vector to ensure if oppisite color, space, repeat
-		if(yDirection == DOWN and canGoDown):
-			for i in abs(delta.y):
-				var iteration = i+1
-				var postitionToCheck:Vector2i = Vector2i(previousPosition.x +  xDirection * iteration, previousPosition.y + yDirection * iteration) ## tthis is wrong, bring the intial position pback into this function
-				var tileToCheck = BoardDictionary[str(postitionToCheck)]
-				if i == 0 and abs(delta) == Vector2i.ONE and itemsKilledThisTurn.size() == 0: #we can only move one position if its not a jump
-					if tileToCheck["piece"] != null:
-						return false
-				elif iteration % 2 == 0:
-					if tileToCheck["piece"] != null:
-						print("needs to be blank")
-						return false
-				else:
-					if tileToCheck["piece"] == null:
-						print("needs to have ennemy")
-						return false
-					itemsKilledThisTurn.append(postitionToCheck)
-					print("Killing ", postitionToCheck)
-		elif  (yDirection == UP and canGoUp):
-			for i in abs(delta.y):
-				var iteration = i+1
-				var postitionToCheck:Vector2i = Vector2i(previousPosition.x +  xDirection * iteration, previousPosition.y + yDirection * iteration) ## tthis is wrong, bring the intial position pback into this function
-				var tileToCheck = BoardDictionary[str(postitionToCheck)]
-				if i == 0 and abs(delta) == Vector2i.ONE:
-					if tileToCheck["piece"] != null:
-						return false
-				elif iteration % 2 == 0:
-					if tileToCheck["piece"] != null:
-						print("needs to be blank")
-						return false
-				else:
-					if tileToCheck["piece"] == null:
-						print("needs to have ennemy")
-						return false
-					itemsToKill.append(postitionToCheck)
-					print("Killing ", postitionToCheck)
-		else:
-			return false
+	
+	var yDirection = 0 #this should be a number between -1 UP and 1 DDOWN representing the y of the delta
+	var xDirection = 0#this should be a number between -1 LEFT and 1 RIGHT representing the x of the delta
+	if delta.y > 0:
+		yDirection = DOWN
+	elif delta.y < 0:
+		yDirection = UP
+	if delta.x > 0:
+		xDirection = RIGHT
+	elif delta.x < 0:
+		xDirection = LEFT
+			
+	print("direction x", xDirection, "direction y", yDirection)
+	print("LENGTH ", delta.y)
+	#we need to iterate over LENGHT in the vector to ensure if oppisite color, space, repeat
+	if(yDirection == DOWN and canGoDown):
+		var iteration = 0
+		for i in abs(delta.y):
+			iteration = i+1
+			var postitionToCheck:Vector2i = Vector2i(originalPosition.x +  xDirection * iteration, originalPosition.y + yDirection * iteration) ## tthis is wrong, bring the intial position pback into this function
+			var tileToCheck = BoardDictionary[str(postitionToCheck)]
+			if i == 0 and abs(delta) == Vector2i.ONE and itemsKilledThisTurn.size() == 0: #we can only move one position if its not a jump
+				if tileToCheck["piece"] != null:
+					return false
+			elif iteration % 2 == 0:
+				if tileToCheck["piece"] != null:
+					print("needs to be blank")
+					return false
+			else:
+				if tileToCheck["piece"] == null:
+					print("needs to have ennemy")
+					return false
+				itemsToKill.append(postitionToCheck)
+				print("Killing ", postitionToCheck)
+		#check if we should be kinged
+		if originalPosition.y + iteration * yDirection == GridSize -1:
+			print("King Me- Red")
+			promoteToKing = true
+	elif  (yDirection == UP and canGoUp):
+		var iteration
+		for i in abs(delta.y):
+			iteration = i+1
+			var postitionToCheck:Vector2i = Vector2i(originalPosition.x +  xDirection * iteration, originalPosition.y + yDirection * iteration) ## tthis is wrong, bring the intial position pback into this function
+			var tileToCheck = BoardDictionary[str(postitionToCheck)]
+			if i == 0 and abs(delta) == Vector2i.ONE:
+				if tileToCheck["piece"] != null:
+					return false
+			elif iteration % 2 == 0:
+				if tileToCheck["piece"] != null:
+					print("needs to be blank")
+					return false
+			else:
+				if tileToCheck["piece"] == null:
+					print("needs to have ennemy")
+					return false
+				itemsToKill.append(postitionToCheck)
+				print("Killing ", postitionToCheck)
+					#check if we should be kinged
+		if  originalPosition.y + iteration * yDirection == 0 :
+			print("King Me- Black")
+			promoteToKing = true
+	else:
+		return false
 	itemsKilledThisTurn.append_array(itemsToKill)
 	return true
 
@@ -199,19 +209,19 @@ func intializePlayerPieces():
 				var gridLocation = Vector2(x,y)		
 				var boardItem = BoardDictionary[str(gridLocation)]
 				if boardItem["color"] == "black": #only black tiles are valid
+					var p:Piece = piece.instantiate()
 					if  y < 3: # add red
-						var redPiece:Piece = piece.instantiate()
-						redPiece.color = "red"
-						add_child(redPiece)
-						boardItem["piece"] = redPiece
+						p.color = "red"
+						add_child(p)
+						boardItem["piece"] = p
 					if y > 4:
-						var blackPiece:Piece = piece.instantiate()
-						blackPiece.color = "black"
-						add_child(blackPiece)
-						boardItem["piece"] = blackPiece
+						p.color = "black"
+						add_child(p)
+						boardItem["piece"] = p
 					BoardDictionary[str(gridLocation)] = boardItem	
 
 func changeCurrentPlayer():
+	promoteToKing = false
 	itemsKilledThisTurn = []
 	currentPlayer.showPieceInHand = false
 	currentPlayer.currentTurn = false
@@ -223,7 +233,7 @@ func changeCurrentPlayer():
 	print("Go ", currentPlayer.color)
 
 
-func updateBoardFromKills():
+func updateBoardDictionaryFromKills():
 	for kill in itemsKilledThisTurn:
 		var tile = BoardDictionary[str(kill)]
 		
