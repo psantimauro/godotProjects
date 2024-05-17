@@ -4,6 +4,7 @@ extends Node2D
 @export var color:String 
 @export var kinged:bool = false
 
+
 func _ready():
 	if color == "red":
 		$Sprite2D.setRed()
