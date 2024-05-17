@@ -43,6 +43,7 @@ func _input(event):
 				BoardDictionary[str(tilePosition)] = tileItem
 				$TileMap.updateBoardCell(tileItem,tilePosition.x, tilePosition.y)
 			elif previousPosition and (isValidMove(tileItem,tilePosition, previousPosition, currentPieceInPlayerHand)): #  or d == Vector2i.ZERO)
+				$AudioStreamPlayer2D.play()
 				var killsThisTurn = itemsKilledThisTurn.size() -previousKillCount #populated by isValidMove above
 				updateBoardDictionaryFromKills()
 				if promoteToKing:
@@ -59,7 +60,6 @@ func _input(event):
 				currentPieceInPlayerHand = null
 	#pickup
 	elif mouseEvent and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		
 		%MainMessage.text = ""
 		if BoardDictionary.has(str(tilePosition)) and currentPieceInPlayerHand == null:
 			var tileItem = BoardDictionary[str(tilePosition)]
