@@ -242,6 +242,8 @@ func changeCurrentPlayer():
 	
 	if opponent.totalPieces <= 0:
 		gameOver()
+		opponent.totalPieces = 12
+		intialize()
 	else:
 		promoteToKing = false
 		itemsKilledThisTurn = []
