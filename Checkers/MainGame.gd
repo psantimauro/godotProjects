@@ -1,10 +1,10 @@
 extends Node2D
 
-@onready var currentPlayer = $RedPlayer
+@onready var currentPlayer = $BlackPlayer
 @export var piece:PackedScene
 var currentPieceInPlayerHand:Piece = null
 var previousPosition = null
-
+var gameIsOver = true
 var GridSize = 8
 var BoardDictionary = {}
 enum {LEFT = -1, RIGHT = 1}
@@ -13,12 +13,16 @@ enum {UP = -1, DOWN = 1}
 var itemsKilledThisTurn: Array[Vector2i] = []
 var promoteToKing = false
 
-func _ready():
+func intialize():
+	
 	generateBoard()
 	intializePlayerPieces()
 	$TileMap.updateBoard(BoardDictionary)
 	currentPlayer.currentTurn = true
 	print("Go ", currentPlayer.color)
+
+func _ready():
+	intialize()
 
 func _input(event):
 	
@@ -42,6 +46,7 @@ func _input(event):
 				var killsThisTurn = itemsKilledThisTurn.size() -previousKillCount #populated by isValidMove above
 				updateBoardDictionaryFromKills()
 				if promoteToKing:
+					showMessageWithTimeout(str(currentPlayer.color, " kinged a piece!"))
 					currentPieceInPlayerHand.kinged = true
 					promoteToKing = false
 				tileItem["piece"] = currentPieceInPlayerHand
@@ -54,6 +59,8 @@ func _input(event):
 				currentPieceInPlayerHand = null
 	#pickup
 	elif mouseEvent and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		
+		%MainMessage.text = ""
 		if BoardDictionary.has(str(tilePosition)) and currentPieceInPlayerHand == null:
 			var tileItem = BoardDictionary[str(tilePosition)]
 			if tileItem["piece"] and  tileItem["piece"].color == currentPlayer.color:
@@ -150,8 +157,8 @@ func isValidMove(tile,targetPosition, originalPosition,  piece):
 					print("needs to be blank")
 					return false
 			else:
-				if tileToCheck["piece"] == null:
-					print("needs to have ennemy")
+				if tileToCheck["piece"] == null || tileToCheck["piece"].color == currentPlayer.color:
+					print("needs to have enemy")
 					return false
 				itemsToKill.append(postitionToCheck)
 				print("Killing ", postitionToCheck)
@@ -173,8 +180,8 @@ func isValidMove(tile,targetPosition, originalPosition,  piece):
 					print("needs to be blank")
 					return false
 			else:
-				if tileToCheck["piece"] == null:
-					print("needs to have ennemy")
+				if tileToCheck["piece"] == null || tileToCheck["piece"].color == currentPlayer.color:
+					print("needs to have enemy")
 					return false
 				itemsToKill.append(postitionToCheck)
 				print("Killing ", postitionToCheck)
@@ -188,6 +195,8 @@ func isValidMove(tile,targetPosition, originalPosition,  piece):
 	return true
 
 func generateBoard():
+	
+	BoardDictionary = {}
 	for x in GridSize:
 		for y in GridSize:
 			var gridLocation = Vector2(x,y)
@@ -221,25 +230,57 @@ func intializePlayerPieces():
 					BoardDictionary[str(gridLocation)] = boardItem	
 
 func changeCurrentPlayer():
-	promoteToKing = false
-	itemsKilledThisTurn = []
-	currentPlayer.showPieceInHand = false
-	currentPlayer.currentTurn = false
+	if itemsKilledThisTurn.size() > 0:
+		var message = str(oponentsColor(), " lost ", itemsKilledThisTurn.size(), " pieces!")
+		showMessageWithTimeout(message ,20)
+	var opponent 
 	if currentPlayer == $RedPlayer:
-		currentPlayer = $BlackPlayer
+		opponent = $BlackPlayer
+	elif currentPlayer == $BlackPlayer:
+		opponent = $RedPlayer
+	opponent.totalPieces -= itemsKilledThisTurn.size()
+	
+	if opponent.totalPieces <= 0:
+		gameOver()
 	else:
-		currentPlayer = $RedPlayer
-	currentPlayer.currentTurn = true
-	print("Go ", currentPlayer.color)
+		promoteToKing = false
+		itemsKilledThisTurn = []
+		currentPlayer.showPieceInHand = false
+		currentPlayer.currentTurn = false
+		if currentPlayer == $RedPlayer:
+			
+			currentPlayer = $BlackPlayer
+		else:
+			currentPlayer = $RedPlayer
+		var message = %MainMessage.text + str("\nGo ", currentPlayer.color)
+		showMessageWithTimeout(message)
+		currentPlayer.currentTurn = true
+		print("Go ", currentPlayer.color)
 
 
 func updateBoardDictionaryFromKills():
-	for kill in itemsKilledThisTurn:
-		var tile = BoardDictionary[str(kill)]
+	if itemsKilledThisTurn.size() > 0:
+		showMessageWithTimeout(str(oponentsColor(), " lost ", itemsKilledThisTurn.size(), " pieces!"),20)
+		for kill in itemsKilledThisTurn:
+			var tile = BoardDictionary[str(kill)]
 		
-		var piece:Piece = tile["piece"]
-		if piece: #maybe deleted on the last move
-			if piece.color == currentPlayer.color:
-				print ("WTFFFFF")
-			else:
-				BoardDictionary[str(kill)]["piece"] = null
+			var piece:Piece = tile["piece"]
+			if piece: #maybe deleted on the last move
+				if piece.color == currentPlayer.color:
+					showMessageWithTimeout ("WTFFFFF")
+				else:
+					BoardDictionary[str(kill)]["piece"] = null
+
+func gameOver():
+	showMessageWithTimeout(str(currentPlayer.color , " wins!"))
+	intialize()
+
+func showMessageWithTimeout(message: String, timeout : float = 0.5):
+		%MainMessage.text = message
+		await get_tree().create_timer(timeout).timeout 
+		%MainMessage.text = ""
+func oponentsColor() -> String:
+	if currentPlayer.color == "red":
+		return "black"
+	else:
+		return "red"
