@@ -5,7 +5,6 @@ Requirements Godot v4.2.1-stable, other versions might might, your results will 
 This is my first Godot game from scratch (including assets).  Its a work in progress.
 
 TODO 
- - Add GUI and Title Screen
  - Add Piece placement soungs
 
 Possible Future Enhancements
