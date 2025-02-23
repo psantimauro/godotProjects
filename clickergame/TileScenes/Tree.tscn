@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvnjicxtudbtp"]
+
+[ext_resource type="Script" path="res://TileScenes/resourcebase.gd" id="1_a8p40"]
+[ext_resource type="Texture2D" uid="uid://03nkkrjou7hj" path="res://3rd Party/assets/resource/treePineHuge_N.png" id="1_xswhf"]
+[ext_resource type="PackedScene" uid="uid://7wcueac35g2m" path="res://timer_progress_bar.tscn" id="3_u444a"]
+
+[node name="Tree" type="Node2D"]
+script = ExtResource("1_a8p40")
+type = 4
+yield_amount = 1
+required_tool_type = 1
+yield_type = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -194)
+texture = ExtResource("1_xswhf")
+
+[node name="ProgressBar" parent="." instance=ExtResource("3_u444a")]
+show_percentage = false
+
+[node name="Label" type="Label" parent="."]
+offset_left = -19.0
+offset_top = -102.0
+offset_right = 21.0
+offset_bottom = -79.0
+
+[connection signal="done" from="ProgressBar" to="." method="_on_progress_bar_done"]

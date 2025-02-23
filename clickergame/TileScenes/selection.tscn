@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://btcbvsfbjcju1"]
+
+[ext_resource type="Texture2D" uid="uid://fxuummpvqc6p" path="res://3rd Party/assets/Isometric/switchFloorOn_N.png" id="1_h53xc"]
+
+[node name="Node2D" type="Node2D"]
+metadata/board_position = Vector2i(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -207)
+texture = ExtResource("1_h53xc")

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="tool_resource" load_steps=3 format=3 uid="uid://bnilacl1mceie"]
+
+[ext_resource type="Script" path="res://Tools/tool_resource.gd" id="1_6hxdp"]
+[ext_resource type="Texture2D" uid="uid://j71fug06ym00" path="res://3rd Party/assets/genericItem_color_016.png" id="2_kv4qv"]
+
+[resource]
+script = ExtResource("1_6hxdp")
+res_name = "axe"
+texture = ExtResource("2_kv4qv")
+stregth = 1
+res_type = 1

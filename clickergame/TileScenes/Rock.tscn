@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmcqlds1cl4w"]
+
+[ext_resource type="Texture2D" uid="uid://dlsta2x8iwfrn" path="res://3rd Party/assets/resource/grassStoneLarge_N.png" id="1_325m5"]
+[ext_resource type="Script" path="res://TileScenes/resourcebase.gd" id="1_ggl8x"]
+[ext_resource type="PackedScene" uid="uid://7wcueac35g2m" path="res://timer_progress_bar.tscn" id="3_jj7nu"]
+
+[node name="Rock" type="Node2D"]
+script = ExtResource("1_ggl8x")
+type = 3
+health = 2
+yield_amount = 10
+time = 3
+required_tool_type = 2
+yield_type = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -194)
+texture = ExtResource("1_325m5")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="ProgressBar" parent="." instance=ExtResource("3_jj7nu")]
+
+[connection signal="done" from="ProgressBar" to="." method="_on_progress_bar_done"]

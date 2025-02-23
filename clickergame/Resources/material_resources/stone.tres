@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="material_resource" load_steps=3 format=3 uid="uid://csoy3447sedjm"]
+
+[ext_resource type="Script" path="res://Resources/material_resources/material_resource.gd" id="1_oatga"]
+[ext_resource type="Texture2D" uid="uid://1uqmh21213kp" path="res://assets/stone-64.png" id="2_ska23"]
+
+[resource]
+script = ExtResource("1_oatga")
+maxAmount = 100
+res_type = 2
+current_amount = 0
+res_name = "Stone"
+texture = ExtResource("2_ska23")

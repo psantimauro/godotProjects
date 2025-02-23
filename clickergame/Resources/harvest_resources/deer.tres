@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="resource_resource" load_steps=2 format=3 uid="uid://cqq1kmuv8rqnd"]
+
+[ext_resource type="Script" path="res://Resources/base_resource.gd" id="1_d7yj8"]
+
+[resource]
+script = ExtResource("1_d7yj8")
+res_name = "deer"
+maxAmount = 100
+regen_rate = 10.0

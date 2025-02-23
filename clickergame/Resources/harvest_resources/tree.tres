@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="resource_resource" load_steps=2 format=3 uid="uid://c88avbwhd212e"]
+
+[ext_resource type="Script" path="res://Resources/base_resource.gd" id="1_i8cxw"]
+
+[resource]
+script = ExtResource("1_i8cxw")
+res_name = "tree"
+maxAmount = 100
+regen_rate = 1.0
