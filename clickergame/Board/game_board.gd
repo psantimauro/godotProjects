@@ -20,16 +20,16 @@ func generate_game_board():
 	for x in range (x_min, x_size):
 		for y in range(y_min, y_size):
 			var cords = (Vector2i(x,y))
-			$GroundLayer.set_cell(cords,0,SCENE_COLLECTION,TileManager.tiles.GRASS)
+			ground_layer.set_cell(cords,0,SCENE_COLLECTION,TileManager.tiles.GRASS)
 			var dice = randi_range(1,6) 
 			if dice == TileManager.tiles.TREE:
-				$ResourceLayer.set_cell(cords,0,SCENE_COLLECTION,TileManager.tiles.TREE)
+				resource_layer.set_cell(cords,0,SCENE_COLLECTION,TileManager.tiles.TREE)
 			elif dice == TileManager.tiles.ROCK:
-				$ResourceLayer.set_cell(cords,0,SCENE_COLLECTION,TileManager.tiles.ROCK)
-	$Camera2D.move_to( ground_layer.map_to_local(Vector2(x_size, y_size)))
+				resource_layer.set_cell(cords,0,SCENE_COLLECTION,TileManager.tiles.ROCK)
+	camera_2d.move_to( ground_layer.map_to_local(Vector2(x_size, y_size)))
 
 func get_last_resource():
-	get_resource_at_position(last_board_click)
+	return get_resource_at_position(last_board_click)
 func get_resource_at_position(pos):
 	return resource_layer.get_cell_scene(pos)
 func clear_last_resource():
