@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dy6n1j75mhkbu"]
+[gd_scene load_steps=11 format=3 uid="uid://dy6n1j75mhkbu"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_es28m"]
 [ext_resource type="Script" path="res://build_menu.gd" id="2_2skb8"]
@@ -6,6 +6,8 @@
 [ext_resource type="TileSet" uid="uid://cuid2qj2msfqq" path="res://game.tres" id="2_q8bm8"]
 [ext_resource type="Script" path="res://tile_map_layer.gd" id="3_14rw0"]
 [ext_resource type="Script" path="res://camera_2d.gd" id="3_udyyn"]
+[ext_resource type="Script" path="res://MenuItems/building_menu.gd" id="4_e8adt"]
+[ext_resource type="PackedScene" uid="uid://d0ir4paeibh6c" path="res://MenuItems/build_button.tscn" id="4_ks5gj"]
 [ext_resource type="Script" path="res://Board/game_board.gd" id="5_rn6k5"]
 [ext_resource type="PackedScene" uid="uid://btcbvsfbjcju1" path="res://TileScenes/selection.tscn" id="5_tlkhx"]
 
@@ -57,6 +59,18 @@ script = ExtResource("2_2skb8")
 visible = false
 layout_mode = 2
 text = "build"
+
+[node name="BuildButton" parent="CanvasLayer/ActionContainer/BuildMenu" instance=ExtResource("4_ks5gj")]
+layout_mode = 2
+
+[node name="BuildingMenu" type="HBoxContainer" parent="CanvasLayer/ActionContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("4_e8adt")
+
+[node name="UpgradeButton" type="Button" parent="CanvasLayer/ActionContainer/BuildingMenu"]
+layout_mode = 2
+text = "upgrade"
 
 [node name="Board" type="Node2D" parent="."]
 script = ExtResource("5_rn6k5")

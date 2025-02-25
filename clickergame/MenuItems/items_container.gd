@@ -9,17 +9,24 @@ func _on_material_amount_updated(type:InventoryManager.material_types, amount):
 	
 	$Materials/TotalMaterials.text = "Total Materials: " + str(InventoryManager.total_materials)
 	
-	var mat = InventoryManager.materials_dict[type]
+	var mat:material_resource = InventoryManager.materials_dict[type]
 	if mat:
-		var path = "Materials/" + mat.res_name
+		var path = "Materials/" + mat.res_name + "/Label"
 		var label = get_node(path)
-		label.text = mat.res_name + ": "+ str(mat.current_amount)
+		label.text = str(mat.current_amount)
 	
 func _on_material_unlocked(mat: material_resource):
+	var node = VFlowContainer.new()
+	node.name = mat.res_name
+	var image = TextureRect.new()
+	image.texture = mat.texture
+	node.add_child(image)
 	var new_label: Label = Label.new()
-	new_label.name = mat.res_name
-	new_label.text = new_label.name
-	$Materials.add_child(new_label)
+	new_label.name =  "Label"
+	new_label.text = str(mat.current_amount)
+	node.add_child(new_label)
+	
+	$Materials.add_child(node)
 
 func _on_tool_unlocked(tool: tool_resource):
 	var new_sprite: TextureRect = TextureRect.new()

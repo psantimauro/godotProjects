@@ -35,14 +35,22 @@ func add_material(type:material_types, amount: int):
 	var item:material_resource = materials_dict[type]
 	item.current_amount += amount
 	total_materials += amount
+	materials_dict[type] = item
+	material_amount_updated.emit(type,  item.current_amount)
+	
+func remove_material(type:material_types, amount: int):
+			
+	var item:material_resource = materials_dict[type]
+	item.current_amount -= amount
+	total_materials -= amount
+	materials_dict[type] = item
 	material_amount_updated.emit(type,  item.current_amount)
 
 ##BUILDINGS SECTION
 signal building_built
+signal building_unlocked
 enum build_types {UNDEFINED = -1, TENT = 5}
 const TENT = preload("res://Resources/building_resources/tent.tres")
-
-
 
 func get_resource_from_building_type(type:build_types) -> building_resource:
 	match type:
@@ -56,18 +64,21 @@ func build(build_type: build_types):
 	if !haz(builds_dict,build_type) and has_all_resources_to_build(building_res):
 		print("building: " + str(build_type))
 		for requirement:recipe_item_resource in building_res.requirements:
-			materials_dict[requirement.material_type.res_type].current_amount = materials_dict[requirement.material_type.res_type].current_amount - requirement.material_amount
+			remove_material(requirement.material.res_type, requirement.material_amount)
 		building_built.emit(build_type)
 	else:
 		print("dont have build stuffs")
 func has_all_resources_to_build(building_res: building_resource) -> bool:
 	var has_all = true
 	for requirement:recipe_item_resource in building_res.requirements:
-		var mat = requirement.material_type.res_type
+		var mat = requirement.material.res_type
 		if !materials_dict.has(mat) or materials_dict[mat].current_amount < requirement.material_amount:
 			has_all = false
 	return has_all
-	
+
+func unlock_building(build_type: build_types):
+	building_unlocked.emit(build_type)
+
 ##TOOLS SECTION
 enum tool_types {UNDEFINED = -1, AXE =1, PICKAXE =2, HAMMER, KNIFE}
 signal tool_unlocked

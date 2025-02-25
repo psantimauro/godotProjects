@@ -6,13 +6,18 @@ func _enter_tree():
 	child_exiting_tree.connect(_unregister_child)
 	child_entered_tree.connect(_register_child)
 
-
+func connect_signals(child):
+	match child.get_signal_list()[0]["name"]:
+		"destroyed":
+			child.destroyed.connect(($"../..").destroyed)
+		"selected":
+			child.selected.connect(($"../..").selected)
+	
 func _register_child(child):
 	await child.ready
+	connect_signals(child)
 	var coords = local_to_map(to_local(child.global_position))
 	child.name = str(coords)
-	if(child.get_signal_list()[0]["name"] == "destroyed"):
-		child.destroyed.connect(($"../..").destroyed)
 	child.set_meta("type", child.type)
 	child.set_meta("tile_coords", coords)
 	scene_coords[coords] = child

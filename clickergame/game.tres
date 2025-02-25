@@ -1,6 +1,7 @@
-[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://cuid2qj2msfqq"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://cuid2qj2msfqq"]
 
 [ext_resource type="PackedScene" uid="uid://cnnif7w42rkb" path="res://TileScenes/Grass.tscn" id="1_58fqu"]
+[ext_resource type="PackedScene" uid="uid://bkd6pqa1sunus" path="res://TileScenes/PickUp.tscn" id="1_djrgk"]
 [ext_resource type="PackedScene" uid="uid://dmcqlds1cl4w" path="res://TileScenes/Rock.tscn" id="2_yitsq"]
 [ext_resource type="PackedScene" uid="uid://bvnjicxtudbtp" path="res://TileScenes/Tree.tscn" id="3_c340h"]
 [ext_resource type="PackedScene" uid="uid://bduuedwwe4pph" path="res://BuildingScenes/tent.tscn" id="4_d52ux"]
@@ -10,6 +11,7 @@ scenes/2/scene = ExtResource("1_58fqu")
 scenes/3/scene = ExtResource("2_yitsq")
 scenes/4/scene = ExtResource("3_c340h")
 scenes/5/scene = ExtResource("4_d52ux")
+scenes/10/scene = ExtResource("1_djrgk")
 
 [resource]
 tile_shape = 1

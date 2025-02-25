@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+GlobalSignals="*res://Autoloads/GlobalSignals.gd"
 TileManager="*res://Autoloads/TileManager.gd"
 InventoryManager="*res://Autoloads/InventoryManager.gd"
 

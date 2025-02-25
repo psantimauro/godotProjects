@@ -7,6 +7,7 @@
 [node name="Tree" type="Node2D"]
 script = ExtResource("1_a8p40")
 type = 4
+health = 3.0
 yield_amount = 1
 required_tool_type = 1
 yield_type = 1
@@ -16,6 +17,8 @@ position = Vector2(-1, -194)
 texture = ExtResource("1_xswhf")
 
 [node name="ProgressBar" parent="." instance=ExtResource("3_u444a")]
+offset_top = 35.0
+offset_bottom = 62.0
 show_percentage = false
 
 [node name="Label" type="Label" parent="."]
@@ -23,5 +26,10 @@ offset_left = -19.0
 offset_top = -102.0
 offset_right = 21.0
 offset_bottom = -79.0
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_top = -19.0
+offset_right = 4.0
+offset_bottom = 8.0
 
 [connection signal="done" from="ProgressBar" to="." method="_on_progress_bar_done"]
