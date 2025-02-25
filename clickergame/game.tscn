@@ -24,15 +24,15 @@ size_flags_vertical = 6
 script = ExtResource("2_n7op1")
 metadata/_edit_use_anchors_ = true
 
+[node name="Tools" type="VBoxContainer" parent="CanvasLayer/ItemsContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
 [node name="Materials" type="VBoxContainer" parent="CanvasLayer/ItemsContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 
 [node name="TotalMaterials" type="Label" parent="CanvasLayer/ItemsContainer/Materials"]
-layout_mode = 2
-
-[node name="Tools" type="VBoxContainer" parent="CanvasLayer/ItemsContainer"]
-custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
 [node name="ActionContainer" type="MarginContainer" parent="CanvasLayer"]
