@@ -8,6 +8,7 @@ func _ready() -> void:
 
 func set_texture(texture):
 	texture_normal = texture
+	self.size = Vector2(10,10)
 var button_type
 func set_type(type):
 	button_type = type
