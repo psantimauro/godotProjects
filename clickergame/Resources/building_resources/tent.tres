@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Resources/recipe_item_resource.gd" id="1_ybtwc"]
 [ext_resource type="Resource" uid="uid://cp67h0ry2w4jt" path="res://Resources/material_resources/wood.tres" id="2_nlxla"]
 [ext_resource type="Resource" uid="uid://sehwe7enlk7d" path="res://Resources/material_resources/hide.tres" id="3_don2h"]
-[ext_resource type="Texture2D" uid="uid://1k31dwlojfj5" path="res://3rd Party/assets/building/tent-scaled.png" id="5_q630o"]
+[ext_resource type="Texture2D" uid="uid://cego2qo7j522v" path="res://assets/tent-128.png" id="5_7i5f1"]
 
 [sub_resource type="Resource" id="Resource_ynnn4"]
 script = ExtResource("1_ybtwc")
@@ -20,4 +20,4 @@ material_amount = 1
 script = ExtResource("1_fyo1o")
 requirements = Array[ExtResource("1_ybtwc")]([SubResource("Resource_ynnn4"), SubResource("Resource_a0jfh")])
 res_name = "tent"
-texture = ExtResource("5_q630o")
+texture = ExtResource("5_7i5f1")

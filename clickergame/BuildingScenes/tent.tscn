@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bduuedwwe4pph"]
+[gd_scene load_steps=4 format=3 uid="uid://bduuedwwe4pph"]
 
 [ext_resource type="Script" path="res://BuildingScenes/buildingbase.gd" id="1_247ct"]
 [ext_resource type="Texture2D" uid="uid://1k31dwlojfj5" path="res://3rd Party/assets/building/tent-scaled.png" id="2_64kug"]
+[ext_resource type="Script" path="res://BuildingScenes/research.gd" id="3_kyjbf"]
 
 [node name="Tent" type="Node2D"]
 script = ExtResource("1_247ct")
@@ -10,3 +11,8 @@ type = 5
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(3, -195)
 texture = ExtResource("2_64kug")
+
+[node name="Research" type="Node" parent="."]
+script = ExtResource("3_kyjbf")
+
+[node name="Work" type="Node" parent="."]
