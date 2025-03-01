@@ -12,6 +12,7 @@ func _on_building_unlocked(building_type: InventoryManager.build_types):
 	var building_button:BuildingButton = BuildingButton.new()
 	var building_res:building_resource = InventoryManager.get_resource_from_building_type(building_type)
 	
+	
 	building_button.set_texture(building_res.texture)
 	building_button.set_type(building_type)
 	building_button.name = building_res.res_name
@@ -28,5 +29,5 @@ func toggleBuildMenu(_location = null, visible = true):
 	for kid in get_children():
 		kid.visible = vis
 
-func _on_button_pressed() -> void:
-	build_button_clicked.emit(InventoryManager.build_types.TENT) #0 is the type for tent
+func _on_button_pressed(type) -> void:
+	build_button_clicked.emit(type) #0 is the type for tent

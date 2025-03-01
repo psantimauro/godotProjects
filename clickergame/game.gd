@@ -27,9 +27,10 @@ func pickup(_type):
 	InventoryManager.unlock_tool(InventoryManager.tool_types.AXE)
 	InventoryManager.add_material(InventoryManager.material_types.HIDE, 2)
 
-func selected():
+func selected(building):
 	game_hud.action_container.build_menu.visible = false
 	game_hud.action_container.building_menu.visible = true
+	
 	print("selected building")
 
 func _on_build_menu_build_button_clicked(building_type) -> void:
