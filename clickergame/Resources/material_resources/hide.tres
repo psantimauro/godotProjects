@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="material_resource" load_steps=3 format=3 uid="uid://sehwe7enlk7d"]
 
 [ext_resource type="Script" path="res://Resources/material_resources/material_resource.gd" id="1_mtxe6"]
-[ext_resource type="Texture2D" uid="uid://bh8lcbnr25dny" path="res://assets/hide-64.png" id="2_mhvfv"]
+[ext_resource type="Texture2D" uid="uid://bs4ul5idkuqjj" path="res://3rd Party/assets/icons/hide.png" id="2_ywdgy"]
 
 [resource]
 script = ExtResource("1_mtxe6")
@@ -9,4 +9,4 @@ maxAmount = 100
 res_type = 3
 current_amount = 0
 res_name = "hide"
-texture = ExtResource("2_mhvfv")
+texture = ExtResource("2_ywdgy")

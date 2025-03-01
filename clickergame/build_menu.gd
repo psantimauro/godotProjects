@@ -1,7 +1,7 @@
 class_name BuildMenu
 extends VFlowContainer
 
-signal  build_button_clicked
+signal build_button_clicked
 
 func _ready() -> void:
 	InventoryManager.building_built.connect(_on_building_built)
@@ -24,6 +24,7 @@ func _on_building_built(_build_type):
 
 func toggleBuildMenu(_location = null, visible = true):
 	var vis = visible
+	self.visible = vis
 	for kid in get_children():
 		kid.visible = vis
 

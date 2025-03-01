@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="tool_resource" load_steps=3 format=3 uid="uid://hhbdsyhiyr2h"]
 
 [ext_resource type="Script" path="res://Tools/tool_resource.gd" id="1_is6ce"]
-[ext_resource type="Texture2D" uid="uid://6527kqdxwkvg" path="res://3rd Party/assets/genericItem_color_021.png" id="2_13l62"]
+[ext_resource type="Texture2D" uid="uid://cdky3tf6k47vv" path="res://3rd Party/assets/icons/pickaxe.png" id="2_515ws"]
 
 [resource]
 script = ExtResource("1_is6ce")
 res_name = "pickaxe"
-texture = ExtResource("2_13l62")
+texture = ExtResource("2_515ws")
 stregth = 1
 res_type = 2

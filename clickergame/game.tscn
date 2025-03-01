@@ -1,79 +1,22 @@
-[gd_scene load_steps=11 format=3 uid="uid://dy6n1j75mhkbu"]
+[gd_scene load_steps=8 format=3 uid="uid://dy6n1j75mhkbu"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_es28m"]
-[ext_resource type="Script" path="res://build_menu.gd" id="2_2skb8"]
-[ext_resource type="Script" path="res://MenuItems/items_container.gd" id="2_n7op1"]
 [ext_resource type="TileSet" uid="uid://cuid2qj2msfqq" path="res://game.tres" id="2_q8bm8"]
+[ext_resource type="PackedScene" uid="uid://bppi20y4a171u" path="res://MenuItems/canvas_layer.tscn" id="2_twcd8"]
 [ext_resource type="Script" path="res://tile_map_layer.gd" id="3_14rw0"]
 [ext_resource type="Script" path="res://camera_2d.gd" id="3_udyyn"]
-[ext_resource type="Script" path="res://MenuItems/building_menu.gd" id="4_e8adt"]
-[ext_resource type="PackedScene" uid="uid://d0ir4paeibh6c" path="res://MenuItems/build_button.tscn" id="4_ks5gj"]
 [ext_resource type="Script" path="res://Board/game_board.gd" id="5_rn6k5"]
 [ext_resource type="PackedScene" uid="uid://btcbvsfbjcju1" path="res://TileScenes/selection.tscn" id="5_tlkhx"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_es28m")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ItemsContainer" type="HBoxContainer" parent="CanvasLayer"]
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 23.0
-grow_horizontal = 2
-size_flags_horizontal = 3
-size_flags_vertical = 6
-script = ExtResource("2_n7op1")
-metadata/_edit_use_anchors_ = true
-
-[node name="Tools" type="VBoxContainer" parent="CanvasLayer/ItemsContainer"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-
-[node name="Materials" type="VBoxContainer" parent="CanvasLayer/ItemsContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="TotalMaterials" type="Label" parent="CanvasLayer/ItemsContainer/Materials"]
-layout_mode = 2
-
-[node name="ActionContainer" type="MarginContainer" parent="CanvasLayer"]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -49.0
-offset_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 3
-size_flags_vertical = 6
-metadata/_edit_use_anchors_ = true
-
-[node name="BuildMenu" type="VFlowContainer" parent="CanvasLayer/ActionContainer"]
-layout_mode = 2
-size_flags_vertical = 8
-script = ExtResource("2_2skb8")
-
-[node name="Button" type="Button" parent="CanvasLayer/ActionContainer/BuildMenu"]
-visible = false
-layout_mode = 2
-text = "build"
-
-[node name="BuildButton" parent="CanvasLayer/ActionContainer/BuildMenu" instance=ExtResource("4_ks5gj")]
-layout_mode = 2
-
-[node name="BuildingMenu" type="HBoxContainer" parent="CanvasLayer/ActionContainer"]
-visible = false
-layout_mode = 2
-script = ExtResource("4_e8adt")
-
-[node name="UpgradeButton" type="Button" parent="CanvasLayer/ActionContainer/BuildingMenu"]
-layout_mode = 2
-text = "upgrade"
+[node name="GameCanvasLayer" parent="." instance=ExtResource("2_twcd8")]
 
 [node name="Board" type="Node2D" parent="."]
 script = ExtResource("5_rn6k5")
+x_size = 10
+y_size = 10
 
 [node name="GroundLayer" type="TileMapLayer" parent="Board"]
 y_sort_enabled = true
@@ -95,6 +38,3 @@ visible = false
 
 [node name="Camera2D" type="Camera2D" parent="Board"]
 script = ExtResource("3_udyyn")
-
-[connection signal="build_button_clicked" from="CanvasLayer/ActionContainer/BuildMenu" to="." method="_on_build_menu_build_button_clicked"]
-[connection signal="pressed" from="CanvasLayer/ActionContainer/BuildMenu/Button" to="CanvasLayer/ActionContainer/BuildMenu" method="_on_button_pressed"]

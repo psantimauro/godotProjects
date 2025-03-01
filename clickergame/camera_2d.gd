@@ -12,9 +12,11 @@ func move_to(pos: Vector2):
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_pressed("camera_drag"):
+		camera_speed = 20
 		org_pos = get_global_mouse_position()
 		dragging = true
 	elif  Input.is_action_just_released("camera_drag"):
+		camera_speed = 5
 		dragging = false
 	
 	if Input.is_action_just_pressed("zoom_in"):

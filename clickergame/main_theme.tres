@@ -1,0 +1,5 @@
+[gd_resource type="Theme" format=3 uid="uid://cyppchc1lky3m"]
+
+[resource]
+HBoxContainer/colors/background_color = Color(0, 0, 0, 1)
+HBoxContainer/constants/separation = 4

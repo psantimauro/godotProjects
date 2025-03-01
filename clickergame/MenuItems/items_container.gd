@@ -1,35 +1,45 @@
-extends HBoxContainer
+extends PanelContainer
+
+@onready var tools: VBoxContainer = $VBoxContainer/Tools
+@onready var materials: VBoxContainer = $VBoxContainer/Materials
+@onready var total_materials: Label = $VBoxContainer/Materials/TotalMaterials
+
 
 func _ready() -> void:
 	InventoryManager.material_amount_updated.connect(_on_material_amount_updated)
 	InventoryManager.new_material_unlocked.connect(_on_material_unlocked)
 	InventoryManager.tool_unlocked.connect(_on_tool_unlocked)
-	
+
 func _on_material_amount_updated(type:InventoryManager.material_types, amount):
-	
-	$Materials/TotalMaterials.text = "Total Materials: " + str(InventoryManager.total_materials)
-	
+	total_materials.text = "Total Materials: " + str(InventoryManager.total_materials)
 	var mat:material_resource = InventoryManager.materials_dict[type]
 	if mat:
-		var path = "Materials/" + mat.res_name + "/Label"
-		var label = get_node(path)
-		label.text = str(mat.current_amount)
-	
-func _on_material_unlocked(mat: material_resource):
-	var node = VFlowContainer.new()
-	node.name = mat.res_name
-	var image = TextureRect.new()
-	image.texture = mat.texture
-	node.add_child(image)
-	var new_label: Label = Label.new()
-	new_label.name =  "Label"
-	new_label.text = str(mat.current_amount)
-	node.add_child(new_label)
-	
-	$Materials.add_child(node)
+		if materials.has_node(mat.res_name):
+			var item  = materials.get_node(mat.res_name)
+			if item:
+				var i = mat.current_amount
+				item.amount = i
+		#var path = "VBoxContainer/Materials/" + mat.res_name + "/Label"
+		#var label = get_node(path)
+		#label.text = str(mat.current_amount)
 
+const MATERIAL_ITEM = preload("res://MenuItems/MaterialItem.tscn")	
+func _on_material_unlocked(mat: material_resource):
+	
+	var item:MaterialItem = MATERIAL_ITEM.instantiate()
+	item.name = mat.res_name
+	materials.add_child(item)
+	item.texture = mat.texture
+	item.amount = InventoryManager.materials_dict[mat.res_type]
+	
+	
+const TOOL_ITEM = preload("res://MenuItems/ToolItem.tscn")
 func _on_tool_unlocked(tool: tool_resource):
+	var item = TOOL_ITEM.instantiate()
+	#item.scale *= 0.25
+	tools.add_child(item)
+	item.texture=tool.texture
 	var new_sprite: TextureRect = TextureRect.new()
 	new_sprite.texture = tool.texture
-	
-	$Tools.add_child(new_sprite)
+	new_sprite.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	tools.add_child(new_sprite)

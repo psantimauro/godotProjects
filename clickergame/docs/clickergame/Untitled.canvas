@@ -1,0 +1,7 @@
+{
+	"nodes":[
+		{"id":"3feafc87cc1e85dd","x":-470,"y":-404,"width":400,"height":400,"color":"2","type":"file","file":"Tent.md"},
+		{"id":"4c190091639b33f1","x":80,"y":-404,"width":400,"height":400,"color":"2","type":"file","file":"Buffalo Hides.md"}
+	],
+	"edges":[]
+}

@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://tlvrgnpjabb3"]
+
+[ext_resource type="Script" path="res://MenuItems/material_item.gd" id="1_w0orb"]
+[ext_resource type="Texture2D" uid="uid://drc4au3nvw6l5" path="res://icon.svg" id="2_345d3"]
+
+[node name="MaterialItem" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w0orb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("2_345d3")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "01"

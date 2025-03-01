@@ -9,9 +9,13 @@ func _enter_tree():
 func connect_signals(child):
 	match child.get_signal_list()[0]["name"]:
 		"destroyed":
-			child.destroyed.connect(($"../..").destroyed)
+			child.destroyed.connect(($"../..").destroyed) #game
 		"selected":
-			child.selected.connect(($"../..").selected)
+			child.selected.connect(($"../..").selected) #game
+		"clicked":
+			child.selected.connect(($"..").on_clicked) #board
+		"phase_complete":
+			child.selected.connect(($"..").on_complete) #board
 	
 func _register_child(child):
 	await child.ready

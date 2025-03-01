@@ -1,35 +1,44 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvnjicxtudbtp"]
+[gd_scene load_steps=5 format=3 uid="uid://bvnjicxtudbtp"]
 
 [ext_resource type="Script" path="res://TileScenes/resourcebase.gd" id="1_a8p40"]
-[ext_resource type="Texture2D" uid="uid://03nkkrjou7hj" path="res://3rd Party/assets/resource/treePineHuge_N.png" id="1_xswhf"]
+[ext_resource type="Texture2D" uid="uid://b53mepp2y6gy4" path="res://3rd Party/assets/resource/treePineSmall_W.png" id="2_m4oly"]
 [ext_resource type="PackedScene" uid="uid://7wcueac35g2m" path="res://timer_progress_bar.tscn" id="3_u444a"]
+[ext_resource type="Theme" uid="uid://cyppchc1lky3m" path="res://main_theme.tres" id="4_k1avq"]
 
 [node name="Tree" type="Node2D"]
 script = ExtResource("1_a8p40")
 type = 4
-health = 3.0
+health = 2.0
 yield_amount = 1
+time = 0.5
 required_tool_type = 1
 yield_type = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1, -194)
-texture = ExtResource("1_xswhf")
+texture = ExtResource("2_m4oly")
 
 [node name="ProgressBar" parent="." instance=ExtResource("3_u444a")]
-offset_top = 35.0
-offset_bottom = 62.0
-show_percentage = false
+visible = false
+offset_left = -2.0
+offset_top = -113.0
+offset_right = 2.0
+offset_bottom = -86.0
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = -19.0
 offset_top = -102.0
 offset_right = 21.0
 offset_bottom = -79.0
 
 [node name="HealthBar" type="ProgressBar" parent="."]
-offset_top = -19.0
-offset_right = 4.0
-offset_bottom = 8.0
+visible = false
+custom_minimum_size = Vector2(100, 0)
+offset_left = -43.0
+offset_top = -16.0
+offset_right = 57.0
+offset_bottom = 11.0
+theme = ExtResource("4_k1avq")
 
 [connection signal="done" from="ProgressBar" to="." method="_on_progress_bar_done"]

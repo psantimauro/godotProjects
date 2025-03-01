@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "InventoryManager.md",
+                "file": "2025-02-27.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "InventoryManager"
+              "title": "2025-02-27"
             }
           }
         ],
@@ -199,12 +199,14 @@
   },
   "active": "c078e2514924dcca",
   "lastOpenFiles": [
-    "Tent.md",
-    "Buildings.md",
     "Buffalo Hides.md",
+    "Untitled.canvas",
+    "Tent.md",
+    "2025-02-27.md",
+    "Resources.md",
+    "Buildings.md",
     "InventoryManager.md",
     "Time.md",
-    "Resources.md",
     "Welcome.md",
     "Untitled.md"
   ]
