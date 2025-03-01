@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bppi20y4a171u"]
+[gd_scene load_steps=9 format=3 uid="uid://bppi20y4a171u"]
 
 [ext_resource type="Script" path="res://MenuItems/canvas_layer.gd" id="1_1eub4"]
 [ext_resource type="Theme" uid="uid://cyppchc1lky3m" path="res://main_theme.tres" id="1_jlkld"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://build_menu.gd" id="3_qymyi"]
 [ext_resource type="PackedScene" uid="uid://d0ir4paeibh6c" path="res://MenuItems/build_button.tscn" id="4_8vhb8"]
 [ext_resource type="Script" path="res://MenuItems/building_menu.gd" id="5_u2757"]
+[ext_resource type="Script" path="res://MenuItems/display_container.gd" id="8_w0xfj"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_1eub4")
@@ -126,3 +127,4 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("8_w0xfj")

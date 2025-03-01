@@ -12,7 +12,23 @@ type = 5
 position = Vector2(3, -195)
 texture = ExtResource("2_64kug")
 
-[node name="Research" type="Node" parent="."]
+[node name="Research" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("3_kyjbf")
 
-[node name="Work" type="Node" parent="."]
+[node name="Label" type="Label" parent="Research"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "research label"
+
+[node name="Work" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="Work"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "work label"

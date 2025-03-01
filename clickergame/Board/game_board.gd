@@ -27,7 +27,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 			var resource = resource_layer.get_cell_scene(last_board_click)
 			var selected_building = building_layer.get_cell_scene(last_board_click)
-			
+
 			if  resource and !collecting:
 				$Camera2D.move_to(global_map_postiion_from_click_position)
 				var type:TileManager.tiles = resource.get_meta("type") 
@@ -44,7 +44,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			else:
 				selection_indictor.position = global_map_postiion_from_click_position
 				selection_indictor.visible = !selection_indictor.visible
-				
+
 				GlobalSignals.empty_tile_selected.emit(last_board_click)
 				if selection_indictor.visible:
 					$Camera2D.move_to(selection_indictor.position)

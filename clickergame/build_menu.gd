@@ -12,7 +12,6 @@ func _on_building_unlocked(building_type: InventoryManager.build_types):
 	var building_button:BuildingButton = BuildingButton.new()
 	var building_res:building_resource = InventoryManager.get_resource_from_building_type(building_type)
 	
-	
 	building_button.set_texture(building_res.texture)
 	building_button.set_type(building_type)
 	building_button.name = building_res.res_name
