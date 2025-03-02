@@ -12,14 +12,18 @@ func _hax():
 	InventoryManager.add_material(InventoryManager.material_types.WOOD, 2)
 
 func _ready():
+	await game_hud
+	await board
+
 	GlobalSignals.item_picked_up.connect(pickup)
 	GlobalSignals.empty_tile_selected.connect(_on_empty_tile_selected)
 	GlobalSignals.resource_clicked.connect(_on_resource_click)
-	await game_hud
+
 	game_hud.action_container.build_menu.build_button_clicked.connect(_on_build_menu_build_button_clicked)
 	_hax()
 
 func destroyed(yielded_resources):
+	
 	board.resource_destroyed(yielded_resources)
 
 func pickup(_type):
