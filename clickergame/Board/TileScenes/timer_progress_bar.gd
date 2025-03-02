@@ -1,3 +1,4 @@
+class_name TimerProgressBar
 extends ProgressBar
 
 @export var timer_duration = 2
