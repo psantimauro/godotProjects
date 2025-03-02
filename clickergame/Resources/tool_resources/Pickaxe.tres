@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="tool_resource" load_steps=3 format=3 uid="uid://hhbdsyhiyr2h"]
 
-[ext_resource type="Script" path="res://Tools/tool_resource.gd" id="1_is6ce"]
+[ext_resource type="Script" path="res://Resources/tool_resources/tool_resource.gd" id="1_is6ce"]
 [ext_resource type="Texture2D" uid="uid://cdky3tf6k47vv" path="res://3rd Party/assets/icons/pickaxe.png" id="2_515ws"]
 
 [resource]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bvnjicxtudbtp"]
 
-[ext_resource type="Script" path="res://TileScenes/resourcebase.gd" id="1_a8p40"]
+[ext_resource type="Script" path="res://Board/TileScenes/ResourceTiles/resourcebase.gd" id="1_a8p40"]
 [ext_resource type="Texture2D" uid="uid://b53mepp2y6gy4" path="res://3rd Party/assets/resource/treePineSmall_W.png" id="2_m4oly"]
 [ext_resource type="PackedScene" uid="uid://7wcueac35g2m" path="res://timer_progress_bar.tscn" id="3_u444a"]
 [ext_resource type="Theme" uid="uid://cyppchc1lky3m" path="res://main_theme.tres" id="4_k1avq"]

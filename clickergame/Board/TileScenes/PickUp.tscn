@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bkd6pqa1sunus"]
 
-[ext_resource type="Script" path="res://TileScenes/pick_up.gd" id="1_fg4kr"]
+[ext_resource type="Script" path="res://Board/TileScenes/pick_up.gd" id="1_fg4kr"]
 [ext_resource type="Texture2D" uid="uid://drc4au3nvw6l5" path="res://icon.svg" id="2_77vt1"]
 
 [node name="PickUp" type="Node2D"]

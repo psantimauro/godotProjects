@@ -8,7 +8,7 @@ func _ready() -> void:
 	InventoryManager.building_unlocked.connect(_on_building_unlocked)
 	GlobalSignals.connect("empty_tile_selected",toggleBuildMenu)
 
-func _on_building_unlocked(building_type: InventoryManager.build_types):
+func _on_building_unlocked(building_type: InventoryManager.building_types):
 	var building_button:BuildingButton = BuildingButton.new()
 	var building_res:building_resource = InventoryManager.get_resource_from_building_type(building_type)
 	

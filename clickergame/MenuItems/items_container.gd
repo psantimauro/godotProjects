@@ -25,12 +25,12 @@ func _on_material_amount_updated(type:InventoryManager.material_types, amount):
 
 const MATERIAL_ITEM = preload("res://MenuItems/MaterialItem.tscn")	
 func _on_material_unlocked(mat: material_resource):
-	
-	var item:MaterialItem = MATERIAL_ITEM.instantiate()
-	item.name = mat.res_name
-	materials.add_child(item)
-	item.texture = mat.texture
-	item.amount = InventoryManager.materials_dict[mat.res_type]
+	if mat != null:
+		var item:MaterialItem = MATERIAL_ITEM.instantiate()
+		item.name = mat.res_name
+		materials.add_child(item)
+		item.texture = mat.texture
+		item.amount = InventoryManager.materials_dict[mat.res_type]
 	
 	
 const TOOL_ITEM = preload("res://MenuItems/ToolItem.tscn")

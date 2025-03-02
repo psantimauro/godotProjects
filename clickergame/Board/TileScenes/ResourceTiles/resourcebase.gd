@@ -1,8 +1,9 @@
 extends Node2D
 
-#default behaor is grass
+@export_category("Tile Type")
 @export var type:TileManager.tiles = TileManager.tiles.UNDEFINED
 
+@export_category("Settings")
 @export var health = 1.0
 @export var yield_amount = 0
 @export var time = 1.0
@@ -23,10 +24,11 @@ func click():
 		InventoryManager.use_tool(required_tool_type)
 		$HealthBar.visible = true
 		clicked.emit()
-	#	progbar.power = power
+
 		progbar.timer_duration = time
 		progbar.show_percentage = true
 		progbar.start()
+		
 func _process(_delta: float) -> void:
 	progbar.value += $ProgressBar.value
 

@@ -3,10 +3,10 @@ extends Node2D
 #@onready var build_menu = $CanvasLayer/ActionContainer/BuildMenu
 @onready var board = $Board
 
-@onready var game_hud: GameHUD = $GameCanvasLayer
+@onready var game_hud: GameHUD = $GameHUD
 
 func _hax():
-	InventoryManager.unlock_building(InventoryManager.build_types.TENT)	
+	InventoryManager.unlock_building(InventoryManager.building_types.TENT)	
 	InventoryManager.unlock_tool(InventoryManager.tool_types.AXE)
 	InventoryManager.add_material(InventoryManager.material_types.HIDE, 2)
 	InventoryManager.add_material(InventoryManager.material_types.WOOD, 2)

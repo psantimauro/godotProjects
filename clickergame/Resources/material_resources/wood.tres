@@ -8,5 +8,5 @@ script = ExtResource("1_twq2l")
 maxAmount = 100
 res_type = 1
 current_amount = 0
-res_name = "Wood"
+res_name = "wood"
 texture = ExtResource("2_syojr")

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="tool_resource" load_steps=3 format=3 uid="uid://bnilacl1mceie"]
 
-[ext_resource type="Script" path="res://Tools/tool_resource.gd" id="1_6hxdp"]
+[ext_resource type="Script" path="res://Resources/tool_resources/tool_resource.gd" id="1_6hxdp"]
 [ext_resource type="Texture2D" uid="uid://ccrxehld41d6p" path="res://3rd Party/assets/icons/axe.png" id="2_rvks0"]
 
 [resource]

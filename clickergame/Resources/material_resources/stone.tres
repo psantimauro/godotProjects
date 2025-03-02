@@ -8,5 +8,5 @@ script = ExtResource("1_oatga")
 maxAmount = 100
 res_type = 2
 current_amount = 0
-res_name = "Stone"
+res_name = "stone"
 texture = ExtResource("2_ska23")
