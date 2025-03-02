@@ -109,7 +109,6 @@ func unlock_tool(type: InventoryManager.tool_types):
 func get_tool_stregth(type: InventoryManager.tool_types) -> float:
 	if tools_dict.has(type):
 		var tool = tools_dict[type]
-		
 		return tool.strength
 	return 0.0
 

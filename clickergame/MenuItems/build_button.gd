@@ -12,9 +12,6 @@ func set_texture(texture):
 var button_type
 func set_type(type):
 	button_type = type
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
+
 func _pressed() -> void:
 	pressed.emit(button_type)

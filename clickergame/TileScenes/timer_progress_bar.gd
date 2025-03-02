@@ -1,8 +1,10 @@
 extends ProgressBar
 
 @export var timer_duration = 2
+@export var power_multipler = 1.0
 @onready var timer = $Timer
 @onready var sound = $AudioStreamPlayer2D
+
 signal done
 
 func _ready() -> void:

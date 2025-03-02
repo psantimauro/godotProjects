@@ -19,6 +19,7 @@ anchors_preset = 0
 script = ExtResource("3_kyjbf")
 
 [node name="Label" type="Label" parent="Research"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "research label"
@@ -29,6 +30,7 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="Label" type="Label" parent="Work"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "work label"

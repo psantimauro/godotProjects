@@ -12,23 +12,21 @@ signal destroyed
 signal phase_complete
 signal clicked
 
-var max_health
+var _max_health
 
 func _ready():
-	max_health = health
+	_max_health = health
 
 @onready var progbar = $ProgressBar
 func click():
 	if InventoryManager.has_tool(required_tool_type):
 		InventoryManager.use_tool(required_tool_type)
-	#	var power = InventoryManager.get_tool_stregth(required_tool_type)
 		$HealthBar.visible = true
 		clicked.emit()
 	#	progbar.power = power
 		progbar.timer_duration = time
 		progbar.show_percentage = true
 		progbar.start()
-		#health_bar.max_value = max_health
 func _process(_delta: float) -> void:
 	progbar.value += $ProgressBar.value
 
@@ -40,7 +38,7 @@ func _on_progress_bar_done() -> void:
 	health -= (1 * power)
 	$Label.text = str(health)
 	var bar =  self.find_child("HealthBar")
-	var new_val =  ((max_health-health)/max_health) * 100
+	var new_val =  ((_max_health-health)/_max_health) * 100
 	bar.value = new_val
 
 	if health < 1:
