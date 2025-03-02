@@ -20,8 +20,11 @@ func _ready():
 @onready var progbar = $ProgressBar
 func click():
 	if InventoryManager.has_tool(required_tool_type):
+		InventoryManager.use_tool(required_tool_type)
+	#	var power = InventoryManager.get_tool_stregth(required_tool_type)
 		$HealthBar.visible = true
 		clicked.emit()
+	#	progbar.power = power
 		progbar.timer_duration = time
 		progbar.show_percentage = true
 		progbar.start()
@@ -32,7 +35,9 @@ func _process(_delta: float) -> void:
 func _on_progress_bar_done() -> void:
 	phase_complete.emit()
 	progbar.show_percentage = false
-	health -= 1
+	
+	var power = InventoryManager.get_tool_stregth(required_tool_type)
+	health -= (1 * power)
 	$Label.text = str(health)
 	var bar =  self.find_child("HealthBar")
 	var new_val =  ((max_health-health)/max_health) * 100
