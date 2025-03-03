@@ -86,7 +86,7 @@ signal tool_strength_changed
 const AXE = preload("res://Resources/tool_resources/Axe.tres")
 const PICKAXE = preload("res://Resources/tool_resources/Pickaxe.tres")
 
-func get_resource_from_tool_type(type) -> Resource:
+func get_resource_from_tool_type(type) -> tool_resource:
 	match type:
 		AXE.res_type:
 			return AXE

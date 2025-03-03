@@ -14,7 +14,9 @@ var last_board_click = Vector2i.ONE * -1
 
 func _ready() -> void:
 	InventoryManager.building_built.connect(_on_building_build)
+	Globals.clear_selection.connect(_on_selection_cleared)
 	generate_game_board()
+	camera_2d.board_size = Vector2(x_size,y_size)
 	camera_2d.move_to( ground_layer.map_to_local(Vector2(x_size, y_size)))
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -35,7 +37,7 @@ func _unhandled_input(event: InputEvent) -> void:
 					resource.pickup()
 				elif type > 2:
 					resource.click()
-				GlobalSignals.resource_clicked.emit()
+				Globals.resource_clicked.emit()
 			elif selected_building :
 				$Camera2D.move_to(global_map_postiion_from_click_position)
 				selected_building.click()
@@ -45,7 +47,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				selection_indictor.position = global_map_postiion_from_click_position
 				selection_indictor.visible = !selection_indictor.visible
 
-				GlobalSignals.empty_tile_selected.emit(last_board_click)
+				Globals.empty_tile_selected.emit(last_board_click)
 				if selection_indictor.visible:
 					$Camera2D.move_to(selection_indictor.position)
 
@@ -62,7 +64,7 @@ func generate_game_board():
 				resource_layer.set_cell(cords,0,SCENE_COLLECTION,TileManager.tiles.PICKUP)
 			else:
 				var dice = randi_range(1,6) 
-				if dice == TileManager.tiles.TREE:
+				if dice == TileManager.tiles.TREE or  dice-1 == TileManager.tiles.TREE:
 					resource_layer.set_cell(cords,0,SCENE_COLLECTION,TileManager.tiles.TREE)
 				elif dice == TileManager.tiles.ROCK:
 					resource_layer.set_cell(cords,0,SCENE_COLLECTION,TileManager.tiles.ROCK)
@@ -81,7 +83,9 @@ func _on_building_build(building_type):
 	var coords =  ground_layer.local_to_map(selection_indictor.position)
 	building_layer.set_cell(coords,0,SCENE_COLLECTION, building_type)
 	
-
+func _on_selection_cleared():
+	selection_indictor.visible = false
+	
 func on_clicked():
 	collecting = true
 

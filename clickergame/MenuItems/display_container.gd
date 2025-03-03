@@ -1,8 +1,8 @@
 extends PanelContainer
 
 func _ready() -> void:
-	GlobalSignals.empty_tile_selected.connect(_outside_click)
-	GlobalSignals.resource_clicked.connect(rechild)
+	Globals.empty_tile_selected.connect(_outside_click)
+	Globals.resource_clicked.connect(rechild)
 	
 func _outside_click(any):
 	if old_parent != null:

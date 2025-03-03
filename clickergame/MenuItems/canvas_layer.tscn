@@ -60,6 +60,11 @@ script = ExtResource("3_qymyi")
 [node name="BuildButton" parent="ActionContainer/BuildMenu" instance=ExtResource("4_8vhb8")]
 layout_mode = 2
 
+[node name="VBoxContainer" type="HBoxContainer" parent="ActionContainer/BuildMenu/BuildButton"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="BuildingMenu" type="HBoxContainer" parent="ActionContainer"]
 visible = false
 layout_mode = 2

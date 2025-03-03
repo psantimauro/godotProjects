@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="tool_resource" load_steps=3 format=3 uid="uid://bnilacl1mceie"]
+[gd_resource type="Resource" script_class="tool_resource" load_steps=4 format=3 uid="uid://bnilacl1mceie"]
 
 [ext_resource type="Script" path="res://Resources/tool_resources/tool_resource.gd" id="1_6hxdp"]
 [ext_resource type="Texture2D" uid="uid://ccrxehld41d6p" path="res://3rd Party/assets/icons/axe.png" id="2_rvks0"]
+[ext_resource type="AudioStream" uid="uid://drho1qr2ybq7g" path="res://assets/HAMMER_PROCESSED.wav" id="3_h3eui"]
 
 [resource]
 script = ExtResource("1_6hxdp")
 res_name = "axe"
 texture = ExtResource("2_rvks0")
-stregth = 1
+strength = 1.0
 res_type = 1
+tool_sound = ExtResource("3_h3eui")

@@ -10,17 +10,25 @@ func _hax():
 	InventoryManager.unlock_tool(InventoryManager.tool_types.AXE)
 	InventoryManager.add_material(InventoryManager.material_types.HIDE, 2)
 	InventoryManager.add_material(InventoryManager.material_types.WOOD, 2)
-
+	
+	JobTypeManager.unlock_job(JobTypeManager.TENT_WOOD_CREATE_JOB)
+	JobTypeManager.unlock_job(JobTypeManager.TENT_MEAT_CREATE_JOB)
+	JobTypeManager.unlock_job(JobTypeManager.TENT_HIDE_CREATE_JOB)
 func _ready():
 	await game_hud
 	await board
 
-	GlobalSignals.item_picked_up.connect(pickup)
-	GlobalSignals.empty_tile_selected.connect(_on_empty_tile_selected)
-	GlobalSignals.resource_clicked.connect(_on_resource_click)
+	Globals.item_picked_up.connect(pickup)
+	Globals.empty_tile_selected.connect(_on_empty_tile_selected)
+	Globals.resource_clicked.connect(_on_resource_click)
 
 	game_hud.action_container.build_menu.build_button_clicked.connect(_on_build_menu_build_button_clicked)
 	_hax()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_released("close"):
+		Globals.clear_selection.emit()
+		game_hud.action_container.hide_kids()
 
 func destroyed(yielded_resources):
 	

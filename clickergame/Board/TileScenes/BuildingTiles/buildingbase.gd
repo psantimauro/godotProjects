@@ -2,32 +2,23 @@ class_name BuildingBase
 extends Node2D
 
 @export var type:InventoryManager.building_types = InventoryManager.building_types.UNDEFINED
-
+@export var building_power = 0.01
 
 signal selected
 
-@onready var research: Node = $Research
-@onready var work: Node = $Work
+@onready var research: BuildingResearch = $Research
+@onready var work: BuildingWork = $Work
 
-var bar: TimerProgressBar
+@onready var progress_bar: TimerProgressBar = $ProgressBar
+
+@export var jobs: Array[base_job_resource]
+func _ready() -> void:
+	await progress_bar
+	progress_bar.power_multipler = building_power
 func click():
 	selected.emit(self)
 
-
-func _on_timer_timeout() -> void:
-	pass # Replace with function body.
-
-func _ready() -> void:
-	child_entered_tree.connect(_new_kid)
-	child_exiting_tree.connect(_bye_kid)
-	
-func _new_kid(node):
-	print(node)
-	bar = node.get_node("bar")
-	bar.reparent(self)
-
-func _bye_kid(kid):
-	bar.reparent(kid)
-	
-	
-	
+func update():
+	var jobs = JobTypeManager.get_unlocked_jobs_for_building(type)
+	for job in jobs:
+		work.add_job(job)

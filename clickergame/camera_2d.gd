@@ -2,9 +2,16 @@ extends Camera2D
 
 @export var camera_speed = 5
 @export var zoom_factor = Vector2(0.05, 0.05)
+@export var board_size = Vector2.ZERO
 var dragging = false
 var org_pos = Vector2.ZERO
-var move_pos = Vector2.ZERO
+var move_pos = Vector2.ZERO:
+	set(pos):
+		if abs(pos.x) > board_size.x:
+			pos.x = pos.x
+		if abs(pos.y) > board_size.y:
+			pos.y = pos.y
+		move_pos = pos
 
 
 func move_to(pos: Vector2):
@@ -21,7 +28,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if Input.is_action_just_pressed("zoom_in"):
 		zoom += zoom_factor
-		
 		print(zoom)
 	elif Input.is_action_just_pressed("zoom_out"):
 		zoom -= zoom_factor 

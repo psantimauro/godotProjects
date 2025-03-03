@@ -24,9 +24,10 @@ func click():
 		InventoryManager.use_tool(required_tool_type)
 		$HealthBar.visible = true
 		clicked.emit()
-
+		var tool_res = InventoryManager.get_resource_from_tool_type(required_tool_type)
+		progbar.texture = tool_res.texture
+		progbar.audio_stream = tool_res.tool_sound
 		progbar.timer_duration = time
-		progbar.show_percentage = true
 		progbar.start()
 		
 func _process(_delta: float) -> void:

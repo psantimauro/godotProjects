@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="material_create_job" load_steps=4 format=3 uid="uid://pwioyb6ydkq8"]
+
+[ext_resource type="Script" path="res://Resources/material_stack.gd" id="1_51iur"]
+[ext_resource type="Script" path="res://Resources/job_resources/create_jobs/material_create_job.gd" id="2_4388g"]
+
+[sub_resource type="Resource" id="Resource_owycj"]
+script = ExtResource("1_51iur")
+material_type = 4
+material_amount = 1
+
+[resource]
+script = ExtResource("2_4388g")
+job_result = SubResource("Resource_owycj")
+job_speed = 1.0
+required_building = 5
+required_tool = 1

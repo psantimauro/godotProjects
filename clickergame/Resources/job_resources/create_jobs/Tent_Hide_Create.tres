@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="material_create_job" load_steps=4 format=3 uid="uid://dtadwtaoges7n"]
+
+[ext_resource type="Script" path="res://Resources/material_stack.gd" id="1_m3kht"]
+[ext_resource type="Script" path="res://Resources/job_resources/create_jobs/material_create_job.gd" id="2_qibel"]
+
+[sub_resource type="Resource" id="Resource_owycj"]
+script = ExtResource("1_m3kht")
+material_type = 3
+material_amount = 1
+
+[resource]
+script = ExtResource("2_qibel")
+job_result = SubResource("Resource_owycj")
+job_speed = 1.0
+required_building = 5
+required_tool = 1

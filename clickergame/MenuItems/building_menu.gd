@@ -17,4 +17,5 @@ func _research_button_clicked():
 	display_container.set_item(building.research)
 
 func _work_button_clicked():
+	building.update()
 	display_container.set_item(building.work)
