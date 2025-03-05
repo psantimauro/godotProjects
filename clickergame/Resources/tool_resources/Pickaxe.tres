@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="tool_resource" load_steps=3 format=3 uid="uid://hhbdsyhiyr2h"]
+[gd_resource type="Resource" script_class="tool_resource" load_steps=4 format=3 uid="uid://hhbdsyhiyr2h"]
 
 [ext_resource type="Script" path="res://Resources/tool_resources/tool_resource.gd" id="1_is6ce"]
 [ext_resource type="Texture2D" uid="uid://cdky3tf6k47vv" path="res://3rd Party/assets/icons/pickaxe.png" id="2_515ws"]
+[ext_resource type="AudioStream" uid="uid://drho1qr2ybq7g" path="res://assets/HAMMER_PROCESSED.wav" id="3_wo5qo"]
 
 [resource]
 script = ExtResource("1_is6ce")
 res_name = "pickaxe"
 texture = ExtResource("2_515ws")
-stregth = 1
+strength = 1.0
 res_type = 2
+tool_sound = ExtResource("3_wo5qo")

@@ -9,9 +9,10 @@ offset_bottom = 128.0
 script = ExtResource("1_i61ud")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 texture = ExtResource("1_xxutk")
-expand_mode = 5
+expand_mode = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_direction = 1
@@ -21,4 +22,4 @@ size_flags_vertical = 8
 
 [node name="Label" type="Label" parent="PanelContainer"]
 layout_mode = 2
-text = "quality label"
+text = "1"
