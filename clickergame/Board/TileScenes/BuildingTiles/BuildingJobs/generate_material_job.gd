@@ -13,8 +13,6 @@ func _ready() -> void:
 func start_job() -> void:
 	stop_job()
 	timer.timer_duration = job_resource.job_speed
-
-	
 	timer.start()
 
 func stop_job():

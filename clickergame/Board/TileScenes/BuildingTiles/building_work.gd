@@ -16,7 +16,7 @@ func _on_button_press(type = InventoryManager.material_types.WOOD, amount = 1):
 	progress_bar.texture = InventoryManager.get_resource_from_material_type(type).texture
 	
 	jobs_container.add_job(job, progress_bar)
-
+	Globals.clear_selection.emit()
 func add_job(job):
 	var mat_job:material_create_job = job
 			

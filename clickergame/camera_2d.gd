@@ -3,58 +3,59 @@ extends Camera2D
 @export var camera_speed = 5
 @export var zoom_factor = Vector2(0.05, 0.05)
 @export var board_size = Vector2.ZERO
+@export var max_zoom = Vector2.ONE
+@export var min_zoom = Vector2(0.5,0.5)
 var dragging = false
 var org_pos = Vector2.ZERO
-var move_pos = Vector2.ZERO:
-	set(pos):
-		if abs(pos.x) > board_size.x:
-			pos.x = pos.x
-		if abs(pos.y) > board_size.y:
-			pos.y = pos.y
-		move_pos = pos
+var move_pos = Vector2.ZERO#:
+	#set(pos):
+	#	if abs(pos.x) > board_size.x:
+	#		pos.x = pos.x
+	#	if abs(pos.y) > board_size.y:
+	#		pos.y = pos.y
+	#	move_pos = pos
 
 
 func move_to(pos: Vector2):
-	move_pos = pos
-
+	move_pos = pos #+ cam_delta
+var fast_scroll = false
 func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_action_pressed("camera_drag"):
-		camera_speed = 20
-		org_pos = get_global_mouse_position()
-		dragging = true
-	elif  Input.is_action_just_released("camera_drag"):
-		camera_speed = 5
-		dragging = false
+	if Input.is_action_pressed("move_fast"):
+		fast_scroll = true
+	else:
+		fast_scroll = false
 	
 	if Input.is_action_just_pressed("zoom_in"):
 		zoom += zoom_factor
-		print(zoom)
+		print("Zoom at " + str(zoom))
 	elif Input.is_action_just_pressed("zoom_out"):
 		zoom -= zoom_factor 
-	if zoom == Vector2.ZERO:
-		zoom = zoom_factor
-	if zoom > Vector2.ONE:
-		zoom = Vector2.ONE
-	if Input.is_action_pressed("camera_up"):
-		position += Vector2(0,-camera_speed)
-	
-	elif Input.is_action_pressed("camera_down"):
-		position += Vector2(0,camera_speed)
+		print("Zoom at " + str(zoom))
 		
-	if Input.is_action_pressed("camera_left"):
-		position += Vector2(-camera_speed,0)
-	
-	elif Input.is_action_pressed("camera_right"):
-		position += Vector2(camera_speed,0)
-		
+	if zoom > max_zoom:
+		zoom = max_zoom
+	elif zoom < min_zoom:
+		zoom = min_zoom
+
 func _process(delta):
-	var pos_delta =  move_pos - position
-	if dragging: #this dragging stuff needs reworked
-		var current_pos = get_global_mouse_position()
-		var d = current_pos - org_pos		
-		if d != Vector2.ZERO:
-			self.position += d * delta * camera_speed * zoom
-	if abs(pos_delta) > Vector2.ONE:
+	var pos_delta =  move_pos - self.get_screen_center_position()
+	var move_velocity = get_velocity()
+	if abs(pos_delta) > Vector2.ONE * 10:
+		print("Camera deltaing by " + str(pos_delta))
 		var movement =  pos_delta * delta * camera_speed
-		move_pos = move_pos - movement
+		#move_pos = move_pos - movement
 		position += movement
+		print("Camera to " + str(position))
+	elif move_velocity != Vector2.ZERO:
+		move_pos = position
+		position += move_velocity	
+		print("Camera to " + str(position))
+
+
+func get_velocity():
+	var input_direction = Input.get_vector("camera_left", "camera_right", "camera_up", "camera_down")
+	
+	var velocity = input_direction * camera_speed
+	if fast_scroll:
+		velocity *= 4
+	return velocity

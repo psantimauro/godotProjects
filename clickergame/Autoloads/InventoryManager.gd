@@ -49,13 +49,16 @@ func remove_material(type:material_types, amount: int):
 ##BUILDINGS SECTION
 signal building_built
 signal building_unlocked
-enum building_types {UNDEFINED = -1, TENT = 5}
+enum building_types {UNDEFINED = -1, TENT = 5, LOGCABIN = 6}
 const TENT = preload("res://Resources/building_resources/tent.tres")
+const LOGCABIN = preload("res://Resources/building_resources/logcabin.tres")
 
 func get_resource_from_building_type(type:building_types) -> building_resource:
 	match type:
 		building_types.TENT:
 			return TENT
+		building_types.LOGCABIN:
+			return LOGCABIN
 	return  null
 	
 var builds_dict = {}

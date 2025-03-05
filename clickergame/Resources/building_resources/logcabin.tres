@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="building_resource" load_steps=6 format=3 uid="uid://cdjbfel1uusas"]
+
+[ext_resource type="Script" path="res://Resources/material_stack.gd" id="1_764gg"]
+[ext_resource type="Script" path="res://Resources/building_resources/building_resource.gd" id="2_mdf4h"]
+[ext_resource type="Texture2D" uid="uid://d3bcve1dovoxs" path="res://assets/building-128_box.png" id="3_vraux"]
+
+[sub_resource type="Resource" id="Resource_ynnn4"]
+script = ExtResource("1_764gg")
+material_type = 1
+material_amount = 100
+
+[sub_resource type="Resource" id="Resource_a0jfh"]
+script = ExtResource("1_764gg")
+material_type = 4
+material_amount = 10
+
+[resource]
+script = ExtResource("2_mdf4h")
+requirements = Array[ExtResource("1_764gg")]([SubResource("Resource_ynnn4"), SubResource("Resource_a0jfh")])
+res_name = "tent"
+texture = ExtResource("3_vraux")

@@ -23,12 +23,7 @@ y_sort_enabled = true
 tile_set = ExtResource("2_q8bm8")
 script = ExtResource("3_14rw0")
 
-[node name="ResourceLayer" type="TileMapLayer" parent="Board"]
-y_sort_enabled = true
-tile_set = ExtResource("2_q8bm8")
-script = ExtResource("3_14rw0")
-
-[node name="BuildingLayer" type="TileMapLayer" parent="Board"]
+[node name="GameLayer" type="TileMapLayer" parent="Board"]
 y_sort_enabled = true
 tile_set = ExtResource("2_q8bm8")
 script = ExtResource("3_14rw0")

@@ -7,6 +7,7 @@ signal empty_tile_selected
 signal resource_clicked
 
 signal clear_selection
+signal delete_selected_building
 
 func resize_texture(new_size: int, texture)-> ImageTexture:
 	var image:Image = texture.get_image()

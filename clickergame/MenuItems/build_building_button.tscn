@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://d0ir4paeibh6c"]
 
-[ext_resource type="Script" path="res://MenuItems/build_button.gd" id="1_nh1kr"]
+[ext_resource type="Script" path="res://MenuItems/build__building_button.gd" id="1_sq0aw"]
 
-[node name="BuildButton" type="TextureButton"]
+[node name="BuildBuildingButton" type="TextureButton"]
 custom_minimum_size = Vector2(11, 0)
 anchors_preset = 7
 anchor_left = 0.5
@@ -17,4 +17,5 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 ignore_texture_size = true
 stretch_mode = 4
-script = ExtResource("1_nh1kr")
+script = ExtResource("1_sq0aw")
+buildingtype = 5

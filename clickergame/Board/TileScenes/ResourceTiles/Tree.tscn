@@ -19,11 +19,10 @@ position = Vector2(-1, -194)
 texture = ExtResource("2_m4oly")
 
 [node name="ProgressBar" parent="." instance=ExtResource("3_u444a")]
-visible = false
-offset_left = 30.0
-offset_top = -12.0
-offset_right = 34.0
-offset_bottom = 15.0
+offset_left = -24.0
+offset_top = 36.0
+offset_right = -20.0
+offset_bottom = 63.0
 
 [node name="Label" type="Label" parent="."]
 visible = false
@@ -35,10 +34,11 @@ offset_bottom = -79.0
 [node name="HealthBar" type="ProgressBar" parent="."]
 visible = false
 custom_minimum_size = Vector2(100, 0)
-offset_left = -43.0
-offset_top = -16.0
-offset_right = 57.0
-offset_bottom = 11.0
+offset_left = -63.0
+offset_top = -81.0
+offset_right = 37.0
+offset_bottom = -54.0
+mouse_filter = 2
 theme = ExtResource("4_k1avq")
 
 [connection signal="done" from="ProgressBar" to="." method="_on_progress_bar_done"]

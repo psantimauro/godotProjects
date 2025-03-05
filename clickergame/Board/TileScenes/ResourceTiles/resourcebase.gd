@@ -7,7 +7,7 @@ extends Node2D
 @export var health = 1.0
 @export var yield_amount = 0
 @export var time = 1.0
-@export var required_tool_type:InventoryManager.tool_types = InventoryManager.tool_types.UNDEFINED #todo
+@export var required_tool_type:InventoryManager.tool_types = InventoryManager.tool_types.UNDEFINED
 @export var yield_type: InventoryManager.material_types = InventoryManager.material_types.UNDEFINED 
 signal destroyed 
 signal phase_complete
@@ -20,7 +20,7 @@ func _ready():
 
 @onready var progbar = $ProgressBar
 func click():
-	if InventoryManager.has_tool(required_tool_type):
+	if InventoryManager.has_tool(required_tool_type) and progbar.is_stopped():
 		InventoryManager.use_tool(required_tool_type)
 		$HealthBar.visible = true
 		clicked.emit()

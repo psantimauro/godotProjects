@@ -21,7 +21,7 @@ func _register_child(child):
 	await child.ready
 	connect_signals(child)
 	var coords = local_to_map(to_local(child.global_position))
-	child.name = str(coords)
+	
 	child.set_meta("type", child.type)
 	child.set_meta("tile_coords", coords)
 	scene_coords[coords] = child
@@ -35,8 +35,6 @@ func _unregister_child(child):
 			kids.append(kid)
 	if kids.size() > 1:
 		scene_coords[child.name] = kids[1]
-	
-
 
 func get_cell_scene(coords: Vector2i) -> Node:
 	if scene_coords.has(coords) and  scene_coords[coords] != null:

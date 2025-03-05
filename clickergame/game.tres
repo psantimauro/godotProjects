@@ -1,16 +1,27 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://cuid2qj2msfqq"]
+[gd_resource type="TileSet" load_steps=11 format=3 uid="uid://cuid2qj2msfqq"]
 
 [ext_resource type="PackedScene" uid="uid://cnnif7w42rkb" path="res://Board/TileScenes/ResourceTiles/Grass.tscn" id="1_58fqu"]
 [ext_resource type="PackedScene" uid="uid://bkd6pqa1sunus" path="res://Board/TileScenes/PickUp.tscn" id="1_djrgk"]
 [ext_resource type="PackedScene" uid="uid://dmcqlds1cl4w" path="res://Board/TileScenes/ResourceTiles/Rock.tscn" id="2_yitsq"]
 [ext_resource type="PackedScene" uid="uid://bvnjicxtudbtp" path="res://Board/TileScenes/ResourceTiles/Tree.tscn" id="3_c340h"]
 [ext_resource type="PackedScene" uid="uid://bduuedwwe4pph" path="res://Board/TileScenes/BuildingTiles/Tent.tscn" id="4_d52ux"]
+[ext_resource type="PackedScene" uid="uid://k1d866h4pd1k" path="res://Board/TileScenes/BuildingTiles/LogCabin.tscn" id="6_brmmb"]
+[ext_resource type="PackedScene" uid="uid://btcbvsfbjcju1" path="res://Board/TileScenes/selection.tscn" id="6_dp4yj"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_02pqr"]
+resource_name = "resources"
 scenes/2/scene = ExtResource("1_58fqu")
 scenes/3/scene = ExtResource("2_yitsq")
 scenes/4/scene = ExtResource("3_c340h")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_k2lol"]
+resource_name = "buildings"
 scenes/5/scene = ExtResource("4_d52ux")
+scenes/6/scene = ExtResource("6_brmmb")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_7b67n"]
+resource_name = "pickups"
+scenes/0/scene = ExtResource("6_dp4yj")
 scenes/10/scene = ExtResource("1_djrgk")
 
 [resource]
@@ -19,3 +30,5 @@ tile_layout = 5
 tile_offset_axis = 1
 tile_size = Vector2i(256, 128)
 sources/0 = SubResource("TileSetScenesCollectionSource_02pqr")
+sources/1 = SubResource("TileSetScenesCollectionSource_k2lol")
+sources/2 = SubResource("TileSetScenesCollectionSource_7b67n")

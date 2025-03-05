@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bduuedwwe4pph"]
+[gd_scene load_steps=13 format=3 uid="uid://bduuedwwe4pph"]
 
 [ext_resource type="Script" path="res://Board/TileScenes/BuildingTiles/buildingbase.gd" id="1_olyqm"]
 [ext_resource type="Texture2D" uid="uid://1k31dwlojfj5" path="res://3rd Party/assets/building/tent-scaled.png" id="2_wcgrg"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Board/TileScenes/BuildingTiles/building_job_controller.gd" id="4_5t152"]
 [ext_resource type="Script" path="res://Board/TileScenes/BuildingTiles/building_work.gd" id="4_88ryu"]
 [ext_resource type="Script" path="res://Resources/job_resources/create_jobs/material_create_job.gd" id="4_plaes"]
+[ext_resource type="Script" path="res://Board/TileScenes/BuildingTiles/research_job_controller.gd" id="7_dnrsm"]
 [ext_resource type="PackedScene" uid="uid://7wcueac35g2m" path="res://timer_progress_bar.tscn" id="7_ewlxg"]
 
 [sub_resource type="Resource" id="Resource_yfnox"]
@@ -30,6 +31,7 @@ jobs = Array[ExtResource("2_xp0h5")]([SubResource("Resource_kdhf7")])
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(3, -195)
 texture = ExtResource("2_wcgrg")
+metadata/_edit_group_ = true
 
 [node name="Research" type="PanelContainer" parent="."]
 visible = false
@@ -37,9 +39,20 @@ offset_right = 109.0
 offset_bottom = 23.0
 script = ExtResource("3_7t00a")
 
-[node name="Label" type="Label" parent="Research"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Research"]
 layout_mode = 2
-text = "research label"
+
+[node name="Label" type="Label" parent="Research/VBoxContainer"]
+layout_mode = 2
+text = "research Area"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Research/VBoxContainer"]
+layout_mode = 2
+text = "learn"
+
+[node name="ResearchContainer" type="Node" parent="Research"]
+script = ExtResource("7_dnrsm")
 
 [node name="Work" type="PanelContainer" parent="."]
 visible = false
@@ -64,17 +77,15 @@ layout_mode = 2
 text = "Select Work Focus Below"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="Work/VBoxContainer"]
-layout_mode = 2
-
 [node name="JobsContainer" type="Node" parent="Work"]
 script = ExtResource("4_5t152")
 
 [node name="ProgressBar" parent="." instance=ExtResource("7_ewlxg")]
-visible = false
 custom_minimum_size = Vector2(100, 0)
 offset_left = -39.0
 offset_top = -29.0
 offset_right = 61.0
 offset_bottom = -2.0
 metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Research/VBoxContainer/Button" to="Research" method="_on_button_pressed"]

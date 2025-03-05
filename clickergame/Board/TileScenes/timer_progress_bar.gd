@@ -17,7 +17,8 @@ extends ProgressBar
 @export var audio_stream: AudioStream:
 	set(val):
 		audio_stream = val
-		audio_stream_player_2d.stream= val
+		if audio_stream_player_2d:
+			audio_stream_player_2d.stream= val
 signal done
 
 func _ready() -> void:
@@ -28,14 +29,17 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	value = (timer.wait_time - (timer.time_left ))/timer.wait_time *100
 
-
 func _on_timer_timeout() -> void:
 	visible = false
 	timer.stop()
 	done.emit()
 	audio_stream_player_2d.stop()
+
+func is_stopped() -> bool:
+	return timer.is_stopped()
 func stop():
 	timer.stop()
+	
 func start():
 	self.visible = true
 	if timer.is_stopped():

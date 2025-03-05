@@ -4,9 +4,12 @@
 [ext_resource type="Theme" uid="uid://cyppchc1lky3m" path="res://main_theme.tres" id="1_dypj8"]
 
 [node name="ProgressBar" type="ProgressBar"]
+visible = false
 offset_right = 4.0
 offset_bottom = 27.0
+mouse_filter = 2
 theme = ExtResource("1_dypj8")
+show_percentage = false
 script = ExtResource("1_d8f8f")
 
 [node name="Timer" type="Timer" parent="."]
@@ -16,6 +19,6 @@ wait_time = 2.0
 bus = &"Tool Sound"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-54, 31)
+position = Vector2(0, -38)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

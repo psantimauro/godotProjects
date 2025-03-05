@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://MenuItems/items_container.gd" id="2_mlwxn"]
 [ext_resource type="Script" path="res://MenuItems/action_container.gd" id="3_2vwo8"]
 [ext_resource type="Script" path="res://build_menu.gd" id="3_qymyi"]
+[ext_resource type="PackedScene" uid="uid://d0ir4paeibh6c" path="res://MenuItems/build_building_button.tscn" id="4_8vhb8"]
 [ext_resource type="Script" path="res://MenuItems/building_menu.gd" id="5_u2757"]
-[ext_resource type="Texture2D" uid="uid://ceeaxe6vq40r3" path="res://3rd Party/assets/icons/card_outline_remove.png" id="7_fdno1"]
 [ext_resource type="Script" path="res://MenuItems/display_container.gd" id="8_w0xfj"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
@@ -56,6 +56,14 @@ visible = false
 layout_mode = 2
 size_flags_vertical = 8
 script = ExtResource("3_qymyi")
+
+[node name="BuildButton" parent="ActionContainer/BuildMenu" instance=ExtResource("4_8vhb8")]
+layout_mode = 2
+
+[node name="VBoxContainer" type="HBoxContainer" parent="ActionContainer/BuildMenu/BuildButton"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="BuildingMenu" type="HBoxContainer" parent="ActionContainer"]
 visible = false
@@ -110,13 +118,6 @@ text = "Show Research
 [node name="ProgressBar" type="ProgressBar" parent="ActionContainer/BuildingMenu/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/ResearchContainer"]
 layout_mode = 2
 
-[node name="VSeparator2" type="VSeparator" parent="ActionContainer/BuildingMenu/PanelContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="RemoveBuildingButton" type="TextureButton" parent="ActionContainer/BuildingMenu/PanelContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("7_fdno1")
-
 [node name="DisplayContainer" type="PanelContainer" parent="."]
 visible = false
 custom_minimum_size = Vector2(500, 200)
@@ -132,5 +133,3 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_w0xfj")
-
-[connection signal="pressed" from="ActionContainer/BuildingMenu/PanelContainer/VBoxContainer/HBoxContainer/RemoveBuildingButton" to="ActionContainer/BuildingMenu" method="_on_remove_building_button_pressed"]

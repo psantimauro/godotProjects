@@ -19,10 +19,6 @@ func _on_material_amount_updated(type:InventoryManager.material_types, amount):
 			if item:
 				var i = mat.current_amount
 				item.amount = i
-		#var path = "VBoxContainer/Materials/" + mat.res_name + "/Label"
-		#var label = get_node(path)
-		#label.text = str(mat.current_amount)
-
 const MATERIAL_ITEM = preload("res://MenuItems/MaterialItem.tscn")	
 func _on_material_unlocked(mat: material_resource):
 	if mat != null:
@@ -36,10 +32,12 @@ func _on_material_unlocked(mat: material_resource):
 const TOOL_ITEM = preload("res://MenuItems/ToolItem.tscn")
 func _on_tool_unlocked(tool: tool_resource):
 	var item = TOOL_ITEM.instantiate()
-	#item.scale *= 0.25
 	tools.add_child(item)
+	item.tool_type = tool.res_type
 	item.texture=tool.texture
-	var new_sprite: TextureRect = TextureRect.new()
-	new_sprite.texture = tool.texture
-	new_sprite.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	tools.add_child(new_sprite)
+	var value = InventoryManager.tool_types.keys()[tool.res_type]
+	item.name = value
+#	var new_sprite: TextureRect = TextureRect.new()
+	#new_sprite.texture = tool.texture
+	#new_sprite.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	#tools.add_child(new_sprite)
