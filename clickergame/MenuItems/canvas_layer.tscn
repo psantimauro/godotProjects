@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bppi20y4a171u"]
+[gd_scene load_steps=9 format=3 uid="uid://cr378mrpqgvkl"]
 
 [ext_resource type="Script" path="res://MenuItems/canvas_layer.gd" id="1_1eub4"]
 [ext_resource type="Theme" uid="uid://cyppchc1lky3m" path="res://main_theme.tres" id="1_jlkld"]

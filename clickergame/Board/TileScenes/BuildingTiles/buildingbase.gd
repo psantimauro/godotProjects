@@ -22,3 +22,4 @@ func update():
 	var jobs = JobTypeManager.get_unlocked_jobs_for_building(type)
 	for job in jobs:
 		work.add_job(job)
+	#var tech = ResearchManager.

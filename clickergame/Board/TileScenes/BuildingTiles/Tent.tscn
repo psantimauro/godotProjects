@@ -31,7 +31,6 @@ jobs = Array[ExtResource("2_xp0h5")]([SubResource("Resource_kdhf7")])
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(3, -195)
 texture = ExtResource("2_wcgrg")
-metadata/_edit_group_ = true
 
 [node name="Research" type="PanelContainer" parent="."]
 visible = false

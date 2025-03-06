@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dmcqlds1cl4w" path="res://Board/TileScenes/ResourceTiles/Rock.tscn" id="2_yitsq"]
 [ext_resource type="PackedScene" uid="uid://bvnjicxtudbtp" path="res://Board/TileScenes/ResourceTiles/Tree.tscn" id="3_c340h"]
 [ext_resource type="PackedScene" uid="uid://bduuedwwe4pph" path="res://Board/TileScenes/BuildingTiles/Tent.tscn" id="4_d52ux"]
-[ext_resource type="PackedScene" uid="uid://k1d866h4pd1k" path="res://Board/TileScenes/BuildingTiles/LogCabin.tscn" id="6_brmmb"]
+[ext_resource type="PackedScene" path="res://Board/TileScenes/BuildingTiles/LogCabin.tscn" id="6_brmmb"]
 [ext_resource type="PackedScene" uid="uid://btcbvsfbjcju1" path="res://Board/TileScenes/selection.tscn" id="6_dp4yj"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_02pqr"]
