@@ -11,9 +11,13 @@ func _ready() -> void:
 		add_child(timer)
 	
 func start_job() -> void:
-	stop_job()
-	timer.timer_duration = job_resource.job_speed
-	timer.start()
+	if can_work_job():
+		stop_job()
+		timer.timer_duration = job_resource.job_speed
+		timer.start()
+	else:
+		#TODO inform player they dont have the stuff
+		print("mssing tool to do work")
 
 func stop_job():
 	timer.stop()
@@ -21,3 +25,6 @@ func stop_job():
 func _on_timer_timeout() -> void:
 	InventoryManager.add_material(job_resource.job_result.material_type,job_resource.job_result.material_amount)
 	timer.start()
+	
+func can_work_job() -> bool:
+	return InventoryManager.has_tool(job_resource.required_tool)

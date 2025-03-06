@@ -26,6 +26,9 @@ func get_resource_from_material_type(type):
 
 var materials_dict = {}
 var total_materials = 0
+func has_material_stack(stack: material_stack) -> bool:
+	return (haz(materials_dict, stack.material_type) && (materials_dict[stack.material_type].current_amount >= stack.material_amount))
+	
 func add_material(type:material_types, amount: int):
 	if !(type == null or type == material_types.UNDEFINED):
 		if !haz(materials_dict, type):
@@ -86,6 +89,7 @@ func unlock_building(build_type: building_types):
 enum tool_types {UNDEFINED = -1, AXE =1, PICKAXE =2, HAMMER, KNIFE}
 signal tool_unlocked
 signal tool_strength_changed
+
 const AXE = preload("res://Resources/tool_resources/Axe.tres")
 const PICKAXE = preload("res://Resources/tool_resources/Pickaxe.tres")
 

@@ -11,12 +11,27 @@ func _ready() -> void:
 		add_child(timer)
 	
 func start_research() -> void:
-	stop_research()
-	timer.timer_duration = tech_resource.research_speed
-	timer.start()
+	if remove_requirement_from_inventory():
+		stop_research()
+		timer.timer_duration = tech_resource.research_speed
+		timer.start()
+	else:
+		#inform the player they cant do the thing
+		pass
 
 func stop_research():
 	timer.stop()
 	
 func _on_timer_timeout() -> void:
-	JobTypeManager.unlock_job(tech_resource.unlocked_job)
+	ResearchManager.unlock_research(tech_resource)
+
+func remove_requirement_from_inventory() -> bool:
+	var status = false
+	if tech_resource != null:
+		status = true
+		for requirement:material_stack in tech_resource.research_cost:
+			if InventoryManager.has_material_stack(requirement):
+				InventoryManager.remove_material(requirement.material_type, requirement.material_amount)
+			else:
+				status = false
+	return status

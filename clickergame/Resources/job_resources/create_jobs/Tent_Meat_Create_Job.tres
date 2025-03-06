@@ -5,8 +5,8 @@
 
 [sub_resource type="Resource" id="Resource_owycj"]
 script = ExtResource("1_51iur")
-material_type = 4
-material_amount = 1
+material_type = 1
+material_amount = 10
 
 [resource]
 script = ExtResource("2_4388g")

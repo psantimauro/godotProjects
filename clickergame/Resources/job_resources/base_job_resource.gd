@@ -3,3 +3,4 @@ extends Resource
 
 @export var required_building: InventoryManager.building_types
 @export var required_tool: InventoryManager.tool_types
+@export var description: String

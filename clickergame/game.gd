@@ -38,6 +38,7 @@ func destroyed(yielded_resources):
 
 func pickup(_type):
 	InventoryManager.unlock_tool(InventoryManager.tool_types.PICKAXE)
+	ResearchManager.unlock_research(ResearchManager.TENT_CREATE_MEAT_TECH)
 	print("pickedup")
 
 func selected(building):

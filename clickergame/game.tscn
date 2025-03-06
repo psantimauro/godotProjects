@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://cuid2qj2msfqq" path="res://game.tres" id="2_q8bm8"]
 [ext_resource type="PackedScene" uid="uid://cr378mrpqgvkl" path="res://MenuItems/canvas_layer.tscn" id="2_twcd8"]
 [ext_resource type="Script" path="res://tile_map_layer.gd" id="3_14rw0"]
-[ext_resource type="Script" path="res://camera_2d.gd" id="3_udyyn"]
+[ext_resource type="Script" path="res://Board/camera_2d.gd" id="3_udyyn"]
 [ext_resource type="Script" path="res://Board/game_board.gd" id="5_rn6k5"]
 [ext_resource type="PackedScene" uid="uid://btcbvsfbjcju1" path="res://Board/TileScenes/selection.tscn" id="5_tlkhx"]
 

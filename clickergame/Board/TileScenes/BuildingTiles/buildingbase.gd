@@ -8,18 +8,22 @@ signal selected
 
 @onready var research: BuildingResearch = $Research
 @onready var work: BuildingWork = $Work
-
 @onready var progress_bar: TimerProgressBar = $ProgressBar
 
 @export var jobs: Array[base_job_resource]
+@export var techs: Array[base_tech_resource]
+
 func _ready() -> void:
 	await progress_bar
 	progress_bar.power_multipler = building_power
+	
 func click():
 	selected.emit(self)
 
 func update():
-	var jobs = JobTypeManager.get_unlocked_jobs_for_building(type)
+	jobs = JobTypeManager.get_unlocked_jobs_for_building(type)
 	for job in jobs:
 		work.add_job(job)
-	#var tech = ResearchManager.
+	techs = ResearchManager.get_unlocked_research_by_building_type(type)
+	for tech in techs:
+		research.add_research(tech)

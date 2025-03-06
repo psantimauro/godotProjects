@@ -1,14 +1,14 @@
 [gd_scene load_steps=13 format=3 uid="uid://bduuedwwe4pph"]
 
 [ext_resource type="Script" path="res://Board/TileScenes/BuildingTiles/buildingbase.gd" id="1_olyqm"]
+[ext_resource type="Script" path="res://Resources/job_resources/base_job_resource.gd" id="2_l8b51"]
 [ext_resource type="Texture2D" uid="uid://1k31dwlojfj5" path="res://3rd Party/assets/building/tent-scaled.png" id="2_wcgrg"]
-[ext_resource type="Script" path="res://Resources/job_resources/base_job_resource.gd" id="2_xp0h5"]
-[ext_resource type="Script" path="res://Board/TileScenes/BuildingTiles/building_research.gd" id="3_7t00a"]
+[ext_resource type="Script" path="res://Board/TileScenes/BuildingTiles/BuildingTechs/building_research.gd" id="3_7t00a"]
 [ext_resource type="Script" path="res://Resources/material_stack.gd" id="3_ic81d"]
-[ext_resource type="Script" path="res://Board/TileScenes/BuildingTiles/building_job_controller.gd" id="4_5t152"]
-[ext_resource type="Script" path="res://Board/TileScenes/BuildingTiles/building_work.gd" id="4_88ryu"]
+[ext_resource type="Script" path="res://Board/TileScenes/BuildingTiles/BuildingJobs/building_job_controller.gd" id="4_5t152"]
+[ext_resource type="Script" path="res://Board/TileScenes/BuildingTiles/BuildingJobs/building_work.gd" id="4_88ryu"]
 [ext_resource type="Script" path="res://Resources/job_resources/create_jobs/material_create_job.gd" id="4_plaes"]
-[ext_resource type="Script" path="res://Board/TileScenes/BuildingTiles/research_job_controller.gd" id="7_dnrsm"]
+[ext_resource type="Script" path="res://Board/TileScenes/BuildingTiles/BuildingTechs/research_job_controller.gd" id="7_dnrsm"]
 [ext_resource type="PackedScene" uid="uid://7wcueac35g2m" path="res://timer_progress_bar.tscn" id="7_ewlxg"]
 
 [sub_resource type="Resource" id="Resource_yfnox"]
@@ -22,11 +22,12 @@ job_result = SubResource("Resource_yfnox")
 job_speed = 1.0
 required_building = 5
 required_tool = 0
+description = ""
 
 [node name="Tent" type="Node2D"]
 script = ExtResource("1_olyqm")
 type = 5
-jobs = Array[ExtResource("2_xp0h5")]([SubResource("Resource_kdhf7")])
+jobs = Array[ExtResource("2_l8b51")]([SubResource("Resource_kdhf7")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(3, -195)
@@ -38,20 +39,20 @@ offset_right = 109.0
 offset_bottom = 23.0
 script = ExtResource("3_7t00a")
 
+[node name="ResearchContainer" type="Node" parent="Research"]
+script = ExtResource("7_dnrsm")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="Research"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Research/VBoxContainer"]
 layout_mode = 2
-text = "research Area"
+text = "Select Research Area Below"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="Research/VBoxContainer"]
+[node name="ResearchButtonsContainer" type="GridContainer" parent="Research/VBoxContainer"]
 layout_mode = 2
-text = "learn"
-
-[node name="ResearchContainer" type="Node" parent="Research"]
-script = ExtResource("7_dnrsm")
+columns = 5
 
 [node name="Work" type="PanelContainer" parent="."]
 visible = false
@@ -68,6 +69,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_88ryu")
 
+[node name="JobsContainer" type="Node" parent="Work"]
+script = ExtResource("4_5t152")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="Work"]
 layout_mode = 2
 
@@ -76,9 +80,6 @@ layout_mode = 2
 text = "Select Work Focus Below"
 horizontal_alignment = 1
 
-[node name="JobsContainer" type="Node" parent="Work"]
-script = ExtResource("4_5t152")
-
 [node name="ProgressBar" parent="." instance=ExtResource("7_ewlxg")]
 custom_minimum_size = Vector2(100, 0)
 offset_left = -39.0
@@ -86,5 +87,3 @@ offset_top = -29.0
 offset_right = 61.0
 offset_bottom = -2.0
 metadata/_edit_use_anchors_ = true
-
-[connection signal="pressed" from="Research/VBoxContainer/Button" to="Research" method="_on_button_pressed"]

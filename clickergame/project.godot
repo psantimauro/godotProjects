@@ -23,6 +23,7 @@ Globals="*res://Autoloads/Globals.gd"
 TileManager="*res://Autoloads/TileManager.gd"
 InventoryManager="*res://Autoloads/InventoryManager.gd"
 JobTypeManager="*res://Autoloads/JobTypeManager.gd"
+ResearchManager="*res://Autoloads/ResearchManager.gd"
 
 [display]
 
