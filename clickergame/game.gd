@@ -5,16 +5,18 @@ extends Node2D
 
 func _hax():
 	
-	InventoryManager.unlock_building(InventoryManager.building_types.TENT)	
+#	InventoryManager.unlock_building(InventoryManager.building_types.TENT)	
 	InventoryManager.unlock_building(InventoryManager.building_types.LOGCABIN)	
 	InventoryManager.unlock_tool(InventoryManager.tool_types.AXE)
-	InventoryManager.add_material(InventoryManager.material_types.HIDE, 2)
-	InventoryManager.add_material(InventoryManager.material_types.WOOD, 200)
-	InventoryManager.add_material(InventoryManager.material_types.MEAT, 10)
+#	InventoryManager.add_material(InventoryManager.material_types.HIDE, 2)
+	#InventoryManager.add_material(InventoryManager.material_types.WOOD, 200)
+	#InventoryManager.add_material(InventoryManager.material_types.MEAT, 10)
 	
 	JobTypeManager.unlock_job(JobTypeManager.TENT_WOOD_CREATE_JOB)
 #	JobTypeManager.unlock_job(JobTypeManager.TENT_MEAT_CREATE_JOB)
-	JobTypeManager.unlock_job(JobTypeManager.TENT_HIDE_CREATE_JOB)
+#	JobTypeManager.unlock_job(JobTypeManager.TENT_HIDE_CREATE_JOB)
+	var first_quest = preload("res://Quests/first_clicks.tres")
+	QuestManager.add_quest(first_quest.instantiate())
 func _ready():
 	await game_hud
 	await board
@@ -37,7 +39,9 @@ func destroyed(yielded_resources):
 	board.resource_destroyed(yielded_resources)
 
 func pickup(_type):
-	InventoryManager.unlock_tool(InventoryManager.tool_types.PICKAXE)
+	
+	InventoryManager.add_material(InventoryManager.material_types.HIDE, 2)
+	#InventoryManager.unlock_tool(InventoryManager.tool_types.PICKAXE)
 	ResearchManager.unlock_research(ResearchManager.TENT_CREATE_MEAT_TECH)
 	print("pickedup")
 

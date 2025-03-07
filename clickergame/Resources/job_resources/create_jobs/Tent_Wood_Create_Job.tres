@@ -14,3 +14,4 @@ job_result = SubResource("Resource_r4feu")
 job_speed = 1.0
 required_building = 5
 required_tool = 1
+description = ""

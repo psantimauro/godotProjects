@@ -12,7 +12,6 @@ func _on_building_unlocked(building_type: InventoryManager.building_types):
 	var building_button:BuildBuildingButton = BuildBuildingButton.new()
 	add_child(building_button)
 	building_button.update_building_info(building_type)
-	
 	building_button.visible = false
 	building_button.pressed.connect(_on_button_pressed)
 	building_button.buildingtype = building_type

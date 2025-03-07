@@ -105,7 +105,7 @@ var tools_dict = {}
 
 func has_tool(type:InventoryManager.tool_types) -> bool:
 	var tool = get_resource_from_tool_type(type)
-	return tools_dict.has(type)
+	return (tools_dict.has(type) or type == 0)
 
 func unlock_tool(type: InventoryManager.tool_types):
 	var tool = get_resource_from_tool_type(type)

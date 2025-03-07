@@ -47,8 +47,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			selection_indictor.visible = !selection_indictor.visible
 
 			Globals.empty_tile_selected.emit(last_board_click)
-			if selection_indictor.visible:
-				camera_2d.move_to(selection_indictor.position)
+			#if selection_indictor.visible:
+				#camera_2d.move_to(selection_indictor.position)
 
 
 func generate_game_board():

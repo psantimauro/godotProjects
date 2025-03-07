@@ -1,0 +1,100 @@
+[gd_resource type="Resource" script_class="QuestResource" load_steps=19 format=3 uid="uid://bvr288wgpxtck"]
+
+[ext_resource type="Script" path="res://addons/questify/scripts/model/quest_edge.gd" id="1_c6or2"]
+[ext_resource type="Script" path="res://addons/questify/scripts/model/quest_objective.gd" id="2_yh71f"]
+[ext_resource type="Script" path="res://addons/questify/scripts/model/quest_end.gd" id="3_ka3xt"]
+[ext_resource type="Script" path="res://addons/questify/scripts/model/quest_start.gd" id="4_fvoiw"]
+[ext_resource type="Script" path="res://addons/questify/scripts/model/quest_condition.gd" id="5_kc3pw"]
+[ext_resource type="Script" path="res://addons/questify/scripts/model/quest_node.gd" id="6_mpv7a"]
+[ext_resource type="Script" path="res://addons/questify/scripts/model/quest_resource.gd" id="7_brunu"]
+
+[sub_resource type="Resource" id="Resource_hbimu"]
+script = ExtResource("4_fvoiw")
+name = "First Clicks"
+description = "Chop trees by clicking them."
+id = "bRUATSYzRv"
+optional = false
+graph_editor_position = Vector2(-2360, -2200)
+graph_editor_size = Vector2(280, 503)
+
+[sub_resource type="Resource" id="Resource_gd237"]
+script = ExtResource("2_yh71f")
+description = "the objective is 1 wood.
+
+reward is new building unlock"
+id = "UgQoC34sZT"
+optional = false
+graph_editor_position = Vector2(-1820, -2180)
+graph_editor_size = Vector2(520, 560)
+metadata/reward_type = 2.0
+metadata/reward_value = "5"
+
+[sub_resource type="Resource" id="Resource_01sn6"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_hbimu")
+to = SubResource("Resource_gd237")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_sxwrd"]
+script = ExtResource("5_kc3pw")
+type = "has_material"
+key = "1"
+id = "b9KziQ1gig"
+optional = false
+graph_editor_position = Vector2(-2300, -1540)
+graph_editor_size = Vector2(377, 309)
+metadata/value = 3.0
+
+[sub_resource type="Resource" id="Resource_uhgmj"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_sxwrd")
+to = SubResource("Resource_gd237")
+edge_type = 1
+
+[sub_resource type="Resource" id="Resource_3uf4e"]
+script = ExtResource("2_yh71f")
+description = "Find the mushroom"
+id = "pva3YtwiL0"
+optional = false
+graph_editor_position = Vector2(-1180, -1940)
+graph_editor_size = Vector2(468, 499)
+
+[sub_resource type="Resource" id="Resource_gun4a"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_gd237")
+to = SubResource("Resource_3uf4e")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_7j0m0"]
+script = ExtResource("3_ka3xt")
+id = "YigGzukSmp"
+optional = false
+graph_editor_position = Vector2(-1020, -2160)
+graph_editor_size = Vector2(141, 78)
+
+[sub_resource type="Resource" id="Resource_myixp"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_3uf4e")
+to = SubResource("Resource_7j0m0")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_mmj0p"]
+script = ExtResource("5_kc3pw")
+type = "has_material"
+key = "3"
+id = "Zd-wRVtDk6"
+optional = false
+graph_editor_position = Vector2(-1640, -1520)
+graph_editor_size = Vector2(377, 309)
+metadata/value = 1.0
+
+[sub_resource type="Resource" id="Resource_a0o4g"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_mmj0p")
+to = SubResource("Resource_3uf4e")
+edge_type = 1
+
+[resource]
+script = ExtResource("7_brunu")
+nodes = Array[ExtResource("6_mpv7a")]([SubResource("Resource_hbimu"), SubResource("Resource_7j0m0"), SubResource("Resource_gd237"), SubResource("Resource_3uf4e"), SubResource("Resource_mmj0p"), SubResource("Resource_sxwrd")])
+edges = Array[ExtResource("1_c6or2")]([SubResource("Resource_01sn6"), SubResource("Resource_uhgmj"), SubResource("Resource_gun4a"), SubResource("Resource_myixp"), SubResource("Resource_a0o4g")])
