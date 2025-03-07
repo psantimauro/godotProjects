@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="QuestResource" load_steps=19 format=3 uid="uid://bvr288wgpxtck"]
 
-[ext_resource type="Script" path="res://addons/questify/scripts/model/quest_edge.gd" id="1_c6or2"]
-[ext_resource type="Script" path="res://addons/questify/scripts/model/quest_objective.gd" id="2_yh71f"]
-[ext_resource type="Script" path="res://addons/questify/scripts/model/quest_end.gd" id="3_ka3xt"]
-[ext_resource type="Script" path="res://addons/questify/scripts/model/quest_start.gd" id="4_fvoiw"]
-[ext_resource type="Script" path="res://addons/questify/scripts/model/quest_condition.gd" id="5_kc3pw"]
-[ext_resource type="Script" path="res://addons/questify/scripts/model/quest_node.gd" id="6_mpv7a"]
-[ext_resource type="Script" path="res://addons/questify/scripts/model/quest_resource.gd" id="7_brunu"]
+[ext_resource type="Script" uid="uid://d4gmb2nftapl5" path="res://addons/questify/scripts/model/quest_edge.gd" id="1_c6or2"]
+[ext_resource type="Script" uid="uid://c23wdreelkkg4" path="res://addons/questify/scripts/model/quest_objective.gd" id="2_yh71f"]
+[ext_resource type="Script" uid="uid://650crvoj707i" path="res://addons/questify/scripts/model/quest_end.gd" id="3_ka3xt"]
+[ext_resource type="Script" uid="uid://dtbofow3tdngk" path="res://addons/questify/scripts/model/quest_start.gd" id="4_fvoiw"]
+[ext_resource type="Script" uid="uid://cyotfkardp6i" path="res://addons/questify/scripts/model/quest_condition.gd" id="5_kc3pw"]
+[ext_resource type="Script" uid="uid://b37aev4imc074" path="res://addons/questify/scripts/model/quest_node.gd" id="6_mpv7a"]
+[ext_resource type="Script" uid="uid://bhqxygnm6kw4n" path="res://addons/questify/scripts/model/quest_resource.gd" id="7_brunu"]
 
 [sub_resource type="Resource" id="Resource_hbimu"]
 script = ExtResource("4_fvoiw")

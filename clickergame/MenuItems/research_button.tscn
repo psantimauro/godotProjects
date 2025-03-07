@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://3k0fensq6d6j"]
 
-[ext_resource type="Script" path="res://MenuItems/research_button.gd" id="1_o5b6v"]
+[ext_resource type="Script" uid="uid://2r8hx2iurnua" path="res://MenuItems/research_button.gd" id="1_o5b6v"]
 
 [node name="ResearchButton" type="Button"]
 anchors_preset = 15

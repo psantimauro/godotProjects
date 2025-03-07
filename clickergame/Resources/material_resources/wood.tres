@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="material_resource" load_steps=3 format=3 uid="uid://cp67h0ry2w4jt"]
 
-[ext_resource type="Script" path="res://Resources/material_resources/material_resource.gd" id="1_twq2l"]
+[ext_resource type="Script" uid="uid://bv2bf7dad00vw" path="res://Resources/material_resources/material_resource.gd" id="1_twq2l"]
 [ext_resource type="Texture2D" uid="uid://brqcn484n7b8t" path="res://3rd Party/assets/icons/deadwood.png" id="2_syojr"]
 
 [resource]

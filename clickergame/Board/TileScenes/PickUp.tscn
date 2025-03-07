@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bkd6pqa1sunus"]
 
-[ext_resource type="Script" path="res://Board/TileScenes/pick_up.gd" id="1_fg4kr"]
+[ext_resource type="Script" uid="uid://8kcebdf6unij" path="res://Board/TileScenes/pick_up.gd" id="1_fg4kr"]
 [ext_resource type="Texture2D" uid="uid://xmwq7al4mtf0" path="res://3rd Party/assets/icons/psilocybe.png" id="2_ku3va"]
 [ext_resource type="AudioStream" uid="uid://c573qngroi41v" path="res://assets/wistle.wav" id="3_t5n2y"]
 

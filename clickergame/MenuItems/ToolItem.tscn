@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://drpf41lgja254"]
 
-[ext_resource type="Script" path="res://MenuItems/tool_item.gd" id="1_i61ud"]
+[ext_resource type="Script" uid="uid://bsi6nw1wdefg5" path="res://MenuItems/tool_item.gd" id="1_i61ud"]
 [ext_resource type="Texture2D" uid="uid://cdky3tf6k47vv" path="res://3rd Party/assets/icons/pickaxe.png" id="1_xxutk"]
 
 [node name="ToolItemContainer" type="PanelContainer"]

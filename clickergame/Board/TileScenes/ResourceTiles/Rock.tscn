@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dmcqlds1cl4w"]
 
 [ext_resource type="Texture2D" uid="uid://dlsta2x8iwfrn" path="res://3rd Party/assets/resource/grassStoneLarge_N.png" id="1_325m5"]
-[ext_resource type="Script" path="res://Board/TileScenes/ResourceTiles/resourcebase.gd" id="1_ggl8x"]
+[ext_resource type="Script" uid="uid://cifnqolrwwb2a" path="res://Board/TileScenes/ResourceTiles/resourcebase.gd" id="1_ggl8x"]
 [ext_resource type="PackedScene" uid="uid://7wcueac35g2m" path="res://timer_progress_bar.tscn" id="3_jj7nu"]
 [ext_resource type="AudioStream" uid="uid://drho1qr2ybq7g" path="res://assets/HAMMER_PROCESSED.wav" id="4_jxgg8"]
 

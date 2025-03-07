@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d0ir4paeibh6c"]
 
-[ext_resource type="Script" path="res://MenuItems/build__building_button.gd" id="1_sq0aw"]
+[ext_resource type="Script" uid="uid://fpdv6ih3g5nl" path="res://MenuItems/build__building_button.gd" id="1_sq0aw"]
 
 [node name="BuildBuildingButton" type="TextureButton"]
 custom_minimum_size = Vector2(11, 0)

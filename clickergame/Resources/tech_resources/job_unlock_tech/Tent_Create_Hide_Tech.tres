@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="job_unlock_tech" load_steps=5 format=3 uid="uid://vj5xubuh7klh"]
 
-[ext_resource type="Script" path="res://Resources/material_stack.gd" id="1_8syvk"]
-[ext_resource type="Script" path="res://Resources/tech_resources/job_unlock_tech/job_unlock_tech.gd" id="2_4qh33"]
+[ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="1_8syvk"]
+[ext_resource type="Script" uid="uid://bnp7y38h3ouct" path="res://Resources/tech_resources/job_unlock_tech/job_unlock_tech.gd" id="2_4qh33"]
 [ext_resource type="Resource" uid="uid://pwioyb6ydkq8" path="res://Resources/job_resources/create_jobs/Tent_Meat_Create_Job.tres" id="3_mfxcv"]
 
 [sub_resource type="Resource" id="Resource_fcav0"]
