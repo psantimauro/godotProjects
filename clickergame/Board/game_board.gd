@@ -16,7 +16,7 @@ const PICKUP = 2
 var last_board_click = Vector2i.ONE * -1
 
 func _ready() -> void:
-	InventoryManager.building_built.connect(_on_building_build)
+	BuildingManager.building_built.connect(_on_building_build)
 	Globals.clear_selection.connect(_on_selection_cleared)
 	Globals.delete_selected_building.connect(_delete_selected_building)
 	generate_game_board()

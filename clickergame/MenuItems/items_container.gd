@@ -9,10 +9,11 @@ extends PanelContainer
 func _ready() -> void:
 	InventoryManager.material_amount_updated.connect(_on_material_amount_updated)
 	InventoryManager.new_material_unlocked.connect(_on_material_unlocked)
-	InventoryManager.tool_unlocked.connect(_on_tool_unlocked)
+	ToolManager.tool_unlocked.connect(_on_tool_unlocked)
 	QuestManager.quest_status_changed.connect(_on_quest_status_changed)
 
 func _on_material_amount_updated(type:InventoryManager.material_types, amount):
+	total_materials.visible = true
 	total_materials.text = "Total Materials: " + str(InventoryManager.total_materials)
 	var mat:material_resource = InventoryManager.materials_dict[type]
 	if mat:
@@ -37,7 +38,7 @@ func _on_tool_unlocked(tool: tool_resource):
 	tools.add_child(item)
 	item.tool_type = tool.res_type
 	item.texture=tool.texture
-	var value = InventoryManager.tool_types.keys()[tool.res_type]
+	var value = ToolManager.tool_types.keys()[tool.res_type]
 	item.name = value
 #	var new_sprite: TextureRect = TextureRect.new()
 	#new_sprite.texture = tool.texture

@@ -2,7 +2,7 @@ class_name ToolItem
 extends PanelContainer
 @onready var _texture_rect: TextureRect = $TextureRect
 
-@export var tool_type:InventoryManager.tool_types
+@export var tool_type:ToolManager.tool_types
 
 @export var texture:Texture :
 	set(txtr):
@@ -14,4 +14,4 @@ func _on_tool_level(type, value):
 		label.text = str("%1.3f" % value)
 
 func _ready() -> void:
-	InventoryManager.tool_strength_changed.connect(_on_tool_level)
+	ToolManager.tool_strength_changed.connect(_on_tool_level)

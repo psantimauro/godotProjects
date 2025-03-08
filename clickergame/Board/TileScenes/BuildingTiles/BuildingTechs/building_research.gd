@@ -7,18 +7,18 @@ extends Control
 
 var button_group: ButtonGroup = ButtonGroup.new()
 
-func _on_button_pressed(tech =ResearchManager.TENT_CREATE_MEAT) -> void:
+func _on_button_pressed(tech = BuildingManager.TENT_CREATE_MEAT) -> void:
 	var new_reseach = base_tech_resource.new()
 	
-	progress_bar.timer_duration = tech.research_speed
-	progress_bar.texture = ResearchManager.RESEARCH_ICON
+	progress_bar.power_multipler = tech.research_speed
+	progress_bar.texture = BuildingManager.RESEARCH_ICON
 	research_container.add_research(tech, progress_bar)
 	Globals.clear_selection.emit()
 
 func add_research(tech):
 	add_research_button(tech)
 
-func add_research_button(research_tech:base_tech_resource = ResearchManager.TENT_CREATE_MEAT):
+func add_research_button(research_tech:base_tech_resource = BuildingManager.TENT_CREATE_MEAT):
 	if research_tech != null:
 		var button_name = "Research" + research_tech.resource_name
 		var button_exists = false

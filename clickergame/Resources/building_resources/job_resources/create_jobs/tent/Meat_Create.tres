@@ -1,19 +1,19 @@
 [gd_resource type="Resource" script_class="material_create_job" load_steps=4 format=3 uid="uid://pwioyb6ydkq8"]
 
-[ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="1_51iur"]
-[ext_resource type="Script" uid="uid://b8qgra0f5yol0" path="res://Resources/job_resources/create_jobs/material_create_job.gd" id="2_4388g"]
+[ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="1_lu145"]
+[ext_resource type="Script" uid="uid://b8qgra0f5yol0" path="res://Resources/building_resources/job_resources/create_jobs/material_create_job.gd" id="2_ad74d"]
 
 [sub_resource type="Resource" id="Resource_owycj"]
-script = ExtResource("1_51iur")
+script = ExtResource("1_lu145")
 material_type = 4
 material_amount = 10
 
 [resource]
-script = ExtResource("2_4388g")
+script = ExtResource("2_ad74d")
 job_result = SubResource("Resource_owycj")
 job_speed = 1.0
 required_building = 5
 required_tool = 1
-description = "Creates meat over time"
+type = -1
 res_name = "Create Meat Job"
 description = "Creates meat over time"

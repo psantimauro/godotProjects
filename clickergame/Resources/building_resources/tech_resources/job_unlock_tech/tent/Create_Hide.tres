@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="job_unlock_tech" load_steps=5 format=3 uid="uid://vj5xubuh7klh"]
+
+[ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="1_0wmaf"]
+[ext_resource type="Script" uid="uid://bnp7y38h3ouct" path="res://Resources/building_resources/tech_resources/job_unlock_tech/job_unlock_tech.gd" id="2_2gfdq"]
+[ext_resource type="Resource" uid="uid://dtadwtaoges7n" path="res://Resources/building_resources/job_resources/create_jobs/tent/Hide_Create.tres" id="3_hjv72"]
+
+[sub_resource type="Resource" id="Resource_fcav0"]
+script = ExtResource("1_0wmaf")
+material_type = 4
+material_amount = 1
+
+[resource]
+script = ExtResource("2_2gfdq")
+research_speed = 25.0
+research_cost = Array[ExtResource("1_0wmaf")]([SubResource("Resource_fcav0")])
+unlocked_job = ExtResource("3_hjv72")
+required_building = 5
+tech_type = 0
+res_name = "Create Hide Tech"
+description = "Unlocking this technology allows Tents to generate Hides"

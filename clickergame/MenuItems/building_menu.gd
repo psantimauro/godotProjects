@@ -23,7 +23,7 @@ func _work_button_clicked():
 
 
 func _on_remove_building_button_pressed() -> void:
-	var building_res = InventoryManager.get_resource_from_building_type(building.type)
+	var building_res = BuildingManager.get_resource_from_building_type(building.type)
 	for building_requirement:material_stack in building_res.requirements:
 		var amount = ceil( removal_restore_factor * building_requirement.material_amount)
 		InventoryManager.add_material(building_requirement.material_type,amount)

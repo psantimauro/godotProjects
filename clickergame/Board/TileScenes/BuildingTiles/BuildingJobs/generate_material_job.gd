@@ -27,4 +27,4 @@ func _on_timer_timeout() -> void:
 	timer.start()
 	
 func can_work_job() -> bool:
-	return InventoryManager.has_tool(job_resource.required_tool) 
+	return ToolManager.has_tool(job_resource.required_tool) 

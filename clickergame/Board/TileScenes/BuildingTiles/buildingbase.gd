@@ -1,7 +1,7 @@
 class_name BuildingBase
 extends Node2D
 
-@export var type:InventoryManager.building_types = InventoryManager.building_types.UNDEFINED
+@export var type:BuildingManager.building_types = BuildingManager.building_types.UNDEFINED
 @export var building_power = 0.01
 
 signal selected
@@ -16,14 +16,15 @@ signal selected
 func _ready() -> void:
 	await progress_bar
 	progress_bar.power_multipler = building_power
-	
+
 func click():
+	update()
 	selected.emit(self)
 
 func update():
-	jobs = JobTypeManager.get_unlocked_jobs_for_building(type)
+	jobs = BuildingManager.get_unlocked_jobs_for_building(type)
 	for job in jobs:
 		work.add_job(job)
-	techs = ResearchManager.get_unlocked_research_by_building_type(type)
+	techs = BuildingManager.get_unlocked_research_by_building_type(type)
 	for tech in techs:
 		research.add_research(tech)

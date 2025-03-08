@@ -37,6 +37,7 @@ func _on_timer_timeout() -> void:
 
 func is_stopped() -> bool:
 	return timer.is_stopped()
+	
 func stop():
 	timer.stop()
 	

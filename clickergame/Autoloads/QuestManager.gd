@@ -1,7 +1,7 @@
 extends Node
 
 enum quest_types {UNDEFINED = -1, TUTORIAL, COLLECT , COMPLETE_JOB , COMPLETE_RESEARCH}
-enum reward_types {UNDEFINED = -1, RESEARCH , NEW_BUILDING , MATERIALS, JOBS  }
+enum reward_types {UNDEFINED = -1, RESEARCH = 1 , NEW_BUILDING = 2 , MATERIAL, JOB  }
 enum quest_status_types {UNDEFINED = -1, STARTED, UPDATED, COMPLETED}
 signal quest_status_changed
 
@@ -22,18 +22,37 @@ func _on_condition_query_requested(query_type: String, key: String, value: Varia
 				requester.set_completed(true)
 
 func _on_objected_completed(quest: QuestResource, objective: QuestObjective):
-	var reward_type = objective.get_meta("reward_type")
-	var building_type = objective.get_meta("reward_value")
-	if reward_type ==	QuestManager.reward_types.NEW_BUILDING:
-			InventoryManager.unlock_building(int(building_type))
+	var reward_name = objective.get_meta("reward_type")
+	var reward_type:reward_types = Globals.get_type_from_name(reward_name, reward_types)
+	match reward_type:
+		reward_types.NEW_BUILDING:
+			var building_name = objective.get_meta("building")
+			var building_type:BuildingManager.building_types = Globals.get_type_from_name(building_name, BuildingManager.building_types)
+			BuildingManager.unlock_building(building_type)
 			quest_status_changed.emit(quest, quest_status_types.UPDATED, objective.description)
 			print("new building")
-	elif reward_type == QuestManager.reward_types.RESEARCH:
+		reward_types.JOB:
+			var building_name = objective.get_meta("building")
+			var job_type_name = objective. get_meta("res_name")
+			var building_type:BuildingManager.building_types = Globals.get_type_from_name(building_name, BuildingManager.building_types)
+			BuildingManager.unlock_job_for_building(building_type, job_type_name)
+			print("new jobs")
+		reward_types.RESEARCH:
+			var building = objective.get_meta("building")
+			var tech_type_name = objective. get_meta("res_name")
+			var buildng_type = Globals.get_type_from_name(building, BuildingManager.building_types)
+			BuildingManager.unlocked_tech_for_building(buildng_type, tech_type_name)
 			print("new reseach")
-	print("no objective match")
+		reward_types.MATERIAL:
+			var material_name:String = objective.get_meta("material")
+			var material_amount = objective.get_meta("amount")
+			var material_type:InventoryManager.material_types = Globals.get_type_from_name(material_name,InventoryManager.material_types)
+			InventoryManager.add_material(material_type, material_amount)
+			print("new materials")
+
 func _on_objective_added(quest: QuestResource, objective: QuestObjective):
 	quest_status_changed.emit(quest, quest_status_types.UPDATED, objective.description)
-	
+
 func _on_quest_completed(quest: QuestResource):
 	var idx = get_quest_id(quest) 
 	completed_quest_count += 1
@@ -50,4 +69,3 @@ func add_quest(quest):
 	active_quests.append(quest)
 	Questify.start_quest(quest)
 	quest_status_changed.emit(quest, quest_status_types.STARTED, quest.description)
-	

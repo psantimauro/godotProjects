@@ -7,6 +7,7 @@ func _ready() -> void:
 	if tech_resource != null:
 		#var type_name = str(InventoryManager.material_types.keys()[job_resource.job_result.material_type]).to_lower()
 		self.name = "Research " + tech_resource.unlocked_job.resource_name
+		
 		timer.done.connect(_on_timer_timeout)
 		add_child(timer)
 	
@@ -23,7 +24,8 @@ func stop_research():
 	timer.stop()
 	
 func _on_timer_timeout() -> void:
-	ResearchManager.unlock_research(tech_resource)
+	BuildingManager.unlock_job(tech_resource)
+	timer.stop() #research only runs once
 
 func remove_requirement_from_inventory() -> bool:
 	var status = false

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="job_unlock_tech" load_steps=5 format=3 uid="uid://ccpie4u2ggyek"]
+
+[ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="1_4b1g6"]
+[ext_resource type="Script" uid="uid://bnp7y38h3ouct" path="res://Resources/building_resources/tech_resources/job_unlock_tech/job_unlock_tech.gd" id="2_n4tv6"]
+[ext_resource type="Resource" uid="uid://fm28i4ehcmo5" path="res://Resources/building_resources/job_resources/create_jobs/Hide_Create.tres" id="3_4b1g6"]
+
+[sub_resource type="Resource" id="Resource_fcav0"]
+script = ExtResource("1_4b1g6")
+material_type = 4
+material_amount = 1
+
+[resource]
+script = ExtResource("2_n4tv6")
+research_speed = 1.0
+research_cost = Array[ExtResource("1_4b1g6")]([SubResource("Resource_fcav0")])
+unlocked_job = ExtResource("3_4b1g6")
+tech_type = 0
+res_name = "Create Hide Tech"
+description = "Unlocking this technology allows generation of hide"

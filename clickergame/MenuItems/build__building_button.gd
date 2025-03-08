@@ -1,12 +1,11 @@
 class_name BuildBuildingButton
 extends TextureButton
 
-@export var buildingtype: InventoryManager.building_types
+@export var buildingtype: BuildingManager.building_types
 	
 func update_building_info(type = buildingtype):
-	
 		buildingtype = type
-		var building_res:building_resource = InventoryManager.get_resource_from_building_type(buildingtype)
+		var building_res:building_resource = BuildingManager.get_resource_from_building_type(buildingtype)
 		set_texture(building_res.texture)
 		set_type(buildingtype)
 		name = building_res.res_name
@@ -14,7 +13,7 @@ func update_building_info(type = buildingtype):
 		if requirements:
 			for c in requirements.get_children():
 				c.queue_free()
-	#		var building_res:building_resource = InventoryManager.get_resource_from_building_type(buildingtype)
+
 			var label = Label.new()
 			label.text = "Requirements"
 			requirements.add_child(label)

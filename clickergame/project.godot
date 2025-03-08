@@ -22,10 +22,10 @@ config/icon="res://assets/logs-64.png"
 Globals="*res://Autoloads/Globals.gd"
 TileManager="*res://Autoloads/TileManager.gd"
 InventoryManager="*res://Autoloads/InventoryManager.gd"
-JobTypeManager="*res://Autoloads/JobTypeManager.gd"
-ResearchManager="*res://Autoloads/ResearchManager.gd"
-Questify="*res://addons/questify/quest_manager.gd"
 QuestManager="*res://Autoloads/QuestManager.gd"
+ToolManager="*res://Autoloads/ToolManager.gd"
+BuildingManager="*res://Autoloads/BuildingManager.gd"
+Questify="*res://addons/questify/quest_manager.gd"
 
 [display]
 

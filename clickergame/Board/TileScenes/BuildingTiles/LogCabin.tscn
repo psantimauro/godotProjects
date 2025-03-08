@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://k1d866h4pd1k"]
 
 [ext_resource type="Script" uid="uid://bdd6pkay5f1fx" path="res://Board/TileScenes/BuildingTiles/buildingbase.gd" id="1_7cvhu"]
-[ext_resource type="Script" uid="uid://8h33mrv2w63u" path="res://Resources/job_resources/base_job_resource.gd" id="2_3aynm"]
+[ext_resource type="Script" uid="uid://8h33mrv2w63u" path="res://Resources/building_resources/job_resources/base_job_resource.gd" id="2_3aynm"]
 [ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="3_6v5vd"]
-[ext_resource type="Script" uid="uid://b8qgra0f5yol0" path="res://Resources/job_resources/create_jobs/material_create_job.gd" id="4_dbkfd"]
+[ext_resource type="Script" uid="uid://b8qgra0f5yol0" path="res://Resources/building_resources/job_resources/create_jobs/material_create_job.gd" id="4_dbkfd"]
 [ext_resource type="Texture2D" uid="uid://dkmu3xinv76up" path="res://assets/building-128_scaled.png" id="5_gqjno"]
 [ext_resource type="Script" uid="uid://cxw0vopv4dv8p" path="res://Board/TileScenes/BuildingTiles/BuildingTechs/building_research.gd" id="6_030k7"]
 [ext_resource type="Script" uid="uid://cc87yi8int4vu" path="res://Board/TileScenes/BuildingTiles/BuildingJobs/building_work.gd" id="7_6of43"]
@@ -19,8 +19,9 @@ material_amount = 1
 script = ExtResource("4_dbkfd")
 job_result = SubResource("Resource_yfnox")
 job_speed = 1.0
-required_building = 6
 required_tool = 0
+type = -1
+res_name = ""
 description = ""
 
 [node name="LogCabin" type="Node2D"]

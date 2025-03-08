@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="QuestResource" load_steps=19 format=3 uid="uid://bvr288wgpxtck"]
+[gd_resource type="Resource" script_class="QuestResource" load_steps=27 format=3 uid="uid://bvr288wgpxtck"]
 
 [ext_resource type="Script" uid="uid://d4gmb2nftapl5" path="res://addons/questify/scripts/model/quest_edge.gd" id="1_c6or2"]
 [ext_resource type="Script" uid="uid://c23wdreelkkg4" path="res://addons/questify/scripts/model/quest_objective.gd" id="2_yh71f"]
@@ -19,15 +19,13 @@ graph_editor_size = Vector2(280, 516)
 
 [sub_resource type="Resource" id="Resource_sluva"]
 script = ExtResource("2_yh71f")
-description = "the objective is 1 wood.
-
-reward is new building unlock"
+description = "Collect 3 wood"
 id = "UgQoC34sZT"
 optional = false
 graph_editor_position = Vector2(-1820, -2180)
-graph_editor_size = Vector2(520, 560)
-metadata/reward_type = 2.0
-metadata/reward_value = "5"
+graph_editor_size = Vector2(540, 600)
+metadata/reward_type = "new_building"
+metadata/building = "tent"
 
 [sub_resource type="Resource" id="Resource_1vheh"]
 script = ExtResource("1_c6or2")
@@ -56,8 +54,11 @@ script = ExtResource("2_yh71f")
 description = "Find the mushroom"
 id = "pva3YtwiL0"
 optional = false
-graph_editor_position = Vector2(-1180, -1940)
-graph_editor_size = Vector2(468, 539)
+graph_editor_position = Vector2(-1160, -2180)
+graph_editor_size = Vector2(520, 760)
+metadata/reward_type = "material"
+metadata/material = "meat"
+metadata/amount = 5.0
 
 [sub_resource type="Resource" id="Resource_3wvpn"]
 script = ExtResource("1_c6or2")
@@ -66,19 +67,6 @@ to = SubResource("Resource_isrim")
 edge_type = 0
 
 [sub_resource type="Resource" id="Resource_icdof"]
-script = ExtResource("3_ka3xt")
-id = "YigGzukSmp"
-optional = false
-graph_editor_position = Vector2(-1020, -2160)
-graph_editor_size = Vector2(141, 78)
-
-[sub_resource type="Resource" id="Resource_67n4x"]
-script = ExtResource("1_c6or2")
-from = SubResource("Resource_isrim")
-to = SubResource("Resource_icdof")
-edge_type = 0
-
-[sub_resource type="Resource" id="Resource_icic4"]
 script = ExtResource("5_kc3pw")
 type = "has_material"
 key = "hide"
@@ -88,13 +76,92 @@ graph_editor_position = Vector2(-1640, -1520)
 graph_editor_size = Vector2(377, 309)
 metadata/value = 1.0
 
+[sub_resource type="Resource" id="Resource_67n4x"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_icdof")
+to = SubResource("Resource_isrim")
+edge_type = 1
+
+[sub_resource type="Resource" id="Resource_icic4"]
+script = ExtResource("2_yh71f")
+description = "Collect 33 wood"
+id = "8dz55yYTLx"
+optional = false
+graph_editor_position = Vector2(-440, -2060)
+graph_editor_size = Vector2(520, 800)
+metadata/reward_type = "job"
+metadata/building = "tent"
+metadata/res_name = "Create Meat Job"
+
 [sub_resource type="Resource" id="Resource_t0vcd"]
 script = ExtResource("1_c6or2")
+from = SubResource("Resource_isrim")
+to = SubResource("Resource_icic4")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_l6514"]
+script = ExtResource("2_yh71f")
+description = "Collect 6 meat"
+id = "xYAkAdFkCr"
+optional = false
+graph_editor_position = Vector2(220, -2000)
+graph_editor_size = Vector2(540, 780)
+metadata/reward_type = "research"
+metadata/building = "tent"
+metadata/res_name = "Create Hide Tech"
+
+[sub_resource type="Resource" id="Resource_o7r6r"]
+script = ExtResource("1_c6or2")
 from = SubResource("Resource_icic4")
-to = SubResource("Resource_isrim")
+to = SubResource("Resource_l6514")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_t0sa5"]
+script = ExtResource("3_ka3xt")
+id = "YigGzukSmp"
+optional = false
+graph_editor_position = Vector2(960, -2120)
+graph_editor_size = Vector2(141, 78)
+
+[sub_resource type="Resource" id="Resource_pdvv6"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_l6514")
+to = SubResource("Resource_t0sa5")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_b2bif"]
+script = ExtResource("5_kc3pw")
+type = "has_material"
+key = "meat"
+id = "QaMTyO6Ko0"
+optional = false
+graph_editor_position = Vector2(-180, -1240)
+graph_editor_size = Vector2(377, 309)
+metadata/value = 6.0
+
+[sub_resource type="Resource" id="Resource_yeplf"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_b2bif")
+to = SubResource("Resource_l6514")
+edge_type = 1
+
+[sub_resource type="Resource" id="Resource_uhurg"]
+script = ExtResource("5_kc3pw")
+type = "has_material"
+key = "wood"
+id = "kLunX0pL7P"
+optional = false
+graph_editor_position = Vector2(-940, -1380)
+graph_editor_size = Vector2(377, 309)
+metadata/value = 3.0
+
+[sub_resource type="Resource" id="Resource_igb2m"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_uhurg")
+to = SubResource("Resource_icic4")
 edge_type = 1
 
 [resource]
 script = ExtResource("7_brunu")
-nodes = Array[ExtResource("6_mpv7a")]([SubResource("Resource_xeop4"), SubResource("Resource_icdof"), SubResource("Resource_sluva"), SubResource("Resource_wbtal"), SubResource("Resource_icic4"), SubResource("Resource_isrim")])
-edges = Array[ExtResource("1_c6or2")]([SubResource("Resource_1vheh"), SubResource("Resource_rkilb"), SubResource("Resource_3wvpn"), SubResource("Resource_67n4x"), SubResource("Resource_t0vcd")])
+nodes = Array[ExtResource("6_mpv7a")]([SubResource("Resource_xeop4"), SubResource("Resource_sluva"), SubResource("Resource_wbtal"), SubResource("Resource_icdof"), SubResource("Resource_t0sa5"), SubResource("Resource_isrim"), SubResource("Resource_icic4"), SubResource("Resource_b2bif"), SubResource("Resource_uhurg"), SubResource("Resource_l6514")])
+edges = Array[ExtResource("1_c6or2")]([SubResource("Resource_1vheh"), SubResource("Resource_rkilb"), SubResource("Resource_3wvpn"), SubResource("Resource_67n4x"), SubResource("Resource_t0vcd"), SubResource("Resource_o7r6r"), SubResource("Resource_pdvv6"), SubResource("Resource_yeplf"), SubResource("Resource_igb2m")])

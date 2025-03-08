@@ -6,13 +6,9 @@ extends Control
 @onready var progress_bar: TimerProgressBar = $"../ProgressBar"
 
 var button_group: ButtonGroup = ButtonGroup.new()
-func _on_button_press(type = InventoryManager.material_types.WOOD, amount = 1):
-	var job = material_create_job.new()
-	job.job_result = material_stack.new()
-	job.job_result.material_type = type
-	job.job_result.material_amount = amount
-	progress_bar.texture = InventoryManager.get_resource_from_material_type(type).texture
-	
+func _on_button_press(job):
+	progress_bar.texture = InventoryManager.get_resource_from_material_type(job.job_result.material_type).texture
+	progress_bar.power_multipler = job.job_speed
 	jobs_container.add_job(job, progress_bar)
 	Globals.clear_selection.emit()
 
@@ -20,20 +16,19 @@ func _on_button_press(type = InventoryManager.material_types.WOOD, amount = 1):
 func add_job(job):
 	add_job_button(job)
 
-func add_job_button(job):
-	var mat_job:material_create_job = job
-	if mat_job != null:
-		var mat_name:String =  InventoryManager.material_types.keys()[mat_job.job_result.material_type]
-		var button_name = str(mat_name + "Button")
-		var button_exists = false
-		for item in work_buttons_container.get_children():
-			if !(item is Label) and item.name == button_name:
-				button_exists = true
-		if !button_exists:
-			var new_button = Button.new()
-			new_button.name = button_name
-			new_button.text =  str("Generate " + mat_name.to_lower())
-			new_button.toggle_mode = true
-			new_button.button_group = button_group
-			new_button.pressed.connect(_on_button_press.bind(mat_job.job_result.material_type, mat_job.job_result.material_amount))
-			work_buttons_container.add_child(new_button)
+func add_job_button(job:material_create_job):
+	var mat_name:String =  InventoryManager.material_types.keys()[job.job_result.material_type]
+	var button_name = str(mat_name + "Button")
+	var button_exists = false
+	for item in work_buttons_container.get_children():
+		if !(item is Label) and item.name == button_name:
+			button_exists = true
+	if !button_exists:
+		var new_button = Button.new()
+		new_button.name = button_name
+		new_button.text =  job.res_name
+		new_button.toggle_mode = true
+		new_button.button_group = button_group
+		new_button.pressed.connect(_on_button_press.bind(job))
+
+		work_buttons_container.add_child(new_button)

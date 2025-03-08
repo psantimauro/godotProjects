@@ -25,7 +25,6 @@ offset_bottom = 23.0
 [node name="Timer" type="Timer" parent="."]
 
 [node name="ProgressBar" parent="." instance=ExtResource("3_jj7nu")]
-visible = false
 audio_stream = ExtResource("4_jxgg8")
 
 [node name="HealthBar" type="ProgressBar" parent="."]

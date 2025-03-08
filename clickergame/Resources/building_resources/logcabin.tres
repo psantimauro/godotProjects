@@ -1,8 +1,17 @@
-[gd_resource type="Resource" script_class="building_resource" load_steps=6 format=3 uid="uid://cdjbfel1uusas"]
+[gd_resource type="Resource" script_class="building_resource" load_steps=15 format=3 uid="uid://cdjbfel1uusas"]
 
 [ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="1_764gg"]
 [ext_resource type="Script" uid="uid://cdxqjk11h8x1b" path="res://Resources/building_resources/building_resource.gd" id="2_mdf4h"]
 [ext_resource type="Texture2D" uid="uid://d3bcve1dovoxs" path="res://assets/building-128_box.png" id="3_vraux"]
+[ext_resource type="Script" uid="uid://8h33mrv2w63u" path="res://Resources/building_resources/job_resources/base_job_resource.gd" id="4_k8lmq"]
+[ext_resource type="Resource" uid="uid://fm28i4ehcmo5" path="res://Resources/building_resources/job_resources/create_jobs/Hide_Create.tres" id="5_k8lmq"]
+[ext_resource type="Resource" uid="uid://dt4qym08bn1m3" path="res://Resources/building_resources/job_resources/create_jobs/Meat_Create.tres" id="6_4rhbd"]
+[ext_resource type="Resource" uid="uid://oshpnjd2udpq" path="res://Resources/building_resources/job_resources/create_jobs/Stone_Create.tres" id="7_ls37n"]
+[ext_resource type="Script" uid="uid://bufk5xl2weix7" path="res://Resources/building_resources/tech_resources/base_tech_resource.gd" id="8_dr2d7"]
+[ext_resource type="Resource" uid="uid://ccpie4u2ggyek" path="res://Resources/building_resources/tech_resources/job_unlock_tech/Create_Hide.tres" id="9_2w00i"]
+[ext_resource type="Resource" uid="uid://c4cnnl5ignsfc" path="res://Resources/building_resources/tech_resources/job_unlock_tech/Create_Meat.tres" id="10_dr2d7"]
+[ext_resource type="Resource" uid="uid://c8e8gj7togb65" path="res://Resources/building_resources/tech_resources/job_unlock_tech/Create_Stone.tres" id="11_4e2wl"]
+[ext_resource type="Resource" uid="uid://bwj46p26xy4al" path="res://Resources/building_resources/job_resources/create_jobs/Wood_Create.tres" id="12_m2qda"]
 
 [sub_resource type="Resource" id="Resource_ynnn4"]
 script = ExtResource("1_764gg")
@@ -17,7 +26,11 @@ material_amount = 10
 [resource]
 script = ExtResource("2_mdf4h")
 requirements = Array[ExtResource("1_764gg")]([SubResource("Resource_ynnn4"), SubResource("Resource_a0jfh")])
-res_type = 5
+res_type = 6
+unlockable_jobs = Array[ExtResource("4_k8lmq")]([ExtResource("5_k8lmq"), ExtResource("6_4rhbd"), ExtResource("7_ls37n")])
+unlocked_jobs = Array[ExtResource("4_k8lmq")]([ExtResource("12_m2qda")])
+unlockable_tech = Array[ExtResource("8_dr2d7")]([ExtResource("9_2w00i"), ExtResource("10_dr2d7"), ExtResource("11_4e2wl")])
+unlocked_tech = Array[ExtResource("8_dr2d7")]([])
 res_name = "Log Cabin"
 texture = ExtResource("3_vraux")
 description = "A basic log cabin"

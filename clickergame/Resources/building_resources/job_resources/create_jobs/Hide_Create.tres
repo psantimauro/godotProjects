@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="material_create_job" load_steps=4 format=3 uid="uid://fm28i4ehcmo5"]
+
+[ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="1_o44gl"]
+[ext_resource type="Script" uid="uid://b8qgra0f5yol0" path="res://Resources/building_resources/job_resources/create_jobs/material_create_job.gd" id="2_01wv1"]
+
+[sub_resource type="Resource" id="Resource_owycj"]
+script = ExtResource("1_o44gl")
+material_type = 3
+material_amount = 1
+
+[resource]
+script = ExtResource("2_01wv1")
+job_result = SubResource("Resource_owycj")
+job_speed = 1.0
+required_tool = 1
+type = 0
+res_name = "Create Hide Job"
+description = "Generates hide overtime"
