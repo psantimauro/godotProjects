@@ -10,3 +10,4 @@ res_type = 1
 current_amount = 0
 res_name = "wood"
 texture = ExtResource("2_syojr")
+description = "Very usesful"

@@ -8,16 +8,16 @@
 [ext_resource type="Script" uid="uid://b37aev4imc074" path="res://addons/questify/scripts/model/quest_node.gd" id="6_mpv7a"]
 [ext_resource type="Script" uid="uid://bhqxygnm6kw4n" path="res://addons/questify/scripts/model/quest_resource.gd" id="7_brunu"]
 
-[sub_resource type="Resource" id="Resource_hbimu"]
+[sub_resource type="Resource" id="Resource_xeop4"]
 script = ExtResource("4_fvoiw")
 name = "First Clicks"
 description = "Chop trees by clicking them."
 id = "bRUATSYzRv"
 optional = false
 graph_editor_position = Vector2(-2360, -2200)
-graph_editor_size = Vector2(280, 503)
+graph_editor_size = Vector2(280, 516)
 
-[sub_resource type="Resource" id="Resource_gd237"]
+[sub_resource type="Resource" id="Resource_sluva"]
 script = ExtResource("2_yh71f")
 description = "the objective is 1 wood.
 
@@ -29,72 +29,72 @@ graph_editor_size = Vector2(520, 560)
 metadata/reward_type = 2.0
 metadata/reward_value = "5"
 
-[sub_resource type="Resource" id="Resource_01sn6"]
+[sub_resource type="Resource" id="Resource_1vheh"]
 script = ExtResource("1_c6or2")
-from = SubResource("Resource_hbimu")
-to = SubResource("Resource_gd237")
+from = SubResource("Resource_xeop4")
+to = SubResource("Resource_sluva")
 edge_type = 0
 
-[sub_resource type="Resource" id="Resource_sxwrd"]
+[sub_resource type="Resource" id="Resource_wbtal"]
 script = ExtResource("5_kc3pw")
 type = "has_material"
-key = "1"
+key = "wood"
 id = "b9KziQ1gig"
 optional = false
 graph_editor_position = Vector2(-2300, -1540)
 graph_editor_size = Vector2(377, 309)
 metadata/value = 3.0
 
-[sub_resource type="Resource" id="Resource_uhgmj"]
+[sub_resource type="Resource" id="Resource_rkilb"]
 script = ExtResource("1_c6or2")
-from = SubResource("Resource_sxwrd")
-to = SubResource("Resource_gd237")
+from = SubResource("Resource_wbtal")
+to = SubResource("Resource_sluva")
 edge_type = 1
 
-[sub_resource type="Resource" id="Resource_3uf4e"]
+[sub_resource type="Resource" id="Resource_isrim"]
 script = ExtResource("2_yh71f")
 description = "Find the mushroom"
 id = "pva3YtwiL0"
 optional = false
 graph_editor_position = Vector2(-1180, -1940)
-graph_editor_size = Vector2(468, 499)
+graph_editor_size = Vector2(468, 539)
 
-[sub_resource type="Resource" id="Resource_gun4a"]
+[sub_resource type="Resource" id="Resource_3wvpn"]
 script = ExtResource("1_c6or2")
-from = SubResource("Resource_gd237")
-to = SubResource("Resource_3uf4e")
+from = SubResource("Resource_sluva")
+to = SubResource("Resource_isrim")
 edge_type = 0
 
-[sub_resource type="Resource" id="Resource_7j0m0"]
+[sub_resource type="Resource" id="Resource_icdof"]
 script = ExtResource("3_ka3xt")
 id = "YigGzukSmp"
 optional = false
 graph_editor_position = Vector2(-1020, -2160)
 graph_editor_size = Vector2(141, 78)
 
-[sub_resource type="Resource" id="Resource_myixp"]
+[sub_resource type="Resource" id="Resource_67n4x"]
 script = ExtResource("1_c6or2")
-from = SubResource("Resource_3uf4e")
-to = SubResource("Resource_7j0m0")
+from = SubResource("Resource_isrim")
+to = SubResource("Resource_icdof")
 edge_type = 0
 
-[sub_resource type="Resource" id="Resource_mmj0p"]
+[sub_resource type="Resource" id="Resource_icic4"]
 script = ExtResource("5_kc3pw")
 type = "has_material"
-key = "3"
+key = "hide"
 id = "Zd-wRVtDk6"
 optional = false
 graph_editor_position = Vector2(-1640, -1520)
 graph_editor_size = Vector2(377, 309)
 metadata/value = 1.0
 
-[sub_resource type="Resource" id="Resource_a0o4g"]
+[sub_resource type="Resource" id="Resource_t0vcd"]
 script = ExtResource("1_c6or2")
-from = SubResource("Resource_mmj0p")
-to = SubResource("Resource_3uf4e")
+from = SubResource("Resource_icic4")
+to = SubResource("Resource_isrim")
 edge_type = 1
 
 [resource]
 script = ExtResource("7_brunu")
-nodes = Array[ExtResource("6_mpv7a")]([SubResource("Resource_hbimu"), SubResource("Resource_7j0m0"), SubResource("Resource_gd237"), SubResource("Resource_3uf4e"), SubResource("Resource_mmj0p"), SubResource("Resource_sxwrd")])
-edges = Array[ExtResource("1_c6or2")]([SubResource("Resource_01sn6"), SubResource("Resource_uhgmj"), SubResource("Resource_gun4a"), SubResource("Resource_myixp"), SubResource("Resource_a0o4g")])
+nodes = Array[ExtResource("6_mpv7a")]([SubResource("Resource_xeop4"), SubResource("Resource_icdof"), SubResource("Resource_sluva"), SubResource("Resource_wbtal"), SubResource("Resource_icic4"), SubResource("Resource_isrim")])
+edges = Array[ExtResource("1_c6or2")]([SubResource("Resource_1vheh"), SubResource("Resource_rkilb"), SubResource("Resource_3wvpn"), SubResource("Resource_67n4x"), SubResource("Resource_t0vcd")])

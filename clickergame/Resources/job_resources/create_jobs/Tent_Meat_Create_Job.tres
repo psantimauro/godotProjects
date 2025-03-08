@@ -14,4 +14,6 @@ job_result = SubResource("Resource_owycj")
 job_speed = 1.0
 required_building = 5
 required_tool = 1
-description = ""
+description = "Creates meat over time"
+res_name = "Create Meat Job"
+description = "Creates meat over time"

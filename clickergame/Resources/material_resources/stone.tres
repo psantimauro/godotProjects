@@ -10,3 +10,4 @@ res_type = 2
 current_amount = 0
 res_name = "stone"
 texture = ExtResource("2_ska23")
+description = "Hard as a rock"

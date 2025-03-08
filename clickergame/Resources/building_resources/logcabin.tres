@@ -17,5 +17,7 @@ material_amount = 10
 [resource]
 script = ExtResource("2_mdf4h")
 requirements = Array[ExtResource("1_764gg")]([SubResource("Resource_ynnn4"), SubResource("Resource_a0jfh")])
-res_name = "tent"
+res_type = 5
+res_name = "Log Cabin"
 texture = ExtResource("3_vraux")
+description = "A basic log cabin"

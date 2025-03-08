@@ -15,8 +15,7 @@ func _hax():
 	JobTypeManager.unlock_job(JobTypeManager.TENT_WOOD_CREATE_JOB)
 #	JobTypeManager.unlock_job(JobTypeManager.TENT_MEAT_CREATE_JOB)
 #	JobTypeManager.unlock_job(JobTypeManager.TENT_HIDE_CREATE_JOB)
-	var first_quest = preload("res://Quests/first_clicks.tres")
-	QuestManager.add_quest(first_quest.instantiate())
+	QuestManager.add_quest(QuestManager.firstquest_res.instantiate())
 func _ready():
 	await game_hud
 	await board

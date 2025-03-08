@@ -26,6 +26,18 @@ func get_resource_from_material_type(type):
 
 var materials_dict = {}
 var total_materials = 0
+func has_material(name: String, amount: int) -> bool:
+	var stack = material_stack.new()
+	stack.material_type = get_material_type_from_name(name)
+	stack.material_amount = amount
+	return has_material_stack(stack)
+	
+func get_material_type_from_name(name: String) -> material_types:
+	for key in material_types.keys():
+		if name.to_lower() == (str(key).to_lower()):
+			return material_types[key]
+	return material_types.UNDEFINED
+
 func has_material_stack(stack: material_stack) -> bool:
 	return (haz(materials_dict, stack.material_type) && (materials_dict[stack.material_type].current_amount >= stack.material_amount))
 	

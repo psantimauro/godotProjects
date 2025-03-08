@@ -18,6 +18,7 @@ script = ExtResource("1_1eub4")
 offset_right = 4.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+size_flags_stretch_ratio = 3.31
 theme = ExtResource("1_jlkld")
 script = ExtResource("2_mlwxn")
 
@@ -29,6 +30,10 @@ size_flags_vertical = 4
 [node name="Tools" type="VBoxContainer" parent="ItemsContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="Label" type="Label" parent="ItemsContainer/VBoxContainer/Tools"]
+layout_mode = 2
+text = "Your Tools"
+
 [node name="Materials" type="VBoxContainer" parent="ItemsContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -37,7 +42,13 @@ size_flags_stretch_ratio = 0.46
 theme = ExtResource("1_jlkld")
 
 [node name="TotalMaterials" type="Label" parent="ItemsContainer/VBoxContainer/Materials"]
-visible = false
+layout_mode = 2
+text = "Your Materials"
+
+[node name="CounterContainer" type="VBoxContainer" parent="ItemsContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Quest Counter" type="Label" parent="ItemsContainer/VBoxContainer/CounterContainer"]
 layout_mode = 2
 
 [node name="ActionContainer" type="PanelContainer" parent="."]

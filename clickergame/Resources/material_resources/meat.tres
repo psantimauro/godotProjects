@@ -10,3 +10,4 @@ res_type = 4
 current_amount = 0
 res_name = "meat"
 texture = ExtResource("2_6t3l7")
+description = "Mmmm tasty meat"

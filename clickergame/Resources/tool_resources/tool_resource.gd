@@ -1,8 +1,6 @@
 class_name tool_resource
-extends Resource
+extends base_resource
 
-@export var res_name: String 
-@export var texture: Texture2D
 @export var strength = 1.0
-@export var res_type: InventoryManager.tool_types
+@export var res_type: InventoryManager.tool_types = InventoryManager.tool_types.UNDEFINED
 @export var tool_sound: AudioStream

@@ -10,3 +10,4 @@ res_type = 3
 current_amount = 0
 res_name = "hide"
 texture = ExtResource("2_ywdgy")
+description = "A simple animal hide"

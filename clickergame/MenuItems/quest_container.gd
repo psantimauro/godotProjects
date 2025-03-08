@@ -6,8 +6,7 @@ extends PanelContainer
 func _ready() -> void:
 	QuestManager.quest_status_changed.connect(_on_quest_status_changed)
 
-func _on_quest_status_changed(quest, status: QuestManager.quest_status_types):
-	var description = quest.description
+func _on_quest_status_changed(quest, status: QuestManager.quest_status_types, description: String):
 	var name = quest.name
 	match status:
 		QuestManager.quest_status_types.STARTED:
@@ -22,7 +21,8 @@ func _on_quest_status_changed(quest, status: QuestManager.quest_status_types):
 func update_quest(name, description):
 	var path = str(quest_list.get_path()) + "/" + name
 	var node = quest_list.get_node(path)
-	node.text = name + ": " +description
+	if node:
+		node.text = name + ": " +description
 	
 func add_quest(name, description):
 	var quest_item = Label.new()
@@ -31,7 +31,6 @@ func add_quest(name, description):
 	update_quest(name, description)
 
 func remove_quest(name):
-	
 	var path = str(quest_list.get_path()) + "/" + name
 	var node = quest_list.get_node(path)
 	quest_list.remove_child(node)
@@ -41,4 +40,3 @@ func check_view_hide():
 		visible = false
 	else:
 		visible = true
-	

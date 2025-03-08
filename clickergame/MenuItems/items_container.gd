@@ -4,11 +4,13 @@ extends PanelContainer
 @onready var materials: VBoxContainer = $VBoxContainer/Materials
 @onready var total_materials: Label = $VBoxContainer/Materials/TotalMaterials
 
+@onready var quest_counter: Label = $"VBoxContainer/CounterContainer/Quest Counter"
 
 func _ready() -> void:
 	InventoryManager.material_amount_updated.connect(_on_material_amount_updated)
 	InventoryManager.new_material_unlocked.connect(_on_material_unlocked)
 	InventoryManager.tool_unlocked.connect(_on_tool_unlocked)
+	QuestManager.quest_status_changed.connect(_on_quest_status_changed)
 
 func _on_material_amount_updated(type:InventoryManager.material_types, amount):
 	total_materials.text = "Total Materials: " + str(InventoryManager.total_materials)
@@ -41,3 +43,12 @@ func _on_tool_unlocked(tool: tool_resource):
 	#new_sprite.texture = tool.texture
 	#new_sprite.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	#tools.add_child(new_sprite)
+
+#TODO this should be extrated to a GameManager or somewhere were it can serialize
+var count = 0
+func _on_quest_status_changed(quest:QuestResource, status:QuestManager.quest_status_types):
+	if status == QuestManager.quest_status_types.COMPLETED:
+		count += 1
+		
+		quest_counter.text = "Total Quests: " + str(count)
+	

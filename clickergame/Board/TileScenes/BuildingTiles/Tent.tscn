@@ -21,7 +21,8 @@ script = ExtResource("4_plaes")
 job_result = SubResource("Resource_yfnox")
 job_speed = 1.0
 required_building = 5
-required_tool = 0
+required_tool = -1
+res_name = ""
 description = ""
 
 [node name="Tent" type="Node2D"]
