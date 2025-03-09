@@ -1,69 +1,13 @@
-[gd_resource type="Resource" script_class="QuestResource" load_steps=15 format=3 uid="uid://cigsmito51gqh"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://cigsmito51gqh"]
 
 [ext_resource type="Script" uid="uid://d4gmb2nftapl5" path="res://addons/questify/scripts/model/quest_edge.gd" id="1_k8hqc"]
-[ext_resource type="Script" uid="uid://cyotfkardp6i" path="res://addons/questify/scripts/model/quest_condition.gd" id="2_fwsg6"]
 [ext_resource type="Script" uid="uid://b37aev4imc074" path="res://addons/questify/scripts/model/quest_node.gd" id="2_kmiq1"]
-[ext_resource type="Script" uid="uid://c23wdreelkkg4" path="res://addons/questify/scripts/model/quest_objective.gd" id="3_axdok"]
-[ext_resource type="Script" uid="uid://dtbofow3tdngk" path="res://addons/questify/scripts/model/quest_start.gd" id="4_2dk26"]
-[ext_resource type="Script" uid="uid://650crvoj707i" path="res://addons/questify/scripts/model/quest_end.gd" id="5_diqjr"]
-[ext_resource type="Script" uid="uid://bhqxygnm6kw4n" path="res://addons/questify/scripts/model/quest_resource.gd" id="7_2p3ol"]
-
-[sub_resource type="Resource" id="Resource_fwsg6"]
-script = ExtResource("2_fwsg6")
-type = "has_material"
-key = "wood"
-id = "Ff0Jhlv_J6"
-optional = false
-graph_editor_position = Vector2(120, 680)
-graph_editor_size = Vector2(377, 309)
-metadata/value = 20.0
-
-[sub_resource type="Resource" id="Resource_axdok"]
-script = ExtResource("3_axdok")
-description = ""
-id = "QkmWzaeQhQ"
-optional = false
-graph_editor_position = Vector2(620, 140)
-graph_editor_size = Vector2(540, 760)
-metadata/reward_type = "research"
-metadata/building = "tent"
-metadata/res_name = "Create Meat Tech"
-
-[sub_resource type="Resource" id="Resource_2dk26"]
-script = ExtResource("1_k8hqc")
-from = SubResource("Resource_fwsg6")
-to = SubResource("Resource_axdok")
-edge_type = 1
-
-[sub_resource type="Resource" id="Resource_diqjr"]
-script = ExtResource("4_2dk26")
-name = "Collect wood"
-description = ""
-id = "Qkk6HDo1aT"
-optional = false
-graph_editor_position = Vector2(80, 100)
-graph_editor_size = Vector2(280, 516)
-
-[sub_resource type="Resource" id="Resource_2p3ol"]
-script = ExtResource("1_k8hqc")
-from = SubResource("Resource_diqjr")
-to = SubResource("Resource_axdok")
-edge_type = 0
-
-[sub_resource type="Resource" id="Resource_veykl"]
-script = ExtResource("5_diqjr")
-id = "ExsTwC_DAB"
-optional = false
-graph_editor_position = Vector2(1139, 216)
-graph_editor_size = Vector2(141, 78)
-
-[sub_resource type="Resource" id="Resource_aqjpo"]
-script = ExtResource("1_k8hqc")
-from = SubResource("Resource_axdok")
-to = SubResource("Resource_veykl")
-edge_type = 0
+[ext_resource type="Script" uid="uid://csdthbh3aaxtf" path="res://Resources/quest_resources/collect_material_quest.gd" id="3_k8hqc"]
 
 [resource]
-script = ExtResource("7_2p3ol")
-nodes = Array[ExtResource("2_kmiq1")]([SubResource("Resource_veykl"), SubResource("Resource_diqjr"), SubResource("Resource_fwsg6"), SubResource("Resource_axdok")])
-edges = Array[ExtResource("1_k8hqc")]([SubResource("Resource_2dk26"), SubResource("Resource_2p3ol"), SubResource("Resource_aqjpo")])
+script = ExtResource("3_k8hqc")
+material_type = 1
+quest_type = 1
+quest_reward_types = 3
+nodes = Array[ExtResource("2_kmiq1")]([])
+edges = Array[ExtResource("1_k8hqc")]([])

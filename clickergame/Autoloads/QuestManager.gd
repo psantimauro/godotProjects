@@ -7,12 +7,14 @@ signal quest_status_changed
 
 var completed_quest_count = 0
 var active_quests = []
-
+var material_quest_tracker: Dictionary[InventoryManager.material_types, int]={}
 @export var firstquest_res_array =[
 	load("res://Resources/quest_resources/first_clicks.tres"),
-	load("res://Resources/quest_resources/collect_wood.tres")
+	#load("res://Resources/quest_resources/collect_wood2.tres")
 ]
-
+@export var collectquests: Dictionary[InventoryManager.material_types, QuestResource]={
+	InventoryManager.material_types.WOOD: preload("res://Resources/quest_resources/collect_wood2.tres")
+}
 func _ready() -> void:
 	Questify.condition_query_requested.connect(_on_condition_query_requested)
 	Questify.quest_completed.connect(_on_quest_completed)
@@ -26,6 +28,10 @@ func _on_condition_query_requested(query_type: String, key: String, value: Varia
 				requester.set_completed(true)
 		"has_building":
 			if BuildingManager.is_building_unlocked(key):
+				requester.set_completed(true)
+		"material_multi":
+			var multiple = pow( int(value) , QuestManager.collect_quest_muliplyer(key))
+			if InventoryManager.has_material(key,multiple):
 				requester.set_completed(true)
 func _on_objected_completed(quest: QuestResource, objective: QuestObjective):
 	var reward_name = objective.get_meta("reward_type")
@@ -64,6 +70,27 @@ func _on_quest_completed(quest: QuestResource):
 	completed_quest_count += 1
 	quest_status_changed.emit(quest, quest_status_types.COMPLETED, "Complete")
 	active_quests.remove_at(idx)
+		
+	var name:String = quest.name
+	if name.contains("_"):
+		var parts = name.split("_")
+		var type = parts[0]
+		match type:
+			"collect":
+				var mat_name = parts[1]
+				var mat_type = Globals.get_type_from_name(mat_name,InventoryManager.material_types)
+				if !material_quest_tracker.has(mat_type):
+					material_quest_tracker[mat_type] = 0
+				material_quest_tracker[mat_type] += 1
+				QuestManager.add_quest(collectquests[mat_type].instantiate())
+
+
+	
+func collect_quest_muliplyer(key):
+	var type = Globals.get_type_from_name(key, InventoryManager.material_types)
+	if material_quest_tracker.has(type):
+		return material_quest_tracker[type]
+	return 1
 
 func get_quest_name(id):
 	var q = active_quests[id]

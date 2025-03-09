@@ -13,6 +13,10 @@ func _hax():
 	#InventoryManager.add_material(InventoryManager.material_types.MEAT, 10)
 	for quest in QuestManager.firstquest_res_array:
 		QuestManager.add_quest(quest.instantiate())
+		
+	for key in QuestManager.collectquests.keys():
+		var quest = QuestManager.collectquests[key]
+		QuestManager.add_quest(quest.instantiate())
 func _ready():
 	await game_hud
 	await board
