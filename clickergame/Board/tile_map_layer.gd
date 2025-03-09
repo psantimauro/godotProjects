@@ -8,8 +8,6 @@ func _enter_tree():
 
 func connect_signals(child):
 	match child.get_signal_list()[0]["name"]:
-		"destroyed":
-			child.destroyed.connect(($"../..").destroyed) #game
 		"selected":
 			child.selected.connect(($"../..").selected) #game
 		"clicked":
@@ -21,9 +19,12 @@ func _register_child(child):
 	await child.ready
 	connect_signals(child)
 	var coords = local_to_map(to_local(child.global_position))
-	
+	var group_name = Globals.get_name_from_type(child.group_type, TileManager.tile_types)
+	var type_name = Globals.get_name_from_type(child.type, TileManager.tiles)
 	child.set_meta("type", child.type)
+	child.add_to_group(group_name)
 	child.set_meta("tile_coords", coords)
+	child.name = type_name + "@" + str(coords)
 	scene_coords[coords] = child
 	
 

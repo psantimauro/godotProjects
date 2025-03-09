@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="QuestResource" load_steps=27 format=3 uid="uid://bvr288wgpxtck"]
+[gd_resource type="Resource" script_class="QuestResource" load_steps=29 format=3 uid="uid://bvr288wgpxtck"]
 
 [ext_resource type="Script" uid="uid://d4gmb2nftapl5" path="res://addons/questify/scripts/model/quest_edge.gd" id="1_c6or2"]
 [ext_resource type="Script" uid="uid://c23wdreelkkg4" path="res://addons/questify/scripts/model/quest_objective.gd" id="2_yh71f"]
@@ -84,7 +84,7 @@ edge_type = 1
 
 [sub_resource type="Resource" id="Resource_icic4"]
 script = ExtResource("2_yh71f")
-description = "Collect 33 wood"
+description = "Collect 10 wood"
 id = "8dz55yYTLx"
 optional = false
 graph_editor_position = Vector2(-440, -2060)
@@ -147,21 +147,37 @@ edge_type = 1
 
 [sub_resource type="Resource" id="Resource_uhurg"]
 script = ExtResource("5_kc3pw")
-type = "has_material"
-key = "wood"
+type = "has_building"
+key = "tent"
 id = "kLunX0pL7P"
 optional = false
-graph_editor_position = Vector2(-940, -1380)
+graph_editor_position = Vector2(-1680, -1140)
 graph_editor_size = Vector2(377, 309)
-metadata/value = 3.0
+metadata/value = 7.0
 
 [sub_resource type="Resource" id="Resource_igb2m"]
 script = ExtResource("1_c6or2")
 from = SubResource("Resource_uhurg")
+to = SubResource("Resource_isrim")
+edge_type = 1
+
+[sub_resource type="Resource" id="Resource_ucxhg"]
+script = ExtResource("5_kc3pw")
+type = "has_material"
+key = "wood"
+id = "yU3sJNC1LT"
+optional = false
+graph_editor_position = Vector2(-920, -1420)
+graph_editor_size = Vector2(377, 309)
+metadata/value = 10.0
+
+[sub_resource type="Resource" id="Resource_dts5f"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_ucxhg")
 to = SubResource("Resource_icic4")
 edge_type = 1
 
 [resource]
 script = ExtResource("7_brunu")
-nodes = Array[ExtResource("6_mpv7a")]([SubResource("Resource_xeop4"), SubResource("Resource_sluva"), SubResource("Resource_wbtal"), SubResource("Resource_icdof"), SubResource("Resource_t0sa5"), SubResource("Resource_isrim"), SubResource("Resource_icic4"), SubResource("Resource_b2bif"), SubResource("Resource_uhurg"), SubResource("Resource_l6514")])
-edges = Array[ExtResource("1_c6or2")]([SubResource("Resource_1vheh"), SubResource("Resource_rkilb"), SubResource("Resource_3wvpn"), SubResource("Resource_67n4x"), SubResource("Resource_t0vcd"), SubResource("Resource_o7r6r"), SubResource("Resource_pdvv6"), SubResource("Resource_yeplf"), SubResource("Resource_igb2m")])
+nodes = Array[ExtResource("6_mpv7a")]([SubResource("Resource_xeop4"), SubResource("Resource_sluva"), SubResource("Resource_wbtal"), SubResource("Resource_icdof"), SubResource("Resource_t0sa5"), SubResource("Resource_isrim"), SubResource("Resource_icic4"), SubResource("Resource_l6514"), SubResource("Resource_uhurg"), SubResource("Resource_b2bif"), SubResource("Resource_ucxhg")])
+edges = Array[ExtResource("1_c6or2")]([SubResource("Resource_1vheh"), SubResource("Resource_rkilb"), SubResource("Resource_3wvpn"), SubResource("Resource_67n4x"), SubResource("Resource_t0vcd"), SubResource("Resource_o7r6r"), SubResource("Resource_pdvv6"), SubResource("Resource_yeplf"), SubResource("Resource_igb2m"), SubResource("Resource_dts5f")])

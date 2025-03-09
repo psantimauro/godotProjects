@@ -1,48 +1,26 @@
-[gd_scene load_steps=13 format=3 uid="uid://bduuedwwe4pph"]
+[gd_scene load_steps=8 format=3 uid="uid://bduuedwwe4pph"]
 
 [ext_resource type="Script" uid="uid://bdd6pkay5f1fx" path="res://Board/TileScenes/BuildingTiles/buildingbase.gd" id="1_olyqm"]
-[ext_resource type="Script" uid="uid://8h33mrv2w63u" path="res://Resources/building_resources/job_resources/base_job_resource.gd" id="2_l8b51"]
 [ext_resource type="Texture2D" uid="uid://1k31dwlojfj5" path="res://3rd Party/assets/building/tent-scaled.png" id="2_wcgrg"]
-[ext_resource type="Script" uid="uid://cxw0vopv4dv8p" path="res://Board/TileScenes/BuildingTiles/BuildingTechs/building_research.gd" id="3_7t00a"]
-[ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="3_ic81d"]
-[ext_resource type="Script" uid="uid://ua21c6lea4e4" path="res://Board/TileScenes/BuildingTiles/BuildingJobs/building_job_controller.gd" id="4_5t152"]
-[ext_resource type="Script" uid="uid://cc87yi8int4vu" path="res://Board/TileScenes/BuildingTiles/BuildingJobs/building_work.gd" id="4_88ryu"]
-[ext_resource type="Script" uid="uid://b8qgra0f5yol0" path="res://Resources/building_resources/job_resources/create_jobs/material_create_job.gd" id="4_plaes"]
-[ext_resource type="Script" uid="uid://cqfvj4hguhqfu" path="res://Board/TileScenes/BuildingTiles/BuildingTechs/research_job_controller.gd" id="7_dnrsm"]
+[ext_resource type="Script" uid="uid://cxw0vopv4dv8p" path="res://Board/TileScenes/BuildingTiles/BuildingTechs/research_gui.gd" id="3_7t00a"]
+[ext_resource type="Script" uid="uid://ua21c6lea4e4" path="res://Board/TileScenes/BuildingTiles/building_job_controller.gd" id="4_5t152"]
+[ext_resource type="Script" uid="uid://cc87yi8int4vu" path="res://Board/TileScenes/BuildingTiles/BuildingJobs/work_gui.gd" id="4_88ryu"]
+[ext_resource type="Script" uid="uid://cqfvj4hguhqfu" path="res://Board/TileScenes/BuildingTiles/research_job_controller.gd" id="7_dnrsm"]
 [ext_resource type="PackedScene" uid="uid://7wcueac35g2m" path="res://timer_progress_bar.tscn" id="7_ewlxg"]
-
-[sub_resource type="Resource" id="Resource_yfnox"]
-script = ExtResource("3_ic81d")
-material_type = 1
-material_amount = 1
-
-[sub_resource type="Resource" id="Resource_kdhf7"]
-script = ExtResource("4_plaes")
-job_result = SubResource("Resource_yfnox")
-job_speed = 1.0
-required_building = null
-required_tool = null
-type = -1
-res_name = null
-description = null
 
 [node name="Tent" type="Node2D"]
 script = ExtResource("1_olyqm")
 type = 5
-jobs = Array[ExtResource("2_l8b51")]([SubResource("Resource_kdhf7")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(3, -195)
 texture = ExtResource("2_wcgrg")
 
-[node name="Research" type="PanelContainer" parent="."]
+[node name="Research" type="MarginContainer" parent="."]
 visible = false
-offset_right = 109.0
-offset_bottom = 23.0
+offset_right = 213.0
+offset_bottom = 27.0
 script = ExtResource("3_7t00a")
-
-[node name="ResearchContainer" type="Node" parent="Research"]
-script = ExtResource("7_dnrsm")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Research"]
 layout_mode = 2
@@ -56,7 +34,7 @@ horizontal_alignment = 1
 layout_mode = 2
 columns = 5
 
-[node name="Work" type="PanelContainer" parent="."]
+[node name="Work" type="MarginContainer" parent="."]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -70,9 +48,6 @@ offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_88ryu")
-
-[node name="JobsContainer" type="Node" parent="Work"]
-script = ExtResource("4_5t152")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Work"]
 layout_mode = 2
@@ -89,3 +64,13 @@ offset_top = -29.0
 offset_right = 61.0
 offset_bottom = -2.0
 metadata/_edit_use_anchors_ = true
+
+[node name="ResearchController" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("7_dnrsm")
+
+[node name="JobsController" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_5t152")
+
+[connection signal="done" from="ProgressBar" to="." method="_on_progress_bar_done"]

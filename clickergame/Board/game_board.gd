@@ -50,10 +50,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			#if selection_indictor.visible:
 				#camera_2d.move_to(selection_indictor.position)
 
-
 func generate_game_board():
-	var x_min = -x_size
-	var y_min = -y_size
+	var x_min = 0
+	var y_min = 0
 	for x in range (x_min, x_size):
 		for y in range(y_min, y_size):
 			var cords = (Vector2i(x,y))

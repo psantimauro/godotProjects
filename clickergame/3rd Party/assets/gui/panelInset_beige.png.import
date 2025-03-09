@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6527kqdxwkvg"
-path="res://.godot/imported/genericItem_color_021.png-e3c0dc66add6bb26486dd1aaaa8fbe49.ctex"
+uid="uid://m7uxewr4yxih"
+path="res://.godot/imported/panelInset_beige.png-ca469dc088df4bb4e6722e89c4e1b3f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://3rd Party/assets/genericItem_color_021.png"
-dest_files=["res://.godot/imported/genericItem_color_021.png-e3c0dc66add6bb26486dd1aaaa8fbe49.ctex"]
+source_file="res://3rd Party/assets/gui/panelInset_beige.png"
+dest_files=["res://.godot/imported/panelInset_beige.png-ca469dc088df4bb4e6722e89c4e1b3f4.ctex"]
 
 [params]
 

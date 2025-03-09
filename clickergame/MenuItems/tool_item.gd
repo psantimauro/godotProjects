@@ -1,13 +1,13 @@
 class_name ToolItem
 extends PanelContainer
 @onready var _texture_rect: TextureRect = $TextureRect
+@onready var label: Label = $Label
 
 @export var tool_type:ToolManager.tool_types
 
 @export var texture:Texture :
 	set(txtr):
 		_texture_rect.texture = txtr
-@onready var label: Label = $PanelContainer/Label
 		
 func _on_tool_level(type, value):
 	if type == tool_type:

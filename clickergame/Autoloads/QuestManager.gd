@@ -8,7 +8,11 @@ signal quest_status_changed
 var completed_quest_count = 0
 var active_quests = []
 
-@export var firstquest_res = preload("res://Resources/quest_resources/first_clicks.tres")
+@export var firstquest_res_array =[
+	load("res://Resources/quest_resources/first_clicks.tres"),
+	load("res://Resources/quest_resources/collect_wood.tres")
+]
+
 func _ready() -> void:
 	Questify.condition_query_requested.connect(_on_condition_query_requested)
 	Questify.quest_completed.connect(_on_quest_completed)
@@ -20,7 +24,9 @@ func _on_condition_query_requested(query_type: String, key: String, value: Varia
 		"has_material":
 			if InventoryManager.has_material(key, int(value)):
 				requester.set_completed(true)
-
+		"has_building":
+			if BuildingManager.is_building_unlocked(key):
+				requester.set_completed(true)
 func _on_objected_completed(quest: QuestResource, objective: QuestObjective):
 	var reward_name = objective.get_meta("reward_type")
 	var reward_type:reward_types = Globals.get_type_from_name(reward_name, reward_types)
@@ -35,7 +41,7 @@ func _on_objected_completed(quest: QuestResource, objective: QuestObjective):
 			var building_name = objective.get_meta("building")
 			var job_type_name = objective. get_meta("res_name")
 			var building_type:BuildingManager.building_types = Globals.get_type_from_name(building_name, BuildingManager.building_types)
-			BuildingManager.unlock_job_for_building(building_type, job_type_name)
+			BuildingManager.unlock_job_for_building_by_name(building_type, job_type_name)
 			print("new jobs")
 		reward_types.RESEARCH:
 			var building = objective.get_meta("building")

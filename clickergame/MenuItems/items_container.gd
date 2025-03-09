@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func _on_material_amount_updated(type:InventoryManager.material_types, amount):
 	total_materials.visible = true
-	total_materials.text = "Total Materials: " + str(InventoryManager.total_materials)
+	total_materials.text = "Materials: " + str(InventoryManager.total_materials)
 	var mat:material_resource = InventoryManager.materials_dict[type]
 	if mat:
 		if materials.has_node(mat.res_name):
@@ -47,9 +47,9 @@ func _on_tool_unlocked(tool: tool_resource):
 
 #TODO this should be extrated to a GameManager or somewhere were it can serialize
 var count = 0
-func _on_quest_status_changed(quest:QuestResource, status:QuestManager.quest_status_types):
+func _on_quest_status_changed(quest:QuestResource, status:QuestManager.quest_status_types, description):
 	if status == QuestManager.quest_status_types.COMPLETED:
 		count += 1
 		
-		quest_counter.text = "Total Quests: " + str(count)
+		quest_counter.text = "Quests: " + str(count)
 	

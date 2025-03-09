@@ -1,5 +1,6 @@
 extends  Node
 enum tiles  {UNDEFINED = -1, GRASS = 2, ROCK =3, TREE =4, PICKUP =10, TENT = 5, LOGCABIN = 6}
+enum tile_types {GROUND, RESOURCE, BUILDING, PICKUP}
 
 func IsTypePickup(type)-> bool:
 	match type:

@@ -1,5 +1,5 @@
 class_name MaterialItem
-extends PanelContainer
+extends Control
 
 @onready var _texture_rect: TextureRect = $HBoxContainer/TextureRect
 @onready var _label: Label = $HBoxContainer/Label

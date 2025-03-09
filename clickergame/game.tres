@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=11 format=3 uid="uid://cuid2qj2msfqq"]
 
-[ext_resource type="PackedScene" uid="uid://cnnif7w42rkb" path="res://Board/TileScenes/ResourceTiles/Grass.tscn" id="1_58fqu"]
+[ext_resource type="PackedScene" uid="uid://cnnif7w42rkb" path="res://Board/TileScenes/Grass.tscn" id="1_58fqu"]
 [ext_resource type="PackedScene" uid="uid://bkd6pqa1sunus" path="res://Board/TileScenes/PickUp.tscn" id="1_djrgk"]
 [ext_resource type="PackedScene" uid="uid://dmcqlds1cl4w" path="res://Board/TileScenes/ResourceTiles/Rock.tscn" id="2_yitsq"]
 [ext_resource type="PackedScene" uid="uid://bvnjicxtudbtp" path="res://Board/TileScenes/ResourceTiles/Tree.tscn" id="3_c340h"]

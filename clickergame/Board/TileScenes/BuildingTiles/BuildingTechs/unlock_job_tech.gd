@@ -5,12 +5,10 @@ extends Node
 var timer: TimerProgressBar 
 func _ready() -> void:
 	if tech_resource != null:
-		#var type_name = str(InventoryManager.material_types.keys()[job_resource.job_result.material_type]).to_lower()
 		self.name = "Research " + tech_resource.unlocked_job.resource_name
-		
 		timer.done.connect(_on_timer_timeout)
 		add_child(timer)
-	
+
 func start_research() -> void:
 	if remove_requirement_from_inventory():
 		stop_research()
@@ -24,8 +22,8 @@ func stop_research():
 	timer.stop()
 	
 func _on_timer_timeout() -> void:
-	BuildingManager.unlock_job(tech_resource)
-	timer.stop() #research only runs once
+	var type = timer.get_parent().type #hack to get the type
+	BuildingManager.unlock_job_by_tech(tech_resource, type)
 
 func remove_requirement_from_inventory() -> bool:
 	var status = false

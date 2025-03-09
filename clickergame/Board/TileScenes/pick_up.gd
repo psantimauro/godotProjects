@@ -1,5 +1,7 @@
 extends Node2D
 
+
+@export var group_type: TileManager.tile_types = TileManager.tile_types.PICKUP
 @export var type:TileManager.tiles = TileManager.tiles.PICKUP
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 

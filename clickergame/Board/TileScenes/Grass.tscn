@@ -1,15 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://cnnif7w42rkb"]
 
-[ext_resource type="Texture2D" uid="uid://dufoeo4e1eh0q" path="res://3rd Party/assets/ground/grass_N.png" id="1_13ndn"]
-[ext_resource type="Script" uid="uid://cifnqolrwwb2a" path="res://Board/TileScenes/ResourceTiles/resourcebase.gd" id="1_ajif3"]
+[ext_resource type="Script" uid="uid://cifnqolrwwb2a" path="res://Board/TileScenes/ResourceTiles/resourcebase.gd" id="1_1pgk0"]
+[ext_resource type="Texture2D" uid="uid://dufoeo4e1eh0q" path="res://3rd Party/assets/ground/grass_N.png" id="2_k36hn"]
 
 [node name="Grass" type="Node2D"]
-script = ExtResource("1_ajif3")
+script = ExtResource("1_1pgk0")
+group_type = 0
 type = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1, -194)
-texture = ExtResource("1_13ndn")
+texture = ExtResource("2_k36hn")
 
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0

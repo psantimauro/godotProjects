@@ -23,3 +23,10 @@ func get_type_from_name(name: String, type) :
 		if name.to_lower() == (str(key).to_lower()):
 			return type[key]
 	return -1
+
+func get_name_from_type(type, type_type) -> String:
+	for key in type_type.keys():
+		var val = type_type[key]
+		if val == type:
+			return str(key).to_lower()
+	return ""

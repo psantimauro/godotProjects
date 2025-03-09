@@ -24,7 +24,7 @@ material_amount = 1
 [resource]
 script = ExtResource("1_fyo1o")
 requirements = Array[ExtResource("1_h7h4u")]([SubResource("Resource_ynnn4"), SubResource("Resource_a0jfh")])
-res_type = 6
+res_type = 5
 unlockable_jobs = Array[ExtResource("4_pe4j5")]([ExtResource("5_pe4j5"), ExtResource("6_grx47")])
 unlocked_jobs = Array[ExtResource("4_pe4j5")]([ExtResource("10_p1ui3")])
 unlockable_tech = Array[ExtResource("7_jyrwd")]([ExtResource("8_k0vf7"), ExtResource("9_jyrwd")])

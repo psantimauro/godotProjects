@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var group_type: TileManager.tile_types = TileManager.tile_types.RESOURCE
 @export_category("Tile Type")
 @export var type:TileManager.tiles = TileManager.tiles.UNDEFINED
 
@@ -45,4 +46,6 @@ func _on_progress_bar_done() -> void:
 	bar.value = new_val
 
 	if health < 1:
-		destroyed.emit(yield_amount)
+		InventoryManager.add_material(yield_type,yield_amount)
+		self.queue_free()
+		#destroyed.emit(yield_amount)

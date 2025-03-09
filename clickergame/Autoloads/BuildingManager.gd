@@ -2,12 +2,18 @@ extends Node
 
 signal building_built
 signal building_unlocked
+signal job_unlocked
+signal tech_unlocked
 enum building_types {UNDEFINED = -1, TENT = 5, LOGCABIN = 6}
 enum job_types {UNDEFINED = -1, CREATE}
 enum tech_types {UNDEFINED = -1, JOB_UNLOCK}
-const TENT = preload("res://Resources/building_resources/tent.tres")
-const LOGCABIN = preload("res://Resources/building_resources/logcabin.tres")
 
+var TENT = load("res://Resources/building_resources/tent.tres")
+var LOGCABIN = load("res://Resources/building_resources/logcabin.tres")
+var RESEARCH_ICON = preload("res://3rd Party/assets/icons/flask_half.png")
+
+var unlocked_jobs_by_building: Dictionary[building_types, Array] = {}
+var unlocked_tech_by_building: Dictionary[building_types, Array] = {}
 func get_resource_from_building_type(type:building_types) -> building_resource:
 	match type:
 		building_types.TENT:
@@ -17,6 +23,8 @@ func get_resource_from_building_type(type:building_types) -> building_resource:
 	return  null
 	
 func build(build_type: building_types):
+	if build_type == building_types.UNDEFINED:
+		return
 	var building_res = get_resource_from_building_type(build_type)
 	if has_all_resources_to_build(building_res):
 		print("building: " + str(build_type))
@@ -31,45 +39,49 @@ func has_all_resources_to_build(building_res: building_resource) -> bool:
 		if !InventoryManager.has_material_stack(requirement):
 			has_all = false
 	return has_all
-
+func is_building_unlocked(res_name: String) ->bool:
+	for key in building_types.keys():
+		var name  = key.to_lower()
+		if  name == res_name:
+			var building_key = building_types[key]
+			if unlocked_buildings.has(building_key):
+				return true
+	return false
+var unlocked_buildings: Dictionary[building_types,building_resource]
 func unlock_building(build_type: building_types):
+	var res:building_resource = get_resource_from_building_type(build_type)
+	var new_jobs = []
+	var new_tech = []
+	for j in res.unlocked_jobs:
+		new_jobs.append(j)
+	for t in res.unlocked_tech:
+		new_tech.append(t)
+	unlocked_jobs_by_building[build_type] = new_jobs
+	unlocked_tech_by_building[build_type] = new_tech
+	unlocked_buildings[build_type] = res
 	building_unlocked.emit(build_type)
 	
 func get_unlocked_jobs_for_building(type: building_types) -> Array[base_job_resource]:
-	var res = get_resource_from_building_type(type)
-	return res.unlocked_jobs
+	return unlocked_jobs_by_building[type]
 
-func unlock_job(tech: job_unlock_tech) -> bool:
+func unlock_job_by_tech(tech: job_unlock_tech, building):
 	var job = tech.unlocked_job
-	var job_building_res: building_resource = get_resource_from_building_type(job.required_building)
-	var i = 0
-	var found_at = -1
-	var item = null
-	for unlockable_job in job_building_res.unlockable_jobs:
-		if unlockable_job.res_name == job.res_name:
-			job_building_res.unlocked_jobs.append(job)
-			found_at = i
-		i += 1
-	if found_at > -1:
-		job_building_res.unlockable_jobs.remove_at(i)
-		return true
-	return false
+	unlock_job_for_building(job, building)
 
-func unlock_job_for_building(building: building_types, job_type_name):
+func unlock_job_for_building(job: base_job_resource, building:building_types):
+	var found = false
+	for j:base_job_resource in unlocked_jobs_by_building[building]:
+		if job.res_name == j.res_name:
+			found = true
+	if !found:
+		unlocked_jobs_by_building[building].append(job)
+		job_unlocked.emit(job, building)
+
+func unlock_job_for_building_by_name(building: building_types, job_type_name:String):
 	var building_res: building_resource = get_resource_from_building_type(building)
-	var i = 0
-	var found_at = -1
-	var item = null
 	for job in building_res.unlockable_jobs:
 		if job.res_name == job_type_name:
-			building_res.unlocked_jobs.append(job)
-			found_at = i
-		i += 1
-	if found_at > -1:
-		building_res.unlockable_jobs.remove_at(found_at)
-		return true
-	return false
-const RESEARCH_ICON = preload("res://3rd Party/assets/icons/flask_half.png")
+			unlock_job_for_building(job, building)
 
 func unlocked_tech_for_building(building: building_types, tech_name):
 	var building_res: building_resource = get_resource_from_building_type(building)
@@ -79,6 +91,7 @@ func unlocked_tech_for_building(building: building_types, tech_name):
 	for tech in building_res.unlockable_tech:
 		if tech.res_name == tech_name:
 			building_res.unlocked_tech.append(tech)
+			tech_unlocked.emit(tech, building)
 			found_at = i
 		i += 1
 	if found_at > -1:
@@ -98,9 +111,10 @@ func unlock_research(tech:base_tech_resource) -> bool:
 		i += 1
 	if found_at > -1:
 		res.unlockable_tech.remove_at(found_at)
+		tech_unlocked.emit()
 		return true
 	return false
-		
+
 func get_unlocked_research_by_building_type(type: BuildingManager.building_types) ->  Array[base_tech_resource]:
 	var res: building_resource = get_resource_from_building_type(type)
 	return res.unlocked_tech

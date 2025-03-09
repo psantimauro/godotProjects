@@ -3,16 +3,13 @@ extends Control
 
 @onready var research_buttons_container: GridContainer = $VBoxContainer/ResearchButtonsContainer
 @onready var progress_bar: TimerProgressBar = $"../ProgressBar"
-@onready var research_container: BuildingResearchController = $ResearchContainer
+
+@onready var building: BuildingBase = $".."
 
 var button_group: ButtonGroup = ButtonGroup.new()
 
 func _on_button_pressed(tech = BuildingManager.TENT_CREATE_MEAT) -> void:
-	var new_reseach = base_tech_resource.new()
-	
-	progress_bar.power_multipler = tech.research_speed
-	progress_bar.texture = BuildingManager.RESEARCH_ICON
-	research_container.add_research(tech, progress_bar)
+	building.start_research(tech)
 	Globals.clear_selection.emit()
 
 func add_research(tech):

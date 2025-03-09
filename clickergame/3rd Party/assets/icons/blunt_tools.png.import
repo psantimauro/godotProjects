@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://j71fug06ym00"
-path="res://.godot/imported/genericItem_color_016.png-e10a098cab9f5f6470c0a167e51510db.ctex"
+uid="uid://6we2oh8s3v1l"
+path="res://.godot/imported/blunt_tools.png-9893dcb75f613b31e0e3c4da79df7a3d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://3rd Party/assets/genericItem_color_016.png"
-dest_files=["res://.godot/imported/genericItem_color_016.png-e10a098cab9f5f6470c0a167e51510db.ctex"]
+source_file="res://3rd Party/assets/icons/blunt_tools.png"
+dest_files=["res://.godot/imported/blunt_tools.png-9893dcb75f613b31e0e3c4da79df7a3d.ctex"]
 
 [params]
 

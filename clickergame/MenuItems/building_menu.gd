@@ -3,24 +3,25 @@ extends HBoxContainer
 
 @export var removal_restore_factor:float = 0.67
 
-@onready var work_button: Button = $PanelContainer/VBoxContainer/HBoxContainer/Panel/WorkContainer/Button
-@onready var research_button: Button = $PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/ResearchContainer/Button
 @onready var display_container: PanelContainer = $"../../DisplayContainer"
+@onready var work_button: TextureButton = $PanelContainer/VBoxContainer/HBoxContainer/WorkContainer/WorkButton
+@onready var research_button: TextureButton = $PanelContainer/VBoxContainer/HBoxContainer/ResearchContainer/ResearchButton
+const BLUNT_TOOLS = preload("res://3rd Party/assets/icons/blunt_tools.png")
+
+var building: BuildingBase
 
 func _ready() -> void:
 	research_button.pressed.connect(_research_button_clicked)
 	work_button.pressed.connect(_work_button_clicked)
-	
-var building: BuildingBase
+	work_button.texture_normal = Globals.resize_texture(64, BLUNT_TOOLS)
 
 func _research_button_clicked():
 	building.update()
-	display_container.set_item(building.research)
+	display_container.set_item(building.research_ui)
 
 func _work_button_clicked():
 	building.update()
-	display_container.set_item(building.work)
-
+	display_container.set_item(building.work_ui)
 
 func _on_remove_building_button_pressed() -> void:
 	var building_res = BuildingManager.get_resource_from_building_type(building.type)

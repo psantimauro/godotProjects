@@ -1,11 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://drpf41lgja254"]
+[gd_scene load_steps=6 format=3 uid="uid://drpf41lgja254"]
 
+[ext_resource type="Theme" uid="uid://cyppchc1lky3m" path="res://main_theme.tres" id="1_entqi"]
 [ext_resource type="Script" uid="uid://bsi6nw1wdefg5" path="res://MenuItems/tool_item.gd" id="1_i61ud"]
 [ext_resource type="Texture2D" uid="uid://cdky3tf6k47vv" path="res://3rd Party/assets/icons/pickaxe.png" id="1_xxutk"]
+[ext_resource type="Texture2D" uid="uid://bfcefsrbe41gw" path="res://3rd Party/assets/gui/panelInset_beigeLight.png" id="2_jf35w"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w4mph"]
+texture = ExtResource("2_jf35w")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
 
 [node name="ToolItemContainer" type="PanelContainer"]
 offset_right = 128.0
 offset_bottom = 128.0
+theme = ExtResource("1_entqi")
+theme_override_styles/panel = SubResource("StyleBoxTexture_w4mph")
 script = ExtResource("1_i61ud")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -14,12 +25,8 @@ layout_mode = 2
 texture = ExtResource("1_xxutk")
 expand_mode = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_direction = 1
+[node name="Label" type="Label" parent="."]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 size_flags_vertical = 8
-
-[node name="Label" type="Label" parent="PanelContainer"]
-layout_mode = 2
 text = "1"
