@@ -26,12 +26,20 @@ func update_building_info(type = buildingtype):
 				label.text = str(needed)				
 				requirement_container.add_child(label)
 			
-
+				requirement_container.name = Globals.get_name_from_type(rq.material_type, InventoryManager.material_types)
 				building_requirements_container.add_child(requirement_container)
 
+func animate_missing_resource(material_name):
+	for item in building_requirements_container.get_children():
+		if item.name == material_name:
+			var tween = item.create_tween()
+			tween.tween_property(item, "modulate", Color.RED, 1).set_trans(Tween.TRANS_SINE)
+			
+			
+			
 @onready var texture_rect: TextureRect = %TextureRect
-
 func set_texture(texture):
 	texture_rect.texture = texture
-func _pressed() -> void:
+
+func _on_pressed() -> void:
 	pressed.emit(buildingtype)

@@ -12,7 +12,7 @@ func _on_building_unlocked(building_type: BuildingManager.building_types):
 	add_child(building_button)
 	building_button.name = Globals.get_name_from_type(building_type, BuildingManager.building_types) 
 	building_button.visible = false
-	building_button.pressed.connect(_on_button_pressed.bind(building_type))
+	building_button.pressed.connect(_on_button_pressed.bind(building_button, building_type))
 	building_button.buildingtype = building_type
 	building_button.update_building_info(building_type)
 
@@ -26,6 +26,13 @@ func toggleBuildMenu(_location = null, visible = true):
 	for kid in get_children():
 		kid.visible = vis
 
-func _on_button_pressed(type: BuildingManager.building_types = BuildingManager.building_types.UNDEFINED) -> void:
-	BuildingManager.build(type)
-	_on_building_built(type)
+func _on_button_pressed(button, type: BuildingManager.building_types = BuildingManager.building_types.UNDEFINED) -> void:
+	var has_all = true
+	for requirement in  BuildingManager.get_resource_from_building_type(type).requirements:
+		if !InventoryManager.has_material_stack(requirement):
+			has_all=false
+			var name = Globals.get_name_from_type(requirement.material_type, InventoryManager.material_types)
+			button.animate_missing_resource(name)
+	if has_all:
+		BuildingManager.build(type)
+		_on_building_built(type)
