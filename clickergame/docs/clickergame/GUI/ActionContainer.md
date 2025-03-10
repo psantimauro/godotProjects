@@ -1,0 +1,1 @@
+This container resides at the bottom center of the screen and can hold the [[BuildMenu]] and [[BuildingMenu]]

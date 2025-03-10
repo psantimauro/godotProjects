@@ -1,0 +1,6 @@
+- Display containers label gets reparented to building, breaking the [[DisplayContainer]]
+- Missing Loads of document
+-  Build Menu has some issues
+	- Square panel rendered where it shouldnt be
+	- Panel background doesnt wrap all building buttons
+	- After build is completed, the [[BuildingMenu]] should automatically display

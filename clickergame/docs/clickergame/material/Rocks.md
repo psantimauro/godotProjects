@@ -1,0 +1,1 @@
+Unlocked by mining [[Stone]] with [[Pick Axe]]
