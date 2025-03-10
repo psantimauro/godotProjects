@@ -36,9 +36,11 @@ func update_display(text):
 func rechild(run = self.visible):
 	if run:
 		for kid in get_children():
-			if kid != close_display_button or kid != display_container_label:
-				kid.visible= false
+			kid.visible= false
+			if !(kid == close_display_button or kid == display_container_label):
 				kid.reparent(old_parent)
+			elif kid == close_display_button:
+				kid.visible= true
 		visible = false
 		old_parent = null
 

@@ -172,7 +172,9 @@ layout_mode = 2
 size_flags_vertical = 1
 text = "Welcome to Boom or Bust: Idle Goes West!
 
-This is a WIP"
+Use WASD or Arrow keys to move.
+
+Follow the quests in the bottom right coner."
 
 [node name="QuestContainer" type="PanelContainer" parent="."]
 anchors_preset = 3

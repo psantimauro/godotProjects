@@ -13,7 +13,7 @@ var material_quest_tracker: Dictionary[InventoryManager.material_types, int]={}
 	#load("res://Resources/quest_resources/collect_wood2.tres")
 ]
 @export var collectquests: Dictionary[InventoryManager.material_types, QuestResource]={
-	InventoryManager.material_types.WOOD: preload("res://Resources/quest_resources/collect_wood2.tres")
+	InventoryManager.material_types.WOOD: load("res://Resources/quest_resources/collect_wood2.tres")
 }
 func _ready() -> void:
 	Questify.condition_query_requested.connect(_on_condition_query_requested)
