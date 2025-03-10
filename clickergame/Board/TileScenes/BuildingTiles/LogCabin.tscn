@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://k1d866h4pd1k"]
+[gd_scene load_steps=8 format=3 uid="uid://k1d866h4pd1k"]
 
-[ext_resource type="Texture2D" uid="uid://1k31dwlojfj5" path="res://3rd Party/assets/building/tent-scaled.png" id="1_jithg"]
+[ext_resource type="Script" uid="uid://bdd6pkay5f1fx" path="res://Board/TileScenes/BuildingTiles/buildingbase.gd" id="1_0u0pv"]
+[ext_resource type="Texture2D" uid="uid://dkmu3xinv76up" path="res://assets/building-128_scaled.png" id="2_0u0pv"]
 [ext_resource type="Script" uid="uid://cqfvj4hguhqfu" path="res://Board/TileScenes/BuildingTiles/research_job_controller.gd" id="5_0u0pv"]
 [ext_resource type="Script" uid="uid://cxw0vopv4dv8p" path="res://Board/TileScenes/BuildingTiles/BuildingTechs/research_gui.gd" id="6_030k7"]
 [ext_resource type="Script" uid="uid://cc87yi8int4vu" path="res://Board/TileScenes/BuildingTiles/BuildingJobs/work_gui.gd" id="7_6of43"]
@@ -8,10 +9,15 @@
 [ext_resource type="PackedScene" uid="uid://7wcueac35g2m" path="res://timer_progress_bar.tscn" id="9_tvnri"]
 
 [node name="LogCabin" type="Node2D"]
+script = ExtResource("1_0u0pv")
+type = 6
+building_power = 0.1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(3, -195)
-texture = ExtResource("1_jithg")
+position = Vector2(2, -78)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_0u0pv")
+offset = Vector2(0, -64)
 
 [node name="Research" type="PanelContainer" parent="."]
 visible = false

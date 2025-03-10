@@ -43,8 +43,8 @@ func _on_build_menu_build_button_clicked(building_type) -> void:
 
 func _on_empty_tile_selected(_selected_position):
 	game_hud.action_container.building_menu.visible = false
-	game_hud.action_container.build_menu.visible = board.selection_indictor.visible
-	game_hud.action_container.visible = board.selection_indictor.visible
+#	game_hud.action_container.build_menu.visible = board.selection_indictor.visible
+	#game_hud.action_container.visible = board.selection_indictor.visible
 	
 func _on_resource_click():
 	game_hud.action_container.hide()

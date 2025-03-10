@@ -39,20 +39,20 @@ func _unhandled_input(event: InputEvent) -> void:
 			elif TileManager.IsTypeBuilding(type):
 				camera_2d.move_to(global_map_postiion_from_click_position)
 				selected_game_tile.click()
-				selection_indictor.visible = false
+			#	selection_indictor.visible = false
 				selection_indictor.position = global_map_postiion_from_click_position
 				
 		else:
 			selection_indictor.position = global_map_postiion_from_click_position
-			selection_indictor.visible = !selection_indictor.visible
+		#	selection_indictor.visible = !selection_indictor.visible
 
 			Globals.empty_tile_selected.emit(last_board_click)
 			#if selection_indictor.visible:
 				#camera_2d.move_to(selection_indictor.position)
 
 func generate_game_board():
-	var x_min = 0
-	var y_min = 0
+	var x_min = -x_size
+	var y_min = -y_size
 	for x in range (x_min, x_size):
 		for y in range(y_min, y_size):
 			var cords = (Vector2i(x,y))
@@ -77,12 +77,13 @@ func clear_resource_at_position(pos):
 	game_layer.set_cell(pos,0,SCENE_COLLECTION,-1)
 
 func _on_building_build(building_type):
-	selection_indictor.visible = !selection_indictor.visible
+#	selection_indictor.visible = !selection_indictor.visible
 	var coords =  ground_layer.local_to_map(selection_indictor.position)
 	game_layer.set_cell(coords,BUILDING,SCENE_COLLECTION, building_type)
 	
 func _on_selection_cleared():
-	selection_indictor.visible = false
+	#selection_indictor.visible = false
+	pass
 
 func _delete_selected_building():
 	var selected_game_tile= game_layer.get_cell_scene(ground_layer.local_to_map(selection_indictor.position))

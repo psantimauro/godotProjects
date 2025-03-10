@@ -10,6 +10,6 @@ func _ready() -> void:
 	#Globals.connect("empty_tile_selected",toggleBuildMenu)
 	
 func hide_kids():
-	for child:Control in get_children(true):
+	for child:Control in get_children(false):
 		if child:
 			child.visible = false

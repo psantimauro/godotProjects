@@ -1,7 +1,9 @@
 extends PanelContainer
 
 var old_parent
-@onready var default_label: Label = $DefaultLabel
+@onready var display_container_label: Label = %DisplayContainerLabel
+
+@onready var close_display_button: TextureButton = $CloseDisplayButton
 
 func _ready() -> void:
 	Globals.empty_tile_selected.connect(_outside_click)
@@ -18,11 +20,6 @@ func _on_building_unlocked(type):
 	var text = "Unlocked " + name
 	update_display(text)
 
-func update_display(text):
-	default_label.text = text
-	default_label.show()
-	show()	
-
 func _on_job_unlocked(job: base_job_resource, building_type):
 	var text = "Unlocked " + job.res_name + " for " + Globals.get_name_from_type(building_type, BuildingManager.building_types)
 	update_display(text)
@@ -31,18 +28,23 @@ func _on_tech_unlocked(tech: base_tech_resource, building_type):
 	var text = "Unlocked " + tech.res_name + " for " + Globals.get_name_from_type(building_type, BuildingManager.building_types)
 	update_display(text)
 
+func update_display(text):
+	display_container_label.text = text
+	display_container_label.show()
+	show()	
+
 func rechild(run = self.visible):
 	if run:
 		for kid in get_children():
-			if kid.name != "CloseDisplayButton":
+			if kid != close_display_button or kid != display_container_label:
 				kid.visible= false
 				kid.reparent(old_parent)
 		visible = false
 		old_parent = null
 
 func set_item(item):
-	rechild()
 	old_parent = item.get_parent()
+	rechild()
 	visible = true
 	item.visible = true
 	item.reparent(self)

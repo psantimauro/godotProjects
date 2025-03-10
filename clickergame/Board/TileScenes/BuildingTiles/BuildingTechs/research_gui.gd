@@ -21,7 +21,7 @@ func add_research_button(research_tech:base_tech_resource = BuildingManager.TENT
 		var button_exists = false
 	
 		for item in research_buttons_container.get_children():
-			if !(item is Label) and item.name == button_name:
+			if (item is Button) and item.name == button_name:
 				button_exists = true
 		
 		if !button_exists:

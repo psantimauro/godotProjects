@@ -1,10 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://btcbvsfbjcju1"]
+[gd_scene load_steps=3 format=3 uid="uid://btcbvsfbjcju1"]
 
-[ext_resource type="Texture2D" uid="uid://fxuummpvqc6p" path="res://3rd Party/assets/Isometric/switchFloorOn_N.png" id="1_h53xc"]
+[ext_resource type="Texture2D" uid="uid://c5ecvgeuusom6" path="res://assets/arrowBeige_down.png" id="1_6v0nv"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6v0nv"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1, 0, 1)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_max = 40.0
 
 [node name="Node2D" type="Node2D"]
 metadata/board_position = Vector2i(0, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -207)
-texture = ExtResource("1_h53xc")
+visible = false
+position = Vector2(-5, -36)
+texture = ExtResource("1_6v0nv")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-1, -41)
+texture = ExtResource("1_6v0nv")
+process_material = SubResource("ParticleProcessMaterial_6v0nv")

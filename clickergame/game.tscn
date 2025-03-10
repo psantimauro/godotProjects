@@ -15,6 +15,8 @@ script = ExtResource("1_es28m")
 
 [node name="Board" type="Node2D" parent="."]
 script = ExtResource("5_rn6k5")
+x_size = 30
+y_size = 30
 
 [node name="GroundLayer" type="TileMapLayer" parent="Board"]
 y_sort_enabled = true
@@ -27,7 +29,7 @@ tile_set = ExtResource("2_q8bm8")
 script = ExtResource("3_14rw0")
 
 [node name="Selection" parent="Board" instance=ExtResource("5_tlkhx")]
-visible = false
 
 [node name="Camera2D" type="Camera2D" parent="Board"]
+position = Vector2(965, 542)
 script = ExtResource("3_udyyn")

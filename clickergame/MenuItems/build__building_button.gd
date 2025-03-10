@@ -2,10 +2,12 @@ class_name BuildBuildingButton
 extends Button
 
 @export var buildingtype: BuildingManager.building_types
-
 @onready var building_requirements_container: VBoxContainer = %BuildingRequirementsContainer
-
 @onready var building_type_name_label: Label = %BuildingTypeNameLabel
+
+func _ready() -> void:
+	size = Vector2(50,50)
+
 func update_building_info(type = buildingtype):
 		buildingtype = type
 		var building_res:building_resource = BuildingManager.get_resource_from_building_type(buildingtype)
