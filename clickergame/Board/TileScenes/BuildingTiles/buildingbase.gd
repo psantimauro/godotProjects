@@ -28,7 +28,6 @@ func _ready() -> void:
 	for tech in BuildingManager.unlocked_tech_by_building[type]:
 		unlocked_tech.append(tech)
 		research_ui.add_research(tech)
-	
 
 func click():
 	update()

@@ -33,10 +33,18 @@ func animate_missing_resource(material_name):
 	for item in building_requirements_container.get_children():
 		if item.name == material_name:
 			var tween = item.create_tween()
-			tween.tween_property(item, "modulate", Color.RED, 1).set_trans(Tween.TRANS_SINE)
-			
-			
-			
+			#tween.tween_property(item, "modulate", Color.RED, 1).set_trans(Tween.TRANS_SINE)
+			var original_pos = item.position
+			var  shake = Vector2(5,0)
+			var duration = 0.1
+			var count =10
+			for i in count:
+				var direction = 1
+				if i%2 == 1: 
+					direction *= -1
+				var pos = item.position +(shake * direction)
+				tween.tween_property(item, "position", pos,duration)
+			item.position = original_pos
 @onready var texture_rect: TextureRect = %TextureRect
 func set_texture(texture):
 	texture_rect.texture = texture
