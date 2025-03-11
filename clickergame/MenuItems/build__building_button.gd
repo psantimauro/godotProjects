@@ -44,7 +44,7 @@ func animate_missing_resource(material_name):
 				var direction = 1
 				if i%2 == 1: 
 					direction *= -1
-				var pos = item.position +(shake * direction)
+				var pos = item.position + (shake * direction)
 				tween.tween_property(item, "position", pos,duration)
 			item.position = original_pos
 @onready var texture_rect: TextureRect = %TextureRect

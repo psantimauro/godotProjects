@@ -15,7 +15,7 @@ func _on_button_press(job):
 func add_job(job):
 	add_job_button(job)
 
-func add_job_button(job:material_create_job):
+func add_job_button(job:base_job_resource):
 	var mat_name:String =  InventoryManager.material_types.keys()[job.job_result.material_type]
 	var button_name = str(mat_name + "Button")
 	var button_exists = false
