@@ -7,6 +7,7 @@ func _ready() -> void:
 	BuildingManager.building_unlocked.connect(_on_building_unlocked)
 	Globals.connect("empty_tile_selected",toggleBuildMenu)
 var  BUILD_BUILDING_BUTTON = load("res://MenuItems/build_building_button.tscn")
+
 func _on_building_unlocked(building_type: BuildingManager.building_types):
 	var building_button:BuildBuildingButton = BUILD_BUILDING_BUTTON.instantiate()
 	building_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL

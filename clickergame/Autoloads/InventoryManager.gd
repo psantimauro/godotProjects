@@ -42,9 +42,10 @@ func add_material(type:material_types, amount: int):
 		total_materials += amount
 		materials_dict[type] = item
 		material_amount_updated.emit(type,  item.current_amount)
-		
+func  remove_material_stack(stack: material_stack):
+	remove_material(stack.material_type, stack.material_amount)
+
 func remove_material(type:material_types, amount: int):
-			
 	var item:material_resource = materials_dict[type]
 	item.current_amount -= amount
 	total_materials -= amount

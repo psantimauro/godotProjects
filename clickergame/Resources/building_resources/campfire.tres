@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="building_resource" load_steps=7 format=3 uid="uid://cxarw253a45kh"]
+
+[ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="1_qv2as"]
+[ext_resource type="Script" uid="uid://cdxqjk11h8x1b" path="res://Resources/building_resources/building_resource.gd" id="2_l7sj5"]
+[ext_resource type="Script" uid="uid://8h33mrv2w63u" path="res://Resources/building_resources/job_resources/base_job_resource.gd" id="3_3l3mv"]
+[ext_resource type="Texture2D" uid="uid://cdgxyk2hfsy7m" path="res://3rd Party/assets/icons/campfire.png" id="3_l7sj5"]
+[ext_resource type="Script" uid="uid://bufk5xl2weix7" path="res://Resources/building_resources/tech_resources/base_tech_resource.gd" id="4_qbthx"]
+
+[sub_resource type="Resource" id="Resource_qv2as"]
+script = ExtResource("1_qv2as")
+material_type = 1
+material_amount = 10
+metadata/_custom_type_script = "uid://dh7wpn4dldbbp"
+
+[resource]
+script = ExtResource("2_l7sj5")
+requirements = Array[ExtResource("1_qv2as")]([SubResource("Resource_qv2as")])
+res_type = 1
+unlockable_jobs = Array[ExtResource("3_3l3mv")]([])
+unlocked_jobs = Array[ExtResource("3_3l3mv")]([])
+unlockable_tech = Array[ExtResource("4_qbthx")]([])
+unlocked_tech = Array[ExtResource("4_qbthx")]([])
+res_name = "campfire"
+texture = ExtResource("3_l7sj5")
+description = "Improves adjecent builds and can convert items into food"
+metadata/_custom_type_script = "uid://cdxqjk11h8x1b"

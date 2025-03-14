@@ -16,11 +16,13 @@ func _ready() -> void:
 	work_button.texture_normal = Globals.resize_texture(64, BLUNT_TOOLS)
 
 func _research_button_clicked():
-	building.update()
+	building.update_tech()
+	display_container.close()
 	display_container.set_item(building.research_ui)
 
 func _work_button_clicked():
-	building.update()
+	building.update_jobs()
+	display_container.close()
 	display_container.set_item(building.work_ui)
 
 func _on_remove_building_button_pressed() -> void:

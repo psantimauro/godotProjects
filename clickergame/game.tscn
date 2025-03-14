@@ -15,8 +15,8 @@ script = ExtResource("1_es28m")
 
 [node name="Board" type="Node2D" parent="."]
 script = ExtResource("5_rn6k5")
-x_size = 30
-y_size = 30
+x_size = 5
+y_size = 5
 
 [node name="GroundLayer" type="TileMapLayer" parent="Board"]
 y_sort_enabled = true

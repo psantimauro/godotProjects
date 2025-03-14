@@ -1,58 +1,98 @@
 extends PanelContainer
 
-var old_parent
-@onready var display_container_label: Label = %DisplayContainerLabel
-
-@onready var close_display_button: TextureButton = $CloseDisplayButton
+@onready var main_display_container: VBoxContainer = %MainDisplayContainer
+@onready var close_display_button: TextureButton = %CloseDisplayButton
+@onready var main_display_label: Label = %MainDisplayLabel
+@onready var display_title_label: Label = %DisplayTitleLabel
 
 func _ready() -> void:
 	Globals.empty_tile_selected.connect(_outside_click)
-	Globals.resource_clicked.connect(rechild)
-	Globals.clear_selection.connect(rechild)
+	Globals.resource_clicked.connect(close)
+	Globals.clear_selection.connect(close)
 	BuildingManager.building_unlocked.connect(_on_building_unlocked)
 	BuildingManager.job_unlocked.connect(_on_job_unlocked)
 	BuildingManager.tech_unlocked.connect(_on_tech_unlocked)
-func _outside_click(any):
+	BuildingManager.display_message_with_title.connect(_on_display_message_with_title)
+
+var old_parent
+var display_list = []
+func update_display(text:String, header_text = ""):
+	if display_list.size() > 0:
+		var item = display_list[0]
+		if item is Array:
+			display_title_label.text = item[0]
+			main_display_label.text = item[1]
+			main_display_label.show()
+			show()
+	else:
+		display_title_label.text =text
+		main_display_label.text = header_text
+		main_display_label.show()
+		show()
+	display_list.append([text,header_text])
+
+func rechild_main_display_container():
 	if old_parent != null:
-		rechild()
-func _on_building_unlocked(type):
-	var name = Globals.get_name_from_type(type, BuildingManager.building_types)
-	var text = "Unlocked " + name
-	update_display(text)
-
-func _on_job_unlocked(job: base_job_resource, building_type):
-	var text = "Unlocked " + job.res_name + " for " + Globals.get_name_from_type(building_type, BuildingManager.building_types)
-	update_display(text)
-
-func _on_tech_unlocked(tech: base_tech_resource, building_type):
-	var text = "Unlocked " + tech.res_name + " for " + Globals.get_name_from_type(building_type, BuildingManager.building_types)
-	update_display(text)
-
-func update_display(text):
-	display_container_label.text = text
-	display_container_label.show()
-	show()	
-
-func rechild(run = self.visible):
-	if run:
-		for kid in get_children():
+		for kid in main_display_container.get_children():
 			kid.visible= false
-			if !(kid == close_display_button or kid == display_container_label):
+			if !(kid == main_display_label):
 				kid.reparent(old_parent)
-			elif kid == close_display_button:
-				kid.visible= true
-		visible = false
 		old_parent = null
 
 func set_item(item):
-	old_parent = item.get_parent()
-	rechild()
-	visible = true
-	item.visible = true
-	item.reparent(self)
+	if display_list.size() > 0:
+		var next_item = display_list[0]
+		if next_item is Container:		
+			visible = true
+			next_item.reparent(main_display_container)
+			display_title_label.text = next_item.name
+			next_item.visible = true
+	else:
+		old_parent = item.get_parent()
+		visible = true
+		item.reparent(main_display_container)
+		display_title_label.text = item.name
+		item.visible = true
+	display_list.append(item)
 
 func close():
-	rechild()
 	self.hide()
+	var next_item = null
+	if display_list.size() > 0:
+		if (display_list[0] is Container):
+			rechild_main_display_container()
+		display_list.remove_at(0) #remove the first entry from the list, this should be what was just closed
+		
+		if display_list.size() > 0:
+			next_item = display_list[0]	
+			await get_tree().create_timer(0.25).timeout
+			if next_item is Array:
+				update_display(next_item[0], next_item[1])
+			elif next_item != null:		
+				set_item(next_item)
+			self.show()
+			display_list.remove_at(0)  #update will add itself to the list, so remove i
+
+	else:
+		main_display_label.text = ""
+		main_display_label.hide()
+		display_title_label.text = ""
 func _on_close_display_button_pressed() -> void:
 	close()
+func _outside_click(any):
+	close()
+
+func _on_building_unlocked(type):
+	var name = Globals.get_name_from_type(type, BuildingManager.building_types)
+	var text = "Unlocked " + name
+	update_display(text, "New Building Unlocked!")
+
+func _on_job_unlocked(job: base_job_resource, building_type):
+	var text = "Unlocked " + job.res_name + " for " + Globals.get_name_from_type(building_type, BuildingManager.building_types)
+	update_display(text, "New Job Unlocked!")
+
+func _on_tech_unlocked(tech: base_tech_resource, building_type):
+	var text = "Unlocked " + tech.res_name + " for " + Globals.get_name_from_type(building_type, BuildingManager.building_types)
+	update_display(text, "New Research Unlocked!")
+func _on_display_message_with_title(msg, title):
+	update_display(msg,title)

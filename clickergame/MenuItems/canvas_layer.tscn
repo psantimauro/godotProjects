@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cr378mrpqgvkl"]
+[gd_scene load_steps=15 format=3 uid="uid://cr378mrpqgvkl"]
 
 [ext_resource type="Script" uid="uid://cmd7b2c8lwk1w" path="res://MenuItems/canvas_layer.gd" id="1_1eub4"]
 [ext_resource type="Theme" uid="uid://cyppchc1lky3m" path="res://main_theme.tres" id="1_jlkld"]
@@ -12,6 +12,9 @@
 [ext_resource type="Script" uid="uid://cqa0v6segmuoa" path="res://MenuItems/quest_container.gd" id="9_8mdjv"]
 [ext_resource type="Texture2D" uid="uid://b4ksndue2pek8" path="res://3rd Party/assets/gui/grey_boxCross.png" id="10_0ulqf"]
 [ext_resource type="AudioStream" uid="uid://c573qngroi41v" path="res://assets/wistle.wav" id="10_d70d2"]
+[ext_resource type="StyleBox" uid="uid://dnfumb4a801lh" path="res://beightLightTextureForPanel.tres" id="11_g6dwa"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rq840"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_1eub4")
@@ -158,23 +161,52 @@ grow_vertical = 2
 theme = ExtResource("1_jlkld")
 script = ExtResource("8_w0xfj")
 
-[node name="CloseDisplayButton" type="TextureButton" parent="DisplayContainer"]
+[node name="DisplayStack" type="VBoxContainer" parent="DisplayContainer"]
+layout_mode = 2
+
+[node name="HeaderContainer" type="HBoxContainer" parent="DisplayContainer/DisplayStack"]
+layout_mode = 2
+
+[node name="DisplayTitleLabel" type="Label" parent="DisplayContainer/DisplayStack/HeaderContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_jlkld")
+theme_override_font_sizes/font_size = 20
+text = "Welcome to Boom or Bust: Idle Goes West!"
+
+[node name="CloseDisplayButton" type="TextureButton" parent="DisplayContainer/DisplayStack/HeaderContainer"]
+unique_name_in_owner = true
 z_index = 50
 z_as_relative = false
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
 texture_normal = ExtResource("10_0ulqf")
 
-[node name="DisplayContainerLabel" type="Label" parent="DisplayContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="DisplayContainer/DisplayStack"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_jlkld")
+theme_override_styles/panel = SubResource("StyleBoxTexture_rq840")
+
+[node name="MainDisplayContainer" type="VBoxContainer" parent="DisplayContainer/DisplayStack/PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 1
-text = "Welcome to Boom or Bust: Idle Goes West!
 
-Use WASD or Arrow keys to move.
+[node name="MainDisplayLabel" type="Label" parent="DisplayContainer/DisplayStack/PanelContainer/MainDisplayContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = ExtResource("11_g6dwa")
+text = "Use WASD or Arrow keys to move.
 
-Follow the quests in the bottom right coner."
+Your items and materials are displayed in the top right.
+
+Follow the quests in the bottom right coner.
+"
+
+[node name="ButtonContainer" type="HBoxContainer" parent="DisplayContainer/DisplayStack"]
+layout_mode = 2
 
 [node name="QuestContainer" type="PanelContainer" parent="."]
 anchors_preset = 3
@@ -208,4 +240,4 @@ layout_mode = 2
 stream = ExtResource("10_d70d2")
 
 [connection signal="pressed" from="ActionContainer/BuildingMenu/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/RemoveBuildingButton" to="ActionContainer/BuildingMenu" method="_on_remove_building_button_pressed"]
-[connection signal="pressed" from="DisplayContainer/CloseDisplayButton" to="DisplayContainer" method="_on_close_display_button_pressed"]
+[connection signal="pressed" from="DisplayContainer/DisplayStack/HeaderContainer/CloseDisplayButton" to="DisplayContainer" method="_on_close_display_button_pressed"]

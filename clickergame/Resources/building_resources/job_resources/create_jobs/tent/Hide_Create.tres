@@ -12,7 +12,6 @@ material_amount = 1
 script = ExtResource("2_k5ai3")
 job_result = SubResource("Resource_owycj")
 job_speed = 1.0
-required_building = 5
 required_tool = 1
 type = 0
 res_name = "Create Hide Job"

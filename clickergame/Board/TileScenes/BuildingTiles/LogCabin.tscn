@@ -25,17 +25,8 @@ offset_right = 109.0
 offset_bottom = 23.0
 script = ExtResource("6_030k7")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Research"]
+[node name="ResearchContainer" type="VBoxContainer" parent="Research"]
 layout_mode = 2
-
-[node name="Label" type="Label" parent="Research/VBoxContainer"]
-layout_mode = 2
-text = "Select Research Area Below"
-horizontal_alignment = 1
-
-[node name="ResearchButtonsContainer" type="GridContainer" parent="Research/VBoxContainer"]
-layout_mode = 2
-columns = 5
 
 [node name="Work" type="PanelContainer" parent="."]
 visible = false
@@ -52,13 +43,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7_6of43")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Work"]
+[node name="WorkContainer" type="VBoxContainer" parent="Work"]
 layout_mode = 2
-
-[node name="Label" type="Label" parent="Work/VBoxContainer"]
-layout_mode = 2
-text = "Select Work Focus Below"
-horizontal_alignment = 1
 
 [node name="ProgressBar" parent="." instance=ExtResource("9_tvnri")]
 custom_minimum_size = Vector2(100, 0)

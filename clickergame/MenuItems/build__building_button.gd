@@ -52,4 +52,4 @@ func set_texture(texture):
 	texture_rect.texture = texture
 
 func _on_pressed() -> void:
-	pressed.emit(buildingtype)
+	pressed.emit(self, buildingtype)

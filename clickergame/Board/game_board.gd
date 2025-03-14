@@ -5,7 +5,7 @@ extends Node
 
 @onready var game_layer =  $GameLayer
 @onready var ground_layer = $GroundLayer
-#@onready var building_layer =  $BuildingLayer
+
 @onready var selection_indictor = $Selection
 @onready var camera_2d: Camera2D = $Camera2D
 
@@ -27,7 +27,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		var global_map_postiion_from_click_position = GetGlobalClickPosition(event)
 		last_board_click = GetLastClickPosition(event)
 		print("Tile Clicked: " + str(last_board_click) + " @ global" +str(global_map_postiion_from_click_position))
-		
 		if(selected_game_tile != null):
 			var type:TileManager.tiles = selected_game_tile.get_meta("type") 
 

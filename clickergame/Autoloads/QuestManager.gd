@@ -20,7 +20,8 @@ func _ready() -> void:
 	Questify.quest_completed.connect(_on_quest_completed)
 	Questify.quest_objective_completed.connect(_on_objected_completed)
 	Questify.quest_objective_added.connect(_on_objective_added)
-	
+	InventoryManager.new_material_unlocked.connect(_on_new_material_unlocked)
+
 func _on_condition_query_requested(query_type: String, key: String, value: Variant, requester: QuestCondition):
 	match query_type:
 		"has_material":
@@ -33,6 +34,7 @@ func _on_condition_query_requested(query_type: String, key: String, value: Varia
 			var multiple = pow( int(value) , QuestManager.collect_quest_muliplyer(key))
 			if InventoryManager.has_material(key,multiple):
 				requester.set_completed(true)
+				
 func _on_objected_completed(quest: QuestResource, objective: QuestObjective):
 	var reward_name = objective.get_meta("reward_type")
 	var reward_type:reward_types = Globals.get_type_from_name(reward_name, reward_types)
@@ -102,3 +104,11 @@ func add_quest(quest):
 	active_quests.append(quest)
 	Questify.start_quest(quest)
 	quest_status_changed.emit(quest, quest_status_types.STARTED, quest.description)
+
+
+func _on_new_material_unlocked(mat_type):
+	var new_quest:QuestResource = collectquests[InventoryManager.material_types.WOOD].duplicate(true)
+	#TODO - figure out why the new_quest isnt readysa
+	pass
+	#var quest_name = new_quest.name
+	

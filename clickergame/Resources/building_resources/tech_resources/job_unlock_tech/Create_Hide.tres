@@ -15,5 +15,7 @@ research_speed = 1.0
 research_cost = Array[ExtResource("1_4b1g6")]([SubResource("Resource_fcav0")])
 unlocked_job = ExtResource("3_4b1g6")
 tech_type = 0
+repeatable = false
+repeat_count = 0
 res_name = "Create Hide Tech"
 description = "Unlocking this technology allows generation of hide"

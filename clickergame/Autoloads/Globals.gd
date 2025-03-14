@@ -30,3 +30,13 @@ func get_name_from_type(type, type_type) -> String:
 		if val == type:
 			return str(key).to_lower()
 	return ""
+
+## Converts a string like "(1, 0)" into a Vector2
+func pos_string_to_vector2(str):
+	var parts = str.split(",")
+	var output = null
+	if parts.size() > 1:
+		var x_part = parts[0].trim_prefix("(").trim_suffix(" ")
+		var y_part = parts[1].trim_prefix(" ").trim_suffix(")")
+		return Vector2(str_to_var(x_part), str_to_var(y_part))
+		

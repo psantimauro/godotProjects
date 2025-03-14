@@ -1,0 +1,51 @@
+[gd_scene load_steps=12 format=3 uid="uid://kpb26kk17ljw"]
+
+[ext_resource type="Texture2D" uid="uid://cdgxyk2hfsy7m" path="res://3rd Party/assets/icons/campfire.png" id="1_0kw4s"]
+[ext_resource type="Script" uid="uid://10adpo6ar0u4" path="res://Board/TileScenes/BuildingTiles/campfire.gd" id="1_jhykl"]
+[ext_resource type="PackedScene" uid="uid://7wcueac35g2m" path="res://timer_progress_bar.tscn" id="3_jhykl"]
+[ext_resource type="Texture2D" uid="uid://0a47aysa3i87" path="res://3rd Party/assets/particles/flame_01.png" id="4_kw3r7"]
+[ext_resource type="Texture2D" uid="uid://du1xx7yds3nqp" path="res://3rd Party/assets/particles/flame_02.png" id="5_me28j"]
+[ext_resource type="Texture2D" uid="uid://hhbqfkjh6h78" path="res://3rd Party/assets/particles/flame_03.png" id="6_e7tg4"]
+[ext_resource type="Texture2D" uid="uid://b433sbrh27a8" path="res://3rd Party/assets/particles/flame_04.png" id="7_t6kl4"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_222r0"]
+frames = 4
+frame_0/texture = ExtResource("4_kw3r7")
+frame_0/duration = 0.2
+frame_1/texture = ExtResource("5_me28j")
+frame_1/duration = 0.2
+frame_2/texture = ExtResource("6_e7tg4")
+frame_2/duration = 0.2
+frame_3/texture = ExtResource("7_t6kl4")
+frame_3/duration = 0.2
+
+[sub_resource type="Gradient" id="Gradient_5u52w"]
+offsets = PackedFloat32Array(0, 0.546624, 0.996785, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.958199, 0.958199, 1, 0.92549, 1, 0.109804, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1i5as"]
+gradient = SubResource("Gradient_5u52w")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yap6x"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+scale_min = 0.24
+scale_max = 0.24
+color = Color(0.917851, 0.318508, 0.37295, 1)
+color_ramp = SubResource("GradientTexture1D_1i5as")
+
+[node name="Campfire" type="Node2D"]
+script = ExtResource("1_jhykl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -30)
+texture = ExtResource("1_0kw4s")
+
+[node name="ProgressBar" parent="." instance=ExtResource("3_jhykl")]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+position = Vector2(0, -79)
+texture = SubResource("AnimatedTexture_222r0")
+lifetime = 0.01
+process_material = SubResource("ParticleProcessMaterial_yap6x")

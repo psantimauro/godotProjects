@@ -4,19 +4,19 @@ extends Node2D
 @onready var game_hud: GameHUD = $GameHUD
 
 func _hax():
-	
 #	BuildingManager.unlock_building(BuildingManager.building_types.TENT)	
-#	BuildingManager.unlock_building(BuildingManager.building_types.LOGCABIN)	
+	BuildingManager.unlock_building(BuildingManager.building_types.CAMPFIRE)	
 	ToolManager.unlock_tool(ToolManager.tool_types.AXE)
-#	InventoryManager.add_material(InventoryManager.material_types.HIDE, 2)
-	#InventoryManager.add_material(InventoryManager.material_types.WOOD, 200)
-	#InventoryManager.add_material(InventoryManager.material_types.MEAT, 10)
+	InventoryManager.add_material(InventoryManager.material_types.HIDE, 2)
+	InventoryManager.add_material(InventoryManager.material_types.WOOD, 25)
+	InventoryManager.add_material(InventoryManager.material_types.MEAT, 10)
+func init_quests():
 	for quest in QuestManager.firstquest_res_array:
 		QuestManager.add_quest(quest.instantiate())
-		
 	for key in QuestManager.collectquests.keys():
 		var quest = QuestManager.collectquests[key]
 		QuestManager.add_quest(quest.instantiate())
+
 func _ready():
 	await game_hud
 	await board
@@ -24,6 +24,7 @@ func _ready():
 	Globals.empty_tile_selected.connect(_on_empty_tile_selected)
 	Globals.resource_clicked.connect(_on_resource_click)
 	game_hud.action_container.build_menu.build_button_clicked.connect(_on_build_menu_build_button_clicked)
+#	init_quests()
 	_hax()
 
 
@@ -34,7 +35,11 @@ func pickup(_type):
 func selected(building):
 	game_hud.action_container.build_menu.visible = false
 	game_hud.action_container.building_menu.visible = true
-	game_hud.action_container.building_menu.building = building
+	if building.type == BuildingManager.building_types.CAMPFIRE:
+		print("show new fire menu")
+		pass
+	elif building.type != BuildingManager.building_types.UNDEFINED:
+		game_hud.action_container.building_menu.building = building
 	game_hud.action_container.show()
 	print("selected building")
 
