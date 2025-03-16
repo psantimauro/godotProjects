@@ -73,9 +73,9 @@ func _on_quest_completed(quest: QuestResource):
 	quest_status_changed.emit(quest, quest_status_types.COMPLETED, "Complete")
 	active_quests.remove_at(idx)
 		
-	var name:String = quest.name
-	if name.contains("_"):
-		var parts = name.split("_")
+	var quest_name:String = quest.name
+	if quest_name.contains("_"):
+		var parts = quest_name.split("_")
 		var type = parts[0]
 		match type:
 			"collect":

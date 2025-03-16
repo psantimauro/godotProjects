@@ -16,5 +16,5 @@ func IsTypeResource(type) -> bool:
 	return false
 
 func IsTypeBuilding(type) -> bool:
-	var reutnr=  BuildingManager.is_building_unlocked(Globals.get_name_from_type(type,BuildingManager.building_types))
-	return reutnr
+	var rtn =  BuildingManager.is_building_unlocked(Globals.get_name_from_type(type,BuildingManager.building_types))
+	return rtn

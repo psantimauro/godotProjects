@@ -2,7 +2,7 @@ class_name GenerateMaterialJob
 extends Node
 
 @export var job_resource: material_create_job 
-var timer: TimerProgressBar 
+var timer: ClickableProgressBar 
 func _ready() -> void:
 	if job_resource != null:
 		var type_name = str(InventoryManager.material_types.keys()[job_resource.job_result.material_type]).to_lower()

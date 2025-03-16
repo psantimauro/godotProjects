@@ -9,10 +9,7 @@ extends ProgressBar
 @onready var sprite = $Sprite2D
 @export var texture: Texture:
 	set(val):
-		var image = val.get_image()
-		image.resize(50,50)
-		texture = ImageTexture.new().create_from_image(image)
-		sprite.texture =texture
+		sprite.texture = Globals.resize_texture(50,val)
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @export var audio_stream: AudioStream:
 	set(val):
@@ -24,11 +21,11 @@ signal done
 func _ready() -> void:
 	if audio_stream != null:
 		audio_stream_player_2d.stream = audio_stream
-	show_percentage = false
-	
+	show_percentage = false	
+
 func _process(_delta: float) -> void:
 	value = (timer.wait_time - (timer.time_left ))/timer.wait_time *100
-
+	
 func _on_timer_timeout() -> void:
 	visible = false
 	timer.stop()
@@ -40,7 +37,7 @@ func is_stopped() -> bool:
 	
 func stop():
 	timer.stop()
-	
+
 func start():
 	self.visible = true
 	if timer.is_stopped():
@@ -48,3 +45,11 @@ func start():
 		value = 0
 		timer.start()
 		audio_stream_player_2d.play()
+
+func click(amount):
+	var new_time = max(0, timer.wait_time + amount)
+#	new_time = min(new_time, timer_duration)
+	timer.wait_time = new_time
+	
+	var new_value = max(0, value - amount)
+	value = new_value

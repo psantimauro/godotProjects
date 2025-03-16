@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhj447hc1h3tq"]
+
+[ext_resource type="Script" uid="uid://cwg4pi6g3f0h3" path="res://test/clicktest.gd" id="1_6j3ye"]
+[ext_resource type="PackedScene" uid="uid://b50032krtq22q" path="res://clickable_timer_progress_bar.tscn" id="3_7erj8"]
+[ext_resource type="Texture2D" uid="uid://b4ksndue2pek8" path="res://3rd Party/assets/gui/grey_boxCross.png" id="3_q05v1"]
+[ext_resource type="AudioStream" uid="uid://ciqeg84opiuef" path="res://assets/dwaing.wav" id="4_tffq8"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_6j3ye")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 437.0
+offset_top = 304.0
+offset_right = 516.0
+offset_bottom = 439.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="1" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "start
+"
+
+[node name="2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "press me 5.0"
+
+[node name="3" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "press me -2.5"
+
+[node name="ClickableTimerProgressBar" parent="VBoxContainer" instance=ExtResource("3_7erj8")]
+run_time = 100.0
+power_factor = 5.0
+texture = ExtResource("3_q05v1")
+sound = ExtResource("4_tffq8")
+
+[connection signal="pressed" from="VBoxContainer/1" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/2" to="." method="_on__pressed_2"]
+[connection signal="pressed" from="VBoxContainer/3" to="." method="_on__pressed_3"]
