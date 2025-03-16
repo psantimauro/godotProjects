@@ -79,9 +79,9 @@ func burn_wood(running = true):
 	for building in get_tree().get_nodes_in_group(building_str):
 		var pos_vect = get_position_from_name(building.name)
 		if position_adjacent(pos_vect):
-			var direction = 1
+			var direction = -1
 			if running:
-				direction = -1
+				direction = 1
 			building.building_power += fire_multipler * direction
 			pass
 			
@@ -89,3 +89,6 @@ func get_position_from_name(name):
 	var parts:Array = name.split("_")
 	if parts.size() > 1:
 		return Globals.pos_string_to_vector2(parts[1])
+		
+func generate_building_action_menu():
+	return null

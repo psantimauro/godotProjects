@@ -2,7 +2,7 @@ class_name ImproveJobTech
 extends Node
 
 @export var tech_resource: job_improve_tech 
-var timer: TimerProgressBar 
+var timer: ClickableProgressBar 
 func _ready() -> void:
 	if tech_resource != null:
 		self.name = "Improve " + tech_resource.improve_job.res_name + " Job"
@@ -12,7 +12,7 @@ func _ready() -> void:
 func start_research() -> void:
 	if remove_requirement_from_inventory():
 		stop_research()
-		timer.timer_duration = tech_resource.research_speed
+		timer.run_time = tech_resource.research_speed 
 		timer.start()
 	else:
 		

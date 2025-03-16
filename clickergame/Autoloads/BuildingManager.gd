@@ -5,6 +5,7 @@ signal building_unlocked
 signal job_unlocked
 signal tech_unlocked
 signal display_message_with_title
+signal display_item
 enum building_types {UNDEFINED = -1, CAMPFIRE = 1, TENT = 5, LOGCABIN = 6}
 enum job_types {UNDEFINED = -1, CREATE}
 enum tech_types {UNDEFINED = -1, JOB_UNLOCK, IMPROVE_CREATE_JOB}
@@ -61,7 +62,7 @@ func unlock_building(build_type: building_types):
 	var new_tech = []
 	for j in res.unlocked_jobs:
 		new_jobs.append(j)
-		job_unlocked.emit(j)
+		job_unlocked.emit(j, build_type)
 	for t in res.unlocked_tech:
 		new_tech.append(t)
 		tech_unlocked.emit(t)

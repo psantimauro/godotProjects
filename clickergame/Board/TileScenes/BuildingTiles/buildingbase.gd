@@ -3,13 +3,17 @@ extends Node2D
 
 @export var group_type: TileManager.tile_types = TileManager.tile_types.BUILDING
 @export var type:BuildingManager.building_types = BuildingManager.building_types.UNDEFINED
-@export var building_power = 0.01
-
+@export var building_power = 1
+@export var button_size = 75
+@export var removal_restore_factor:float = 0.67
 signal selected
 
-@onready var research_ui: BuildingResearch = $Research
-@onready var work_ui: BuildingWork = $Work
-@onready var progress_bar: TimerProgressBar = $ProgressBar
+
+@onready var work_ui: BuildingWork = $BuildingInterfaceItems/Job
+@onready var research_ui: BuildingResearch = $BuildingInterfaceItems/Research
+
+@onready var clickable_timer_progress_bar: ClickableProgressBar = $ClickableTimerProgressBar
+
 @onready var research_controller: BuildingResearchController = %ResearchController
 @onready var jobs_controller: BuildingJobController = %JobsController
 
@@ -18,8 +22,8 @@ var unlocked_tech:Array[base_tech_resource] = []
 
 func _ready() -> void:
 	add_to_group(Globals.get_name_from_type(group_type, TileManager.tile_types))
-	await progress_bar
-	progress_bar.power_multipler = building_power
+	await clickable_timer_progress_bar
+	clickable_timer_progress_bar.power_factor = building_power
 	BuildingManager.job_unlocked.connect(_on_job_unlocked)
 	BuildingManager.tech_unlocked.connect(_on_tech_unlocked)
 	for job in BuildingManager.unlocked_jobs_by_building[type]:
@@ -28,6 +32,8 @@ func _ready() -> void:
 		_on_tech_unlocked(tech)
 
 func click():
+	if !clickable_timer_progress_bar.is_stopped():
+		clickable_timer_progress_bar.click( building_power)
 	selected.emit(self)
 
 func active() -> bool:
@@ -50,25 +56,25 @@ func stop_all():
 	
 func start_research(tech):
 	stop_all()
-	progress_bar.power_multipler = tech.research_speed * building_power
-	progress_bar.texture = BuildingManager.RESEARCH_ICON
-	research_controller.add_research(tech, progress_bar)
+	clickable_timer_progress_bar.run_time = tech.research_speed * building_power
+	clickable_timer_progress_bar.texture = BuildingManager.RESEARCH_ICON
+	research_controller.add_research(tech, clickable_timer_progress_bar)
 	current_activity = tech
 	
 func start_job(job: base_job_resource):
 	stop_all()
-	progress_bar.texture = InventoryManager.get_resource_from_material_type(job.job_result.material_type).texture
-	progress_bar.power_multipler = job.job_speed * building_power
-	jobs_controller.add_job(job, progress_bar)
+	clickable_timer_progress_bar.texture = InventoryManager.get_resource_from_material_type(job.job_result.material_type).texture
+	clickable_timer_progress_bar.run_time = job.job_speed * building_power
+	jobs_controller.add_job(job, clickable_timer_progress_bar)
 	current_activity = job
 
 func _on_progress_bar_done() -> void:
 	var tech = current_activity as base_tech_resource
 	if tech != null:
-		progress_bar.stop()
+		clickable_timer_progress_bar.stop()
 	var job = current_activity as base_job_resource
 	if job != null:
-		progress_bar.start()
+		clickable_timer_progress_bar.start()
 
 func _on_job_unlocked(job, building_type = type):
 	if building_type == type: 
@@ -79,3 +85,51 @@ func _on_tech_unlocked(tech, building_type = type):
 	if building_type == type:
 		unlocked_tech.append(tech)
 		research_ui.add_research(tech)
+
+func generate_building_action_menu():
+	var building_menu = HBoxContainer.new()
+	
+	for item in %BuildingInterfaceItems.get_children():
+		var button_container = VBoxContainer.new()
+		
+		var new_label = Label.new()
+		new_label.text = item.name
+		button_container.add_child(new_label)
+		
+		var new_btn = TextureButton.new()
+		new_btn.name = item.name +"Button"
+		new_btn.texture_normal = Globals.resize_texture(button_size, item.button_texture)
+		var emit_self_lambda = func():
+			BuildingManager.display_item.emit(item)
+			building_menu.queue_free()
+		new_btn.pressed.connect(emit_self_lambda)
+		button_container.add_child(new_btn)
+		building_menu.add_child(button_container)
+		building_menu.add_child(VSeparator.new())
+	
+	building_menu.add_child(delete_button())
+	return building_menu
+	
+func delete_button() -> Container:
+	var button_container = VBoxContainer.new()
+	var delete_lamba = func():
+		var building_res = BuildingManager.get_resource_from_building_type(type)
+		for building_requirement:material_stack in building_res.requirements:
+			var amount = ceil( removal_restore_factor * building_requirement.material_amount)
+			InventoryManager.add_material(building_requirement.material_type,amount)
+		Globals.delete_selected_building.emit()
+		self.queue_free()
+
+
+	var new_label = Label.new()
+	new_label.text = "Delete building"
+	button_container.add_child(new_label)
+		
+	var new_btn = TextureButton.new()
+	new_btn.name = "DeleteButton"
+	new_btn.texture_normal = Globals.resize_texture(button_size, preload("res://3rd Party/assets/icons/card_outline_remove.png"))
+	new_btn.pressed.connect(delete_lamba)
+	button_container.add_child(new_btn)	
+	
+	return button_container
+	

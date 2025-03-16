@@ -11,7 +11,7 @@ material_amount = 1
 [resource]
 script = ExtResource("2_exlhc")
 job_result = SubResource("Resource_r4feu")
-job_speed = 0.01
+job_speed = 60.0
 required_tool = 1
 type = 0
 res_name = "Create Wood Job"

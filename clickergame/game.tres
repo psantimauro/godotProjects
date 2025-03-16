@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bvnjicxtudbtp" path="res://Board/TileScenes/ResourceTiles/Tree.tscn" id="3_c340h"]
 [ext_resource type="PackedScene" uid="uid://bduuedwwe4pph" path="res://Board/TileScenes/BuildingTiles/Tent.tscn" id="4_d52ux"]
 [ext_resource type="PackedScene" uid="uid://kpb26kk17ljw" path="res://Board/TileScenes/BuildingTiles/Campfire.tscn" id="4_i1lwi"]
-[ext_resource type="PackedScene" uid="uid://k1d866h4pd1k" path="res://Board/TileScenes/BuildingTiles/LogCabin.tscn" id="6_brmmb"]
+[ext_resource type="PackedScene" uid="uid://48j1qrgx32uj" path="res://Board/TileScenes/BuildingTiles/LogCabin.tscn" id="6_brmmb"]
 [ext_resource type="PackedScene" uid="uid://btcbvsfbjcju1" path="res://Board/TileScenes/selection.tscn" id="6_dp4yj"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_02pqr"]

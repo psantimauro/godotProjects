@@ -2,10 +2,9 @@ class_name BuildingResearch
 extends Control
 
 @onready var research_buttons_container: VBoxContainer = $ResearchContainer
-@onready var progress_bar: TimerProgressBar = $"../ProgressBar"
+@onready var building: BuildingBase = $"../.."
 
-@onready var building: BuildingBase = $".."
-
+@export var button_texture: Texture
 var button_group: ButtonGroup = ButtonGroup.new()
 
 func _on_button_pressed(tech ) -> void:

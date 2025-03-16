@@ -11,7 +11,7 @@ material_amount = 10
 [resource]
 script = ExtResource("2_8d5tl")
 job_result = SubResource("Resource_owycj")
-job_speed = 1.0
+job_speed = 50.0
 required_tool = 1
 type = 0
 res_name = "Create Meat Job"

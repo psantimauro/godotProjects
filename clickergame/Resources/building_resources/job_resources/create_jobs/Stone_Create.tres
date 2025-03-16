@@ -12,7 +12,7 @@ material_amount = 100
 [resource]
 script = ExtResource("2_ftom0")
 job_result = SubResource("Resource_owycj")
-job_speed = 0.001
+job_speed = 1000.0
 required_tool = 2
 type = 0
 res_name = "Create Stone  Job"

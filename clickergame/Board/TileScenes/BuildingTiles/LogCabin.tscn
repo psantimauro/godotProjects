@@ -1,52 +1,26 @@
-[gd_scene load_steps=8 format=3 uid="uid://k1d866h4pd1k"]
+[gd_scene load_steps=11 format=3 uid="uid://48j1qrgx32uj"]
 
 [ext_resource type="Script" uid="uid://bdd6pkay5f1fx" path="res://Board/TileScenes/BuildingTiles/buildingbase.gd" id="1_0u0pv"]
 [ext_resource type="Texture2D" uid="uid://dkmu3xinv76up" path="res://assets/building-128_scaled.png" id="2_0u0pv"]
 [ext_resource type="Script" uid="uid://cqfvj4hguhqfu" path="res://Board/TileScenes/BuildingTiles/research_job_controller.gd" id="5_0u0pv"]
 [ext_resource type="Script" uid="uid://cxw0vopv4dv8p" path="res://Board/TileScenes/BuildingTiles/BuildingTechs/research_gui.gd" id="6_030k7"]
 [ext_resource type="Script" uid="uid://cc87yi8int4vu" path="res://Board/TileScenes/BuildingTiles/BuildingJobs/work_gui.gd" id="7_6of43"]
+[ext_resource type="Texture2D" uid="uid://6we2oh8s3v1l" path="res://3rd Party/assets/icons/blunt_tools.png" id="7_8q8y0"]
 [ext_resource type="Script" uid="uid://ua21c6lea4e4" path="res://Board/TileScenes/BuildingTiles/building_job_controller.gd" id="8_6jx2q"]
+[ext_resource type="Texture2D" uid="uid://ryfs7ig8qyqd" path="res://3rd Party/assets/icons/flask_half.png" id="9_83mor"]
 [ext_resource type="PackedScene" uid="uid://7wcueac35g2m" path="res://timer_progress_bar.tscn" id="9_tvnri"]
+[ext_resource type="PackedScene" uid="uid://b50032krtq22q" path="res://clickable_timer_progress_bar.tscn" id="10_r5fjj"]
 
 [node name="LogCabin" type="Node2D"]
 script = ExtResource("1_0u0pv")
 type = 6
-building_power = 0.1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2, -78)
-scale = Vector2(0.5, 0.5)
+position = Vector2(3, -195)
 texture = ExtResource("2_0u0pv")
-offset = Vector2(0, -64)
-
-[node name="Research" type="PanelContainer" parent="."]
-visible = false
-offset_right = 109.0
-offset_bottom = 23.0
-script = ExtResource("6_030k7")
-
-[node name="ResearchContainer" type="VBoxContainer" parent="Research"]
-layout_mode = 2
-
-[node name="Work" type="PanelContainer" parent="."]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -95.5
-offset_top = -64.0
-offset_right = 95.5
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("7_6of43")
-
-[node name="WorkContainer" type="VBoxContainer" parent="Work"]
-layout_mode = 2
 
 [node name="ProgressBar" parent="." instance=ExtResource("9_tvnri")]
+visible = false
 custom_minimum_size = Vector2(100, 0)
 offset_left = -39.0
 offset_top = -29.0
@@ -61,3 +35,46 @@ script = ExtResource("5_0u0pv")
 [node name="JobsController" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("8_6jx2q")
+
+[node name="BuildingInterfaceItems" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Job" type="MarginContainer" parent="BuildingInterfaceItems"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.5
+offset_top = -84.0
+offset_right = 75.5
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_6of43")
+button_texture = ExtResource("7_8q8y0")
+
+[node name="WorkContainer" type="VBoxContainer" parent="BuildingInterfaceItems/Job"]
+layout_mode = 2
+
+[node name="Research" type="MarginContainer" parent="BuildingInterfaceItems"]
+visible = false
+layout_mode = 0
+offset_right = 213.0
+offset_bottom = 27.0
+script = ExtResource("6_030k7")
+button_texture = ExtResource("9_83mor")
+
+[node name="ResearchContainer" type="VBoxContainer" parent="BuildingInterfaceItems/Research"]
+layout_mode = 2
+
+[node name="ClickableTimerProgressBar" parent="." instance=ExtResource("10_r5fjj")]
+
+[connection signal="done" from="ProgressBar" to="." method="_on_progress_bar_done"]

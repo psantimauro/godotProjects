@@ -3,8 +3,8 @@ extends Node
 @export var x_size = 10
 @export var y_size = 10
 
-@onready var game_layer =  $GameLayer
-@onready var ground_layer = $GroundLayer
+@onready var game_layer:TileMapLayer =  $GameLayer
+@onready var ground_layer: TileMapLayer = $GroundLayer
 
 @onready var selection_indictor = $Selection
 @onready var camera_2d: Camera2D = $Camera2D
@@ -79,7 +79,7 @@ func _on_building_build(building_type):
 #	selection_indictor.visible = !selection_indictor.visible
 	var coords =  ground_layer.local_to_map(selection_indictor.position)
 	game_layer.set_cell(coords,BUILDING,SCENE_COLLECTION, building_type)
-	
+
 func _on_selection_cleared():
 	#selection_indictor.visible = false
 	pass

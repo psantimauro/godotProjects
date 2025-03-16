@@ -2,7 +2,7 @@ class_name UnlockJobTech
 extends Node
 
 @export var tech_resource: job_unlock_tech 
-var timer: TimerProgressBar 
+var timer: ClickableProgressBar 
 func _ready() -> void:
 	if tech_resource != null:
 		self.name = "Research " + tech_resource.unlocked_job.resource_name

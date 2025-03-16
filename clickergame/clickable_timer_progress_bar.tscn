@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b50032krtq22q"]
+[gd_scene load_steps=2 format=3 uid="uid://b50032krtq22q"]
 
 [ext_resource type="Script" uid="uid://b5xbi8lxo7ru4" path="res://clickable_timer_progress_bar.gd" id="1_5w0qp"]
-[ext_resource type="AudioStream" uid="uid://ciqeg84opiuef" path="res://assets/dwaing.wav" id="2_mrc6i"]
 
 [node name="ClickableTimerProgressBar" type="Node2D"]
 script = ExtResource("1_5w0qp")
@@ -18,11 +17,12 @@ offset_top = -50.0
 offset_right = 98.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-30, -25)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_mrc6i")
 
 [node name="Timer" type="Timer" parent="."]
+one_shot = true

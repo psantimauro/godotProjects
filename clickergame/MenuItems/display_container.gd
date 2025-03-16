@@ -13,6 +13,7 @@ func _ready() -> void:
 	BuildingManager.job_unlocked.connect(_on_job_unlocked)
 	BuildingManager.tech_unlocked.connect(_on_tech_unlocked)
 	BuildingManager.display_message_with_title.connect(_on_display_message_with_title)
+	BuildingManager.display_item.connect(_on_display_item)
 
 var old_parent
 var display_list = []
@@ -31,7 +32,7 @@ func update_display(text:String, header_text = ""):
 		show()
 	display_list.append([text,header_text])
 
-func rechild_main_display_container():
+func reparent_existing():
 	if old_parent != null:
 		for kid in main_display_container.get_children():
 			kid.visible= false
@@ -60,7 +61,7 @@ func close():
 	var next_item = null
 	if display_list.size() > 0:
 		if (display_list[0] is Container):
-			rechild_main_display_container()
+			reparent_existing()
 		display_list.remove_at(0) #remove the first entry from the list, this should be what was just closed
 		
 		if display_list.size() > 0:
@@ -96,3 +97,6 @@ func _on_tech_unlocked(tech: base_tech_resource, building_type):
 	update_display(text, "New Research Unlocked!")
 func _on_display_message_with_title(msg, title):
 	update_display(msg,title)
+
+func _on_display_item(item):
+	set_item(item)

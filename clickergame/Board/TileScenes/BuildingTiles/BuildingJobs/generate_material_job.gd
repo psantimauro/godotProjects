@@ -13,6 +13,7 @@ func _ready() -> void:
 func start_job() -> void:
 	if can_work_job():
 		stop_job()
+		timer.run_time = job_resource.job_speed
 		timer.start()
 	else:
 		#TODO inform player they dont have the stuff
@@ -23,6 +24,7 @@ func stop_job():
 	
 func _on_timer_timeout() -> void:
 	InventoryManager.add_material(job_resource.job_result.material_type,job_resource.job_result.material_amount)
+	start_job()
 
 	
 func can_work_job() -> bool:

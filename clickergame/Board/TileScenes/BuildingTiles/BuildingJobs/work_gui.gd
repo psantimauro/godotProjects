@@ -2,10 +2,10 @@ class_name BuildingWork
 extends Control
 
 @onready var work_buttons_container: VBoxContainer = $WorkContainer
-@onready var progress_bar: TimerProgressBar = $"../ProgressBar"
 
-@onready var building: BuildingBase = $".."
+@onready var building: BuildingBase =  $"../.."
 
+@export var button_texture: Texture
 var button_group: ButtonGroup = ButtonGroup.new()
 func _on_button_press(job):
 	building.start_job(job)
