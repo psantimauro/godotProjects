@@ -15,8 +15,8 @@ script = ExtResource("1_es28m")
 
 [node name="Board" type="Node2D" parent="."]
 script = ExtResource("5_rn6k5")
-x_size = 5
-y_size = 5
+x_size = 25
+y_size = 25
 
 [node name="GroundLayer" type="TileMapLayer" parent="Board"]
 y_sort_enabled = true
@@ -31,5 +31,11 @@ script = ExtResource("3_14rw0")
 [node name="Selection" parent="Board" instance=ExtResource("5_tlkhx")]
 
 [node name="Camera2D" type="Camera2D" parent="Board"]
+visible = false
 position = Vector2(965, 542)
 script = ExtResource("3_udyyn")
+
+[node name="RegenerationTimer" type="Timer" parent="Board"]
+wait_time = 3.0
+one_shot = true
+autostart = true

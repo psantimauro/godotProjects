@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=12 format=3 uid="uid://cuid2qj2msfqq"]
+[gd_resource type="TileSet" load_steps=14 format=3 uid="uid://cuid2qj2msfqq"]
 
 [ext_resource type="PackedScene" uid="uid://cnnif7w42rkb" path="res://Board/TileScenes/Grass.tscn" id="1_58fqu"]
 [ext_resource type="PackedScene" uid="uid://bkd6pqa1sunus" path="res://Board/TileScenes/PickUp.tscn" id="1_djrgk"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://kpb26kk17ljw" path="res://Board/TileScenes/BuildingTiles/Campfire.tscn" id="4_i1lwi"]
 [ext_resource type="PackedScene" uid="uid://48j1qrgx32uj" path="res://Board/TileScenes/BuildingTiles/LogCabin.tscn" id="6_brmmb"]
 [ext_resource type="PackedScene" uid="uid://btcbvsfbjcju1" path="res://Board/TileScenes/selection.tscn" id="6_dp4yj"]
+[ext_resource type="PackedScene" uid="uid://difsgqojncdtx" path="res://Board/TileScenes/AnimalTiles/Deer.tscn" id="9_b08e4"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_02pqr"]
 resource_name = "resources"
@@ -26,6 +27,10 @@ resource_name = "pickups"
 scenes/0/scene = ExtResource("6_dp4yj")
 scenes/8/scene = ExtResource("1_djrgk")
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_i1lwi"]
+resource_name = "animals"
+scenes/11/scene = ExtResource("9_b08e4")
+
 [resource]
 tile_shape = 1
 tile_layout = 5
@@ -34,3 +39,4 @@ tile_size = Vector2i(256, 128)
 sources/0 = SubResource("TileSetScenesCollectionSource_02pqr")
 sources/1 = SubResource("TileSetScenesCollectionSource_k2lol")
 sources/2 = SubResource("TileSetScenesCollectionSource_7b67n")
+sources/3 = SubResource("TileSetScenesCollectionSource_i1lwi")

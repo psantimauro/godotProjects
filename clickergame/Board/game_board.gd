@@ -8,11 +8,13 @@ extends Node
 
 @onready var selection_indictor = $Selection
 @onready var camera_2d: Camera2D = $Camera2D
+@onready var regeneration_timer: Timer = $RegenerationTimer
 
 const SCENE_COLLECTION = Vector2i.ZERO
 const RESOURCE = 0
 const BUILDING = 1
 const PICKUP = 2
+const ANIMAL = 3
 var last_board_click = Vector2i.ONE * -1
 
 func _ready() -> void:
@@ -20,6 +22,9 @@ func _ready() -> void:
 	Globals.clear_selection.connect(_on_selection_cleared)
 	Globals.delete_selected_building.connect(_delete_selected_building)
 	generate_game_board()
+	regeneration_timer.timeout.connect(_on_regeneration_timer_timeout)
+	
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if((event is InputEventMouse) and event.is_action_pressed("click")):
@@ -40,6 +45,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				selected_game_tile.click()
 			#	selection_indictor.visible = false
 				selection_indictor.position = global_map_postiion_from_click_position
+			elif  TileManager.IsTypeAnimal(type):
+				selected_game_tile.click()
 				
 		else:
 			selection_indictor.position = global_map_postiion_from_click_position
@@ -65,6 +72,10 @@ func generate_game_board():
 					game_layer.set_cell(cords,RESOURCE,SCENE_COLLECTION,TileManager.tiles.TREE)
 				elif dice == TileManager.tiles.ROCK:
 					game_layer.set_cell(cords,RESOURCE,SCENE_COLLECTION,TileManager.tiles.ROCK)
+				elif dice == 6:
+					dice =  randi_range(1,6) 
+					if dice == 6:
+						game_layer.set_cell(cords, ANIMAL, SCENE_COLLECTION, TileManager.tiles.DEER)
 
 func get_last_resource():
 	return get_resource_at_position(last_board_click)
@@ -106,3 +117,31 @@ func GetGlobalClickPosition(event):
 	var board_local_click = ground_layer.make_input_local(event)
 	var board_position = ground_layer.local_to_map(board_local_click.position)
 	return ground_layer.map_to_local(board_position)
+
+
+func _on_regeneration_timer_timeout():
+	var x = randi_range(-x_size, x_size)
+	var y = randi_range(-y_size, y_size)
+	var coords = Vector2(x,y)
+	var res = get_resource_at_position(coords)
+	var generated = false
+	if res == null:
+		var dice = randi_range(1,6)
+		if dice == 1 or  dice == 2:
+			generated = true
+			game_layer.set_cell(coords,RESOURCE,SCENE_COLLECTION,TileManager.tiles.TREE)
+		elif dice == 5:
+			generated = true
+			game_layer.set_cell(coords,ANIMAL,SCENE_COLLECTION,TileManager.tiles.DEER)
+		elif dice == 6:
+			generated = true
+			dice = randi_range(1,6)
+			if dice == 6:
+				game_layer.set_cell(coords,PICKUP,SCENE_COLLECTION,TileManager.tiles.PICKUP)
+	if generated: 
+		regeneration_timer.wait_time = randi_range(5,8)
+	else:
+		regeneration_timer.wait_time = randi_range(3,5)
+	regeneration_timer.start()
+	
+	
