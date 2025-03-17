@@ -31,10 +31,12 @@ func _ready() -> void:
 		_on_tech_unlocked(tech)
 
 func click(power = building_power):
-	if !clickable_timer_progress_bar.is_stopped():
-		clickable_timer_progress_bar.click( power)
+	assist_building(power)
 	selected.emit(self)
 
+func assist_building(power):
+	if !clickable_timer_progress_bar.is_stopped():
+		clickable_timer_progress_bar.click( power)
 func active() -> bool:
 	return false
 
@@ -99,6 +101,8 @@ func generate_building_action_menu():
 		new_btn.name = item.name +"Button"
 		new_btn.texture_normal = Globals.resize_texture(button_size, item.button_texture)
 		var emit_self_lambda = func():
+		#	update_jobs()
+		#	update_tech()
 			BuildingManager.display_item.emit(item)
 			building_menu.queue_free()
 		new_btn.pressed.connect(emit_self_lambda)

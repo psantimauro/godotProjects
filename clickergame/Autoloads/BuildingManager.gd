@@ -139,17 +139,9 @@ func get_unlocked_research_by_building_type(type: BuildingManager.building_types
 	var res: building_resource = get_resource_from_building_type(type)
 	return res.unlocked_tech
 
-@export var level_factor = 0.67
+@export var level_factor =0.05
 func level_job_by_building_type(building_type, job_to_level):
 	for job in unlocked_jobs_by_building[building_type]:
 		if job == job_to_level:
 			job.job_level += 1
-			job.job_speed += job.job_speed*level_factor*job.job_level
-
-func improve_job_by_building_type(building_type, job_to_improve, improve_amount):
-	for job in unlocked_jobs_by_building[building_type]:
-		if job == job_to_improve:
-			var cast_job: material_create_job = job
-			cast_job.job_speed += improve_amount
-			
-			
+			job.job_speed -= level_factor*job.job_level

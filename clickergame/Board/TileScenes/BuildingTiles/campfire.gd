@@ -71,7 +71,7 @@ func burn_wood(running = true):
 			var direction = -1
 			if running:
 				direction = 1
-			building.click(fire_multipler)
+			building.assist_building(fire_multipler)
 			pass
 			
 func get_position_from_name(name):

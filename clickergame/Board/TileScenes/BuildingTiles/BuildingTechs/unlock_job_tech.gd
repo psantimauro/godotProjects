@@ -13,7 +13,7 @@ func start_research() -> void:
 	if remove_requirement_from_inventory():
 		stop_research()
 		timer.show()
-		timer.timer_duration = tech_resource.research_speed
+		timer.run_time = tech_resource.research_speed
 		timer.start()
 	else:
 		#inform the player they cant do the thing
