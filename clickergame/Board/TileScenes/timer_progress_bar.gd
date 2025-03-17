@@ -24,7 +24,8 @@ func _ready() -> void:
 	show_percentage = false	
 
 func _process(_delta: float) -> void:
-	value = (timer.wait_time - (timer.time_left ))/timer.wait_time *100
+	if timer:
+		value = (timer.wait_time - (timer.time_left ))/timer.wait_time *100
 	
 func _on_timer_timeout() -> void:
 	visible = false

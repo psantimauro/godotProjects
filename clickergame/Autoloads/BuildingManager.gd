@@ -100,7 +100,6 @@ func unlock_job_for_building_by_name(building: building_types, job_type_name:Str
 
 func unlocked_tech_for_building_no_check(building, tech):
 	var building_res: building_resource = get_resource_from_building_type(building)
-	#building_res.unlocked_tech.append(tech) ##this wont do anything as this is a resource
 	tech_unlocked.emit(tech, building)
 	unlocked_tech_by_building[building].append(tech)
 func unlocked_tech_for_building(building: building_types, tech_name):
@@ -140,6 +139,12 @@ func get_unlocked_research_by_building_type(type: BuildingManager.building_types
 	var res: building_resource = get_resource_from_building_type(type)
 	return res.unlocked_tech
 
+@export var level_factor = 0.67
+func level_job_by_building_type(building_type, job_to_level):
+	for job in unlocked_jobs_by_building[building_type]:
+		if job == job_to_level:
+			job.job_level += 1
+			job.job_speed += job.job_speed*level_factor*job.job_level
 
 func improve_job_by_building_type(building_type, job_to_improve, improve_amount):
 	for job in unlocked_jobs_by_building[building_type]:

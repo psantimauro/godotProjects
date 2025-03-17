@@ -13,6 +13,7 @@ func _ready() -> void:
 func start_job() -> void:
 	if can_work_job():
 		stop_job()
+		timer.show()
 		timer.run_time = job_resource.job_speed
 		timer.start()
 	else:
@@ -20,12 +21,12 @@ func start_job() -> void:
 		print("mssing tool to do work")
 
 func stop_job():
+	timer.hide()
 	timer.stop()
 	
 func _on_timer_timeout() -> void:
 	InventoryManager.add_material(job_resource.job_result.material_type,job_resource.job_result.material_amount)
 	start_job()
 
-	
 func can_work_job() -> bool:
 	return ToolManager.has_tool(job_resource.required_tool) 

@@ -12,6 +12,7 @@ func _ready() -> void:
 func start_research() -> void:
 	if remove_requirement_from_inventory():
 		stop_research()
+		timer.show()
 		timer.timer_duration = tech_resource.research_speed
 		timer.start()
 	else:
@@ -19,6 +20,7 @@ func start_research() -> void:
 		pass
 
 func stop_research():
+	timer.hide()
 	timer.stop()
 	
 func _on_timer_timeout() -> void:

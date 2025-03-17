@@ -30,7 +30,10 @@ func has_material(name: String, amount: int) -> bool:
 	
 func has_material_stack(stack: material_stack) -> bool:
 	return (Globals.haz(materials_dict, stack.material_type) && (materials_dict[stack.material_type].current_amount >= stack.material_amount))
-	
+
+func add_material_stack(stack: material_stack):
+	add_material(stack.material_type, stack.material_amount)
+
 func add_material(type:material_types, amount: int):
 	if !(type == null or type == material_types.UNDEFINED):
 		if !Globals.haz(materials_dict, type):

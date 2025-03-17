@@ -1,9 +1,7 @@
 extends Node
 
 signal item_picked_up
-
 signal empty_tile_selected
-
 signal resource_clicked
 
 signal clear_selection
@@ -39,4 +37,16 @@ func pos_string_to_vector2(str):
 		var x_part = parts[0].trim_prefix("(").trim_suffix(" ")
 		var y_part = parts[1].trim_prefix(" ").trim_suffix(")")
 		return Vector2(str_to_var(x_part), str_to_var(y_part))
+		
+func adjecent_vectors() -> Array[Vector2]:
+	var adj_vectors:Array[Vector2] = []
+	adj_vectors.append(Vector2(-1,-1))
+	adj_vectors.append(Vector2(-1,0))
+	adj_vectors.append(Vector2(-1,1))
+	adj_vectors.append(Vector2(0,-1))
+	adj_vectors.append(Vector2(0,1))
+	adj_vectors.append(Vector2(1,-1))
+	adj_vectors.append(Vector2(1,0))
+	adj_vectors.append(Vector2(1,1))
+	return adj_vectors
 		

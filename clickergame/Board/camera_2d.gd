@@ -37,24 +37,24 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif zoom < min_zoom:
 		zoom = min_zoom
 
-func _process(delta):
+func _physics_process(delta: float) -> void:
 	var pos_delta =  move_pos - self.get_screen_center_position()
 	var move_velocity = get_velocity()
-	if abs(pos_delta) > Vector2.ONE * 10:
+
+	if move_velocity != Vector2.ZERO:
+		move_pos = position
+		position += move_velocity	
+		print("Camera to " + str(position))
+	elif abs(pos_delta) > Vector2.ONE * 10:
 		print("Camera deltaing by " + str(pos_delta))
 		var movement =  pos_delta * delta * camera_speed
 		#move_pos = move_pos - movement
 		position += movement
 		print("Camera to " + str(position))
-	elif move_velocity != Vector2.ZERO:
-		move_pos = position
-		position += move_velocity	
-		print("Camera to " + str(position))
 
 
 func get_velocity():
 	var input_direction = Input.get_vector("camera_left", "camera_right", "camera_up", "camera_down")
-	
 	var velocity = input_direction * camera_speed
 	if fast_scroll:
 		velocity *= 4

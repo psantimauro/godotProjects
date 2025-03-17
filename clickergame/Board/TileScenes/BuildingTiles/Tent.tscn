@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bduuedwwe4pph"]
 
 [ext_resource type="Script" uid="uid://bdd6pkay5f1fx" path="res://Board/TileScenes/BuildingTiles/buildingbase.gd" id="1_olyqm"]
-[ext_resource type="Texture2D" uid="uid://1k31dwlojfj5" path="res://3rd Party/assets/building/tent-scaled.png" id="2_wcgrg"]
+[ext_resource type="Texture2D" uid="uid://d045q1v4j16th" path="res://3rd Party/assets/icons/tent_leather.png" id="2_os5s2"]
 [ext_resource type="Script" uid="uid://cxw0vopv4dv8p" path="res://Board/TileScenes/BuildingTiles/BuildingTechs/research_gui.gd" id="3_7t00a"]
 [ext_resource type="Texture2D" uid="uid://ryfs7ig8qyqd" path="res://3rd Party/assets/icons/flask_half.png" id="4_2d1w4"]
 [ext_resource type="Script" uid="uid://ua21c6lea4e4" path="res://Board/TileScenes/BuildingTiles/building_job_controller.gd" id="4_5t152"]
@@ -15,8 +15,8 @@ script = ExtResource("1_olyqm")
 type = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(3, -195)
-texture = ExtResource("2_wcgrg")
+position = Vector2(5, -50)
+texture = ExtResource("2_os5s2")
 
 [node name="ResearchController" type="Node" parent="."]
 unique_name_in_owner = true
@@ -66,4 +66,5 @@ button_texture = ExtResource("4_2d1w4")
 layout_mode = 2
 
 [node name="ClickableTimerProgressBar" parent="." instance=ExtResource("10_rfudi")]
+visible = false
 run_time = 100.0

@@ -20,7 +20,7 @@ func add_job_button(job:base_job_resource):
 	var button_name = str(mat_name + "Button")
 	var job_button = Button.new()
 	job_button.name = button_name
-	job_button.text =  job.res_name
+	job_button.text =  job.res_name + " Lvl " + str(job.job_level) #this is incorrect as we only add the buttons once
 	job_button.toggle_mode = true
 	job_button.button_group = button_group
 	job_button.pressed.connect(_on_button_press.bind(job))

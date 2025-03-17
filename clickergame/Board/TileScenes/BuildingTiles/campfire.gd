@@ -4,7 +4,7 @@ extends Node2D
 @onready var progress_bar: TimerProgressBar = $ProgressBar
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
-@export var fuel_consuption_rate = 5.0
+@export var fuel_consuption_rate = 2.5
 @export var  fuel_materials = [InventoryManager.material_types.WOOD]
 @export var fire_multipler = 5.0
 @export var group_type = TileManager.tile_types.BUILDING
@@ -56,18 +56,7 @@ func start_fire():
 func position_adjacent(pos_vect) -> bool:
 	var adj = false
 	var fire_position = get_position_from_name(name)
-	
-	var adj_vectors:Array[Vector2] = []
-	adj_vectors.append(Vector2(-1,-1))
-	adj_vectors.append(Vector2(-1,0))
-	adj_vectors.append(Vector2(-1,1))
-	adj_vectors.append(Vector2(0,-1))
-	adj_vectors.append(Vector2(0,1))
-	adj_vectors.append(Vector2(1,-1))
-	adj_vectors.append(Vector2(1,0))
-	adj_vectors.append(Vector2(1,1))
-	
-	for v in adj_vectors:
+	for v in Globals.adjecent_vectors():
 		if pos_vect == v + fire_position:
 			adj = true
 			break
@@ -82,7 +71,7 @@ func burn_wood(running = true):
 			var direction = -1
 			if running:
 				direction = 1
-			building.building_power += fire_multipler * direction
+			building.click(fire_multipler)
 			pass
 			
 func get_position_from_name(name):

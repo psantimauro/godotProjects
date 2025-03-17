@@ -23,7 +23,6 @@ var unlocked_tech:Array[base_tech_resource] = []
 func _ready() -> void:
 	add_to_group(Globals.get_name_from_type(group_type, TileManager.tile_types))
 	await clickable_timer_progress_bar
-	clickable_timer_progress_bar.power_factor = building_power
 	BuildingManager.job_unlocked.connect(_on_job_unlocked)
 	BuildingManager.tech_unlocked.connect(_on_tech_unlocked)
 	for job in BuildingManager.unlocked_jobs_by_building[type]:
@@ -31,9 +30,9 @@ func _ready() -> void:
 	for tech in BuildingManager.unlocked_tech_by_building[type]:
 		_on_tech_unlocked(tech)
 
-func click():
+func click(power = building_power):
 	if !clickable_timer_progress_bar.is_stopped():
-		clickable_timer_progress_bar.click( building_power)
+		clickable_timer_progress_bar.click( power)
 	selected.emit(self)
 
 func active() -> bool:
@@ -64,7 +63,7 @@ func start_research(tech):
 func start_job(job: base_job_resource):
 	stop_all()
 	clickable_timer_progress_bar.texture = InventoryManager.get_resource_from_material_type(job.job_result.material_type).texture
-	clickable_timer_progress_bar.run_time = job.job_speed * building_power
+	clickable_timer_progress_bar.run_time = job.job_speed * job.job_level * building_power
 	jobs_controller.add_job(job, clickable_timer_progress_bar)
 	current_activity = job
 

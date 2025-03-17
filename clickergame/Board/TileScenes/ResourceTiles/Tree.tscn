@@ -8,7 +8,6 @@
 [node name="Tree" type="Node2D"]
 script = ExtResource("1_a8p40")
 type = 4
-health = 2.0
 yield_amount = 1
 time = 0.5
 required_tool_type = 1

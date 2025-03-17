@@ -14,5 +14,6 @@ job_result = SubResource("Resource_r4feu")
 job_speed = 60.0
 required_tool = 1
 type = 0
+job_level = 1
 res_name = "Create Wood Job"
 description = "Creates wood over time"

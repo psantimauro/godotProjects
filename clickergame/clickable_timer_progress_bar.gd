@@ -2,7 +2,6 @@ class_name  ClickableProgressBar
 extends Node2D
 
 @export var run_time: float = 5.0  # Total time for the progress bar to fill
-@export var power_factor = 1.0
 @export var one_shoot:bool = false:
 	set(val):
 		one_shoot= val
@@ -59,7 +58,7 @@ func click(amount):
 
 func _speed_up_timer(amount: float):
 	if !timer.is_stopped():
-		var new_time =timer.time_left - amount*power_factor
+		var new_time =timer.time_left - amount
 		new_time = min(new_time,run_time)
 		if new_time > 0:
 			timer.stop()

@@ -12,6 +12,7 @@ func _ready() -> void:
 func start_research() -> void:
 	if remove_requirement_from_inventory():
 		stop_research()
+		timer.show()
 		timer.run_time = tech_resource.research_speed 
 		timer.start()
 	else:
@@ -25,10 +26,8 @@ func stop_research():
 func _on_timer_timeout() -> void:
 	var building_type = timer.get_parent().type #hack to get the building type
 	var job_to_improve = tech_resource.improve_job
-	var grandparent = self.get_parent().get_parent()
-	BuildingManager.improve_job_by_building_type(building_type, job_to_improve, tech_resource.improve_amount)
-	#TODO improve the job
-
+	BuildingManager.level_job_by_building_type(building_type, job_to_improve)
+	timer.hide()
 
 func remove_requirement_from_inventory() -> bool:
 	var status = false
