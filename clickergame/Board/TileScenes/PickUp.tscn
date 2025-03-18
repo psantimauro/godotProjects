@@ -8,7 +8,33 @@
 script = ExtResource("1_fg4kr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2, -67)
+position = Vector2(26.5, -19.5)
+scale = Vector2(0.242188, 0.242188)
+texture = ExtResource("2_ku3va")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-2.5, -38.5)
+scale = Vector2(0.242188, 0.242188)
+texture = ExtResource("2_ku3va")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(-31.5, -19.5)
+scale = Vector2(0.242188, 0.242188)
+texture = ExtResource("2_ku3va")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(26.5, 4.5)
+scale = Vector2(0.242188, 0.242188)
+texture = ExtResource("2_ku3va")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+position = Vector2(-0.999989, -16)
+scale = Vector2(0.242188, 0.242188)
+texture = ExtResource("2_ku3va")
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+position = Vector2(-27, 11)
+scale = Vector2(0.242188, 0.242188)
 texture = ExtResource("2_ku3va")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

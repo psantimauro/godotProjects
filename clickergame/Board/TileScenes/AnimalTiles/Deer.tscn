@@ -22,8 +22,8 @@ type = 11
 yield_materials = Array[ExtResource("2_neccm")]([SubResource("Resource_5b5ow"), SubResource("Resource_a5w51")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-33, -50)
-scale = Vector2(0.305664, 0.302156)
+position = Vector2(-21, -42)
+scale = Vector2(0.230957, 0.228306)
 texture = ExtResource("2_dosyx")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
