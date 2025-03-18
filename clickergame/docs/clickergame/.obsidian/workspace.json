@@ -41,26 +41,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Buildings.md",
+                "file": "GUI/CanvaLayer.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Buildings"
+              "title": "CanvaLayer"
             }
           },
           {
-            "id": "77c211b6158be320",
+            "id": "5df2422e442327a9",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Create new Types.md",
+                "file": "QuestContainer.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Create new Types"
+              "title": "QuestContainer"
             }
           },
           {
@@ -319,32 +319,36 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "77c211b6158be320",
+  "active": "5df2422e442327a9",
   "lastOpenFiles": [
-    "Buildings.md",
-    "Create new Types.md",
+    "QuestContainer.md",
+    "GUI/CanvaLayer.md",
+    "GUI/DisplayContainer.md",
+    "buildings/Building Node Tree.png.import",
+    "GUI/BuildMenu.md",
+    "GUI/BuildContainer.md",
+    "GUI/ActionContainer.md",
+    "buildings/Building Node Tree.png",
+    "buildings/Tent Scene Tree - Preview - 3-9-25.png",
+    "buildings/Buildings.md",
     "TimerProgressBar.md",
+    "2025-02-27.md",
+    "Create new Types.md",
     "Time.md",
     "Game Scene.md",
     "Quest/First Quest.md",
     "Quest",
     "Enhancement backlog.md",
-    "GUI/BuildMenu.md",
     "GUI/ItemsContainer.md",
     "Known bugs.md",
     "resources/Resources.md",
     "material/Wood.md",
     "material/Rocks.md",
-    "GUI/ActionContainer.md",
-    "2025-02-27.md",
-    "GUI/BuildContainer.md",
     "GUI/GameHUD.md",
-    "GUI/DisplayContainer.md",
     "GUI/WorkUI.md",
     "buildings/Tent Scene Tree - Preview - 3-9-25.png.import",
     "Untitled.canvas",
     "Welcome.md",
-    "buildings/Tent Scene Tree - Preview - 3-9-25.png",
     "Managers and Autoloads",
     "Managers and Autoloads/InventoryManager.md",
     "GUI",

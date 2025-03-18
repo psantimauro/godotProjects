@@ -1,0 +1,1 @@
+This container displays the currently active [[Quests]] the player is assigned.  Upon completion, the quest is removed from the container

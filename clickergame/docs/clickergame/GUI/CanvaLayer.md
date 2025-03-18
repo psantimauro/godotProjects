@@ -1,0 +1,3 @@
+This Scene is the games ""HUD".  It contains a [[ItemsContainer]] on the top left, and used to track the players unlocked [[Tools]] and [[Materials]].  The [[ActionContainer]] container lives in the bottom center on the screen.  It has context sensitive actions that the player can do, depending on the current selection.  In the front center, the [[DisplayContainer]] exists.  It can contain data driving from the [[ActionContainer]], for instance building jobs and research.  The [[DisplayContainer]] can also pop up messages to the user, and accepts messages in a queued fashion.
+
+Along the right side of the screen the[[QuestContainer]] is displayed
