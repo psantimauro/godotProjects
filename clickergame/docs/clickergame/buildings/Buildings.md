@@ -8,8 +8,7 @@ The first building to be available is  [[Tent]]
 A second building is currently a [[LogCabin]]
 
 Root node should be a Node2d linked to buildingbase.gd
-![[Tent Scene Tree - Preview - 3-9-25.png]]
-
+![[Building Node Tree.png]]
 Buildings have the following child nodes:
  - Sprite2d/Icon Image
  - [[Research]] Container
@@ -20,7 +19,7 @@ Buildings have the following child nodes:
 	 - UI for Available Jobs
  - [[JobsController]]
 	 - holds the running jobs
- - [[TimerProgressBar]]
+ - [[ClickableProgressBar]]
 	 - tracks the progress of the assigned item and shows and icon to the player to show what it is working on
 
 
