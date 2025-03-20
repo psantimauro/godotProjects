@@ -1,0 +1,95 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgwagwsh5cll7"]
+
+[ext_resource type="Script" uid="uid://em6sssiquepy" path="res://node_2d.gd" id="1_wtcfe"]
+[ext_resource type="PackedScene" uid="uid://d4jhv74wej0f3" path="res://clickable_timer_progress_bar.tscn" id="2_0e48y"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_wtcfe")
+
+[node name="VBoxContainer" type="GridContainer" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 37.0
+offset_top = 54.0
+offset_right = 137.0
+offset_bottom = 104.0
+grow_vertical = 2
+size_flags_vertical = 4
+columns = 10
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+text = "Click"
+
+[node name="0" parent="VBoxContainer" instance=ExtResource("2_0e48y")]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 562.0
+offset_top = 612.0
+offset_right = 677.0
+offset_bottom = 643.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Value: "
+
+[node name="Value" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="Cost" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "Next Cost: 4"
+
+[node name="PrestoButton" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Presto"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Exponent" type="Label" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="growth_factor" type="Label" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PrestoBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(50, 100)
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 1125.0
+offset_top = 578.0
+offset_right = 1135.0
+offset_bottom = 628.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_vertical = 1
+max_value = 10.0
+step = 1.0
+fill_mode = 3
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/PrestoButton" to="." method="_on_presto_pressed"]
