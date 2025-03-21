@@ -3,90 +3,79 @@ const CLICKABLE_TIMER_PROGRESS_BAR = preload("res://clickable_timer_progress_bar
 @onready var button: Button = %Button
 @onready var button_container: GridContainer = $VBoxContainer
 @onready var _0: ClickableProgressBar = $"VBoxContainer/0"
-var presto = 0
-var growth_rate = 1.07:
-	set(g):
-		growth_rate = g
-		%growth_factor.text = "Growth Factor: "+ str(growth_rate)
-var cost_base = 4
 
-var expontent = 0:
-	set(e):
-		expontent = e
-		%Exponent.text = "Exponent: "+ str(e)
-var number = 0:
-	set(n):
-		number = n
-		%Value.text = str(int(number))
 
-var time_factor = 5
 func _ready() -> void:
 	_0.done.connect(_on_0_button_pressed)
+	NumberManager.new_button_unlocked.connect(make_new_button)
+	NumberManager.presto_enable.connect(enable_presto)
+	NumberManager.next_cost_change.connect(update_cost_next)
+	NumberManager.growth_rate_change.connect(update_growth_rate)
+	NumberManager.expontent_change.connect(update_expontent)
+	NumberManager.number_change.connect(update_number)
 	
-func _process(delta: float) -> void:
-	var cost_next = cost_base * pow(growth_rate ,expontent)
-	if cost_next < number: 
-		make_new_button()
-		expontent += 1
-		cost_base = cost_next
-		growth_rate += 0.01
-		number -= cost_next
-	%Cost.text = "Next Cost: " + str(int(cost_next))
-	if expontent >= 9 && !%PrestoButton.visible:
-		enable_presto()
+func update_number(number):
+	%Value.text = str(int(number))
+
+func update_expontent(expontent):
+	%Exponent.text = "Exponent: "+ str(expontent)
+
+func update_growth_rate(growth_rate = 0):
+	%growth_factor.text = "Growth Factor: %.3f " % (growth_rate)
+	
+func update_cost_next ( next = 0):
+	%Cost.text = "Next Cost: " + str(int(next))
 func _on_0_button_pressed():
-	increase_numer()
+	NumberManager.increase_numer()
 	if _0.is_stopped():
-		_0.run_time = max(time_factor / growth_rate, 0.1)			
+		_0.run_time = NumberManager.button_runtime()	
 		_0.start()
 func _on_button_pressed() -> void:
 	if !_0.visible:
 		_0.show()
-	increase_numer()
+	NumberManager.increase_numer()
 
-func increase_numer(num  = 1):
-	number += num
-	time_factor -= (0.001 * presto)
-
+var btn_num=1
 func make_new_button():
 	var btn = CLICKABLE_TIMER_PROGRESS_BAR.instantiate()
 	button_container.add_child(btn)
 	btn.one_shot = true
-	btn.run_time = 5*expontent
-	btn.name =  str(expontent )
+	btn.run_time = NumberManager.button_runtime()
+	btn.name =  str(btn_num)
+	btn_num +=1
 	btn.done.connect( func(): 
 		var num = int(btn.name)
-		var val = int(num / growth_rate)+1
-		increase_numer(val)
+		var val = NumberManager.get_button_value(num)
+		NumberManager.increase_numer(val)
 		num -= 1
 		if num == -1:
 			button.emit_signal("pressed")
-		
 		else:
-			var but = button_container.get_node(str(num))
-			if but.is_stopped():
-				but.run_time = max(time_factor / growth_rate, 0.1)			
-				but.start()
+			var Prev_button = button_container.get_node(str(num))
+			if Prev_button.is_stopped():
+				Prev_button.run_time = NumberManager.button_runtime()		
+				Prev_button.start()
 			else:
-				but.click(val)
+				Prev_button.click(val)
 	)
 
-	
 func _on_presto_pressed() -> void:
-	presto += 1
-	%PrestoBar.value = presto
-	if %PrestoBar.value > 10:
+	NumberManager.presto +=1
+	%PrestoBar.value += 1
+	if %PrestoBar.value == 10 :
 		presti()
+		
 func enable_presto():
 	%PrestoButton.show()
 	%PrestoBar.show()
 
 func presti():
+	btn_num = 1
+	%PrestoBar.set_value_no_signal(0)
+	_0.stop()
 	%PrestoButton.hide()
 	%PrestoBar.hide()
-	time_factor = 5
-	expontent= 0
-	number = 0
+	NumberManager.presti_reset()
 	for child in button_container.get_children():
 		var number = int(child.name)
 		if number > 0:
