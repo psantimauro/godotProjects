@@ -1,28 +1,56 @@
 class_name  ClickableProgressBar
 extends Control
 
-@onready var timer: Timer = %Timer
-@onready var progress_bar: ProgressBar = $ProgressBar
+signal done
+
 @export var run_time: float = 5.0  # Total time for the progress bar to fill
 @export var one_shot:bool = false:
 	set(val):
 		one_shot= val
 		timer.one_shot = val
+@export var btn_text = ""
+@export var btn_timeout_text = ""
+
 @onready var button: Button = $Button
+@onready var timer: Timer = %Timer
+@onready var progress_bar: ProgressBar = $ProgressBar
 
-signal done
+func save():
+	var save_dict = {
+		"name": name,
+		"run_time": run_time,
+		"one_shot": one_shot,
+		"btn_text": btn_text,
+		"btn_timeout_text": btn_timeout_text,
+		"wait_time": timer.wait_time,
+		"is_running": !timer.is_stopped()
+	}
+	return save_dict
 
+func load(dict):
+	name = dict["name"]
+	run_time = dict["run_time"]
+	one_shot = dict["one_shot"]
+	btn_text = dict["btn_text"]
+	btn_timeout_text = dict["btn_timeout_text"]
+	var timeleft= dict["wait_time"]
+	var is_running = dict["is_running"]
+	if is_running:
+		start(timeleft)
+	
 func _ready() -> void:
 	await timer.ready
 	timer.timeout.connect(_on_timer_timeout)
+	await  button.ready
+	button.text = btn_text
 
 func _process(_delta: float) -> void:
 	if timer.time_left > 0:
 		progress_bar.value = (1 - (timer.time_left / run_time)) * 100
 
-func start():
+func start(time = run_time):
 	if timer.is_stopped():
-		timer.wait_time = run_time
+		timer.wait_time = time
 		progress_bar.value = 0
 		progress_bar.show()
 		button.text = ""
@@ -37,7 +65,7 @@ func stop():
 	progress_bar.hide()
 
 func _on_timer_timeout():
-	done.emit()
+	done.emit(self)
 	progress_bar.value = 0
 	progress_bar.hide()
 	button.text = "no Click"

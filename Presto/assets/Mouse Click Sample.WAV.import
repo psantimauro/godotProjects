@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cyymaploi7cbc"
+path="res://.godot/imported/Mouse Click Sample.WAV-f356d165a05e1ac9a95da2e90fa779e0.sample"
+
+[deps]
+
+source_file="res://assets/Mouse Click Sample.WAV"
+dest_files=["res://.godot/imported/Mouse Click Sample.WAV-f356d165a05e1ac9a95da2e90fa779e0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
