@@ -4,8 +4,7 @@ signal building_built
 signal building_unlocked
 signal job_unlocked
 signal tech_unlocked
-signal display_message_with_title
-signal display_item
+
 enum building_types {UNDEFINED = -1, CAMPFIRE = 1, TENT = 5, LOGCABIN = 6}
 enum job_types {UNDEFINED = -1, CREATE}
 enum tech_types {UNDEFINED = -1, JOB_UNLOCK, IMPROVE_CREATE_JOB}

@@ -74,20 +74,20 @@ func _on_quest_completed(quest: QuestResource):
 	active_quests.remove_at(idx)
 		
 	var quest_name:String = quest.name
-	if quest_name.contains("_"):
-		var parts = quest_name.split("_")
-		var type = parts[0]
-		match type:
-			"collect":
+	if quest_name.contains(" "):
+		var parts = quest_name.split(" ")
+		var quest_type = parts[0]
+		match quest_type:
+			"Collect":
 				var mat_name = parts[1]
 				var mat_type = Globals.get_type_from_name(mat_name,InventoryManager.material_types)
 				if !material_quest_tracker.has(mat_type):
 					material_quest_tracker[mat_type] = 0
 				material_quest_tracker[mat_type] += 1
-				QuestManager.add_quest(collectquests[mat_type].instantiate())
+				var next_quest = collectquests[mat_type].instantiate()
+				#next_quest.
+				QuestManager.add_quest(next_quest)
 
-
-	
 func collect_quest_muliplyer(key):
 	var type = Globals.get_type_from_name(key, InventoryManager.material_types)
 	if material_quest_tracker.has(type):
@@ -107,8 +107,8 @@ func add_quest(quest):
 
 
 func _on_new_material_unlocked(mat_type):
-	var new_quest:QuestResource = collectquests[InventoryManager.material_types.WOOD].duplicate(true)
-	#TODO - figure out why the new_quest isnt readysa
-	pass
-	#var quest_name = new_quest.name
+	for key in collectquests.keys():
+		if mat_type.res_type == key:
+			var quest = QuestManager.collectquests[key].instantiate()
+			QuestManager.add_quest(quest)
 	

@@ -7,7 +7,6 @@ extends Node
 @export var max_health = 10
 @export var time = 1.0
 @onready var health_bar: ProgressBar = $HealthBar
-@onready var timer_progress_bar: TimerProgressBar = $TimerProgressBar
 @onready var missed: Label = $Missed
 
 

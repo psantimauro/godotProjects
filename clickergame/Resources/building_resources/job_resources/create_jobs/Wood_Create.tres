@@ -3,17 +3,18 @@
 [ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="1_axpjj"]
 [ext_resource type="Script" uid="uid://b8qgra0f5yol0" path="res://Resources/building_resources/job_resources/create_jobs/material_create_job.gd" id="2_exlhc"]
 
-[sub_resource type="Resource" id="Resource_r4feu"]
+[sub_resource type="Resource" id="Resource_axpjj"]
 script = ExtResource("1_axpjj")
 material_type = 1
-material_amount = 1
+material_amount = 3
+metadata/_custom_type_script = "uid://dh7wpn4dldbbp"
 
 [resource]
 script = ExtResource("2_exlhc")
-job_result = SubResource("Resource_r4feu")
-job_speed = 60.0
+job_result = Array[ExtResource("1_axpjj")]([SubResource("Resource_axpjj")])
 required_tool = 1
 type = 0
 job_level = 1
-res_name = "Create Wood Job"
+job_speed = 60.0
+res_name = "Lumberjack"
 description = "Creates wood over time"

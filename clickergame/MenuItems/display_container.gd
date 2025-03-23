@@ -9,11 +9,12 @@ func _ready() -> void:
 	Globals.empty_tile_selected.connect(_outside_click)
 	Globals.resource_clicked.connect(close)
 	Globals.clear_selection.connect(close)
+	Globals.display_message_with_title.connect(_on_display_message_with_title)
+	Globals.display_item.connect(_on_display_item)
+	
 	BuildingManager.building_unlocked.connect(_on_building_unlocked)
 	BuildingManager.job_unlocked.connect(_on_job_unlocked)
 	BuildingManager.tech_unlocked.connect(_on_tech_unlocked)
-	BuildingManager.display_message_with_title.connect(_on_display_message_with_title)
-	BuildingManager.display_item.connect(_on_display_item)
 
 var old_parent
 var display_list = []
@@ -21,13 +22,13 @@ func update_display(text:String, header_text = ""):
 	if display_list.size() > 0:
 		var item = display_list[0]
 		if item is Array:
-			display_title_label.text = item[0]
-			main_display_label.text = item[1]
+			display_title_label.text = item[1]
+			main_display_label.text = item[0]
 			main_display_label.show()
 			show()
 	else:
-		display_title_label.text =text
-		main_display_label.text = header_text
+		display_title_label.text = header_text
+		main_display_label.text = text
 		main_display_label.show()
 		show()
 	display_list.append([text,header_text])
@@ -85,11 +86,11 @@ func _outside_click(any):
 
 func _on_building_unlocked(type):
 	var name = Globals.get_name_from_type(type, BuildingManager.building_types)
-	var text = "Unlocked " + name
+	var text = name + " is now available in the build menu."
 	update_display(text, "New Building Unlocked!")
 
 func _on_job_unlocked(job: base_job_resource, building_type):
-	var text = "Unlocked " + job.res_name + " for " + Globals.get_name_from_type(building_type, BuildingManager.building_types)
+	var text = job.res_name + " has been unlocked for " + Globals.get_name_from_type(building_type, BuildingManager.building_types)
 	update_display(text, "New Job Unlocked!")
 
 func _on_tech_unlocked(tech: base_tech_resource, building_type):

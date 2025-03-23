@@ -3,17 +3,18 @@
 [ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="1_o44gl"]
 [ext_resource type="Script" uid="uid://b8qgra0f5yol0" path="res://Resources/building_resources/job_resources/create_jobs/material_create_job.gd" id="2_01wv1"]
 
-[sub_resource type="Resource" id="Resource_owycj"]
+[sub_resource type="Resource" id="Resource_o44gl"]
 script = ExtResource("1_o44gl")
 material_type = 3
-material_amount = 1
+material_amount = 3
+metadata/_custom_type_script = "uid://dh7wpn4dldbbp"
 
 [resource]
 script = ExtResource("2_01wv1")
-job_result = SubResource("Resource_owycj")
-job_speed = 100.0
+job_result = Array[ExtResource("1_o44gl")]([SubResource("Resource_o44gl")])
 required_tool = 1
 type = 0
 job_level = 1
-res_name = "Create Hide Job"
+job_speed = 0.0
+res_name = "Trap and Skin"
 description = "Generates hide overtime"

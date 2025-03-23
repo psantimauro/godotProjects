@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="QuestResource" load_steps=31 format=3 uid="uid://bvr288wgpxtck"]
+[gd_resource type="Resource" script_class="QuestResource" load_steps=35 format=3 uid="uid://bvr288wgpxtck"]
 
 [ext_resource type="Script" uid="uid://d4gmb2nftapl5" path="res://addons/questify/scripts/model/quest_edge.gd" id="1_c6or2"]
 [ext_resource type="Script" uid="uid://c23wdreelkkg4" path="res://addons/questify/scripts/model/quest_objective.gd" id="2_yh71f"]
@@ -101,7 +101,7 @@ edge_type = 0
 
 [sub_resource type="Resource" id="Resource_l6514"]
 script = ExtResource("2_yh71f")
-description = "Collect 6 meat"
+description = "Hunt a deer"
 id = "xYAkAdFkCr"
 optional = false
 graph_editor_position = Vector2(220, -2000)
@@ -169,7 +169,7 @@ script = ExtResource("2_yh71f")
 description = "unlock cabin"
 id = "x16wl95Nwn"
 optional = false
-graph_editor_position = Vector2(900, -2000)
+graph_editor_position = Vector2(940, -2000)
 graph_editor_size = Vector2(460, 640)
 metadata/reward_type = "new_building"
 metadata/building = "logcabin"
@@ -193,7 +193,39 @@ from = SubResource("Resource_ucxhg")
 to = SubResource("Resource_myol2")
 edge_type = 0
 
+[sub_resource type="Resource" id="Resource_6vl70"]
+script = ExtResource("5_kc3pw")
+type = "has_material"
+key = "wood"
+id = "jc9cuRWNbg"
+optional = false
+graph_editor_position = Vector2(460, -1140)
+graph_editor_size = Vector2(377, 309)
+metadata/value = 75.0
+
+[sub_resource type="Resource" id="Resource_w0nnp"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_6vl70")
+to = SubResource("Resource_ucxhg")
+edge_type = 1
+
+[sub_resource type="Resource" id="Resource_wp54a"]
+script = ExtResource("5_kc3pw")
+type = "has_material"
+key = "meat"
+id = "YFkBgXeSP_"
+optional = false
+graph_editor_position = Vector2(860, -1180)
+graph_editor_size = Vector2(377, 309)
+metadata/value = 10.0
+
+[sub_resource type="Resource" id="Resource_tm411"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_wp54a")
+to = SubResource("Resource_ucxhg")
+edge_type = 1
+
 [resource]
 script = ExtResource("7_brunu")
-nodes = Array[ExtResource("6_mpv7a")]([SubResource("Resource_xeop4"), SubResource("Resource_sluva"), SubResource("Resource_wbtal"), SubResource("Resource_icdof"), SubResource("Resource_isrim"), SubResource("Resource_l6514"), SubResource("Resource_b2bif"), SubResource("Resource_t0sa5"), SubResource("Resource_uhurg"), SubResource("Resource_icic4"), SubResource("Resource_myol2"), SubResource("Resource_ucxhg")])
-edges = Array[ExtResource("1_c6or2")]([SubResource("Resource_1vheh"), SubResource("Resource_rkilb"), SubResource("Resource_3wvpn"), SubResource("Resource_67n4x"), SubResource("Resource_t0vcd"), SubResource("Resource_o7r6r"), SubResource("Resource_pdvv6"), SubResource("Resource_yeplf"), SubResource("Resource_igb2m"), SubResource("Resource_dts5f"), SubResource("Resource_5vj0m")])
+nodes = Array[ExtResource("6_mpv7a")]([SubResource("Resource_xeop4"), SubResource("Resource_sluva"), SubResource("Resource_wbtal"), SubResource("Resource_icdof"), SubResource("Resource_isrim"), SubResource("Resource_l6514"), SubResource("Resource_b2bif"), SubResource("Resource_icic4"), SubResource("Resource_myol2"), SubResource("Resource_ucxhg"), SubResource("Resource_uhurg"), SubResource("Resource_6vl70"), SubResource("Resource_t0sa5"), SubResource("Resource_wp54a")])
+edges = Array[ExtResource("1_c6or2")]([SubResource("Resource_1vheh"), SubResource("Resource_rkilb"), SubResource("Resource_3wvpn"), SubResource("Resource_67n4x"), SubResource("Resource_t0vcd"), SubResource("Resource_o7r6r"), SubResource("Resource_pdvv6"), SubResource("Resource_yeplf"), SubResource("Resource_igb2m"), SubResource("Resource_dts5f"), SubResource("Resource_5vj0m"), SubResource("Resource_w0nnp"), SubResource("Resource_tm411")])

@@ -4,17 +4,19 @@
 [ext_resource type="Script" uid="uid://b8qgra0f5yol0" path="res://Resources/building_resources/job_resources/create_jobs/material_create_job.gd" id="2_ftom0"]
 [ext_resource type="Texture2D" uid="uid://cdky3tf6k47vv" path="res://3rd Party/assets/icons/pickaxe.png" id="3_nxtn4"]
 
-[sub_resource type="Resource" id="Resource_owycj"]
+[sub_resource type="Resource" id="Resource_vqrji"]
 script = ExtResource("1_vqrji")
 material_type = 2
-material_amount = 100
+material_amount = 10
+metadata/_custom_type_script = "uid://dh7wpn4dldbbp"
 
 [resource]
 script = ExtResource("2_ftom0")
-job_result = SubResource("Resource_owycj")
-job_speed = 1000.0
+job_result = Array[ExtResource("1_vqrji")]([SubResource("Resource_vqrji")])
 required_tool = 2
 type = 0
-res_name = "Create Stone  Job"
+job_level = 1
+job_speed = 1000.0
+res_name = "Mine Stone"
 texture = ExtResource("3_nxtn4")
 description = "Creates stone over time"

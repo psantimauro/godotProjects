@@ -18,10 +18,19 @@ func _hax():
 func init_quests():
 	for quest in QuestManager.firstquest_res_array:
 		QuestManager.add_quest(quest.instantiate())
-	for key in QuestManager.collectquests.keys():
-		var quest = QuestManager.collectquests[key]
-		QuestManager.add_quest(quest.instantiate())
 
+func show_intro_message():
+	var title = "Welcome to Boom or Bust: Idle Goes West!"
+	var message = "Use WASD or Arrow keys to move.
+
+ Your items and materials are displayed in the top left. Quests are on the right.
+
+Click empty tiles to access the build menu.  
+
+If you have the right tool, you can click a resource, to harvest it.
+"
+	Globals.display_message_with_title.emit(message, title)
+	
 func _ready():
 	await game_hud
 	await board
@@ -30,6 +39,7 @@ func _ready():
 	Globals.resource_clicked.connect(_on_resource_click)
 	game_hud.action_container.build_menu.build_button_clicked.connect(_on_build_menu_build_button_clicked)
 	init_quests()
+	show_intro_message()
 	_hax()
 
 func pickup(_type):

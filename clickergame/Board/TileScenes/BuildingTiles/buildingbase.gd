@@ -64,7 +64,7 @@ func start_research(tech):
 	
 func start_job(job: base_job_resource):
 	stop_all()
-	clickable_timer_progress_bar.texture = InventoryManager.get_resource_from_material_type(job.job_result.material_type).texture
+	clickable_timer_progress_bar.texture = InventoryManager.get_resource_from_material_type(job.job_result[0].material_type).texture
 	clickable_timer_progress_bar.run_time = job.job_speed * job.job_level * building_power
 	jobs_controller.add_job(job, clickable_timer_progress_bar)
 	current_activity = job
@@ -103,7 +103,7 @@ func generate_building_action_menu():
 		var emit_self_lambda = func():
 		#	update_jobs()
 		#	update_tech()
-			BuildingManager.display_item.emit(item)
+			Globals.display_item.emit(item)
 			building_menu.queue_free()
 		new_btn.pressed.connect(emit_self_lambda)
 		button_container.add_child(new_btn)

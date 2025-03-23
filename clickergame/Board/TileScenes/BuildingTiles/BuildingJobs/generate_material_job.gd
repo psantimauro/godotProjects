@@ -5,7 +5,7 @@ extends Node
 var timer: ClickableProgressBar 
 func _ready() -> void:
 	if job_resource != null:
-		var type_name = str(InventoryManager.material_types.keys()[job_resource.job_result.material_type]).to_lower()
+		var type_name = str(InventoryManager.material_types.keys()[job_resource.job_result[0].material_type]).to_lower()
 		self.name = "Generate " +type_name + " job"
 		timer.done.connect(_on_timer_timeout)
 		add_child(timer)
@@ -25,7 +25,8 @@ func stop_job():
 	timer.stop()
 	
 func _on_timer_timeout() -> void:
-	InventoryManager.add_material(job_resource.job_result.material_type,job_resource.job_result.material_amount)
+	for mat in job_resource.job_result:
+		InventoryManager.add_material(mat.material_type,mat.material_amount)
 	start_job()
 
 func can_work_job() -> bool:
