@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="tool_trade_resource" load_steps=5 format=3 uid="uid://cwb4xjjfpfxaw"]
+
+[ext_resource type="Script" uid="uid://bewgn3fvaomqf" path="res://Resources/trade_resources/tool_trade_resource.gd" id="1_7vcwm"]
+[ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="1_djb7p"]
+[ext_resource type="Resource" uid="uid://hhbdsyhiyr2h" path="res://Resources/tool_resources/Pickaxe.tres" id="3_qt3kn"]
+
+[sub_resource type="Resource" id="Resource_amti4"]
+script = ExtResource("1_djb7p")
+material_type = 3
+material_amount = 15
+metadata/_custom_type_script = "uid://dh7wpn4dldbbp"
+
+[resource]
+script = ExtResource("1_7vcwm")
+to_tool = ExtResource("3_qt3kn")
+from_material_stack = SubResource("Resource_amti4")
+res_name = "Trade for Pickaxe"
+description = "Trade hide for a pickaxe"
+metadata/_custom_type_script = "uid://bewgn3fvaomqf"

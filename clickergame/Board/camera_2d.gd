@@ -27,10 +27,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if Input.is_action_just_pressed("zoom_in"):
 		zoom += zoom_factor
-		print("Zoom at " + str(zoom))
+#		print("Zoom at " + str(zoom))
 	elif Input.is_action_just_pressed("zoom_out"):
 		zoom -= zoom_factor 
-		print("Zoom at " + str(zoom))
+#		print("Zoom at " + str(zoom))
 		
 	if zoom > max_zoom:
 		zoom = max_zoom
@@ -44,13 +44,13 @@ func _physics_process(delta: float) -> void:
 	if move_velocity != Vector2.ZERO:
 		move_pos = position
 		position += move_velocity	
-		print("Camera to " + str(position))
+#		print("Camera to " + str(position))
 	elif abs(pos_delta) > Vector2.ONE * 10:
-		print("Camera deltaing by " + str(pos_delta))
+#		print("Camera deltaing by " + str(pos_delta))
 		var movement =  pos_delta * delta * camera_speed
 		#move_pos = move_pos - movement
 		position += movement
-		print("Camera to " + str(position))
+#		print("Camera to " + str(position))
 
 
 func get_velocity():

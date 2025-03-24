@@ -5,7 +5,7 @@ signal building_unlocked
 signal job_unlocked
 signal tech_unlocked
 
-enum building_types {UNDEFINED = -1, CAMPFIRE = 1, TENT = 5, LOGCABIN = 6}
+enum building_types {UNDEFINED = -1, CAMPFIRE = 1, TENT = 5, LOGCABIN = 6, WELL = 7, TIPI=9}
 enum job_types {UNDEFINED = -1, CREATE}
 enum tech_types {UNDEFINED = -1, JOB_UNLOCK, IMPROVE_CREATE_JOB}
 
@@ -13,6 +13,8 @@ var TENT = load("res://Resources/building_resources/tent.tres")
 var LOGCABIN = load("res://Resources/building_resources/logcabin.tres")
 var RESEARCH_ICON = preload("res://3rd Party/assets/icons/flask_half.png")
 const CAMPFIRE = preload("res://Resources/building_resources/campfire.tres")
+const WELL = preload("res://Resources/building_resources/well.tres")
+const TIPI = preload("res://Resources/building_resources/tipi.tres")
 
 var unlocked_jobs_by_building: Dictionary[building_types, Array] = {}
 var unlocked_tech_by_building: Dictionary[building_types, Array] = {}
@@ -24,6 +26,10 @@ func get_resource_from_building_type(type:building_types) -> building_resource:
 			return LOGCABIN
 		building_types.CAMPFIRE:
 			return CAMPFIRE
+		building_types.WELL:
+			return WELL
+		building_types.TIPI:
+			return TIPI
 	return  null
 	
 func build(build_type: building_types):

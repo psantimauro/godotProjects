@@ -5,15 +5,18 @@ extends Node2D
 
 func _hax():
 	BuildingManager.unlock_building(BuildingManager.building_types.CAMPFIRE)	
-#	BuildingManager.unlock_building(BuildingManager.building_types.TENT)	
-#	BuildingManager.unlock_building(BuildingManager.building_types.LOGCABIN)	
+	
+	BuildingManager.unlock_building(BuildingManager.building_types.WELL)	
+	BuildingManager.unlock_building(BuildingManager.building_types.TENT)	
+	BuildingManager.unlock_building(BuildingManager.building_types.LOGCABIN)	
+	
 	ToolManager.unlock_tool(ToolManager.tool_types.AXE)
 #	ToolManager.unlock_tool(ToolManager.tool_types.PICKAXE)
 	
-#	InventoryManager.add_material(InventoryManager.material_types.HIDE, 100)
-#	InventoryManager.add_material(InventoryManager.material_types.WOOD, 100)
-#	InventoryManager.add_material(InventoryManager.material_types.MEAT, 100)
-#	InventoryManager.add_material(InventoryManager.material_types.STONE, 100)
+	InventoryManager.add_material(InventoryManager.material_types.HIDE, 100)
+	InventoryManager.add_material(InventoryManager.material_types.WOOD, 100)
+	InventoryManager.add_material(InventoryManager.material_types.MEAT, 100)
+	InventoryManager.add_material(InventoryManager.material_types.STONE, 100)
 	
 func init_quests():
 	for quest in QuestManager.firstquest_res_array:
@@ -38,8 +41,8 @@ func _ready():
 	Globals.empty_tile_selected.connect(_on_empty_tile_selected)
 	Globals.resource_clicked.connect(_on_resource_click)
 	game_hud.action_container.build_menu.build_button_clicked.connect(_on_build_menu_build_button_clicked)
-	init_quests()
-	show_intro_message()
+#	init_quests()
+#	show_intro_message()
 	_hax()
 
 func pickup(_type):

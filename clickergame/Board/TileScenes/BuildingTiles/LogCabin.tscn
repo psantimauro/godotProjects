@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bdd6pkay5f1fx" path="res://Board/TileScenes/BuildingTiles/buildingbase.gd" id="1_0u0pv"]
 [ext_resource type="Texture2D" uid="uid://dkmu3xinv76up" path="res://assets/building-128_scaled.png" id="2_0u0pv"]
-[ext_resource type="Script" uid="uid://cqfvj4hguhqfu" path="res://Board/TileScenes/BuildingTiles/research_job_controller.gd" id="5_0u0pv"]
+[ext_resource type="Script" uid="uid://cqfvj4hguhqfu" path="res://Board/TileScenes/BuildingTiles/research_controller.gd" id="5_0u0pv"]
 [ext_resource type="Script" uid="uid://cxw0vopv4dv8p" path="res://Board/TileScenes/BuildingTiles/BuildingTechs/research_gui.gd" id="6_030k7"]
 [ext_resource type="Script" uid="uid://cc87yi8int4vu" path="res://Board/TileScenes/BuildingTiles/BuildingJobs/work_gui.gd" id="7_6of43"]
 [ext_resource type="Texture2D" uid="uid://6we2oh8s3v1l" path="res://3rd Party/assets/icons/blunt_tools.png" id="7_8q8y0"]
-[ext_resource type="Script" uid="uid://ua21c6lea4e4" path="res://Board/TileScenes/BuildingTiles/building_job_controller.gd" id="8_6jx2q"]
+[ext_resource type="Script" uid="uid://ua21c6lea4e4" path="res://Board/TileScenes/BuildingTiles/job_controller.gd" id="8_6jx2q"]
 [ext_resource type="Texture2D" uid="uid://ryfs7ig8qyqd" path="res://3rd Party/assets/icons/flask_half.png" id="9_83mor"]
 [ext_resource type="PackedScene" uid="uid://7wcueac35g2m" path="res://timer_progress_bar.tscn" id="9_tvnri"]
 [ext_resource type="PackedScene" uid="uid://b50032krtq22q" path="res://clickable_timer_progress_bar.tscn" id="10_r5fjj"]
@@ -16,7 +16,8 @@ script = ExtResource("1_0u0pv")
 type = 6
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(3, -195)
+position = Vector2(-3, -150)
+scale = Vector2(0.719998, 0.719998)
 texture = ExtResource("2_0u0pv")
 
 [node name="ProgressBar" parent="." instance=ExtResource("9_tvnri")]

@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6roibiqbu3ei"]
+
+[ext_resource type="Texture2D" uid="uid://31bav4vxglvd" path="res://assets/Well.png" id="1_upt3f"]
+[ext_resource type="Script" uid="uid://cqc2h8oap55tc" path="res://Board/TileScenes/BuildingTiles/Well/well.gd" id="1_whpw6"]
+[ext_resource type="PackedScene" uid="uid://b50032krtq22q" path="res://clickable_timer_progress_bar.tscn" id="3_rivf2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rivf2"]
+bg_color = Color(0.257469, 0.652193, 0.798686, 1)
+
+[node name="Well" type="Node2D"]
+script = ExtResource("1_whpw6")
+
+[node name="FillBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(5, 100)
+offset_left = 44.0
+offset_top = -31.0
+offset_right = 64.0
+offset_bottom = 69.0
+scale = Vector2(0.39645, 0.383963)
+theme_override_styles/fill = SubResource("StyleBoxFlat_rivf2")
+value = 80.0
+fill_mode = 3
+show_percentage = false
+
+[node name="FillTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3, -90)
+scale = Vector2(0.468856, 0.468856)
+texture = ExtResource("1_upt3f")
+
+[node name="ClickableTimerProgressBar" parent="." instance=ExtResource("3_rivf2")]
+visible = false
+position = Vector2(-32, 15)
+scale = Vector2(0.719999, 0.719999)
+run_time = 2.0
+
+[connection signal="timeout" from="FillTimer" to="." method="_on_timer_timeout"]

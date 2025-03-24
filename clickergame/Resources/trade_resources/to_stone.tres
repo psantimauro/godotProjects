@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="material_trade_resource" load_steps=5 format=3 uid="uid://g7fecv6i66y3"]
+
+[ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="1_b7fdx"]
+[ext_resource type="Script" uid="uid://y7ma6kavjx6t" path="res://Resources/trade_resources/material_trade_resource.gd" id="2_y0tew"]
+
+[sub_resource type="Resource" id="Resource_aas65"]
+script = ExtResource("1_b7fdx")
+material_type = 3
+material_amount = 10
+metadata/_custom_type_script = "uid://dh7wpn4dldbbp"
+
+[sub_resource type="Resource" id="Resource_b7fdx"]
+script = ExtResource("1_b7fdx")
+material_type = 2
+material_amount = 7
+metadata/_custom_type_script = "uid://dh7wpn4dldbbp"
+
+[resource]
+script = ExtResource("2_y0tew")
+to_material_stack = SubResource("Resource_b7fdx")
+from_material_stack = SubResource("Resource_aas65")
+res_name = "Trade for stone"
+description = ""
+metadata/_custom_type_script = "uid://y7ma6kavjx6t"

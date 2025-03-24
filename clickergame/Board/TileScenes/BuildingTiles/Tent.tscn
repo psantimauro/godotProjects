@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://d045q1v4j16th" path="res://3rd Party/assets/icons/tent_leather.png" id="2_os5s2"]
 [ext_resource type="Script" uid="uid://cxw0vopv4dv8p" path="res://Board/TileScenes/BuildingTiles/BuildingTechs/research_gui.gd" id="3_7t00a"]
 [ext_resource type="Texture2D" uid="uid://ryfs7ig8qyqd" path="res://3rd Party/assets/icons/flask_half.png" id="4_2d1w4"]
-[ext_resource type="Script" uid="uid://ua21c6lea4e4" path="res://Board/TileScenes/BuildingTiles/building_job_controller.gd" id="4_5t152"]
+[ext_resource type="Script" uid="uid://ua21c6lea4e4" path="res://Board/TileScenes/BuildingTiles/job_controller.gd" id="4_5t152"]
 [ext_resource type="Script" uid="uid://cc87yi8int4vu" path="res://Board/TileScenes/BuildingTiles/BuildingJobs/work_gui.gd" id="4_88ryu"]
 [ext_resource type="Texture2D" uid="uid://6we2oh8s3v1l" path="res://3rd Party/assets/icons/blunt_tools.png" id="6_os5s2"]
-[ext_resource type="Script" uid="uid://cqfvj4hguhqfu" path="res://Board/TileScenes/BuildingTiles/research_job_controller.gd" id="7_dnrsm"]
+[ext_resource type="Script" uid="uid://cqfvj4hguhqfu" path="res://Board/TileScenes/BuildingTiles/research_controller.gd" id="7_dnrsm"]
 [ext_resource type="PackedScene" uid="uid://b50032krtq22q" path="res://clickable_timer_progress_bar.tscn" id="10_rfudi"]
 
 [node name="Tent" type="Node2D"]
@@ -28,6 +28,7 @@ script = ExtResource("4_5t152")
 
 [node name="BuildingInterfaceItems" type="Control" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -35,7 +36,6 @@ offset_bottom = 40.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Job" type="MarginContainer" parent="BuildingInterfaceItems"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

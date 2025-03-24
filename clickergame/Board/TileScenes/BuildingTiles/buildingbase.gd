@@ -22,7 +22,6 @@ var unlocked_tech:Array[base_tech_resource] = []
 
 func _ready() -> void:
 	add_to_group(Globals.get_name_from_type(group_type, TileManager.tile_types))
-	await clickable_timer_progress_bar
 	BuildingManager.job_unlocked.connect(_on_job_unlocked)
 	BuildingManager.tech_unlocked.connect(_on_tech_unlocked)
 	for job in BuildingManager.unlocked_jobs_by_building[type]:

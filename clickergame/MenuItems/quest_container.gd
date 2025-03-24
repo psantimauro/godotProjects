@@ -2,6 +2,7 @@ extends PanelContainer
 
 @onready var quest_list: VBoxContainer = $VBoxContainer/QuestList
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var quest_counter: Label = $"VBoxContainer/HBoxContainer/Quest Counter"
 
 func _ready() -> void:
 	QuestManager.quest_status_changed.connect(_on_quest_status_changed)
@@ -15,6 +16,9 @@ func _on_quest_status_changed(quest, status: QuestManager.quest_status_types, de
 			update_quest(name, description)
 		QuestManager.quest_status_types.COMPLETED:
 			audio_stream_player_2d.play()
+			var count = QuestManager.completed_quest_count
+			if count > 0:
+				quest_counter.text = "Completed: " + str(count)
 			remove_quest(name)
 	check_view_hide()
 

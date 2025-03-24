@@ -40,7 +40,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				Globals.resource_clicked.emit()
 			elif TileManager.IsTypePickup(type):
 				selected_game_tile.pickup()
-			elif TileManager.IsTypeBuilding(type):
+			elif TileManager.IsTypeBuilding(type) || TileManager.IsTypeTrader(type):
 				camera_2d.move_to(global_map_postiion_from_click_position)
 				selected_game_tile.click()
 			#	selection_indictor.visible = false
@@ -59,13 +59,15 @@ func _unhandled_input(event: InputEvent) -> void:
 func generate_game_board():
 	var x_min = -x_size
 	var y_min = -y_size
-	for x in range (x_min, x_size):
-		for y in range(y_min, y_size):
+	for x in range (x_min, x_size+ 1):
+		for y in range(y_min, y_size+ 1):
 			var cords = (Vector2i(x,y))
 			ground_layer.set_cell(cords,RESOURCE,SCENE_COLLECTION,TileManager.tiles.GRASS)
 			
 			if x == 0 and y== 0:
 				game_layer.set_cell(cords,PICKUP,SCENE_COLLECTION,TileManager.tiles.PICKUP)
+			elif x==0 and y ==1:
+				game_layer.set_cell(cords, BUILDING,SCENE_COLLECTION, TileManager.tiles.TIPI)
 			else:
 				var dice = randi_range(1,6) 
 				if dice == TileManager.tiles.TREE or  dice-1 == TileManager.tiles.TREE:
@@ -130,6 +132,11 @@ func _on_regeneration_timer_timeout():
 		if dice == 1 or  dice == 2:
 			generated = true
 			game_layer.set_cell(coords,RESOURCE,SCENE_COLLECTION,TileManager.tiles.TREE)
+		elif dice == 3:
+			var traders = get_tree().get_nodes_in_group("Trader")
+			if traders.size() == 0:
+				game_layer.set_cell(coords, BUILDING,SCENE_COLLECTION, TileManager.tiles.TIPI)
+				Globals.display_message_with_title.emit("Find the Tipi and on the map and select it to interact.", "A new trader arrived!")
 		elif dice == 5:
 			generated = true
 			game_layer.set_cell(coords,ANIMAL,SCENE_COLLECTION,TileManager.tiles.DEER)

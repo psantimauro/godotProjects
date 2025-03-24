@@ -51,7 +51,7 @@ func start_fire():
 			sprite_2d.texture = CAMPFIRE
 			break
 	if !has_materials:
-		BuildingManager.display_message_with_title.emit("Get more wood, and click to restart", "No more wood to run Campfire")
+		Globals.display_message_with_title.emit("Get more wood, and click to restart", "No more wood to run Campfire")
 		
 func position_adjacent(pos_vect) -> bool:
 	var adj = false

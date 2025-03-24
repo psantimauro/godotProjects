@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="material_resource" load_steps=3 format=3 uid="uid://de61wbyh3b6qa"]
+
+[ext_resource type="Script" uid="uid://bv2bf7dad00vw" path="res://Resources/material_resources/material_resource.gd" id="1_rkygo"]
+[ext_resource type="Texture2D" uid="uid://bqna03q6ucjdh" path="res://assets/water drop.png" id="2_5x5u2"]
+
+[resource]
+script = ExtResource("1_rkygo")
+maxAmount = 100
+res_type = 5
+current_amount = 0
+res_name = "Water"
+texture = ExtResource("2_5x5u2")
+description = "Good old fashion Hydrogen Dioxide"
+metadata/_custom_type_script = "uid://bv2bf7dad00vw"

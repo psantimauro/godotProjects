@@ -10,7 +10,6 @@ func _ready() -> void:
 	InventoryManager.material_amount_updated.connect(_on_material_amount_updated)
 	InventoryManager.new_material_unlocked.connect(_on_material_unlocked)
 	ToolManager.tool_unlocked.connect(_on_tool_unlocked)
-	QuestManager.quest_status_changed.connect(_on_quest_status_changed)
 
 func _on_material_amount_updated(type:InventoryManager.material_types, amount):
 	total_materials.visible = true
@@ -45,11 +44,4 @@ func _on_tool_unlocked(tool: tool_resource):
 	#new_sprite.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	#tools.add_child(new_sprite)
 
-#TODO this should be extrated to a GameManager or somewhere were it can serialize
-var count = 0
-func _on_quest_status_changed(quest:QuestResource, status:QuestManager.quest_status_types, description):
-	if status == QuestManager.quest_status_types.COMPLETED:
-		count += 1
-		
-		quest_counter.text = "Quests: " + str(count)
 	

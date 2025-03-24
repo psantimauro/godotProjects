@@ -4,7 +4,7 @@ extends Node
 @export var type:TileManager.tiles
 
 @export var yield_materials: Array[material_stack] = []
-@export var max_health = 10
+@export var max_health = 3
 @export var time = 1.0
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var missed: Label = $Missed
@@ -23,11 +23,11 @@ func _ready():
 
 		
 func click():
-	health_bar.show()
 	var dice = randi_range(1,6)
 	var hit = false
 	if dice >=5:
 		health -= 1
+		health_bar.show()
 		if health < 1:
 			for stack:material_stack in yield_materials:
 				InventoryManager.add_material_stack(stack)

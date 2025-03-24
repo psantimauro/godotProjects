@@ -1,0 +1,4 @@
+class_name material_trade_resource
+extends base_trade_resource
+
+@export var to_material_stack: material_stack

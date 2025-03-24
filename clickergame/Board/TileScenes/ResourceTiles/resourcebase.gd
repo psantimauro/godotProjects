@@ -22,7 +22,7 @@ func _ready():
 func click():
 	if ToolManager.has_tool(required_tool_type) and progbar.is_stopped():
 		ToolManager.use_tool(required_tool_type)
-		$HealthBar.visible = true
+		
 		clicked.emit()
 		var tool_res = ToolManager.get_resource_from_tool_type(required_tool_type)
 		progbar.texture = tool_res.texture
@@ -34,11 +34,13 @@ func _process(_delta: float) -> void:
 	progbar.value += $ProgressBar.value
 
 func _on_progress_bar_done() -> void:
+	
 	phase_complete.emit()
 	progbar.show_percentage = false
 	
 	var power = ToolManager.get_tool_stregth(required_tool_type)
 	health -= (1 * power)
+	$HealthBar.visible = true
 	$Label.text = str(health)
 	var bar =  self.find_child("HealthBar")
 	var new_val =  ((_max_health-health)/_max_health) * 100

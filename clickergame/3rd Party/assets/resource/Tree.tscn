@@ -1,12 +1,12 @@
 [gd_scene load_steps=5 format=3 uid="uid://bvnjicxtudbtp"]
 
-[ext_resource type="Script" uid="uid://cifnqolrwwb2a" path="res://Board/TileScenes/ResourceTiles/resourcebase.gd" id="1_a8p40"]
-[ext_resource type="Texture2D" uid="uid://b53mepp2y6gy4" path="res://3rd Party/assets/resource/treePineSmall_W.png" id="2_m4oly"]
-[ext_resource type="PackedScene" uid="uid://7wcueac35g2m" path="res://timer_progress_bar.tscn" id="3_u444a"]
-[ext_resource type="Theme" uid="uid://cyppchc1lky3m" path="res://main_theme.tres" id="4_k1avq"]
+[ext_resource type="Script" uid="uid://cifnqolrwwb2a" path="res://Board/TileScenes/ResourceTiles/resourcebase.gd" id="1_d5bor"]
+[ext_resource type="Texture2D" uid="uid://b53mepp2y6gy4" path="res://3rd Party/assets/resource/treePineSmall_W.png" id="2_sjnby"]
+[ext_resource type="PackedScene" uid="uid://7wcueac35g2m" path="res://timer_progress_bar.tscn" id="3_58ivc"]
+[ext_resource type="Theme" uid="uid://cfvabtb858o0t" path="res://main_theme.tres" id="4_facfh"]
 
 [node name="Tree" type="Node2D"]
-script = ExtResource("1_a8p40")
+script = ExtResource("1_d5bor")
 type = 4
 yield_amount = 1
 time = 0.5
@@ -15,13 +15,14 @@ yield_type = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1, -194)
-texture = ExtResource("2_m4oly")
+texture = ExtResource("2_sjnby")
 
-[node name="ProgressBar" parent="." instance=ExtResource("3_u444a")]
+[node name="ProgressBar" parent="." instance=ExtResource("3_58ivc")]
 offset_left = -24.0
 offset_top = 36.0
 offset_right = -20.0
 offset_bottom = 63.0
+show_percentage = false
 
 [node name="Label" type="Label" parent="."]
 visible = false
@@ -38,6 +39,6 @@ offset_top = -81.0
 offset_right = 37.0
 offset_bottom = -54.0
 mouse_filter = 2
-theme = ExtResource("4_k1avq")
+theme = ExtResource("4_facfh")
 
 [connection signal="done" from="ProgressBar" to="." method="_on_progress_bar_done"]

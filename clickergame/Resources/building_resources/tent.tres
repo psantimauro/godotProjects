@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cdxqjk11h8x1b" path="res://Resources/building_resources/building_resource.gd" id="1_fyo1o"]
 [ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="1_h7h4u"]
+[ext_resource type="Texture2D" uid="uid://d045q1v4j16th" path="res://3rd Party/assets/icons/tent_leather.png" id="3_pe4j5"]
 [ext_resource type="Script" uid="uid://8h33mrv2w63u" path="res://Resources/building_resources/job_resources/base_job_resource.gd" id="4_pe4j5"]
-[ext_resource type="Texture2D" uid="uid://cego2qo7j522v" path="res://assets/tent-128.png" id="5_5kuxf"]
 [ext_resource type="Resource" uid="uid://fm28i4ehcmo5" path="res://Resources/building_resources/job_resources/create_jobs/Hide_Create.tres" id="5_pe4j5"]
 [ext_resource type="Resource" uid="uid://dt4qym08bn1m3" path="res://Resources/building_resources/job_resources/create_jobs/Meat_Create.tres" id="6_grx47"]
 [ext_resource type="Script" uid="uid://bufk5xl2weix7" path="res://Resources/building_resources/tech_resources/base_tech_resource.gd" id="7_jyrwd"]
@@ -30,5 +30,5 @@ unlocked_jobs = Array[ExtResource("4_pe4j5")]([ExtResource("10_p1ui3")])
 unlockable_tech = Array[ExtResource("7_jyrwd")]([ExtResource("8_k0vf7"), ExtResource("9_jyrwd")])
 unlocked_tech = Array[ExtResource("7_jyrwd")]([])
 res_name = "tent"
-texture = ExtResource("5_5kuxf")
+texture = ExtResource("3_pe4j5")
 description = "A simple shelter from the elements"

@@ -3,12 +3,14 @@ extends Node
 signal material_amount_updated
 signal new_material_unlocked
 
-enum material_types {UNDEFINED = -1, WOOD = 1, STONE = 2, HIDE = 3, MEAT = 4}
+enum material_types {UNDEFINED = -1, WOOD = 1, STONE = 2, HIDE = 3, MEAT = 4, WATER = 5}
 
 const WOOD = preload("res://Resources/material_resources/wood.tres")
 const MEAT = preload("res://Resources/material_resources/meat.tres")
 const HIDE = preload("res://Resources/material_resources/hide.tres")
 const STONE = preload("res://Resources/material_resources/stone.tres")
+const WATER = preload("res://Resources/material_resources/water.tres")
+
 func get_resource_from_material_type(type):
 	match type:
 		WOOD.res_type:
@@ -19,6 +21,8 @@ func get_resource_from_material_type(type):
 			return HIDE
 		STONE.res_type:
 			return STONE
+		WATER.res_type:
+			return WATER
 
 var materials_dict = {}
 var total_materials = 0
