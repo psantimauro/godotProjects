@@ -10,6 +10,9 @@ const TO_STONE = preload("res://Resources/trade_resources/to_stone.tres")
 const TO_WOOD = preload("res://Resources/trade_resources/to_wood.tres")
 const TRADE_PICKAXE = preload("res://Resources/trade_resources/trade_pickaxe.tres")
 
+@onready var trade: Trade = $TipiInterfaceItems/Trade
+@onready var despawn_timer: Timer = $DespawnTimer
+
 func _ready():
 	add_to_group(Globals.get_name_from_type(group_type, TileManager.tile_types))
 	var has_items = []
@@ -22,7 +25,7 @@ func _ready():
 		has_items.append(TRADE_PICKAXE)
 	else:
 		has_items.append(avail_items[2])
-	var trade = %TipiInterfaceItems.get_child(0)
+
 	for item in has_items:
 		trade.add_trade_button(item)
 
@@ -30,6 +33,7 @@ func assist_building(amount):
 	pass 
 
 func click():
+	despawn_timer.start()
 	selected.emit(self)
 
 func generate_building_action_menu():
@@ -39,6 +43,7 @@ func generate_building_action_menu():
 		var button_container = VBoxContainer.new()
 		button_container.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		button_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		
 		var new_label = Label.new()
 		new_label.text = item.name
 		button_container.add_child(new_label)
@@ -54,3 +59,7 @@ func generate_building_action_menu():
 		action_menu.add_child(button_container)
 	return action_menu
 	
+
+
+func _on_despawn_timer_timeout() -> void:
+	self.queue_free()

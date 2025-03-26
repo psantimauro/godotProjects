@@ -27,8 +27,6 @@ layout_mode = 0
 offset_right = 100.0
 offset_bottom = 50.0
 script = ExtResource("3_obmip")
-trade_arrow = null
-trade_arrow_size = null
 
 [node name="TradeContainer" type="VBoxContainer" parent="TipiInterfaceItems/Trade"]
 layout_mode = 2
@@ -76,3 +74,9 @@ offset_top = 10.0
 offset_right = 49.0
 offset_bottom = 33.0
 text = "5"
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 45.0
+one_shot = true
+
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

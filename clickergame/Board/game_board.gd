@@ -66,8 +66,8 @@ func generate_game_board():
 			
 			if x == 0 and y== 0:
 				game_layer.set_cell(cords,PICKUP,SCENE_COLLECTION,TileManager.tiles.PICKUP)
-			elif x==0 and y ==1:
-				game_layer.set_cell(cords, BUILDING,SCENE_COLLECTION, TileManager.tiles.TIPI)
+			#elif x==0 and y ==1:
+			#	game_layer.set_cell(cords, BUILDING,SCENE_COLLECTION, TileManager.tiles.TIPI)
 			else:
 				var dice = randi_range(1,6) 
 				if dice == TileManager.tiles.TREE or  dice-1 == TileManager.tiles.TREE:

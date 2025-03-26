@@ -41,4 +41,6 @@ func get_cell_scene(coords: Vector2i) -> Node:
 	if scene_coords.has(coords) and  scene_coords[coords] != null:
 		return scene_coords[coords]
 	return null
-	
+
+func has_child_at(coords):
+	return scene_coords.h
