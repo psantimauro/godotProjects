@@ -7,10 +7,10 @@
 
 [node name="Tree" type="Node2D"]
 script = ExtResource("1_d5bor")
+group_type = 1
 type = 4
 yield_amount = 1
 time = 0.5
-required_tool_type = 1
 yield_type = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -6,8 +6,10 @@
 
 [resource]
 script = ExtResource("1_is6ce")
-res_name = "pickaxe"
-texture = ExtResource("2_515ws")
 strength = 1.0
 res_type = 2
 tool_sound = ExtResource("3_wo5qo")
+usage = 1
+res_name = "pickaxe"
+texture = ExtResource("2_515ws")
+description = "Gold soon"

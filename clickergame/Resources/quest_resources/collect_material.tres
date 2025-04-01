@@ -1,0 +1,69 @@
+[gd_resource type="Resource" script_class="QuestResource" load_steps=15 format=3 uid="uid://bufc7ce1mh3js"]
+
+[ext_resource type="Script" uid="uid://d4gmb2nftapl5" path="res://addons/questify/scripts/model/quest_edge.gd" id="1_qyadi"]
+[ext_resource type="Script" uid="uid://cyotfkardp6i" path="res://addons/questify/scripts/model/quest_condition.gd" id="2_5kg7g"]
+[ext_resource type="Script" uid="uid://c23wdreelkkg4" path="res://addons/questify/scripts/model/quest_objective.gd" id="3_2e4nm"]
+[ext_resource type="Script" uid="uid://650crvoj707i" path="res://addons/questify/scripts/model/quest_end.gd" id="4_mfdf3"]
+[ext_resource type="Script" uid="uid://dtbofow3tdngk" path="res://addons/questify/scripts/model/quest_start.gd" id="5_nwpha"]
+[ext_resource type="Script" uid="uid://b37aev4imc074" path="res://addons/questify/scripts/model/quest_node.gd" id="6_b0gvq"]
+[ext_resource type="Script" uid="uid://bhqxygnm6kw4n" path="res://addons/questify/scripts/model/quest_resource.gd" id="7_bpl2g"]
+
+[sub_resource type="Resource" id="Resource_qyadi"]
+script = ExtResource("2_5kg7g")
+type = "material_multi"
+key = "{mat}"
+id = "mrFjytVznK"
+optional = false
+graph_editor_position = Vector2(-2540, 80)
+graph_editor_size = Vector2(377, 309)
+metadata/value = 10.0
+
+[sub_resource type="Resource" id="Resource_5kg7g"]
+script = ExtResource("3_2e4nm")
+description = "Get {amount}  more {mat}!"
+id = "_ehk9YCUGk"
+optional = false
+graph_editor_position = Vector2(-2040, -140)
+graph_editor_size = Vector2(468, 539)
+metadata/reward_type = "achievement"
+
+[sub_resource type="Resource" id="Resource_2e4nm"]
+script = ExtResource("1_qyadi")
+from = SubResource("Resource_qyadi")
+to = SubResource("Resource_5kg7g")
+edge_type = 1
+
+[sub_resource type="Resource" id="Resource_mfdf3"]
+script = ExtResource("4_mfdf3")
+id = "Dz6RTShssH"
+optional = false
+graph_editor_position = Vector2(-1480, -160)
+graph_editor_size = Vector2(141, 78)
+
+[sub_resource type="Resource" id="Resource_nwpha"]
+script = ExtResource("1_qyadi")
+from = SubResource("Resource_5kg7g")
+to = SubResource("Resource_mfdf3")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_b0gvq"]
+script = ExtResource("5_nwpha")
+name = "Collect {mat}"
+description = "Get {amount}"
+id = "ZdC__VfMmI"
+optional = false
+graph_editor_position = Vector2(-3080, -320)
+graph_editor_size = Vector2(420, 540)
+metadata/material = "{mat}"
+metadata/quest_type = "collect"
+
+[sub_resource type="Resource" id="Resource_bpl2g"]
+script = ExtResource("1_qyadi")
+from = SubResource("Resource_b0gvq")
+to = SubResource("Resource_5kg7g")
+edge_type = 0
+
+[resource]
+script = ExtResource("7_bpl2g")
+nodes = Array[ExtResource("6_b0gvq")]([SubResource("Resource_mfdf3"), SubResource("Resource_qyadi"), SubResource("Resource_b0gvq"), SubResource("Resource_5kg7g")])
+edges = Array[ExtResource("1_qyadi")]([SubResource("Resource_2e4nm"), SubResource("Resource_nwpha"), SubResource("Resource_bpl2g")])

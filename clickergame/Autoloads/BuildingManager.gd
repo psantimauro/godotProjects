@@ -70,14 +70,14 @@ func unlock_building(build_type: building_types):
 		job_unlocked.emit(j, build_type)
 	for t in res.unlocked_tech:
 		new_tech.append(t)
-		tech_unlocked.emit(t)
+		tech_unlocked.emit(t, build_type)
 	unlocked_jobs_by_building[build_type] = new_jobs
 	unlocked_tech_by_building[build_type] = new_tech
 	unlocked_buildings[build_type] = res
 	
 	for item in unlocked_jobs_by_building[build_type]:
 		unlock_job_for_building(item,build_type)
-func unlock_job_for_building(job: base_job_resource, building:building_types, include_new_improvement_research = true):
+func unlock_job_for_building(job: base_job_resource, building:building_types, include_new_improvement_research = false):
 	var found = false
 	for j:base_job_resource in unlocked_jobs_by_building[building]:
 		if job.res_name == j.res_name:
@@ -96,17 +96,47 @@ func unlock_job_for_building(job: base_job_resource, building:building_types, in
 func unlock_job_by_tech(tech, building):
 	var job = tech.unlocked_job
 	unlock_job_for_building(job, building)
+func get_job_from_material(material_name: String) -> String:
+	var job_type_name  = ""
+	match material_name:
+		"wood":
+			job_type_name = "Lumberjack"
+		"hide":
+			job_type_name = "Trapping"
+		"meat":
+			job_type_name = "Hunt and Gather"
+		"stone":
+			job_type_name = "Mine Stone"
+		_:
+			print("no match found!!!")
+	return job_type_name
+func unlock_mat_create_job_for_building_by_mat_name(building: building_types, material_name:String):
 
-func unlock_job_for_building_by_name(building: building_types, job_type_name:String):
+			
 	var building_res: building_resource = get_resource_from_building_type(building)
 	for job in building_res.unlockable_jobs:
-		if job.res_name == job_type_name:
+		var converted = get_job_from_material(material_name)
+		var job_name = job.res_name
+		if job_name == converted:
 			unlock_job_for_building(job, building)
+
+func unlocked_improve_job_tech_for_building_by_material_name(building: building_types, incoming_material_name:String):
+	var building_res: building_resource = get_resource_from_building_type(building)
+	for job in building_res.unlockable_jobs:
+		var job_material_name = Globals.get_name_from_type(job.job_result[0].material_type, InventoryManager.material_types)
+		if  job_material_name == incoming_material_name:
+			var improvement_tech = job_improve_tech.new()
+			improvement_tech.repeatable = true
+			improvement_tech.improve_job = job
+			improvement_tech.tech_type = tech_types.IMPROVE_CREATE_JOB
+			improvement_tech.resource_name = "Improve " + job.res_name + ".  This technology is repeatable."
+			unlocked_tech_for_building_no_check(building, improvement_tech)
 
 func unlocked_tech_for_building_no_check(building, tech):
 	var building_res: building_resource = get_resource_from_building_type(building)
 	tech_unlocked.emit(tech, building)
 	unlocked_tech_by_building[building].append(tech)
+	
 func unlocked_tech_for_building(building: building_types, tech_name):
 	var building_res: building_resource = get_resource_from_building_type(building)
 	var i = 0
@@ -115,31 +145,16 @@ func unlocked_tech_for_building(building: building_types, tech_name):
 		
 	for tech in building_res.unlockable_tech:
 		if tech.res_name == tech_name:
-			building_res.unlocked_tech.append(tech)
+			#building_res.unlocked_tech.append(tech)
+			unlocked_tech_by_building[building].append(tech)
 			tech_unlocked.emit(tech, building)
 			found_at = i
 		i += 1
 	if found_at > -1:
-		building_res.unlockable_tech.remove_at(found_at)
+		#building_res.unlockable_tech.remove_at(found_at)
 		return true
 	return false
 	
-func unlock_research(tech:base_tech_resource) -> bool:
-	var res: building_resource = get_resource_from_building_type(tech.required_building)
-	var i = 0
-	var found_at = -1
-	var item = null
-	for u_t in res.unlockable_tech:
-		if u_t.res_name == tech.res_name:
-			res.unlocked_tech.append(tech)
-			found_at = i
-		i += 1
-	if found_at > -1:
-		res.unlockable_tech.remove_at(found_at)
-		tech_unlocked.emit()
-		return true
-	return false
-
 func get_unlocked_research_by_building_type(type: BuildingManager.building_types) ->  Array[base_tech_resource]:
 	var res: building_resource = get_resource_from_building_type(type)
 	return res.unlocked_tech

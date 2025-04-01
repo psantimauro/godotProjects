@@ -27,10 +27,20 @@ func get_resource_from_material_type(type):
 var materials_dict = {}
 var total_materials = 0
 func has_material(name: String, amount: int) -> bool:
+	var has = false
 	var stack = material_stack.new()
-	stack.material_type =  Globals.get_type_from_name(name, material_types)
-	stack.material_amount = amount
-	return has_material_stack(stack)
+	if name != "any":
+		stack.material_type =  Globals.get_type_from_name(name, material_types)
+		stack.material_amount = amount
+		has = has_material_stack(stack)
+	else:
+		for key in materials_dict.keys():
+			stack.material_type =  key
+			stack.material_amount = amount
+			has = has_material_stack(stack)
+			if has == true:
+				break
+	return has
 	
 func has_material_stack(stack: material_stack) -> bool:
 	return (Globals.haz(materials_dict, stack.material_type) && (materials_dict[stack.material_type].current_amount >= stack.material_amount))

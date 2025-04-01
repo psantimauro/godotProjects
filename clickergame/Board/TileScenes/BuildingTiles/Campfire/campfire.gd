@@ -1,5 +1,6 @@
 class_name CampFire
-extends Node2D
+extends BuildingBase
+
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 @onready var progress_bar: TimerProgressBar = $ProgressBar
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -7,23 +8,18 @@ extends Node2D
 @export var fuel_consuption_rate = 2.5
 @export var  fuel_materials = [InventoryManager.material_types.WOOD]
 @export var fire_multipler = 5.0
-@export var group_type = TileManager.tile_types.BUILDING
-@export var type = BuildingManager.building_types.CAMPFIRE
 var keep_burning = true
 
 const CAMPFIRE = preload("res://3rd Party/assets/icons/campfire.png")
 const WOOD_ASHES = preload("res://3rd Party/assets/icons/wood_ashes.png")
-signal selected
 
 func _ready() -> void:
 	progress_bar.done.connect(_on_timer_complete)
 	await progress_bar.ready
 	progress_bar.start()
-func click():	
+func click(power = 1):	
 	if progress_bar.is_stopped():
 		start_fire()
-	else:
-		pass
 	selected.emit(self)
 	
 func _on_timer_complete():
@@ -78,6 +74,3 @@ func get_position_from_name(name):
 	var parts:Array = name.split("_")
 	if parts.size() > 1:
 		return Globals.pos_string_to_vector2(parts[1])
-		
-func generate_building_action_menu():
-	return null

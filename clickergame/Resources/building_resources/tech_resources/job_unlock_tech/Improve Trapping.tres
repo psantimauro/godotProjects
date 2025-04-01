@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="job_improve_tech" load_steps=5 format=3 uid="uid://bsmowfhsf5iff"]
+
+[ext_resource type="Resource" uid="uid://fm28i4ehcmo5" path="res://Resources/building_resources/job_resources/create_jobs/Trapping.tres" id="1_0xh4g"]
+[ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="2_83bm2"]
+[ext_resource type="Script" uid="uid://biu2pk3nt5tie" path="res://Resources/building_resources/tech_resources/improve_create_job/job_improve_tech.gd" id="3_fx1el"]
+
+[sub_resource type="Resource" id="Resource_v2grk"]
+script = ExtResource("2_83bm2")
+material_type = 4
+material_amount = 10
+metadata/_custom_type_script = "uid://dh7wpn4dldbbp"
+
+[resource]
+script = ExtResource("3_fx1el")
+research_speed = 360.0
+research_cost = Array[ExtResource("2_83bm2")]([SubResource("Resource_v2grk")])
+improve_job = ExtResource("1_0xh4g")
+improve_amount = 1.0
+tech_type = 1
+repeatable = true
+repeat_count = 0
+res_name = "Improve Trapping"
+description = "Trapping is the key to moneys"
+metadata/_custom_type_script = "uid://biu2pk3nt5tie"

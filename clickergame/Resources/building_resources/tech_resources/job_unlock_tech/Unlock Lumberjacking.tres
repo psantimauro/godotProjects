@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="job_unlock_tech" load_steps=5 format=3 uid="uid://cqn7qnpw4mieh"]
+
+[ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="1_ec2sa"]
+[ext_resource type="Script" uid="uid://bnp7y38h3ouct" path="res://Resources/building_resources/tech_resources/job_unlock_tech/job_unlock_tech.gd" id="2_u74kv"]
+[ext_resource type="Resource" uid="uid://bwj46p26xy4al" path="res://Resources/building_resources/job_resources/create_jobs/Lumberjacking.tres" id="3_ec2sa"]
+
+[sub_resource type="Resource" id="Resource_fcav0"]
+script = ExtResource("1_ec2sa")
+material_type = 4
+material_amount = 1
+
+[resource]
+script = ExtResource("2_u74kv")
+research_speed = 1.0
+research_cost = Array[ExtResource("1_ec2sa")]([SubResource("Resource_fcav0")])
+unlocked_job = ExtResource("3_ec2sa")
+tech_type = 0
+repeatable = false
+repeat_count = 0
+res_name = "Trapping"
+description = "Unlocking this technology allows generation of hide"

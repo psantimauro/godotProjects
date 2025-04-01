@@ -62,4 +62,9 @@ func generate_building_action_menu():
 
 
 func _on_despawn_timer_timeout() -> void:
-	self.queue_free()
+	var node = %TipiInterfaceItems.get_child(0)
+	if node == null:
+		despawn_timer.start()
+	else:
+		Globals.display_message_with_title.emit("The trader has packed up and left.", "Trader left")
+		self.queue_free()

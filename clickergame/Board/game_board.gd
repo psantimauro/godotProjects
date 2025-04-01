@@ -18,13 +18,11 @@ const ANIMAL = 3
 var last_board_click = Vector2i.ONE * -1
 
 func _ready() -> void:
-	BuildingManager.building_built.connect(_on_building_build)
+	BuildingManager.building_built.connect(_on_building_built)
 	Globals.clear_selection.connect(_on_selection_cleared)
 	Globals.delete_selected_building.connect(_delete_selected_building)
 	generate_game_board()
 	regeneration_timer.timeout.connect(_on_regeneration_timer_timeout)
-	
-	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if((event is InputEventMouse) and event.is_action_pressed("click")):
@@ -65,9 +63,9 @@ func generate_game_board():
 			ground_layer.set_cell(cords,RESOURCE,SCENE_COLLECTION,TileManager.tiles.GRASS)
 			
 			if x == 0 and y== 0:
-				game_layer.set_cell(cords,PICKUP,SCENE_COLLECTION,TileManager.tiles.PICKUP)
-			#elif x==0 and y ==1:
-			#	game_layer.set_cell(cords, BUILDING,SCENE_COLLECTION, TileManager.tiles.TIPI)
+				game_layer.set_cell(cords,PICKUP,SCENE_COLLECTION,TileManager.tiles.GENERIC_PICKUP)
+			elif x==1 and y ==1:
+				game_layer.set_cell(cords,PICKUP,SCENE_COLLECTION,TileManager.tiles.GENERIC_PICKUP)
 			else:
 				var dice = randi_range(1,6) 
 				if dice == TileManager.tiles.TREE or  dice-1 == TileManager.tiles.TREE:
@@ -78,6 +76,18 @@ func generate_game_board():
 					dice =  randi_range(1,6) 
 					if dice == 6:
 						game_layer.set_cell(cords, ANIMAL, SCENE_COLLECTION, TileManager.tiles.DEER)
+	
+	await get_tree().create_timer(0.01).timeout # this is a hack to get these setup one they are on the board
+	var axe = game_layer.scene_coords[ (Vector2i(0,0))]
+	var image = Globals.resize_texture(64, preload("res://3rd Party/assets/icons/axe.png"))
+	axe.icon = image
+	axe.type = ToolManager.tool_types.AXE
+	
+	var knife = game_layer.scene_coords[ (Vector2i(1,1))]
+	image = Globals.resize_texture(64, preload("res://3rd Party/assets/icons/knife.png"))
+	knife.icon = image
+	knife.type = ToolManager.tool_types.KNIFE
+
 
 func get_last_resource():
 	return get_resource_at_position(last_board_click)
@@ -88,8 +98,7 @@ func clear_last_resource():
 func clear_resource_at_position(pos):
 	game_layer.set_cell(pos,0,SCENE_COLLECTION,-1)
 
-func _on_building_build(building_type):
-#	selection_indictor.visible = !selection_indictor.visible
+func _on_building_built(building_type):
 	var coords =  ground_layer.local_to_map(selection_indictor.position)
 	game_layer.set_cell(coords,BUILDING,SCENE_COLLECTION, building_type)
 
@@ -109,7 +118,6 @@ func resource_destroyed(yielded_resources):
 			InventoryManager.add_material(resource.yield_type, yielded_resources)
 			clear_last_resource()
 
-
 func GetLastClickPosition(event):
 	var board_local_click = ground_layer.make_input_local(event)
 	var board_position = ground_layer.local_to_map(board_local_click.position)
@@ -119,7 +127,6 @@ func GetGlobalClickPosition(event):
 	var board_local_click = ground_layer.make_input_local(event)
 	var board_position = ground_layer.local_to_map(board_local_click.position)
 	return ground_layer.map_to_local(board_position)
-
 
 func _on_regeneration_timer_timeout():
 	var x = randi_range(-x_size, x_size)
@@ -133,10 +140,11 @@ func _on_regeneration_timer_timeout():
 			generated = true
 			game_layer.set_cell(coords,RESOURCE,SCENE_COLLECTION,TileManager.tiles.TREE)
 		elif dice == 3:
-			var traders = get_tree().get_nodes_in_group("Trader")
-			if traders.size() == 0:
-				game_layer.set_cell(coords, BUILDING,SCENE_COLLECTION, TileManager.tiles.TIPI)
-				Globals.display_message_with_title.emit("Find the Tipi and on the map and select it to interact.", "A new trader arrived!")
+			if Globals.traders_unlocked:
+				var traders = get_tree().get_nodes_in_group("Trader")
+				if traders.size() == 0:
+					game_layer.set_cell(coords, BUILDING,SCENE_COLLECTION, TileManager.tiles.TIPI)
+					Globals.display_message_with_title.emit("Find the Tipi and on the map and select it to interact.", "A new trader arrived!")
 		elif dice == 5:
 			generated = true
 			game_layer.set_cell(coords,ANIMAL,SCENE_COLLECTION,TileManager.tiles.DEER)
@@ -144,11 +152,9 @@ func _on_regeneration_timer_timeout():
 			generated = true
 			dice = randi_range(1,6)
 			if dice == 6:
-				game_layer.set_cell(coords,PICKUP,SCENE_COLLECTION,TileManager.tiles.PICKUP)
+				game_layer.set_cell(coords,PICKUP,SCENE_COLLECTION,TileManager.tiles.MUSHROOM)
 	if generated: 
 		regeneration_timer.wait_time = randi_range(5,8)
 	else:
 		regeneration_timer.wait_time = randi_range(3,5)
 	regeneration_timer.start()
-	
-	

@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bduuedwwe4pph"]
 
-[ext_resource type="Script" uid="uid://bdd6pkay5f1fx" path="res://Board/TileScenes/BuildingTiles/buildingbase.gd" id="1_olyqm"]
+[ext_resource type="Script" uid="uid://cgwwdjcmw8ct1" path="res://Board/TileScenes/BuildingTiles/JobBuilding.gd" id="1_os5s2"]
 [ext_resource type="Texture2D" uid="uid://d045q1v4j16th" path="res://3rd Party/assets/icons/tent_leather.png" id="2_os5s2"]
 [ext_resource type="Script" uid="uid://cxw0vopv4dv8p" path="res://Board/TileScenes/BuildingTiles/BuildingTechs/research_gui.gd" id="3_7t00a"]
 [ext_resource type="Texture2D" uid="uid://ryfs7ig8qyqd" path="res://3rd Party/assets/icons/flask_half.png" id="4_2d1w4"]
@@ -10,9 +10,14 @@
 [ext_resource type="Script" uid="uid://cqfvj4hguhqfu" path="res://Board/TileScenes/BuildingTiles/research_controller.gd" id="7_dnrsm"]
 [ext_resource type="PackedScene" uid="uid://b50032krtq22q" path="res://clickable_timer_progress_bar.tscn" id="10_rfudi"]
 
-[node name="Tent" type="Node2D"]
-script = ExtResource("1_olyqm")
+[node name="Tent" type="Node2D" node_paths=PackedStringArray("work_ui", "jobs_controller", "research_ui", "research_controller", "clickable_timer_progress_bar")]
+script = ExtResource("1_os5s2")
+work_ui = NodePath("BuildingInterfaceItems/Job")
+jobs_controller = NodePath("JobsController")
+research_ui = NodePath("BuildingInterfaceItems/Research")
+research_controller = NodePath("ResearchController")
 type = 5
+clickable_timer_progress_bar = NodePath("ClickableTimerProgressBar")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(5, -50)

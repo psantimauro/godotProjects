@@ -7,8 +7,10 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rivf2"]
 bg_color = Color(0.257469, 0.652193, 0.798686, 1)
 
-[node name="Well" type="Node2D"]
+[node name="Well" type="Node2D" node_paths=PackedStringArray("clickable_timer_progress_bar")]
 script = ExtResource("1_whpw6")
+type = 7
+clickable_timer_progress_bar = NodePath("ClickableTimerProgressBar")
 
 [node name="FillBar" type="ProgressBar" parent="."]
 custom_minimum_size = Vector2(5, 100)

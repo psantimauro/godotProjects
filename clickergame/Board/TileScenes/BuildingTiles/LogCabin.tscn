@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://48j1qrgx32uj"]
 
-[ext_resource type="Script" uid="uid://bdd6pkay5f1fx" path="res://Board/TileScenes/BuildingTiles/buildingbase.gd" id="1_0u0pv"]
+[ext_resource type="Script" uid="uid://cgwwdjcmw8ct1" path="res://Board/TileScenes/BuildingTiles/JobBuilding.gd" id="1_lgbrr"]
 [ext_resource type="Texture2D" uid="uid://dkmu3xinv76up" path="res://assets/building-128_scaled.png" id="2_0u0pv"]
 [ext_resource type="Script" uid="uid://cqfvj4hguhqfu" path="res://Board/TileScenes/BuildingTiles/research_controller.gd" id="5_0u0pv"]
 [ext_resource type="Script" uid="uid://cxw0vopv4dv8p" path="res://Board/TileScenes/BuildingTiles/BuildingTechs/research_gui.gd" id="6_030k7"]
@@ -11,9 +11,14 @@
 [ext_resource type="PackedScene" uid="uid://7wcueac35g2m" path="res://timer_progress_bar.tscn" id="9_tvnri"]
 [ext_resource type="PackedScene" uid="uid://b50032krtq22q" path="res://clickable_timer_progress_bar.tscn" id="10_r5fjj"]
 
-[node name="LogCabin" type="Node2D"]
-script = ExtResource("1_0u0pv")
+[node name="LogCabin" type="Node2D" node_paths=PackedStringArray("work_ui", "jobs_controller", "research_ui", "research_controller", "clickable_timer_progress_bar")]
+script = ExtResource("1_lgbrr")
+work_ui = NodePath("BuildingInterfaceItems/Job")
+jobs_controller = NodePath("JobsController")
+research_ui = NodePath("BuildingInterfaceItems/Research")
+research_controller = NodePath("ResearchController")
 type = 6
+clickable_timer_progress_bar = NodePath("ClickableTimerProgressBar")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-3, -150)

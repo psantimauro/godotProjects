@@ -1,10 +1,12 @@
 extends  Node
-enum tiles  {UNDEFINED = -1, SELECTION = 0, CAMPFIRE = 1, GRASS = 2, ROCK =3, TREE =4,  TENT = 5, LOGCABIN = 6, WELL= 7, PICKUP =8, TIPI=9, DEER = 11}
+enum tiles  {UNDEFINED = -1, SELECTION = 0, CAMPFIRE = 1, GRASS = 2, ROCK =3, TREE =4,  TENT = 5, LOGCABIN = 6, WELL= 7, MUSHROOM =8, TIPI=9, DEER = 11, GENERIC_PICKUP = 12}
 enum tile_types {GROUND, RESOURCE, BUILDING, PICKUP, ANIMALS} 
 
 func IsTypePickup(type)-> bool:
 	match type:
-		tiles.PICKUP:
+		tiles.MUSHROOM:
+			return true
+		tiles.GENERIC_PICKUP:
 			return true
 	return false
 func IsTypeResource(type) -> bool:

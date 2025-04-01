@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="tool_resource" load_steps=3 format=3 uid="uid://6w7rv10a1bwj"]
+
+[ext_resource type="Script" uid="uid://cq2778rh1ereo" path="res://Resources/tool_resources/tool_resource.gd" id="1_cyc13"]
+[ext_resource type="Texture2D" uid="uid://bvrrappn1tes7" path="res://3rd Party/assets/icons/knife.png" id="2_jtu6r"]
+
+[resource]
+script = ExtResource("1_cyc13")
+strength = 1.0
+res_type = 4
+usage = 2
+res_name = "knife"
+texture = ExtResource("2_jtu6r")
+description = "stab stab"

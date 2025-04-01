@@ -1,9 +1,8 @@
-[gd_resource type="TileSet" load_steps=16 format=3 uid="uid://cuid2qj2msfqq"]
+[gd_resource type="TileSet" load_steps=17 format=3 uid="uid://cuid2qj2msfqq"]
 
 [ext_resource type="PackedScene" uid="uid://cnnif7w42rkb" path="res://Board/TileScenes/Grass.tscn" id="1_58fqu"]
-[ext_resource type="PackedScene" uid="uid://bkd6pqa1sunus" path="res://Board/TileScenes/PickUp.tscn" id="1_djrgk"]
 [ext_resource type="PackedScene" uid="uid://dmcqlds1cl4w" path="res://Board/TileScenes/ResourceTiles/Rock.tscn" id="2_yitsq"]
-[ext_resource type="PackedScene" uid="uid://bvnjicxtudbtp" path="res://3rd Party/assets/resource/Tree.tscn" id="3_c340h"]
+[ext_resource type="PackedScene" uid="uid://bvnjicxtudbtp" path="res://Board/TileScenes/ResourceTiles/Tree.tscn" id="3_c340h"]
 [ext_resource type="PackedScene" uid="uid://bduuedwwe4pph" path="res://Board/TileScenes/BuildingTiles/Tent.tscn" id="4_d52ux"]
 [ext_resource type="PackedScene" uid="uid://kpb26kk17ljw" path="res://Board/TileScenes/BuildingTiles/Campfire/Campfire.tscn" id="4_i1lwi"]
 [ext_resource type="PackedScene" uid="uid://48j1qrgx32uj" path="res://Board/TileScenes/BuildingTiles/LogCabin.tscn" id="6_brmmb"]
@@ -11,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://c6roibiqbu3ei" path="res://Board/TileScenes/BuildingTiles/Well/Well.tscn" id="7_7saha"]
 [ext_resource type="PackedScene" uid="uid://oifhuobwjqqw" path="res://Board/TileScenes/BuildingTiles/Tipi/Tipi.tscn" id="8_e05ct"]
 [ext_resource type="PackedScene" uid="uid://difsgqojncdtx" path="res://Board/TileScenes/AnimalTiles/Deer.tscn" id="9_b08e4"]
+[ext_resource type="PackedScene" uid="uid://fopxc106yp1q" path="res://Board/TileScenes/GenericPickup.tscn" id="10_43wsc"]
+[ext_resource type="PackedScene" uid="uid://bkd6pqa1sunus" path="res://Board/TileScenes/Mushroom.tscn" id="11_qdm7n"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_02pqr"]
 resource_name = "resources"
@@ -29,7 +30,8 @@ scenes/9/scene = ExtResource("8_e05ct")
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_7b67n"]
 resource_name = "pickups"
 scenes/0/scene = ExtResource("6_dp4yj")
-scenes/8/scene = ExtResource("1_djrgk")
+scenes/8/scene = ExtResource("11_qdm7n")
+scenes/12/scene = ExtResource("10_43wsc")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_i1lwi"]
 resource_name = "animals"

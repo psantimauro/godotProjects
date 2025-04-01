@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="1_oggkk"]
 [ext_resource type="Script" uid="uid://bnp7y38h3ouct" path="res://Resources/building_resources/tech_resources/job_unlock_tech/job_unlock_tech.gd" id="2_dmkg0"]
-[ext_resource type="Resource" uid="uid://dt4qym08bn1m3" path="res://Resources/building_resources/job_resources/create_jobs/Meat_Create.tres" id="3_oggkk"]
+[ext_resource type="Resource" uid="uid://dt4qym08bn1m3" path="res://Resources/building_resources/job_resources/create_jobs/Hunting.tres" id="3_oggkk"]
 
 [sub_resource type="Resource" id="Resource_fcav0"]
 script = ExtResource("1_oggkk")

@@ -51,17 +51,20 @@ func add_trade_button(trade:base_trade_resource):
 		var image = InventoryManager.get_resource_from_material_type(trade.from_material_stack.material_type).texture
 		from_image.texture = Globals.resize_texture(trade_arrow_size,image)
 		from_image.name = "FromImage"
+		from_image.mouse_filter  = Control.MOUSE_FILTER_IGNORE
 		var from_label = Label.new()
 		from_label.text  = str(trade.from_material_stack.material_amount)
 		from_label.add_theme_color_override("font_color", Color.WHITE)	
 		from_label.add_theme_color_override("font_outline_color", Color.BLACK)		
 		from_label.position = Vector2(12,12)
+		from_label.mouse_filter  = Control.MOUSE_FILTER_IGNORE
 		from_image.add_child(from_label)
 		hbox_container.add_child(from_image)
 		
 		var arrow_image = TextureRect.new()
 		arrow_image.texture = Globals.resize_texture(trade_arrow_size, trade_arrow)
 		arrow_image.name = "Arrow"
+		arrow_image.mouse_filter  = Control.MOUSE_FILTER_IGNORE
 		hbox_container.add_child(arrow_image)
 
 		trade_button.connect("pressed", lamba)
@@ -69,10 +72,12 @@ func add_trade_button(trade:base_trade_resource):
 		var to_image = TextureRect.new()
 		to_image.texture = texture
 		to_image.name = "ToImage"
+		to_image.mouse_filter  = Control.MOUSE_FILTER_IGNORE
 		if trade is material_trade_resource:
 			var to_label = Label.new()
 			to_label.text  = str(trade.to_material_stack.material_amount)
 			to_label.position = Vector2(12,12)
+			to_label.mouse_filter  = Control.MOUSE_FILTER_IGNORE
 			to_label.add_theme_color_override("font_color", Color.WHITE)
 			to_label.add_theme_color_override("font_outline_color", Color.BLACK)
 			to_image.add_child(to_label)

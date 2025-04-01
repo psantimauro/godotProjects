@@ -6,8 +6,10 @@
 
 [resource]
 script = ExtResource("1_6hxdp")
-res_name = "axe"
-texture = ExtResource("2_rvks0")
 strength = 1.0
 res_type = 1
 tool_sound = ExtResource("3_m4xcq")
+usage = 0
+res_name = "axe"
+texture = ExtResource("2_rvks0")
+description = "Chop Chop"

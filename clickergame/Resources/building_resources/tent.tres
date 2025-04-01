@@ -1,15 +1,17 @@
-[gd_resource type="Resource" script_class="building_resource" load_steps=13 format=3 uid="uid://tkwiq3egrq04"]
+[gd_resource type="Resource" script_class="building_resource" load_steps=15 format=3 uid="uid://tkwiq3egrq04"]
 
 [ext_resource type="Script" uid="uid://cdxqjk11h8x1b" path="res://Resources/building_resources/building_resource.gd" id="1_fyo1o"]
 [ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="1_h7h4u"]
 [ext_resource type="Texture2D" uid="uid://d045q1v4j16th" path="res://3rd Party/assets/icons/tent_leather.png" id="3_pe4j5"]
 [ext_resource type="Script" uid="uid://8h33mrv2w63u" path="res://Resources/building_resources/job_resources/base_job_resource.gd" id="4_pe4j5"]
-[ext_resource type="Resource" uid="uid://fm28i4ehcmo5" path="res://Resources/building_resources/job_resources/create_jobs/Hide_Create.tres" id="5_pe4j5"]
-[ext_resource type="Resource" uid="uid://dt4qym08bn1m3" path="res://Resources/building_resources/job_resources/create_jobs/Meat_Create.tres" id="6_grx47"]
+[ext_resource type="Resource" uid="uid://fm28i4ehcmo5" path="res://Resources/building_resources/job_resources/create_jobs/Trapping.tres" id="5_k0vf7"]
+[ext_resource type="Resource" uid="uid://dt4qym08bn1m3" path="res://Resources/building_resources/job_resources/create_jobs/Hunting.tres" id="6_jyrwd"]
 [ext_resource type="Script" uid="uid://bufk5xl2weix7" path="res://Resources/building_resources/tech_resources/base_tech_resource.gd" id="7_jyrwd"]
-[ext_resource type="Resource" uid="uid://ccpie4u2ggyek" path="res://Resources/building_resources/tech_resources/job_unlock_tech/Create_Hide.tres" id="8_k0vf7"]
-[ext_resource type="Resource" uid="uid://c4cnnl5ignsfc" path="res://Resources/building_resources/tech_resources/job_unlock_tech/Create_Meat.tres" id="9_jyrwd"]
-[ext_resource type="Resource" uid="uid://bwj46p26xy4al" path="res://Resources/building_resources/job_resources/create_jobs/Wood_Create.tres" id="10_p1ui3"]
+[ext_resource type="Resource" uid="uid://ccpie4u2ggyek" path="res://Resources/building_resources/tech_resources/job_unlock_tech/Unlock Trapping.tres" id="8_p1ui3"]
+[ext_resource type="Resource" uid="uid://c4cnnl5ignsfc" path="res://Resources/building_resources/tech_resources/job_unlock_tech/Unlock Hunting.tres" id="9_u2d63"]
+[ext_resource type="Resource" uid="uid://cqn7qnpw4mieh" path="res://Resources/building_resources/tech_resources/job_unlock_tech/Unlock Lumberjacking.tres" id="10_75kp1"]
+[ext_resource type="Resource" uid="uid://dafvjhwhyfgbc" path="res://Resources/building_resources/tech_resources/improve_create_job/Improve Lumberjacking.tres" id="11_k0vf7"]
+[ext_resource type="Resource" uid="uid://bwj46p26xy4al" path="res://Resources/building_resources/job_resources/create_jobs/Lumberjacking.tres" id="12_hj30i"]
 
 [sub_resource type="Resource" id="Resource_ynnn4"]
 script = ExtResource("1_h7h4u")
@@ -25,9 +27,9 @@ material_amount = 1
 script = ExtResource("1_fyo1o")
 requirements = Array[ExtResource("1_h7h4u")]([SubResource("Resource_ynnn4"), SubResource("Resource_a0jfh")])
 res_type = 5
-unlockable_jobs = Array[ExtResource("4_pe4j5")]([ExtResource("5_pe4j5"), ExtResource("6_grx47")])
-unlocked_jobs = Array[ExtResource("4_pe4j5")]([ExtResource("10_p1ui3")])
-unlockable_tech = Array[ExtResource("7_jyrwd")]([ExtResource("8_k0vf7"), ExtResource("9_jyrwd")])
+unlockable_jobs = Array[ExtResource("4_pe4j5")]([ExtResource("5_k0vf7"), ExtResource("6_jyrwd"), ExtResource("12_hj30i")])
+unlocked_jobs = Array[ExtResource("4_pe4j5")]([])
+unlockable_tech = Array[ExtResource("7_jyrwd")]([ExtResource("8_p1ui3"), ExtResource("9_u2d63"), ExtResource("10_75kp1"), ExtResource("11_k0vf7"), null])
 unlocked_tech = Array[ExtResource("7_jyrwd")]([])
 res_name = "tent"
 texture = ExtResource("3_pe4j5")

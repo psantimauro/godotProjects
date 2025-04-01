@@ -10,7 +10,7 @@ script = ExtResource("1_ggl8x")
 type = 3
 health = 10.0
 yield_amount = 100
-required_tool_type = 2
+usage = 1
 yield_type = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

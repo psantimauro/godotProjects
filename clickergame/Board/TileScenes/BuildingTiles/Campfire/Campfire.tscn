@@ -37,6 +37,7 @@ color_ramp = SubResource("GradientTexture1D_1i5as")
 
 [node name="Campfire" type="Node2D"]
 script = ExtResource("1_jhykl")
+type = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -30)

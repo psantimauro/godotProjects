@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="material_create_job" load_steps=6 format=3 uid="uid://dt4qym08bn1m3"]
+
+[ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="1_vff7f"]
+[ext_resource type="Script" uid="uid://b8qgra0f5yol0" path="res://Resources/building_resources/job_resources/create_jobs/material_create_job.gd" id="2_oxcay"]
+[ext_resource type="Texture2D" uid="uid://bvrrappn1tes7" path="res://3rd Party/assets/icons/knife.png" id="3_sx58i"]
+
+[sub_resource type="Resource" id="Resource_2v55l"]
+script = ExtResource("1_vff7f")
+material_type = 4
+material_amount = 4
+metadata/_custom_type_script = "uid://dh7wpn4dldbbp"
+
+[sub_resource type="Resource" id="Resource_r6f0h"]
+script = ExtResource("1_vff7f")
+material_type = 3
+material_amount = 1
+metadata/_custom_type_script = "uid://dh7wpn4dldbbp"
+
+[resource]
+script = ExtResource("2_oxcay")
+job_result = Array[ExtResource("1_vff7f")]([SubResource("Resource_2v55l"), SubResource("Resource_r6f0h")])
+required_tool = 4
+type = 0
+job_level = 1
+job_speed = 60.0
+res_name = "Hunt and Gather"
+texture = ExtResource("3_sx58i")
+description = "Creates meat over time"

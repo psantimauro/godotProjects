@@ -12,6 +12,7 @@ func _ready() -> void:
 	ToolManager.tool_unlocked.connect(_on_tool_unlocked)
 
 func _on_material_amount_updated(type:InventoryManager.material_types, amount):
+	show()
 	total_materials.visible = true
 	total_materials.text = "Materials: " + str(InventoryManager.total_materials)
 	var mat:material_resource = InventoryManager.materials_dict[type]
@@ -24,6 +25,7 @@ func _on_material_amount_updated(type:InventoryManager.material_types, amount):
 const MATERIAL_ITEM = preload("res://MenuItems/MaterialItem.tscn")	
 func _on_material_unlocked(mat: material_resource):
 	if mat != null:
+		show()
 		var item:MaterialItem = MATERIAL_ITEM.instantiate()
 		item.name = mat.res_name
 		materials.add_child(item)
@@ -33,6 +35,7 @@ func _on_material_unlocked(mat: material_resource):
 	
 const TOOL_ITEM = preload("res://MenuItems/ToolItem.tscn")
 func _on_tool_unlocked(tool: tool_resource):
+	show()
 	var item = TOOL_ITEM.instantiate()
 	tools.add_child(item)
 	item.tool_type = tool.res_type

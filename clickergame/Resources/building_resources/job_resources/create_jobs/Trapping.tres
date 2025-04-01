@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="material_create_job" load_steps=6 format=3 uid="uid://fm28i4ehcmo5"]
+
+[ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="1_hemj1"]
+[ext_resource type="Script" uid="uid://b8qgra0f5yol0" path="res://Resources/building_resources/job_resources/create_jobs/material_create_job.gd" id="2_lvahh"]
+[ext_resource type="Texture2D" uid="uid://bh8lcbnr25dny" path="res://assets/hide-64.png" id="3_lvahh"]
+
+[sub_resource type="Resource" id="Resource_o44gl"]
+script = ExtResource("1_hemj1")
+material_type = 3
+material_amount = 3
+metadata/_custom_type_script = "uid://dh7wpn4dldbbp"
+
+[sub_resource type="Resource" id="Resource_vq4as"]
+script = ExtResource("1_hemj1")
+material_type = 4
+material_amount = 1
+metadata/_custom_type_script = "uid://dh7wpn4dldbbp"
+
+[resource]
+script = ExtResource("2_lvahh")
+job_result = Array[ExtResource("1_hemj1")]([SubResource("Resource_o44gl"), SubResource("Resource_vq4as")])
+required_tool = 1
+type = 0
+job_level = 1
+job_speed = 120.0
+res_name = "Trapping"
+texture = ExtResource("3_lvahh")
+description = "Gets hide!"

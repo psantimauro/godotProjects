@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="QuestResource" load_steps=35 format=3 uid="uid://bvr288wgpxtck"]
+[gd_resource type="Resource" script_class="QuestResource" load_steps=51 format=3 uid="uid://uyhw0cqwtm3e"]
 
 [ext_resource type="Script" uid="uid://d4gmb2nftapl5" path="res://addons/questify/scripts/model/quest_edge.gd" id="1_c6or2"]
 [ext_resource type="Script" uid="uid://c23wdreelkkg4" path="res://addons/questify/scripts/model/quest_objective.gd" id="2_yh71f"]
@@ -9,20 +9,21 @@
 [ext_resource type="Script" uid="uid://bhqxygnm6kw4n" path="res://addons/questify/scripts/model/quest_resource.gd" id="7_brunu"]
 
 [sub_resource type="Resource" id="Resource_xeop4"]
-script = ExtResource("4_fvoiw")
-name = "First Clicks"
-description = "Chop trees by clicking them."
-id = "bRUATSYzRv"
+script = ExtResource("5_kc3pw")
+type = "has_material"
+key = "wood"
+id = "b9KziQ1gig"
 optional = false
-graph_editor_position = Vector2(-2360, -2200)
-graph_editor_size = Vector2(280, 516)
+graph_editor_position = Vector2(-1920, -2460)
+graph_editor_size = Vector2(377, 309)
+metadata/value = 3.0
 
 [sub_resource type="Resource" id="Resource_sluva"]
 script = ExtResource("2_yh71f")
 description = "Collect 3 wood"
 id = "UgQoC34sZT"
 optional = false
-graph_editor_position = Vector2(-1820, -2180)
+graph_editor_position = Vector2(-1920, -2100)
 graph_editor_size = Vector2(540, 600)
 metadata/reward_type = "new_building"
 metadata/building = "tent"
@@ -31,201 +32,319 @@ metadata/building = "tent"
 script = ExtResource("1_c6or2")
 from = SubResource("Resource_xeop4")
 to = SubResource("Resource_sluva")
-edge_type = 0
+edge_type = 1
 
 [sub_resource type="Resource" id="Resource_wbtal"]
-script = ExtResource("5_kc3pw")
-type = "has_material"
-key = "wood"
-id = "b9KziQ1gig"
-optional = false
-graph_editor_position = Vector2(-2300, -1540)
-graph_editor_size = Vector2(377, 309)
-metadata/value = 3.0
-
-[sub_resource type="Resource" id="Resource_rkilb"]
-script = ExtResource("1_c6or2")
-from = SubResource("Resource_wbtal")
-to = SubResource("Resource_sluva")
-edge_type = 1
-
-[sub_resource type="Resource" id="Resource_isrim"]
-script = ExtResource("2_yh71f")
-description = "Find the mushroom"
-id = "pva3YtwiL0"
-optional = false
-graph_editor_position = Vector2(-1160, -2180)
-graph_editor_size = Vector2(520, 760)
-metadata/reward_type = "material"
-metadata/material = "meat"
-metadata/amount = 5.0
-
-[sub_resource type="Resource" id="Resource_3wvpn"]
-script = ExtResource("1_c6or2")
-from = SubResource("Resource_sluva")
-to = SubResource("Resource_isrim")
-edge_type = 0
-
-[sub_resource type="Resource" id="Resource_icdof"]
-script = ExtResource("5_kc3pw")
-type = "has_material"
-key = "hide"
-id = "Zd-wRVtDk6"
-optional = false
-graph_editor_position = Vector2(-1640, -1520)
-graph_editor_size = Vector2(377, 309)
-metadata/value = 1.0
-
-[sub_resource type="Resource" id="Resource_67n4x"]
-script = ExtResource("1_c6or2")
-from = SubResource("Resource_icdof")
-to = SubResource("Resource_isrim")
-edge_type = 1
-
-[sub_resource type="Resource" id="Resource_icic4"]
-script = ExtResource("2_yh71f")
-description = "Collect 10 wood"
-id = "8dz55yYTLx"
-optional = false
-graph_editor_position = Vector2(-400, -2060)
-graph_editor_size = Vector2(520, 800)
-metadata/reward_type = "job"
-metadata/building = "tent"
-metadata/res_name = "Create Meat Job"
-
-[sub_resource type="Resource" id="Resource_t0vcd"]
-script = ExtResource("1_c6or2")
-from = SubResource("Resource_isrim")
-to = SubResource("Resource_icic4")
-edge_type = 0
-
-[sub_resource type="Resource" id="Resource_l6514"]
-script = ExtResource("2_yh71f")
-description = "Hunt a deer"
-id = "xYAkAdFkCr"
-optional = false
-graph_editor_position = Vector2(220, -2000)
-graph_editor_size = Vector2(540, 780)
-metadata/reward_type = "research"
-metadata/building = "tent"
-metadata/res_name = "Create Hide Tech"
-
-[sub_resource type="Resource" id="Resource_o7r6r"]
-script = ExtResource("1_c6or2")
-from = SubResource("Resource_icic4")
-to = SubResource("Resource_l6514")
-edge_type = 0
-
-[sub_resource type="Resource" id="Resource_t0sa5"]
 script = ExtResource("5_kc3pw")
 type = "has_material"
 key = "meat"
 id = "QaMTyO6Ko0"
 optional = false
-graph_editor_position = Vector2(-180, -1240)
+graph_editor_position = Vector2(-1280, -2460)
 graph_editor_size = Vector2(377, 309)
 metadata/value = 6.0
 
-[sub_resource type="Resource" id="Resource_pdvv6"]
-script = ExtResource("1_c6or2")
-from = SubResource("Resource_t0sa5")
-to = SubResource("Resource_l6514")
-edge_type = 1
-
-[sub_resource type="Resource" id="Resource_b2bif"]
-script = ExtResource("5_kc3pw")
-type = "has_building"
-key = "tent"
-id = "kLunX0pL7P"
+[sub_resource type="Resource" id="Resource_rkilb"]
+script = ExtResource("2_yh71f")
+description = "Hunt a deer to collect hide and meat"
+id = "xYAkAdFkCr"
 optional = false
-graph_editor_position = Vector2(-1680, -1140)
-graph_editor_size = Vector2(377, 309)
-metadata/value = 7.0
+graph_editor_position = Vector2(-1260, -2100)
+graph_editor_size = Vector2(540, 780)
+metadata/reward_type = "achievement"
 
-[sub_resource type="Resource" id="Resource_yeplf"]
+[sub_resource type="Resource" id="Resource_isrim"]
 script = ExtResource("1_c6or2")
-from = SubResource("Resource_b2bif")
-to = SubResource("Resource_isrim")
+from = SubResource("Resource_wbtal")
+to = SubResource("Resource_rkilb")
 edge_type = 1
 
-[sub_resource type="Resource" id="Resource_uhurg"]
+[sub_resource type="Resource" id="Resource_3wvpn"]
 script = ExtResource("5_kc3pw")
 type = "has_material"
-key = "wood"
+key = "hide"
 id = "yU3sJNC1LT"
 optional = false
-graph_editor_position = Vector2(-920, -1420)
+graph_editor_position = Vector2(-460, -2580)
 graph_editor_size = Vector2(377, 309)
-metadata/value = 10.0
+metadata/value = 16.0
 
-[sub_resource type="Resource" id="Resource_igb2m"]
+[sub_resource type="Resource" id="Resource_icdof"]
+script = ExtResource("2_yh71f")
+description = "Collect 15 hide"
+id = "8dz55yYTLx"
+optional = false
+graph_editor_position = Vector2(-540, -2100)
+graph_editor_size = Vector2(520, 800)
+metadata/reward_type = "achievement"
+
+[sub_resource type="Resource" id="Resource_67n4x"]
 script = ExtResource("1_c6or2")
-from = SubResource("Resource_uhurg")
-to = SubResource("Resource_icic4")
+from = SubResource("Resource_3wvpn")
+to = SubResource("Resource_icdof")
 edge_type = 1
 
-[sub_resource type="Resource" id="Resource_ucxhg"]
+[sub_resource type="Resource" id="Resource_icic4"]
 script = ExtResource("2_yh71f")
-description = "unlock cabin"
+description = "Collect 1000 of any resource"
 id = "x16wl95Nwn"
 optional = false
-graph_editor_position = Vector2(940, -2000)
+graph_editor_position = Vector2(1220, -260)
 graph_editor_size = Vector2(460, 640)
 metadata/reward_type = "new_building"
 metadata/building = "logcabin"
 
-[sub_resource type="Resource" id="Resource_dts5f"]
-script = ExtResource("1_c6or2")
-from = SubResource("Resource_l6514")
-to = SubResource("Resource_ucxhg")
-edge_type = 0
-
-[sub_resource type="Resource" id="Resource_myol2"]
+[sub_resource type="Resource" id="Resource_t0vcd"]
 script = ExtResource("3_ka3xt")
 id = "YigGzukSmp"
 optional = false
-graph_editor_position = Vector2(1500, -1980)
+graph_editor_position = Vector2(3100, -300)
 graph_editor_size = Vector2(141, 78)
+
+[sub_resource type="Resource" id="Resource_l6514"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_icic4")
+to = SubResource("Resource_t0vcd")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_o7r6r"]
+script = ExtResource("5_kc3pw")
+type = "has_material"
+key = "any"
+id = "YFkBgXeSP_"
+optional = false
+graph_editor_position = Vector2(1200, -660)
+graph_editor_size = Vector2(377, 309)
+metadata/value = 1000.0
+
+[sub_resource type="Resource" id="Resource_t0sa5"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_o7r6r")
+to = SubResource("Resource_icic4")
+edge_type = 1
+
+[sub_resource type="Resource" id="Resource_pdvv6"]
+script = ExtResource("4_fvoiw")
+name = "First Clicks"
+description = "You dropped your Axe and Knife, pick them up!"
+id = "bRUATSYzRv"
+optional = false
+graph_editor_position = Vector2(-4080, -2600)
+graph_editor_size = Vector2(280, 516)
+metadata/quest_type = "main"
+
+[sub_resource type="Resource" id="Resource_b2bif"]
+script = ExtResource("2_yh71f")
+description = "Chop trees by clicking them"
+id = "ztPVPQJDF9"
+optional = false
+graph_editor_position = Vector2(-2640, -2100)
+graph_editor_size = Vector2(468, 539)
+metadata/reward_type = "acheivement"
+
+[sub_resource type="Resource" id="Resource_yeplf"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_pdvv6")
+to = SubResource("Resource_b2bif")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_uhurg"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_b2bif")
+to = SubResource("Resource_sluva")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_igb2m"]
+script = ExtResource("5_kc3pw")
+type = "has_tool"
+key = "axe"
+id = "21asvZ90b4"
+optional = false
+graph_editor_position = Vector2(-2640, -2460)
+graph_editor_size = Vector2(200, 320)
+metadata/value = false
+
+[sub_resource type="Resource" id="Resource_ucxhg"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_igb2m")
+to = SubResource("Resource_b2bif")
+edge_type = 1
+
+[sub_resource type="Resource" id="Resource_dts5f"]
+script = ExtResource("5_kc3pw")
+type = "has_tool"
+key = "knife"
+id = "TXVV3AeKAZ"
+optional = false
+graph_editor_position = Vector2(-2400, -2460)
+graph_editor_size = Vector2(220, 320)
+metadata/value = false
+
+[sub_resource type="Resource" id="Resource_myol2"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_dts5f")
+to = SubResource("Resource_b2bif")
+edge_type = 1
 
 [sub_resource type="Resource" id="Resource_5vj0m"]
 script = ExtResource("1_c6or2")
-from = SubResource("Resource_ucxhg")
-to = SubResource("Resource_myol2")
+from = SubResource("Resource_rkilb")
+to = SubResource("Resource_icdof")
 edge_type = 0
 
 [sub_resource type="Resource" id="Resource_6vl70"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_sluva")
+to = SubResource("Resource_rkilb")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_w0nnp"]
+script = ExtResource("2_yh71f")
+description = "Build a tent"
+id = "WFrOSPqXbY"
+optional = false
+graph_editor_position = Vector2(320, -2080)
+graph_editor_size = Vector2(468, 539)
+metadata/reward_type = "trader"
+
+[sub_resource type="Resource" id="Resource_wp54a"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_icdof")
+to = SubResource("Resource_w0nnp")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_tm411"]
+script = ExtResource("5_kc3pw")
+type = "has_building"
+key = "tent"
+id = "pingw6FOhg"
+optional = false
+graph_editor_position = Vector2(440, -2440)
+graph_editor_size = Vector2(377, 309)
+metadata/value = false
+
+[sub_resource type="Resource" id="Resource_tnpa5"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_tm411")
+to = SubResource("Resource_w0nnp")
+edge_type = 1
+
+[sub_resource type="Resource" id="Resource_rkvor"]
+script = ExtResource("2_yh71f")
+description = "Collect 50 wood to unlock a campfire"
+id = "q2KA4iF6aR"
+optional = false
+graph_editor_position = Vector2(1200, -2080)
+graph_editor_size = Vector2(480, 640)
+metadata/reward_type = "new_building"
+metadata/building = "campfire"
+
+[sub_resource type="Resource" id="Resource_6hm4o"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_w0nnp")
+to = SubResource("Resource_rkvor")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_d22vm"]
 script = ExtResource("5_kc3pw")
 type = "has_material"
 key = "wood"
-id = "jc9cuRWNbg"
+id = "MHm50JPON1"
 optional = false
-graph_editor_position = Vector2(460, -1140)
+graph_editor_position = Vector2(1180, -2420)
 graph_editor_size = Vector2(377, 309)
-metadata/value = 75.0
+metadata/value = 50.0
 
-[sub_resource type="Resource" id="Resource_w0nnp"]
+[sub_resource type="Resource" id="Resource_jv4kg"]
 script = ExtResource("1_c6or2")
-from = SubResource("Resource_6vl70")
-to = SubResource("Resource_ucxhg")
+from = SubResource("Resource_d22vm")
+to = SubResource("Resource_rkvor")
 edge_type = 1
 
-[sub_resource type="Resource" id="Resource_wp54a"]
+[sub_resource type="Resource" id="Resource_fygmv"]
 script = ExtResource("5_kc3pw")
 type = "has_material"
-key = "meat"
-id = "YFkBgXeSP_"
+key = "stone"
+id = "NZDm3NGRk4"
 optional = false
-graph_editor_position = Vector2(860, -1180)
+graph_editor_position = Vector2(3560, -2540)
 graph_editor_size = Vector2(377, 309)
-metadata/value = 10.0
+metadata/value = 100.0
 
-[sub_resource type="Resource" id="Resource_tm411"]
+[sub_resource type="Resource" id="Resource_pgtbe"]
+script = ExtResource("2_yh71f")
+description = "Collect 100 stone to unlock the well"
+id = "lwkNX0Kl1K"
+optional = false
+graph_editor_position = Vector2(3520, -2180)
+graph_editor_size = Vector2(460, 660)
+metadata/reward_type = "new_building"
+metadata/building = "well"
+
+[sub_resource type="Resource" id="Resource_fstjj"]
 script = ExtResource("1_c6or2")
-from = SubResource("Resource_wp54a")
-to = SubResource("Resource_ucxhg")
+from = SubResource("Resource_fygmv")
+to = SubResource("Resource_pgtbe")
 edge_type = 1
+
+[sub_resource type="Resource" id="Resource_cqtwl"]
+script = ExtResource("2_yh71f")
+description = "Get the pickaxe through trade"
+id = "A-V2Xt-6RY"
+optional = false
+graph_editor_position = Vector2(2198.32, -1995.01)
+graph_editor_size = Vector2(468, 539)
+metadata/reward_type = "none"
+
+[sub_resource type="Resource" id="Resource_4lgr3"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_rkvor")
+to = SubResource("Resource_cqtwl")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_goim1"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_cqtwl")
+to = SubResource("Resource_pgtbe")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_5fqto"]
+script = ExtResource("5_kc3pw")
+type = "has_tool"
+key = "pickaxe"
+id = "86RoUj4sS5"
+optional = false
+graph_editor_position = Vector2(2160, -2460)
+graph_editor_size = Vector2(377, 309)
+metadata/value = false
+
+[sub_resource type="Resource" id="Resource_2fyfk"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_5fqto")
+to = SubResource("Resource_cqtwl")
+edge_type = 1
+
+[sub_resource type="Resource" id="Resource_88rsv"]
+script = ExtResource("2_yh71f")
+description = "End age"
+id = "wu_DlCptZR"
+optional = false
+graph_editor_position = Vector2(4760, -2100)
+graph_editor_size = Vector2(468, 539)
+
+[sub_resource type="Resource" id="Resource_q05i0"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_pgtbe")
+to = SubResource("Resource_88rsv")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_ycdft"]
+script = ExtResource("1_c6or2")
+from = SubResource("Resource_88rsv")
+to = SubResource("Resource_icic4")
+edge_type = 0
 
 [resource]
 script = ExtResource("7_brunu")
-nodes = Array[ExtResource("6_mpv7a")]([SubResource("Resource_xeop4"), SubResource("Resource_sluva"), SubResource("Resource_wbtal"), SubResource("Resource_icdof"), SubResource("Resource_isrim"), SubResource("Resource_l6514"), SubResource("Resource_b2bif"), SubResource("Resource_icic4"), SubResource("Resource_myol2"), SubResource("Resource_ucxhg"), SubResource("Resource_uhurg"), SubResource("Resource_6vl70"), SubResource("Resource_t0sa5"), SubResource("Resource_wp54a")])
-edges = Array[ExtResource("1_c6or2")]([SubResource("Resource_1vheh"), SubResource("Resource_rkilb"), SubResource("Resource_3wvpn"), SubResource("Resource_67n4x"), SubResource("Resource_t0vcd"), SubResource("Resource_o7r6r"), SubResource("Resource_pdvv6"), SubResource("Resource_yeplf"), SubResource("Resource_igb2m"), SubResource("Resource_dts5f"), SubResource("Resource_5vj0m"), SubResource("Resource_w0nnp"), SubResource("Resource_tm411")])
+nodes = Array[ExtResource("6_mpv7a")]([SubResource("Resource_o7r6r"), SubResource("Resource_xeop4"), SubResource("Resource_dts5f"), SubResource("Resource_igb2m"), SubResource("Resource_wbtal"), SubResource("Resource_sluva"), SubResource("Resource_icic4"), SubResource("Resource_tm411"), SubResource("Resource_w0nnp"), SubResource("Resource_rkvor"), SubResource("Resource_fygmv"), SubResource("Resource_cqtwl"), SubResource("Resource_5fqto"), SubResource("Resource_pgtbe"), SubResource("Resource_88rsv"), SubResource("Resource_t0vcd"), SubResource("Resource_pdvv6"), SubResource("Resource_rkilb"), SubResource("Resource_3wvpn"), SubResource("Resource_icdof"), SubResource("Resource_d22vm"), SubResource("Resource_b2bif")])
+edges = Array[ExtResource("1_c6or2")]([SubResource("Resource_1vheh"), SubResource("Resource_isrim"), SubResource("Resource_67n4x"), SubResource("Resource_l6514"), SubResource("Resource_t0sa5"), SubResource("Resource_yeplf"), SubResource("Resource_uhurg"), SubResource("Resource_ucxhg"), SubResource("Resource_myol2"), SubResource("Resource_5vj0m"), SubResource("Resource_6vl70"), SubResource("Resource_wp54a"), SubResource("Resource_tnpa5"), SubResource("Resource_6hm4o"), SubResource("Resource_jv4kg"), SubResource("Resource_fstjj"), SubResource("Resource_4lgr3"), SubResource("Resource_goim1"), SubResource("Resource_2fyfk"), SubResource("Resource_q05i0"), SubResource("Resource_ycdft")])
