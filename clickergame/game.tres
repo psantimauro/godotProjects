@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=17 format=3 uid="uid://cuid2qj2msfqq"]
+[gd_resource type="TileSet" format=3 uid="uid://cuid2qj2msfqq"]
 
 [ext_resource type="PackedScene" uid="uid://cnnif7w42rkb" path="res://Board/TileScenes/Grass.tscn" id="1_58fqu"]
 [ext_resource type="PackedScene" uid="uid://dmcqlds1cl4w" path="res://Board/TileScenes/ResourceTiles/Rock.tscn" id="2_yitsq"]

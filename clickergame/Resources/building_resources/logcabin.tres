@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="building_resource" load_steps=15 format=3 uid="uid://cdjbfel1uusas"]
+[gd_resource type="Resource" script_class="building_resource" format=3 uid="uid://cdjbfel1uusas"]
 
 [ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="1_764gg"]
 [ext_resource type="Script" uid="uid://cdxqjk11h8x1b" path="res://Resources/building_resources/building_resource.gd" id="2_mdf4h"]
@@ -30,7 +30,6 @@ res_type = 6
 unlockable_jobs = Array[ExtResource("4_k8lmq")]([ExtResource("5_k8lmq"), ExtResource("6_4rhbd"), ExtResource("7_ls37n")])
 unlocked_jobs = Array[ExtResource("4_k8lmq")]([ExtResource("12_m2qda")])
 unlockable_tech = Array[ExtResource("8_dr2d7")]([ExtResource("9_2w00i"), ExtResource("10_dr2d7"), ExtResource("11_4e2wl")])
-unlocked_tech = Array[ExtResource("8_dr2d7")]([])
 res_name = "Log Cabin"
 texture = ExtResource("3_vraux")
 description = "A basic log cabin"

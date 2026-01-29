@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="tool_trade_resource" load_steps=5 format=3 uid="uid://cwb4xjjfpfxaw"]
+[gd_resource type="Resource" script_class="tool_trade_resource" format=3 uid="uid://cwb4xjjfpfxaw"]
 
 [ext_resource type="Script" uid="uid://bewgn3fvaomqf" path="res://Resources/trade_resources/tool_trade_resource.gd" id="1_7vcwm"]
 [ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="1_djb7p"]

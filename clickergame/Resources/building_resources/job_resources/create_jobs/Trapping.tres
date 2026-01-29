@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="material_create_job" load_steps=6 format=3 uid="uid://fm28i4ehcmo5"]
+[gd_resource type="Resource" script_class="material_create_job" format=3 uid="uid://fm28i4ehcmo5"]
 
 [ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="1_hemj1"]
 [ext_resource type="Script" uid="uid://b8qgra0f5yol0" path="res://Resources/building_resources/job_resources/create_jobs/material_create_job.gd" id="2_lvahh"]
@@ -21,7 +21,6 @@ script = ExtResource("2_lvahh")
 job_result = Array[ExtResource("1_hemj1")]([SubResource("Resource_o44gl"), SubResource("Resource_vq4as")])
 required_tool = 1
 type = 0
-job_level = 1
 job_speed = 120.0
 res_name = "Trapping"
 texture = ExtResource("3_lvahh")

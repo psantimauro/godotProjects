@@ -3,7 +3,7 @@ extends PanelContainer
 @onready var _texture_rect: TextureRect = $TextureRect
 @onready var label: Label = $Label
 
-@export var tool_type: ToolManager.tool_types
+@export var tool_type: ToolManager.tool_types = ToolManager.tool_types.UNDEFINED
 
 @export var texture: Texture:
 	set(txtr):

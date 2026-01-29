@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="material_create_job" load_steps=5 format=3 uid="uid://bwj46p26xy4al"]
+[gd_resource type="Resource" script_class="material_create_job" format=3 uid="uid://bwj46p26xy4al"]
 
 [ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="1_5udrs"]
 [ext_resource type="Script" uid="uid://b8qgra0f5yol0" path="res://Resources/building_resources/job_resources/create_jobs/material_create_job.gd" id="2_1tuvt"]
@@ -15,8 +15,6 @@ script = ExtResource("2_1tuvt")
 job_result = Array[ExtResource("1_5udrs")]([SubResource("Resource_axpjj")])
 required_tool = 1
 type = 0
-job_level = 1
-job_speed = 60.0
 res_name = "Lumberjack"
 texture = ExtResource("3_1tuvt")
 description = "I'm a lumber jack and I'm ok"

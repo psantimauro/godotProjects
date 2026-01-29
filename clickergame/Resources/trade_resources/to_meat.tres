@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="material_trade_resource" load_steps=5 format=3 uid="uid://cnw8fwh18gg0u"]
+[gd_resource type="Resource" script_class="material_trade_resource" format=3 uid="uid://cnw8fwh18gg0u"]
 
 [ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="1_72uy3"]
 [ext_resource type="Script" uid="uid://y7ma6kavjx6t" path="res://Resources/trade_resources/material_trade_resource.gd" id="2_ywjbf"]
@@ -20,5 +20,4 @@ script = ExtResource("2_ywjbf")
 to_material_stack = SubResource("Resource_72uy3")
 from_material_stack = SubResource("Resource_aas65")
 res_name = "Trade for meat"
-description = ""
 metadata/_custom_type_script = "uid://y7ma6kavjx6t"
