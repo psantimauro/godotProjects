@@ -1,8 +1,5 @@
 extends Node
 
-signal material_amount_updated
-signal new_material_unlocked
-
 enum material_types {UNDEFINED = -1, WOOD = 1, STONE = 2, HIDE = 3, MEAT = 4, WATER = 5, GOLD = 6}
 
 const WOOD = preload("res://Resources/material_resources/wood.tres")
@@ -26,16 +23,17 @@ func get_resource_from_material_type(type):
 
 var materials_dict = {}
 var total_materials = 0
+@warning_ignore("shadowed_variable_base_class")
 func has_material(name: String, amount: int) -> bool:
 	var has = false
 	var stack = material_stack.new()
 	if name != "any":
-		stack.material_type =  Globals.get_type_from_name(name, material_types)
+		stack.material_type = Globals.get_type_from_name(name, material_types)
 		stack.material_amount = amount
 		has = has_material_stack(stack)
 	else:
 		for key in materials_dict.keys():
-			stack.material_type =  key
+			stack.material_type = key
 			stack.material_amount = amount
 			has = has_material_stack(stack)
 			if has == true:
@@ -48,23 +46,23 @@ func has_material_stack(stack: material_stack) -> bool:
 func add_material_stack(stack: material_stack):
 	add_material(stack.material_type, stack.material_amount)
 
-func add_material(type:material_types, amount: int):
+func add_material(type: material_types, amount: int):
 	if !(type == null or type == material_types.UNDEFINED):
 		if !Globals.haz(materials_dict, type):
 			materials_dict[type] = get_resource_from_material_type(type)
-			new_material_unlocked.emit(materials_dict[type])
+			GameEvents.new_material_unlocked.emit(materials_dict[type])
 			
-		var item:material_resource = materials_dict[type]
+		var item: material_resource = materials_dict[type]
 		item.current_amount += amount
 		total_materials += amount
 		materials_dict[type] = item
-		material_amount_updated.emit(type,  item.current_amount)
+		GameEvents.material_amount_updated.emit(type, item.current_amount)
 func remove_material_stack(stack: material_stack):
 	remove_material(stack.material_type, stack.material_amount)
 
-func remove_material(type:material_types, amount: int):
-	var item:material_resource = materials_dict[type]
+func remove_material(type: material_types, amount: int):
+	var item: material_resource = materials_dict[type]
 	item.current_amount -= amount
 	total_materials -= amount
 	materials_dict[type] = item
-	material_amount_updated.emit(type,  item.current_amount)
+	GameEvents.material_amount_updated.emit(type, item.current_amount)

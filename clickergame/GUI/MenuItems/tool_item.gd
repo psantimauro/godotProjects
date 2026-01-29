@@ -3,9 +3,9 @@ extends PanelContainer
 @onready var _texture_rect: TextureRect = $TextureRect
 @onready var label: Label = $Label
 
-@export var tool_type:ToolManager.tool_types
+@export var tool_type: ToolManager.tool_types
 
-@export var texture:Texture :
+@export var texture: Texture:
 	set(txtr):
 		_texture_rect.texture = txtr
 		
@@ -14,4 +14,4 @@ func _on_tool_level(type, value):
 		label.text = str("%1.3f" % value)
 
 func _ready() -> void:
-	ToolManager.tool_strength_changed.connect(_on_tool_level)
+	GameEvents.tool_strength_changed.connect(_on_tool_level)

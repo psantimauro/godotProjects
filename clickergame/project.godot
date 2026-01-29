@@ -28,6 +28,7 @@ buses/default_bus_layout="uid://ve6b14nq23sl"
 [autoload]
 
 Globals="*res://Autoloads/Globals.gd"
+GameEvents="*res://Autoloads/GameEvents.gd"
 TileManager="*res://Autoloads/TileManager.gd"
 InventoryManager="*res://Autoloads/InventoryManager.gd"
 QuestManager="*res://Autoloads/QuestManager.gd"

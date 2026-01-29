@@ -3,11 +3,11 @@ extends PanelContainer
 @export var tutorial_quest_type: VBoxContainer
 @export var repeatable_quest_type: VBoxContainer
 
-@export var audio_stream_player_2d: AudioStreamPlayer2D 
+@export var audio_stream_player_2d: AudioStreamPlayer2D
 @onready var quest_counter: Label = %"Quest Counter"
 
 func _ready() -> void:
-	QuestManager.quest_status_changed.connect(_on_quest_status_changed)
+	GameEvents.quest_status_changed.connect(_on_quest_status_changed)
 
 func _on_quest_status_changed(quest, status, description, quest_type):
 	var name = quest.name
@@ -31,13 +31,13 @@ func update_quest(name, description, quest_type):
 		path += "/" + name
 		var node = tutorial_quest_type.get_node(path)
 		if node:
-			node.text = name + ": " +description
+			node.text = name + ": " + description
 	elif quest_type == "collect":
 		path = str(repeatable_quest_type.get_path())
 		path += "/" + name
 		var node = repeatable_quest_type.get_node(path)
 		if node:
-			node.text = name + ": " +description
+			node.text = name + ": " + description
 		
 func add_quest(name, description, quest_type):
 	var quest_item = Label.new()
@@ -45,7 +45,7 @@ func add_quest(name, description, quest_type):
 	match quest_type:
 		"main":
 			tutorial_quest_type.add_child(quest_item)
-		"collect": 
+		"collect":
 			repeatable_quest_type.add_child(quest_item)
 	update_quest(name, description, quest_type)
 

@@ -4,11 +4,11 @@ extends Node2D
 @onready var game_hud: GameHUD = $GameHUD
 
 func _hax():
-	BuildingManager.unlock_building(BuildingManager.building_types.CAMPFIRE)	
+	BuildingManager.unlock_building(BuildingManager.building_types.CAMPFIRE)
 	
-	BuildingManager.unlock_building(BuildingManager.building_types.WELL)	
-	BuildingManager.unlock_building(BuildingManager.building_types.TENT)	
-	BuildingManager.unlock_building(BuildingManager.building_types.LOGCABIN)	
+	BuildingManager.unlock_building(BuildingManager.building_types.WELL)
+	BuildingManager.unlock_building(BuildingManager.building_types.TENT)
+	BuildingManager.unlock_building(BuildingManager.building_types.LOGCABIN)
 	
 	ToolManager.unlock_tool(ToolManager.tool_types.AXE)
 #	ToolManager.unlock_tool(ToolManager.tool_types.PICKAXE)
@@ -34,9 +34,10 @@ func show_intro_message():
 func _ready():
 	await game_hud
 	await board
-	Globals.item_picked_up.connect(_on_item_pickup)
-	Globals.empty_tile_selected.connect(_on_empty_tile_selected)
-	Globals.resource_clicked.connect(_on_resource_click)
+	GameEvents.item_picked_up.connect(_on_item_pickup)
+	GameEvents.empty_tile_selected.connect(_on_empty_tile_selected)
+	GameEvents.resource_clicked.connect(_on_resource_click)
+	GameEvents.building_selected.connect(_on_building_selected)
 	game_hud.action_container.build_menu.build_button_clicked.connect(_on_build_menu_build_button_clicked)
 	init_quests()
 #	show_intro_message()
@@ -48,9 +49,9 @@ func _on_item_pickup(item):
 	elif item.type == ToolManager.tool_types.KNIFE:
 		ToolManager.unlock_tool(ToolManager.tool_types.KNIFE)
 	elif item.type == TileManager.tiles.MUSHROOM:
-		InventoryManager.add_material(InventoryManager.material_types.HIDE, 2)	
+		InventoryManager.add_material(InventoryManager.material_types.HIDE, 2)
 
-func selected(building):
+func _on_building_selected(building):
 	game_hud.action_container.hide_kids()
 	game_hud.action_container.display_building_menu(building.generate_building_action_menu())
 

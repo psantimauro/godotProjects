@@ -1,10 +1,8 @@
 extends Node
 
-enum tool_types {UNDEFINED = -1, AXE =1, PICKAXE =2, HAMMER, KNIFE}
+enum tool_types {UNDEFINED = -1, AXE = 1, PICKAXE = 2, HAMMER, KNIFE}
 enum tool_usages {LUMBERJACKING, MINING, HUNTING, BUILDING}
 
-signal tool_unlocked
-signal tool_strength_changed
 
 const AXE = preload("res://Resources/tool_resources/Axe.tres")
 const PICKAXE = preload("res://Resources/tool_resources/Pickaxe.tres")
@@ -22,14 +20,14 @@ func get_resource_from_tool_type(type) -> tool_resource:
 	
 var tools_dict = {}
 
-func has_tool(type:tool_types) -> bool:
-	var tool = get_resource_from_tool_type(type)
+func has_tool(type: tool_types) -> bool:
+	#var tool = get_resource_from_tool_type(type)
 	return (tools_dict.has(type) or type == 0)
 
 func unlock_tool(type: tool_types):
 	var tool = get_resource_from_tool_type(type)
 	if !tools_dict.has(type):
-		tool_unlocked.emit(tool)
+		GameEvents.tool_unlocked.emit(tool )
 	tools_dict[type] = tool
 
 func get_tool_stregth(type: tool_types) -> float:
@@ -41,7 +39,7 @@ func get_tool_stregth(type: tool_types) -> float:
 func use_tool(type: tool_types):
 	var tool = tools_dict[type]
 	tool.strength += 0.001
-	tool_strength_changed.emit(type, tool.strength)
+	GameEvents.tool_strength_changed.emit(type, tool.strength)
 
 func get_hunting_tool():
 	return get_best_tool(tool_usages.HUNTING)
@@ -54,7 +52,7 @@ func get_building_tool():
 	
 func get_best_tool(type: tool_usages, best_tool = null):
 	for key in tools_dict.keys():
-		var tool:tool_resource = tools_dict[key]
+		var tool: tool_resource = tools_dict[key]
 		if tool != null && tool.usage == type:
 			if best_tool == null:
 				best_tool = tool
