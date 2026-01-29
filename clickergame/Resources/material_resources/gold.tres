@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="material_resource" load_steps=3 format=3 uid="uid://bomixuhpnygds"]
+
+[ext_resource type="Script" uid="uid://bv2bf7dad00vw" path="res://Resources/material_resources/material_resource.gd" id="1_p1shv"]
+[ext_resource type="Texture2D" uid="uid://1uqmh21213kp" path="res://assets/stone-64.png" id="2_piuma"]
+
+[resource]
+script = ExtResource("1_p1shv")
+maxAmount = 100
+res_type = 2
+current_amount = 0
+res_name = "stone"
+texture = ExtResource("2_piuma")
+description = "Hard as a rock"

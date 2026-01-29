@@ -3,7 +3,7 @@ extends Node
 signal material_amount_updated
 signal new_material_unlocked
 
-enum material_types {UNDEFINED = -1, WOOD = 1, STONE = 2, HIDE = 3, MEAT = 4, WATER = 5}
+enum material_types {UNDEFINED = -1, WOOD = 1, STONE = 2, HIDE = 3, MEAT = 4, WATER = 5, GOLD = 6}
 
 const WOOD = preload("res://Resources/material_resources/wood.tres")
 const MEAT = preload("res://Resources/material_resources/meat.tres")
@@ -59,7 +59,7 @@ func add_material(type:material_types, amount: int):
 		total_materials += amount
 		materials_dict[type] = item
 		material_amount_updated.emit(type,  item.current_amount)
-func  remove_material_stack(stack: material_stack):
+func remove_material_stack(stack: material_stack):
 	remove_material(stack.material_type, stack.material_amount)
 
 func remove_material(type:material_types, amount: int):
