@@ -6,7 +6,7 @@ signal build_button_clicked
 func _ready() -> void:
 	BuildingManager.building_unlocked.connect(_on_building_unlocked)
 	Globals.connect("empty_tile_selected",toggleBuildMenu)
-var  BUILD_BUILDING_BUTTON = load("res://MenuItems/build_building_button.tscn")
+var  BUILD_BUILDING_BUTTON = preload("res://GUI/MenuItems/build_building_button.tscn")
 
 var has_buttons = false
 func _on_building_unlocked(building_type: BuildingManager.building_types):

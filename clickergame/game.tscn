@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://buhc4gvjwwq1k" path="res://game.gd" id="1_es28m"]
 [ext_resource type="TileSet" uid="uid://cuid2qj2msfqq" path="res://game.tres" id="2_q8bm8"]
-[ext_resource type="PackedScene" uid="uid://cr378mrpqgvkl" path="res://MenuItems/canvas_layer.tscn" id="2_twcd8"]
+[ext_resource type="PackedScene" uid="uid://cr378mrpqgvkl" path="res://GUI/MenuItems/canvas_layer.tscn" id="2_twcd8"]
 [ext_resource type="Script" uid="uid://c2ll8idqj87jb" path="res://Board/tile_map_layer.gd" id="3_14rw0"]
 [ext_resource type="Script" uid="uid://canjeq8tn0005" path="res://Board/camera_2d.gd" id="3_udyyn"]
 [ext_resource type="Script" uid="uid://bewadwr82vbup" path="res://Board/game_board.gd" id="5_rn6k5"]

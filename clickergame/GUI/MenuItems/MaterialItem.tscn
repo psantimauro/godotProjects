@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://tlvrgnpjabb3"]
 
-[ext_resource type="Script" uid="uid://b7vmgtjfxqtjp" path="res://MenuItems/material_item.gd" id="1_w0orb"]
+[ext_resource type="Script" uid="uid://b7vmgtjfxqtjp" path="res://GUI/MenuItems/material_item.gd" id="1_w0orb"]
 [ext_resource type="Texture2D" uid="uid://drc4au3nvw6l5" path="res://icon.svg" id="2_345d3"]
 
 [node name="MaterialItem" type="MarginContainer"]

@@ -22,7 +22,7 @@ func _on_material_amount_updated(type:InventoryManager.material_types, amount):
 			if item:
 				var i = mat.current_amount
 				item.amount = i
-const MATERIAL_ITEM = preload("res://MenuItems/MaterialItem.tscn")	
+const MATERIAL_ITEM = preload("res://GUI/MenuItems/MaterialItem.tscn")	
 func _on_material_unlocked(mat: material_resource):
 	if mat != null:
 		show()
@@ -33,7 +33,7 @@ func _on_material_unlocked(mat: material_resource):
 		item.amount = InventoryManager.materials_dict[mat.res_type]
 	
 	
-const TOOL_ITEM = preload("res://MenuItems/ToolItem.tscn")
+const TOOL_ITEM = preload("res://GUI/MenuItems/ToolItem.tscn")
 func _on_tool_unlocked(tool: tool_resource):
 	show()
 	var item = TOOL_ITEM.instantiate()
