@@ -8,14 +8,22 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Idle Goes West"
 run/main_scene="res://game.tscn"
-config/features=PackedStringArray("4.4", "Mobile")
+config/features=PackedStringArray("4.6", "Mobile")
 boot_splash/bg_color=Color(0.462164, 0.241859, 0.017754, 1)
 boot_splash/image="res://assets/title_screen.png"
 config/icon="res://assets/logs-64.png"
+
+[audio]
+
+buses/default_bus_layout="uid://ve6b14nq23sl"
 
 [autoload]
 
@@ -25,7 +33,7 @@ InventoryManager="*res://Autoloads/InventoryManager.gd"
 QuestManager="*res://Autoloads/QuestManager.gd"
 ToolManager="*res://Autoloads/ToolManager.gd"
 BuildingManager="*res://Autoloads/BuildingManager.gd"
-Questify="*res://addons/questify/quest_manager.gd"
+Questify="*uid://b07jy1yytqpum"
 
 [display]
 
