@@ -59,9 +59,10 @@ func is_building_unlocked(res_name: String) ->bool:
 	return false
 var unlocked_buildings: Dictionary[building_types,building_resource]
 func unlock_building(build_type: building_types):
-	
+	if unlocked_buildings.has(build_type):
+		return
+		
 	building_unlocked.emit(build_type) #emit the building first so other things are ready for it
-	
 	var res:building_resource = get_resource_from_building_type(build_type)
 	var new_jobs = []
 	var new_tech = []

@@ -1,3 +1,4 @@
+class_name JobBuilding
 extends BuildingBase
 
 @export var work_ui: BuildingWork 

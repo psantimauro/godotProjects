@@ -146,12 +146,12 @@ func add_collect_material_quest(quest, type):
 	var start_node = quest.start_node
 	start_node.name = start_node.name.replace("{mat}", mat_name)
 	var multiple = QuestManager.collect_quest_muliplyer(10, mat_name) #ten maps to the quest's definition
-	start_node.description = start_node.description.replace("{mat}", mat_name).replace("{amount}", str(multiple)).trim()
+	start_node.description = start_node.description.replace("{mat}", mat_name).replace("{amount}", str(multiple))
 	start_node.set_meta("material", mat_name)
 	for objective in quest.get_objectives():
-		objective.description = objective.description.replace("{mat}", mat_name).replace("{amount}", str(multiple)).trim()
+		objective.description = objective.description.replace("{mat}", mat_name).replace("{amount}", str(multiple))
 	for condition in quest.get_conditions():
-		condition.key = condition.key.replace("{mat}", mat_name).replace("{amount}", str(multiple)).trim()
+		condition.key = condition.key.replace("{mat}", mat_name).replace("{amount}", str(multiple))
 	
 	add_quest(quest)
 	
