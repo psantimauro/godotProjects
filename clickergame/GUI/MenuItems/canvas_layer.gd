@@ -16,9 +16,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			#show menu
 
 func close_action_container():
-	Globals.clear_selection.emit()
+	GameEvents.clear_selection.emit()
 	action_container.hide_kids()
-	action_container
+	action_container.hide()
 
 func close_display_container():
 	display_container.close()

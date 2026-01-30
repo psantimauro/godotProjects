@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0ir4paeibh6c"]
+[gd_scene format=3 uid="uid://d0ir4paeibh6c"]
 
 [ext_resource type="Theme" uid="uid://cfvabtb858o0t" path="res://main_theme.tres" id="1_p0onm"]
 [ext_resource type="Script" uid="uid://fpdv6ih3g5nl" path="res://GUI/MenuItems/build__building_button.gd" id="1_sq0aw"]
@@ -14,7 +14,7 @@ texture_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_65ejm"]
 
-[node name="BuildBuildingButton" type="Button"]
+[node name="BuildBuildingButton" type="Button" unique_id=1918328573]
 custom_minimum_size = Vector2(140, 100)
 anchors_preset = 8
 anchor_left = 0.5
@@ -33,7 +33,7 @@ flat = true
 script = ExtResource("1_sq0aw")
 buildingtype = 5
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=310044723]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -49,31 +49,31 @@ mouse_filter = 1
 theme = ExtResource("1_p0onm")
 theme_override_styles/panel = SubResource("StyleBoxTexture_kdbqh")
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer"]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer" unique_id=874906948]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("2_p0onm")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="BuildBuildingDetails" type="VBoxContainer" parent="PanelContainer"]
+[node name="BuildBuildingDetails" type="VBoxContainer" parent="PanelContainer" unique_id=2011005794]
 layout_mode = 2
 
-[node name="BuildingTypeNameLabel" type="Label" parent="PanelContainer/BuildBuildingDetails"]
+[node name="BuildingTypeNameLabel" type="Label" parent="PanelContainer/BuildBuildingDetails" unique_id=1678697651]
 unique_name_in_owner = true
 layout_mode = 2
 text = "(Building Type)"
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/BuildBuildingDetails"]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/BuildBuildingDetails" unique_id=2108148208]
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_65ejm")
 
-[node name="BuildingRequirementsContainer" type="VBoxContainer" parent="PanelContainer/BuildBuildingDetails/PanelContainer"]
+[node name="BuildingRequirementsContainer" type="VBoxContainer" parent="PanelContainer/BuildBuildingDetails/PanelContainer" unique_id=126944420]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="RequirementsLabel" type="Label" parent="PanelContainer/BuildBuildingDetails/PanelContainer/BuildingRequirementsContainer"]
+[node name="RequirementsLabel" type="Label" parent="PanelContainer/BuildBuildingDetails/PanelContainer/BuildingRequirementsContainer" unique_id=443403888]
 layout_mode = 2
 text = "Requirements"
 

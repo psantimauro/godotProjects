@@ -24,11 +24,11 @@ func get_resource_from_material_type(type):
 var materials_dict = {}
 var total_materials = 0
 @warning_ignore("shadowed_variable_base_class")
-func has_material(name: String, amount: int) -> bool:
+func has_material(mat_name: String, amount: int) -> bool:
 	var has = false
 	var stack = material_stack.new()
-	if name != "any":
-		stack.material_type = Globals.get_type_from_name(name, material_types)
+	if mat_name != "any":
+		stack.material_type = Utilities.get_type_from_name(mat_name, material_types)
 		stack.material_amount = amount
 		has = has_material_stack(stack)
 	else:
@@ -41,14 +41,14 @@ func has_material(name: String, amount: int) -> bool:
 	return has
 	
 func has_material_stack(stack: material_stack) -> bool:
-	return (Globals.haz(materials_dict, stack.material_type) && (materials_dict[stack.material_type].current_amount >= stack.material_amount))
+	return (Utilities.haz(materials_dict, stack.material_type) && (materials_dict[stack.material_type].current_amount >= stack.material_amount))
 
 func add_material_stack(stack: material_stack):
 	add_material(stack.material_type, stack.material_amount)
 
 func add_material(type: material_types, amount: int):
 	if !(type == null or type == material_types.UNDEFINED):
-		if !Globals.haz(materials_dict, type):
+		if !Utilities.haz(materials_dict, type):
 			materials_dict[type] = get_resource_from_material_type(type)
 			GameEvents.new_material_unlocked.emit(materials_dict[type])
 			

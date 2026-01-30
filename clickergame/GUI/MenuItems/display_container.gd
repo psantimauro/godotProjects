@@ -85,16 +85,16 @@ func _outside_click(any):
 	close()
 
 func _on_building_unlocked(type):
-	var name = Globals.get_name_from_type(type, BuildingManager.building_types)
+	var name = Utilities.get_name_from_type(type, BuildingManager.building_types)
 	var text = name + " is now available in the build menu."
 	update_display(text, "New Building Unlocked!")
 
 func _on_job_unlocked(job: base_job_resource, building_type):
-	var text = job.res_name + " has been unlocked for " + Globals.get_name_from_type(building_type, BuildingManager.building_types)
+	var text = job.res_name + " has been unlocked for " + Utilities.get_name_from_type(building_type, BuildingManager.building_types)
 	update_display(text, "New Job Unlocked!")
 
 func _on_tech_unlocked(tech: base_tech_resource, building_type):
-	var text = "Unlocked " + tech.res_name + " for " + Globals.get_name_from_type(building_type, BuildingManager.building_types)
+	var text = "Unlocked " + tech.res_name + " for " + Utilities.get_name_from_type(building_type, BuildingManager.building_types)
 	update_display(text, "New Research Unlocked!")
 func _on_display_message_with_title(msg, title):
 	update_display(msg, title)

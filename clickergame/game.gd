@@ -29,7 +29,7 @@ func show_intro_message():
 	- Use [WASD] or [Arrow] keys to move the camera.
 	- Follow the quests on the right to learn the game and unlock features.
 	- Things will become more interactable as you unlock more..."
-	Globals.display_message_with_title.emit(message, title)
+	GameEvents.display_message_with_title.emit(message, title)
 
 func _ready():
 	await game_hud

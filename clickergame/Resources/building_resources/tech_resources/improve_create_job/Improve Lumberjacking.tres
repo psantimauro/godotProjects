@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="job_improve_tech" load_steps=6 format=3 uid="uid://dafvjhwhyfgbc"]
+[gd_resource type="Resource" script_class="job_improve_tech" format=3 uid="uid://dafvjhwhyfgbc"]
 
 [ext_resource type="Resource" uid="uid://bwj46p26xy4al" path="res://Resources/building_resources/job_resources/create_jobs/Lumberjacking.tres" id="1_87bds"]
 [ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="2_87bds"]
@@ -13,13 +13,11 @@ metadata/_custom_type_script = "uid://dh7wpn4dldbbp"
 
 [resource]
 script = ExtResource("3_nmwvk")
-research_speed = 360.0
 research_cost = Array[ExtResource("2_87bds")]([SubResource("Resource_v2grk")])
 improve_job = ExtResource("1_87bds")
 improve_amount = 1.0
 tech_type = 1
 repeatable = true
-repeat_count = 0
 res_name = "Improve Lumberjacking"
 texture = ExtResource("4_nmwvk")
 description = "Stronger arms swing heavier axes"

@@ -1,4 +1,6 @@
 extends Node
+
+var traders_unlocked: bool = false
 enum building_types {UNDEFINED = -1, CAMPFIRE = 1, TENT = 5, LOGCABIN = 6, WELL = 7, TIPI = 9}
 enum job_types {UNDEFINED = -1, CREATE}
 enum tech_types {UNDEFINED = -1, JOB_UNLOCK, IMPROVE_CREATE_JOB}
@@ -45,8 +47,8 @@ func has_all_resources_to_build(building_res: building_resource) -> bool:
 	return has_all
 func is_building_unlocked(res_name: String) -> bool:
 	for key in building_types.keys():
-		var name = key.to_lower()
-		if name == res_name:
+		var type_name = key.to_lower()
+		if type_name == res_name:
 			var building_key = building_types[key]
 			if unlocked_buildings.has(building_key):
 				return true
@@ -116,7 +118,7 @@ func unlock_mat_create_job_for_building_by_mat_name(building: building_types, ma
 func unlocked_improve_job_tech_for_building_by_material_name(building: building_types, incoming_material_name: String):
 	var building_res: building_resource = get_resource_from_building_type(building)
 	for job in building_res.unlockable_jobs:
-		var job_material_name = Globals.get_name_from_type(job.job_result[0].material_type, InventoryManager.material_types)
+		var job_material_name = Utilities.get_name_from_type(job.job_result[0].material_type, InventoryManager.material_types)
 		if job_material_name == incoming_material_name:
 			var improvement_tech = job_improve_tech.new()
 			improvement_tech.repeatable = true

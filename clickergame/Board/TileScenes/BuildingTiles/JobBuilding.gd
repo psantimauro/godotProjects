@@ -1,18 +1,18 @@
 class_name JobBuilding
 extends BuildingBase
 
-@export var work_ui: BuildingWork 
-@export var jobs_controller: BuildingJobController 
+@export var work_ui: BuildingWork
+@export var jobs_controller: BuildingJobController
 
 @export var research_ui: BuildingResearch
-@export var research_controller: BuildingResearchController 
+@export var research_controller: BuildingResearchController
 
-var unlocked_jobs:Array[base_job_resource] = []
-var unlocked_tech:Array[base_tech_resource] = []
+var unlocked_jobs: Array[base_job_resource] = []
+var unlocked_tech: Array[base_tech_resource] = []
 
 func _ready() -> void:
-	BuildingManager.job_unlocked.connect(_on_job_unlocked)
-	BuildingManager.tech_unlocked.connect(_on_tech_unlocked)
+	GameEvents.job_unlocked.connect(_on_job_unlocked)
+	GameEvents.tech_unlocked.connect(_on_tech_unlocked)
 	for job in BuildingManager.unlocked_jobs_by_building[type]:
 		_on_job_unlocked(job)
 	for tech in BuildingManager.unlocked_tech_by_building[type]:
@@ -29,12 +29,12 @@ func generate_building_action_menu():
 		button_container.add_child(new_label)
 		
 		var new_btn = TextureButton.new()
-		new_btn.name = item.name +"Button"
-		new_btn.texture_normal = Globals.resize_texture(button_size, item.button_texture)
+		new_btn.name = item.name + "Button"
+		new_btn.texture_normal = Utilities.resize_texture(button_size, item.button_texture)
 		var emit_self_lambda = func():
 		#	update_jobs()
 		#	update_tech()
-			Globals.display_item.emit(item)
+			GameEvents.display_item.emit(item)
 			building_menu.queue_free()
 		new_btn.pressed.connect(emit_self_lambda)
 		button_container.add_child(new_btn)
@@ -82,7 +82,7 @@ func _on_progress_bar_done() -> void:
 		clickable_timer_progress_bar.start()
 
 func _on_job_unlocked(job, building_type = type):
-	if building_type == type: 
+	if building_type == type:
 		unlocked_jobs.append(job)
 		work_ui.add_job(job)
 

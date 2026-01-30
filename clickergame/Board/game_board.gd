@@ -78,15 +78,14 @@ func generate_game_board():
 	
 	await get_tree().create_timer(0.01).timeout # this is a hack to get these setup one they are on the board
 	var axe = game_layer.scene_coords[(Vector2i(0, 0))]
-	var image = Globals.resize_texture(64, preload("res://3rd Party/assets/icons/axe.png"))
+	var image = Utilities.resize_texture(64, preload("res://3rd Party/assets/icons/axe.png"))
 	axe.icon = image
 	axe.type = ToolManager.tool_types.AXE
 	
 	var knife = game_layer.scene_coords[(Vector2i(1, 1))]
-	image = Globals.resize_texture(64, preload("res://3rd Party/assets/icons/knife.png"))
+	image = Utilities.resize_texture(64, preload("res://3rd Party/assets/icons/knife.png"))
 	knife.icon = image
 	knife.type = ToolManager.tool_types.KNIFE
-
 
 func get_last_resource():
 	return get_resource_at_position(last_board_click)
@@ -139,7 +138,7 @@ func _on_regeneration_timer_timeout():
 			generated = true
 			game_layer.set_cell(coords, RESOURCE, SCENE_COLLECTION, TileManager.tiles.TREE)
 		elif dice == 3:
-			if Globals.traders_unlocked:
+			if BuildingManager.traders_unlocked:
 				var traders = get_tree().get_nodes_in_group("Trader")
 				if traders.size() == 0:
 					game_layer.set_cell(coords, BUILDING, SCENE_COLLECTION, TileManager.tiles.TIPI)

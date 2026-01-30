@@ -27,21 +27,22 @@ buses/default_bus_layout="uid://ve6b14nq23sl"
 
 [autoload]
 
-Globals="*res://Autoloads/Globals.gd"
 GameEvents="*res://Autoloads/GameEvents.gd"
+Utilities="*uid://bw82f62yrui4d"
+Questify="*uid://b07jy1yytqpum"
+BuildingManager="*res://Autoloads/BuildingManager.gd"
 TileManager="*res://Autoloads/TileManager.gd"
 InventoryManager="*res://Autoloads/InventoryManager.gd"
-QuestManager="*res://Autoloads/QuestManager.gd"
 ToolManager="*res://Autoloads/ToolManager.gd"
-BuildingManager="*res://Autoloads/BuildingManager.gd"
-Questify="*uid://b07jy1yytqpum"
+QuestManager="*res://Autoloads/QuestManager.gd"
 
 [display]
 
 window/size/viewport_width=720
 window/size/viewport_height=1280
-window/size/initial_position_type=2
+window/size/initial_position_type=3
 window/size/initial_screen=1
+window/size/borderless=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=1

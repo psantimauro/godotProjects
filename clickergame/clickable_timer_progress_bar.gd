@@ -1,18 +1,18 @@
-class_name  ClickableProgressBar
+class_name ClickableProgressBar
 extends Node2D
 
-@export var run_time: float = 5.0  # Total time for the progress bar to fill
-@export var one_shoot:bool = false:
+@export var run_time: float = 5.0 # Total time for the progress bar to fill
+@export var one_shoot: bool = false:
 	set(val):
-		one_shoot= val
+		one_shoot = val
 		timer.one_shot = val
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @export var texture: Texture:
 	set(val):
-		val = Globals.resize_texture(50, val)
+		val = Utilities.resize_texture(50, val)
 		if sprite_2d:
 			sprite_2d.texture = val
-		texture=val
+		texture = val
 
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @export var sound: AudioStream:
@@ -58,8 +58,8 @@ func click(amount):
 
 func _speed_up_timer(amount: float):
 	if !timer.is_stopped():
-		var new_time =timer.time_left - amount
-		new_time = min(new_time,run_time)
+		var new_time = timer.time_left - amount
+		new_time = min(new_time, run_time)
 		if new_time > 0:
 			timer.stop()
 			timer.start(new_time)

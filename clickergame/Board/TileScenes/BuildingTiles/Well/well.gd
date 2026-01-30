@@ -1,7 +1,7 @@
 class_name Well
 extends BuildingBase
 
-func assist_building(amount):
+func assist_building(_amount):
 	if clickable_timer_progress_bar.is_stopped() && fill_bar.value >= _bucket_removal_amount:
 		clickable_timer_progress_bar.show()
 		clickable_timer_progress_bar.start()
@@ -16,7 +16,7 @@ func assist_building(amount):
 
 
 func _ready() -> void:
-	add_to_group(Globals.get_name_from_type(group_type, TileManager.tile_types))
+	add_to_group(Utilities.get_name_from_type(group_type, TileManager.tile_types))
 	fill_timer.wait_time = fill_speed
 	clickable_timer_progress_bar.done.connect(_on_clickable_timer_done)
 

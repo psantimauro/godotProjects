@@ -4,13 +4,13 @@ extends PanelContainer
 @onready var build_menu: BuildMenu = $BuildMenu
 
 func _ready() -> void:
-	Globals.clear_selection.connect(hide_kids)
+	GameEvents.clear_selection.connect(hide_kids)
 
 func hide_kids():
 	hide()
 	if dynamic_menu != null:
 		dynamic_menu.queue_free()
-	for child:Control in get_children(false):
+	for child: Control in get_children(false):
 		if child:
 			child.visible = false
 

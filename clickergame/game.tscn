@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dy6n1j75mhkbu"]
+[gd_scene format=3 uid="uid://dy6n1j75mhkbu"]
 
 [ext_resource type="Script" uid="uid://buhc4gvjwwq1k" path="res://game.gd" id="1_es28m"]
 [ext_resource type="TileSet" uid="uid://cuid2qj2msfqq" path="res://game.tres" id="2_q8bm8"]
@@ -8,34 +8,34 @@
 [ext_resource type="Script" uid="uid://bewadwr82vbup" path="res://Board/game_board.gd" id="5_rn6k5"]
 [ext_resource type="PackedScene" uid="uid://btcbvsfbjcju1" path="res://Board/TileScenes/selection.tscn" id="5_tlkhx"]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" unique_id=1839411287]
 script = ExtResource("1_es28m")
 
-[node name="GameHUD" parent="." instance=ExtResource("2_twcd8")]
+[node name="GameHUD" parent="." unique_id=399830248 instance=ExtResource("2_twcd8")]
 
-[node name="Board" type="Node2D" parent="."]
+[node name="Board" type="Node2D" parent="." unique_id=1705690492]
 script = ExtResource("5_rn6k5")
 x_size = 25
 y_size = 25
 
-[node name="GroundLayer" type="TileMapLayer" parent="Board"]
+[node name="GroundLayer" type="TileMapLayer" parent="Board" unique_id=1258369660]
 y_sort_enabled = true
 tile_set = ExtResource("2_q8bm8")
 script = ExtResource("3_14rw0")
 
-[node name="GameLayer" type="TileMapLayer" parent="Board"]
+[node name="GameLayer" type="TileMapLayer" parent="Board" unique_id=1860182606]
 y_sort_enabled = true
 tile_set = ExtResource("2_q8bm8")
 script = ExtResource("3_14rw0")
 
-[node name="Selection" parent="Board" instance=ExtResource("5_tlkhx")]
+[node name="Selection" parent="Board" unique_id=1749842148 instance=ExtResource("5_tlkhx")]
 
-[node name="Camera2D" type="Camera2D" parent="Board"]
+[node name="Camera2D" type="Camera2D" parent="Board" unique_id=2124574599]
 visible = false
 position = Vector2(965, 542)
 script = ExtResource("3_udyyn")
 
-[node name="RegenerationTimer" type="Timer" parent="Board"]
+[node name="RegenerationTimer" type="Timer" parent="Board" unique_id=445903157]
 wait_time = 3.0
 one_shot = true
 autostart = true
