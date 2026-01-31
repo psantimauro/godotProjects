@@ -51,9 +51,8 @@ func start_fire():
 		
 func position_adjacent(pos_vect) -> bool:
 	var adj = false
-	var fire_position = get_position_from_name(name)
 	for v in Utilities.adjecent_vectors():
-		if pos_vect == v + fire_position:
+		if pos_vect == v + Utilities.pos_from_name(name):
 			adj = true
 			break
 	return adj
@@ -62,16 +61,10 @@ func burn_wood(running = true):
 	#get all adjectent buildings and inprove there power	
 	var building_str = Utilities.get_name_from_type(TileManager.tile_types.BUILDING, TileManager.tile_types)
 	for building in get_tree().get_nodes_in_group(building_str):
-		var pos_vect = get_position_from_name(building.name)
+		var pos_vect = Utilities.pos_from_name(building.name)
 		if position_adjacent(pos_vect):
 			var direction = -1
 			if running:
 				direction = 1
 			building.assist_building(fire_multipler)
 			pass
-
-@warning_ignore("shadowed_variable_base_class")
-func get_position_from_name(name):
-	var parts: Array = name.split("_")
-	if parts.size() > 1:
-		return Utilities.pos_string_to_vector2(parts[1])

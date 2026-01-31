@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://oifhuobwjqqw"]
+[gd_scene format=3 uid="uid://oifhuobwjqqw"]
 
 [ext_resource type="Texture2D" uid="uid://vauibdh7ehm2" path="res://assets/Tipi.png" id="1_064a1"]
 [ext_resource type="Script" uid="uid://db331youfw13c" path="res://Board/TileScenes/BuildingTiles/Tipi/tipi.gd" id="1_sv5ii"]
@@ -7,48 +7,48 @@
 [ext_resource type="Texture2D" uid="uid://brqcn484n7b8t" path="res://3rd Party/assets/icons/deadwood.png" id="4_aw201"]
 [ext_resource type="Texture2D" uid="uid://bhbd8loridh8p" path="res://3rd Party/assets/icons/arrowRight.png" id="5_gg2t6"]
 
-[node name="Tipi" type="Node2D" groups=["Trader"]]
+[node name="Tipi" type="Node2D" unique_id=174386256 groups=["Trader"]]
 script = ExtResource("1_sv5ii")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1675342108]
 position = Vector2(1, -204)
 texture = ExtResource("1_064a1")
 
-[node name="TipiInterfaceItems" type="Control" parent="."]
+[node name="TipiInterfaceItems" type="Control" parent="." unique_id=1893591002]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Trade" type="MarginContainer" parent="TipiInterfaceItems"]
+[node name="Trade" type="MarginContainer" parent="TipiInterfaceItems" unique_id=1985207385]
 visible = false
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 50.0
 script = ExtResource("3_obmip")
 
-[node name="TradeContainer" type="VBoxContainer" parent="TipiInterfaceItems/Trade"]
+[node name="TradeContainer" type="VBoxContainer" parent="TipiInterfaceItems/Trade" unique_id=1936478330]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="TipiInterfaceItems/Trade/TradeContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="TipiInterfaceItems/Trade/TradeContainer" unique_id=1159606356]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="TipiInterfaceItems/Trade/TradeContainer/PanelContainer"]
+[node name="Button" type="Button" parent="TipiInterfaceItems/Trade/TradeContainer/PanelContainer" unique_id=38243885]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TipiInterfaceItems/Trade/TradeContainer/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TipiInterfaceItems/Trade/TradeContainer/PanelContainer" unique_id=1907161578]
 layout_mode = 2
 
-[node name="FromImage" type="TextureRect" parent="TipiInterfaceItems/Trade/TradeContainer/PanelContainer/HBoxContainer"]
+[node name="FromImage" type="TextureRect" parent="TipiInterfaceItems/Trade/TradeContainer/PanelContainer/HBoxContainer" unique_id=151698748]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("3_odgih")
 expand_mode = 2
 
-[node name="Label" type="Label" parent="TipiInterfaceItems/Trade/TradeContainer/PanelContainer/HBoxContainer/FromImage"]
+[node name="Label" type="Label" parent="TipiInterfaceItems/Trade/TradeContainer/PanelContainer/HBoxContainer/FromImage" unique_id=1908473739]
 layout_mode = 0
 offset_left = 13.0
 offset_top = 9.0
@@ -56,18 +56,18 @@ offset_right = 53.0
 offset_bottom = 32.0
 text = "3"
 
-[node name="TextureRect" type="TextureRect" parent="TipiInterfaceItems/Trade/TradeContainer/PanelContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="TipiInterfaceItems/Trade/TradeContainer/PanelContainer/HBoxContainer" unique_id=855083387]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("5_gg2t6")
 
-[node name="ToImage" type="TextureRect" parent="TipiInterfaceItems/Trade/TradeContainer/PanelContainer/HBoxContainer"]
+[node name="ToImage" type="TextureRect" parent="TipiInterfaceItems/Trade/TradeContainer/PanelContainer/HBoxContainer" unique_id=2000577310]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("4_aw201")
 expand_mode = 2
 
-[node name="Label" type="Label" parent="TipiInterfaceItems/Trade/TradeContainer/PanelContainer/HBoxContainer/ToImage"]
+[node name="Label" type="Label" parent="TipiInterfaceItems/Trade/TradeContainer/PanelContainer/HBoxContainer/ToImage" unique_id=1477317259]
 layout_mode = 0
 offset_left = 9.0
 offset_top = 10.0
@@ -75,7 +75,7 @@ offset_right = 49.0
 offset_bottom = 33.0
 text = "5"
 
-[node name="DespawnTimer" type="Timer" parent="."]
+[node name="DespawnTimer" type="Timer" parent="." unique_id=2005456906]
 wait_time = 45.0
 one_shot = true
 

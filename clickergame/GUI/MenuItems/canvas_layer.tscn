@@ -92,6 +92,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_jlkld")
 script = ExtResource("8_w0xfj")
+disable_popups = true
 
 [node name="DisplayStack" type="VBoxContainer" parent="DisplayContainer" unique_id=2072843785]
 layout_mode = 2

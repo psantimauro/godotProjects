@@ -5,6 +5,8 @@ extends PanelContainer
 @onready var main_display_label: Label = %MainDisplayLabel
 @onready var display_title_label: Label = %DisplayTitleLabel
 
+@export var disable_popups: bool = false
+
 func _ready() -> void:
 	GameEvents.empty_tile_selected.connect(_outside_click)
 	GameEvents.resource_clicked.connect(close)
@@ -19,6 +21,9 @@ func _ready() -> void:
 var old_parent
 var display_list = []
 func update_display(text: String, header_text = ""):
+	if disable_popups:
+		return
+		
 	if display_list.size() > 0:
 		var item = display_list[0]
 		if item is Array:

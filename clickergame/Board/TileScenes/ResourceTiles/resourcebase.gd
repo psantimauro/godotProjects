@@ -4,7 +4,7 @@ extends Node2D
 @export var group_type: TileManager.tile_types = TileManager.tile_types.GROUND
 @export var type: TileManager.tiles = TileManager.tiles.GRASS
 @export_category("Settings")
-@export var health = 1.0
+@export var health = 10.0
 @export var yield_amount = 0
 @export var time = 1.0
 @export var usage: ToolManager.tool_usages

@@ -1,9 +1,10 @@
+class_name GameBoard
 extends Node
 
 @export var x_size = 10
 @export var y_size = 10
 
-@onready var game_layer: TileMapLayer = $GameLayer
+@onready var game_layer: SceneTileMapLayer = $GameLayer
 @onready var ground_layer: TileMapLayer = $GroundLayer
 
 @onready var selection_indictor = $Selection
@@ -22,6 +23,7 @@ func _ready() -> void:
 	GameEvents.clear_selection.connect(_on_selection_cleared)
 	GameEvents.delete_selected_building.connect(_delete_selected_building)
 	generate_game_board()
+	#generate_game_board_test_board()
 	regeneration_timer.timeout.connect(_on_regeneration_timer_timeout)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -66,16 +68,18 @@ func generate_game_board():
 			elif x == 1 and y == 1:
 				game_layer.set_cell(cords, PICKUP, SCENE_COLLECTION, TileManager.tiles.GENERIC_PICKUP)
 			else:
-				var dice = randi_range(1, 6)
-				if dice == TileManager.tiles.TREE or dice - 1 == TileManager.tiles.TREE:
-					game_layer.set_cell(cords, RESOURCE, SCENE_COLLECTION, TileManager.tiles.TREE)
-				elif dice == TileManager.tiles.ROCK:
-					game_layer.set_cell(cords, RESOURCE, SCENE_COLLECTION, TileManager.tiles.ROCK)
-				elif dice == 6:
-					dice = randi_range(1, 6)
-					if dice == 6:
+				var tileCount = TileManager.tiles.size()
+				var dice = randi_range(1, tileCount)
+				print("dice rolled: " + str(dice))
+				match dice:
+					TileManager.tiles.TREE, TileManager.tiles.SELECTION, TileManager.tiles.CAMPFIRE: # use some other tiles to get more trees
+						game_layer.set_cell(cords, RESOURCE, SCENE_COLLECTION, TileManager.tiles.TREE)
+					TileManager.tiles.ROCK:
+						game_layer.set_cell(cords, RESOURCE, SCENE_COLLECTION, TileManager.tiles.ROCK)
+					TileManager.tiles.DEER:
 						game_layer.set_cell(cords, ANIMAL, SCENE_COLLECTION, TileManager.tiles.DEER)
-	
+					
+				
 	await get_tree().create_timer(0.01).timeout # this is a hack to get these setup one they are on the board
 	var axe = game_layer.scene_coords[(Vector2i(0, 0))]
 	var image = Utilities.resize_texture(64, preload("res://3rd Party/assets/icons/axe.png"))
@@ -126,13 +130,16 @@ func GetGlobalClickPosition(event):
 	var board_position = ground_layer.local_to_map(board_local_click.position)
 	return ground_layer.map_to_local(board_position)
 
+func is_position_available(coords):
+	return get_resource_at_position(coords) == null
+
 func _on_regeneration_timer_timeout():
+	GameEvents.update_game_piece.emit()
 	var x = randi_range(-x_size, x_size)
 	var y = randi_range(-y_size, y_size)
 	var coords = Vector2(x, y)
-	var res = get_resource_at_position(coords)
 	var generated = false
-	if res == null:
+	if is_position_available(coords):
 		var dice = randi_range(1, 6)
 		if dice == 1 or dice == 2:
 			generated = true
@@ -156,3 +163,17 @@ func _on_regeneration_timer_timeout():
 	else:
 		regeneration_timer.wait_time = randi_range(3, 5)
 	regeneration_timer.start()
+
+	
+func generate_game_board_test_board():
+	x_size = 3
+	y_size = 3
+	var x_min = 0 # - x_size
+	var y_min = 0 # - y_size
+	for x in range(x_min, x_size + 1):
+		for y in range(y_min, y_size + 1):
+			var cords = (Vector2i(x, y))
+			ground_layer.set_cell(cords, RESOURCE, SCENE_COLLECTION, TileManager.tiles.GRASS)
+			
+			if x == 0 and y == 0:
+					game_layer.set_cell(cords, ANIMAL, SCENE_COLLECTION, TileManager.tiles.DEER)

@@ -24,11 +24,12 @@ func init_quests():
 		QuestManager.add_main_quest(instance)
 
 func show_intro_message():
-	var title = "Welcome to Boom or Bust: Idle Goes West!"
+	var title = "Welcome to Idle Goes West!"
 	var message = "You are a trapper exploring western america in the young 1800s.
 	- Use [WASD] or [Arrow] keys to move the camera.
 	- Follow the quests on the right to learn the game and unlock features.
-	- Things will become more interactable as you unlock more..."
+	- Things will become more interactable as you unlock more...
+	- Don't forget to click ;)"
 	GameEvents.display_message_with_title.emit(message, title)
 
 func _ready():
@@ -40,13 +41,15 @@ func _ready():
 	GameEvents.building_selected.connect(_on_building_selected)
 	game_hud.action_container.build_menu.build_button_clicked.connect(_on_build_menu_build_button_clicked)
 	init_quests()
-#	show_intro_message()
-	_hax()
+	show_intro_message()
+#	_hax()
 
 func _on_item_pickup(item):
 	if item.type == ToolManager.tool_types.AXE:
+		GameEvents.display_message_with_title.emit("Those pesky trees don't stand a chance", "You unlocked the Axe.")
 		ToolManager.unlock_tool(ToolManager.tool_types.AXE)
 	elif item.type == ToolManager.tool_types.KNIFE:
+		GameEvents.display_message_with_title.emit("Maybe you can stab a deer...?", "Knife Unlocked")
 		ToolManager.unlock_tool(ToolManager.tool_types.KNIFE)
 	elif item.type == TileManager.tiles.MUSHROOM:
 		InventoryManager.add_material(InventoryManager.material_types.HIDE, 2)

@@ -1,5 +1,5 @@
 extends Node
-@warning_ignore_start("unused_signal")
+@warning_ignore_start("unused_signal") #these are all used, just not here 
 # --- Inventory Events ---
 signal material_amount_updated(type: InventoryManager.material_types, amount: int)
 signal new_material_unlocked(resource: material_resource)
@@ -25,6 +25,7 @@ signal resource_clicked
 signal resource_harvest_phase_complete
 signal clear_selection
 signal delete_selected_building
+signal update_game_piece
 
 # --- UI & Message Events ---
 signal display_message_with_title(message: String, title: String)

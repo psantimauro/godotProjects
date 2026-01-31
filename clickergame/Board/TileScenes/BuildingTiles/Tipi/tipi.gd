@@ -1,6 +1,5 @@
 extends Node2D
 
-signal selected
 @export var group_type = TileManager.tile_types.BUILDING
 @export var type = BuildingManager.building_types.TIPI
 @export var button_size = 75
@@ -34,7 +33,7 @@ func assist_building(amount):
 
 func click():
 	despawn_timer.start()
-	selected.emit(self)
+	GameEvents.building_selected.emit(self)
 
 func generate_building_action_menu():
 	var action_menu = HBoxContainer.new()

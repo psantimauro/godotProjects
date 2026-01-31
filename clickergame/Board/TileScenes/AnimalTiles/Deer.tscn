@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://difsgqojncdtx"]
+[gd_scene format=3 uid="uid://difsgqojncdtx"]
 
 [ext_resource type="Script" uid="uid://uitxx82wsr1r" path="res://Board/TileScenes/AnimalTiles/animalbase.gd" id="1_fahxc"]
 [ext_resource type="Texture2D" uid="uid://ditk8p44c052x" path="res://assets/deer.png" id="2_dosyx"]
 [ext_resource type="Script" uid="uid://dh7wpn4dldbbp" path="res://Resources/material_stack.gd" id="2_neccm"]
+[ext_resource type="Script" uid="uid://cjfhjuyop3crj" path="res://Board/TileScenes/movable_tile.gd" id="4_neccm"]
 
 [sub_resource type="Resource" id="Resource_5b5ow"]
 script = ExtResource("2_neccm")
@@ -16,26 +17,29 @@ material_type = 4
 material_amount = 10
 metadata/_custom_type_script = "uid://dh7wpn4dldbbp"
 
-[node name="Deer" type="Node2D"]
+[node name="Deer" type="Node2D" unique_id=359517813]
 script = ExtResource("1_fahxc")
 type = 11
 yield_materials = Array[ExtResource("2_neccm")]([SubResource("Resource_5b5ow"), SubResource("Resource_a5w51")])
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=966410419]
 position = Vector2(-21, -42)
 scale = Vector2(0.230957, 0.228306)
 texture = ExtResource("2_dosyx")
 
-[node name="HealthBar" type="ProgressBar" parent="."]
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=646024922]
 visible = false
 offset_right = 4.0
 offset_bottom = 27.0
 value = 100.0
 
-[node name="Missed" type="Label" parent="."]
+[node name="Missed" type="Label" parent="." unique_id=427386109]
 visible = false
 offset_left = -60.0
 offset_top = -131.0
 offset_right = -1.0
 offset_bottom = -108.0
 text = "Missed!"
+
+[node name="Movable" type="Node2D" parent="." unique_id=770777243]
+script = ExtResource("4_neccm")

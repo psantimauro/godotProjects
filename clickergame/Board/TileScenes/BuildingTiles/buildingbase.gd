@@ -17,7 +17,7 @@ func _ready() -> void:
 func click(power = building_power):
 	assist_building(power)
 	GameEvents.building_selected.emit(self)
-	GameEvents.display_item.emit(self)
+
 
 func assist_building(power):
 	if !clickable_timer_progress_bar.is_stopped():
