@@ -60,10 +60,10 @@ func remove_quest(name, quest_type):
 		path = str(repeatable_quest_type.get_path())
 		path += "/" + name
 		var node = repeatable_quest_type.get_node(path)
-		tutorial_quest_type.remove_child(node)
+		repeatable_quest_type.remove_child(node)
 
 func check_view_hide():
-	if tutorial_quest_type.get_child_count() == 0 || repeatable_quest_type.get_child_count() == 0:
+	if tutorial_quest_type.get_child_count() == 0 && repeatable_quest_type.get_child_count() == 0:
 		visible = false
 	else:
 		visible = true

@@ -1,19 +1,19 @@
 [gd_scene format=3 uid="uid://cr378mrpqgvkl"]
 
-[ext_resource type="Script" uid="uid://cmd7b2c8lwk1w" path="res://GUI/MenuItems/canvas_layer.gd" id="1_1eub4"]
+[ext_resource type="Script" uid="uid://cmd7b2c8lwk1w" path="res://GUI/GameHUD.gd" id="1_1eub4"]
 [ext_resource type="Theme" uid="uid://cfvabtb858o0t" path="res://main_theme.tres" id="1_jlkld"]
-[ext_resource type="Script" uid="uid://duya31nkcrobb" path="res://GUI/MenuItems/items_container.gd" id="2_mlwxn"]
-[ext_resource type="Script" uid="uid://deggq43cseisj" path="res://GUI/MenuItems/action_container.gd" id="3_2vwo8"]
-[ext_resource type="Script" uid="uid://bcjvx3shq3qm4" path="res://GUI/MenuItems/build_menu.gd" id="3_qymyi"]
-[ext_resource type="Script" uid="uid://b3qnqkhol0r5l" path="res://GUI/MenuItems/display_container.gd" id="8_w0xfj"]
-[ext_resource type="Script" uid="uid://cqa0v6segmuoa" path="res://GUI/MenuItems/quest_container.gd" id="9_8mdjv"]
+[ext_resource type="Script" uid="uid://duya31nkcrobb" path="res://GUI/Inventory/items_container.gd" id="2_mlwxn"]
+[ext_resource type="Script" uid="uid://deggq43cseisj" path="res://GUI/Building/action_container.gd" id="3_2vwo8"]
+[ext_resource type="Script" uid="uid://bcjvx3shq3qm4" path="res://GUI/Building/build_menu.gd" id="3_qymyi"]
+[ext_resource type="Script" uid="uid://b3qnqkhol0r5l" path="res://GUI/display_container.gd" id="8_w0xfj"]
+[ext_resource type="Script" uid="uid://cqa0v6segmuoa" path="res://GUI/Quests/quest_container.gd" id="9_8mdjv"]
 [ext_resource type="Texture2D" uid="uid://b4ksndue2pek8" path="res://3rd Party/assets/gui/grey_boxCross.png" id="10_0ulqf"]
 [ext_resource type="AudioStream" uid="uid://c573qngroi41v" path="res://assets/wistle.wav" id="10_d70d2"]
 [ext_resource type="StyleBox" uid="uid://dnfumb4a801lh" path="res://beightLightTextureForPanel.tres" id="11_g6dwa"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rq840"]
 
-[node name="CanvasLayer" type="CanvasLayer" unique_id=489143164]
+[node name="GameHUDCanvas" type="CanvasLayer" unique_id=489143164]
 script = ExtResource("1_1eub4")
 
 [node name="ItemsContainer" type="PanelContainer" parent="." unique_id=171542394]
@@ -92,7 +92,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_jlkld")
 script = ExtResource("8_w0xfj")
-disable_popups = true
 
 [node name="DisplayStack" type="VBoxContainer" parent="DisplayContainer" unique_id=2072843785]
 layout_mode = 2
